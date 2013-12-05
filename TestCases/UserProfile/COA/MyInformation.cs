@@ -342,7 +342,7 @@ namespace UserProfileSPA.TestCases
                     {
                         Utility.CsstoClick("SaveInformationBtn", 4);
                         Utility.Sleep(1);
-                        string expectedValidationsIfMyInfoisEmpty = UserProfileSPA.TestCases.ResourceRESX.COA_SP.ResourceManager.GetString("expectedValidationsIfMyInfoisEmpty");
+                        string expectedValidationsIfMyInfoisEmpty = UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("expectedValidationsIfMyInfoisEmpty");
                         string[] ValidationsIfMyInfoisEmpty = expectedValidationsIfMyInfoisEmpty.Split(".".ToCharArray());
 
                         if (string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("TextAddressOne", "value", 2)) && string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("TextCity", "value", 2)) && string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("TextZipcode", "value", 2)) && string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("TextContactNumaber", "value", 2)))
@@ -491,8 +491,8 @@ namespace UserProfileSPA.TestCases
                     {
                         string myInformationEmail = Utility.GrabAttributeValueByCss("SignInInformationEmailAddress", "value", 4);
                         Assert.AreEqual(email, myInformationEmail, "Email address is not matched");
-                        string _newpasswordvalidation = UserProfileSPA.TestCases.ResourceRESX.COA_SP.ResourceManager.GetString("newpassworderror");
-                        string _confrmpasswordvalidation = UserProfileSPA.TestCases.ResourceRESX.COA_SP.ResourceManager.GetString("confrmpassworderror");
+                        string _newpasswordvalidation = UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("newpassworderror");
+                        string _confrmpasswordvalidation = UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("confrmpassworderror");
                         string[] confrmpasswordvalidation = _confrmpasswordvalidation.Split(",".ToCharArray());
                         Utility.CsstoClick("ClickOnEmailGrey", 3);
                         string _newpassword = Record("NewPassword");
@@ -643,8 +643,8 @@ namespace UserProfileSPA.TestCases
                 Utility.XPathtoClick("CliclOnMoreinformation", 3);
                 Utility.CssToSetText("MobilePhone", _mobilePhone, 3);
                 Utility.XPathtoClick("CliclOnMoreinformation", 3);
-                string errorMsgForContact = UserProfileSPA.TestCases.ResourceRESX.COA_SP.ResourceManager.GetString("errorMsgForContact");
-                string errorMsgForMobile = UserProfileSPA.TestCases.ResourceRESX.COA_SP.ResourceManager.GetString("errorMsgForMobile");
+                string errorMsgForContact = UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("errorMsgForContact");
+                string errorMsgForMobile = UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("errorMsgForMobile");
                 string MobileNo = Utility.GrabAttributeValueByCss("MobilePhone", "value", 3);
                 string ContactNo = Utility.GrabAttributeValueByCss("TextContactNumaber", "value", 3);
                 string[] MsgForContact = errorMsgForContact.Split(",".ToCharArray());

@@ -472,7 +472,7 @@ namespace UserProfileSPA.TestCases
                         if (fareportalMyBillingDetailsUrl == Driver.Url)
                         {
                             Utility.CsstoClick("ClickOnSaveBillingDetailsBtn", 4);
-                            string expectedValidationsIfMyBillingDetailsIsEmpty = UserProfileSPA.TestCases.ResourceRESX.COA_SP.ResourceManager.GetString("expectedValidationsIfMyBillingDetailsIsEmpty");
+                            string expectedValidationsIfMyBillingDetailsIsEmpty = UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("expectedValidationsIfMyBillingDetailsIsEmpty");
                             string[] ValidationsIfMyBillingDetailsIsEmpty = expectedValidationsIfMyBillingDetailsIsEmpty.Split(",".ToCharArray());
                             string strAddCard = Utility.ByXpath("AddNewCard", 5);
 

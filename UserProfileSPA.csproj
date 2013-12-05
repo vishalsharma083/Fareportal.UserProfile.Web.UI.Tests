@@ -107,16 +107,6 @@
     <None Include="AppData\App.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="App_Data\CreateAnAccountAllValidations.csv" />
-    <None Include="App_Data\FaceBookSignIn.csv" />
-    <None Include="App_Data\FareAlerts.csv" />
-    <None Include="App_Data\MyBillingDetailsAllValidations.csv" />
-    <None Include="App_Data\MyCoTravelerAllValidations.csv" />
-    <None Include="App_Data\MyInformationsAllValidations.csv" />
-    <None Include="App_Data\PasswordNotMatchingValidation.csv" />
-    <None Include="App_Data\SignInSignUp.csv" />
-    <None Include="App_Data\SignInWithGoogle.csv" />
-    <None Include="App_Data\ValidatingSignIn.csv" />
     <None Include="AppData\CheckBoxUseForBillingDetails.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -277,8 +267,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy /Y "$(ProjectDir)Library\COA\MethodXML\*.xml" "$(ProjectDir)bin\XML\"
-xcopy /Y "$(ProjectDir)TestCases\ResourceXML\*.xml" "$(ProjectDir)bin\XML\"</PostBuildEvent>
+    <PostBuildEvent>xcopy /Y "$(ProjectDir)TestCases\Resource\*.xml" "$(ProjectDir)bin\XML\"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
