@@ -1,0 +1,6 @@
+SignInUrl,Email,Password,CheapoairMyInfoUrl,MyCoTravelerUrl,SelectFromAgeGroup,SelectedTitle,SelectedGender
+"http://www.cheapoair.com/profiles/#/user-signin","raja@gmail.com","bulletraja","http://www.cheapoair.com/profiles/#/my-account/my-details","http://www.cheapoair.com/profiles/#/my-account/my-co-travelers","Infant","Mstr","Female"
+"http://www.cheapoair.com/profiles/#/user-signin","raja@gmail.com","bulletraja","http://www.cheapoair.com/profiles/#/my-account/my-details","http://www.cheapoair.com/profiles/#/my-account/my-co-travelers","Infant","Mstr","Male"
+"http://www.cheapoair.com/profiles/#/user-signin","raja@gmail.com","bulletraja","http://www.cheapoair.com/profiles/#/my-account/my-details","http://www.cheapoair.com/profiles/#/my-account/my-co-travelers","Adult","Mr","Male"
+"http://www.cheapoair.com/profiles/#/user-signin","raja@gmail.com","bulletraja","http://www.cheapoair.com/profiles/#/my-account/my-details","http://www.cheapoair.com/profiles/#/my-account/my-co-travelers","Senior","Mr","Female"
+"http://www.cheapoair.com/profiles/#/user-signin","raja@gmail.com","bulletraja","http://www.cheapoair.com/profiles/#/my-account/my-details","http://www.cheapoair.com/profiles/#/my-account/my-co-travelers","Child","Miss","Female"

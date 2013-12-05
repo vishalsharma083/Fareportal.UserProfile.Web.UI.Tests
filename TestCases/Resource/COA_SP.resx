@@ -1,0 +1,221 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="expectedEmailErrorWhenBlank" xml:space="preserve">
+    <value>Email is required</value>
+  </data>
+  <data name="expectedEmailErrorWhenWrong" xml:space="preserve">
+    <value>Please enter a valid email address.</value>
+  </data>
+  <data name="expectedPasswordErrorWhenBlank" xml:space="preserve">
+    <value>Please enter a password</value>
+  </data>
+  <data name="ForgetPasswordValidation" xml:space="preserve">
+    <value>Please enter valid email address.</value>
+  </data>
+  <data name="expectedPasswordNotMatchingValidationError" xml:space="preserve">
+    <value>Your email or password has not been found.
+Lets get you back on track to the fastest way
+to book your flight.
+Already have an account?
+Try re-entering your email address and password.
+Forgot your password?
+Let us know and we’ll email it to you.
+New to the site?
+Click here to create an account – its quick &amp; easy.</value>
+  </data>
+  <data name="expectedValidationsIfMyBillingDetailsIsEmpty" xml:space="preserve">
+    <value>Card number is required.,Not a valid expiry date,Please enter first name,Please enter last name,Card Nick Name is required.,Address Line1 is required.,City is required.,Please enter zip code,Please enter billing phone.</value>
+  </data>
+  <data name="expectedValidationsIfMyInfoisEmpty" xml:space="preserve">
+    <value>Please select proper title.Please enter street details.City name missing.Please enter zip code.Contact phone is missing</value>
+  </data>
+  <data name="expectedValidationsIfCreateMyAccountIsEmpty" xml:space="preserve">
+    <value>Your email is required,Please enter a password,Please confirm your password,Please enter first name,Please enter first name,Please enter last name,Please provide a date of birth,Please select the Gender</value>
+  </data>
+  <data name="NoFares" xml:space="preserve">
+    <value>You have no fare alerts.</value>
+  </data>
+  <data name="UpdateStatus" xml:space="preserve">
+    <value>Your Information Has Been Updated.</value>
+  </data>
+  <data name="confrmpassworderror" xml:space="preserve">
+    <value>Please re-enter your password,Both passwords do not match</value>
+  </data>
+  <data name="newpassworderror" xml:space="preserve">
+    <value>Please choose a password between 5-32 characters</value>
+  </data>
+  <data name="expectedValidationsOfCityAndState" xml:space="preserve">
+    <value>City name missing,Please enter your state</value>
+  </data>
+  <data name="CommentFTinOverViewpage" xml:space="preserve">
+    <value>You have no fare alerts.</value>
+  </data>
+  <data name="CommentUTinOverviewPage" xml:space="preserve">
+    <value>You have no upcoming trips scheduled.</value>
+  </data>
+  <data name="CommrntRSinOverViewpage" xml:space="preserve">
+    <value>You have no recent searches.</value>
+  </data>
+  <data name="CreateFareAlerFTbtn" xml:space="preserve">
+    <value>Create a Fare Alert</value>
+  </data>
+  <data name="errorContactNomissing" xml:space="preserve">
+    <value>Contact phone is missing</value>
+  </data>
+  <data name="errorMsgForContact" xml:space="preserve">
+    <value>Please enter a valid contact phone,Contact phone is missing</value>
+  </data>
+  <data name="errorMsgForMobile" xml:space="preserve">
+    <value>Please enter a valid mobile phone</value>
+  </data>
+  <data name="StartSearchNowBtnRS" xml:space="preserve">
+    <value>Start Search Now</value>
+  </data>
+  <data name="StartSearchNowUT" xml:space="preserve">
+    <value>Start Search Now</value>
+  </data>
+  <data name="TravelTools" xml:space="preserve">
+    <value>Frequently Asked Questions,Airline Telephone Numbers,Online Flight Check-in,Visa &amp; Passport,Currency Converter,See all Travel Tools</value>
+  </data>
+  <data name="expectedValidationInCotravelerGender" xml:space="preserve">
+    <value>Please select your Gender</value>
+  </data>
+  <data name="expectedValidationInCoTravelerTitle" xml:space="preserve">
+    <value>Please select Title</value>
+  </data>
+  <data name="expectedValidationsIfMyCoTravelerIsNameFieldIsEmpty" xml:space="preserve">
+    <value>Please enter first name,Please enter last name</value>
+  </data>
+  <data name="expectedValidationsInDobDropDownWhileAddingCoTraveler" xml:space="preserve">
+    <value>Please select Month,Please select Date,Please select Year</value>
+  </data>
+  <data name="expectedValidationsInDObWhileCreateAnAccountIsEmpty" xml:space="preserve">
+    <value>Please provide a date of birth</value>
+  </data>
+  <data name="expectedValidationsInSelectGenderWhileCreateAnAccountIsEmpty" xml:space="preserve">
+    <value>Please select the Gender</value>
+  </data>
+  <data name="titleForChildAndInfant" xml:space="preserve">
+    <value>Select,Mstr,Miss</value>
+  </data>
+  <data name="titlesForAdultAndSenior" xml:space="preserve">
+    <value>Select,Mr,Mrs,Miss,Ms,Dr,Rev</value>
+  </data>
+</root>

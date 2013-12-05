@@ -1,0 +1,304 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<UserProfile>
+
+    <SignIn>
+          
+          <Email>input[id='txtUserName']</Email>
+          <Password>input[id='txtPassword']</Password>
+          <SignInBtn>input[id='btnSignIn']</SignInBtn>
+          <ClickOnForgotyourpassword>Forgot your password?</ClickOnForgotyourpassword>
+          <FaceBookLoginBtn>html/body/div[1]/div[2]/div/form/div[3]/label[1]</FaceBookLoginBtn>
+          <FbEmailorPhoneNo>input[id='email']</FbEmailorPhoneNo>
+          <FbPassword>input[id='pass']</FbPassword>
+          <FbAccountsCompleteName>div[class='firstName']</FbAccountsCompleteName>
+          <SignInWithFaceBook>html/body/div[1]/div[3]/form/div/div[1]/div[1]/div[1]/div/div/div[1]/span[1]/a/img</SignInWithFaceBook>
+          <!--<signInWithGoogle>html/body/div[1]/div[3]/form/div/div[1]/div[1]/div[1]/div/div/div[1]/span[2]/a/img</signInWithGoogle>-->
+         <!--<signInWithGoogle>span[class='scl_icon']</signInWithGoogle>-->
+          <signInWithGoogle>//*[@id='btnGoogleLogin']/img</signInWithGoogle>
+          <GoogleEmail>input[id='Email']</GoogleEmail>
+          <GooglePassword>input[id='Passwd']</GooglePassword>
+          <GoogleLoginBtn>input[id='signIn']</GoogleLoginBtn>
+          <GoogleAccountsCompleteName>div[class='firstName']</GoogleAccountsCompleteName>
+          <rememberMe>input[id='remember']</rememberMe>
+          <SignInLink>html/body/div[2]/div[1]/div[1]/div/div/div/div/ul[2]/li[9]/a[1]</SignInLink>
+  
+    </SignIn>
+    
+  <SignInValidations>
+    
+        <ClickOnRecoverMyPassword>span[id='btnRecoverPassword']</ClickOnRecoverMyPassword>
+        <ForgetPasswordValidation>html/body/div[1]/div[3]/form/div/div[1]/div[1]/div[1]/div/div/div[6]/div[1]/div/div[1]</ForgetPasswordValidation>
+        <SignInValidationErrors>html/body/div[1]/div[3]/form/div/div[1]/div[1]/div[1]/div/div/div[3]/div/div[1]/span</SignInValidationErrors>
+        <PasswordValidationError>html/body/div[1]/div[3]/form/div/div[1]/div[1]/div[1]/div/div/div[4]/div/div[1]/span</PasswordValidationError>
+        <PasswordNotMatchingValidation>div[class='sign_error_contnr']</PasswordNotMatchingValidation>
+
+    </SignInValidations>
+
+  <SignUp>
+    <ClickOnCreateAnAccount>//*[@id='formTag']/div/div[1]/div[1]/div[2]/div/div[2]/a</ClickOnCreateAnAccount>
+    <ClickOnSignUpBtn>input[id='btnSignUp']</ClickOnSignUpBtn>
+    <EmailAlreadyExistMessage>html/body/div[4]/p/span[1]</EmailAlreadyExistMessage>
+    
+  </SignUp>
+
+<MyAccount>
+    
+  <Myinformation>
+      <SignInInformation>
+          
+         <SignInInformationEmailAddress>input[id='txtEmail']</SignInInformationEmailAddress>
+          <ClickOnEmailGrey>div[class='email_grey']</ClickOnEmailGrey>
+          <NewPassword>input[id='newPassword']</NewPassword>
+          <ConfrmPassword>input[id='newConfirmPassword']</ConfrmPassword>
+          <ClickOnConfrmPasswordCheckBox>div[class='flyer_tick changePasswordBtn']</ClickOnConfrmPasswordCheckBox>
+          <ClickOnWelcomeDropdown>a[class='dropdown-toggle mgLft5']</ClickOnWelcomeDropdown>
+          <ClickOnSignOut>a[id='btnLogOut']</ClickOnSignOut>
+          <BlankPasswordError>//*[@id='MyDetails']/div[1]/div[2]/div[4]</BlankPasswordError>
+          <BlankConfrmPassword>//*[@id='MyDetails']/div[1]/div[2]/div[6]/span</BlankConfrmPassword>
+        
+      </SignInInformation>
+
+      <PersonsalInfromation>
+          
+          <TitleValidation>//*[@id='MyDetails']/div[2]/div/div[3]/span</TitleValidation>
+          <FirstName>input[id='txtFirstName']</FirstName>        
+          <LastName>input[id='txtLastName']</LastName>
+          <DobMonth>select[id='ddlMonth']</DobMonth>
+          <DobDay>select[id='ddlDate']</DobDay>
+          <DobYear>select[id='ddlYear']</DobYear>
+          <Gender>select[id='ddlGender']</Gender>
+          <Country>select[id='ddlCountryList']</Country>
+          <AddressLine1>input[id='txtAddressOne']</AddressLine1>
+          <City>input[id='txtCity']</City>
+          <State>input[id='txtState']</State>
+          <SelectState>select[id='ddlStatesList']</SelectState>
+          <Zip>input[id='txtZipCode']</Zip>
+          <TsaRedress>input[id='txtTsaNumber']</TsaRedress>
+          <ContactPhone>input[id='txtContactNumber']</ContactPhone>
+          <MobilePhone>input[id='txtMobileNumber']</MobilePhone>
+          <Title>select[id='ddlTitle']</Title>
+          <Gender>select[id='ddlGender']</Gender>
+          <actualContactMsg>//*[@id='MyDetails']/div[9]/div[1]/div[2]/span</actualContactMsg>
+          <actualMobileMsg>//*[@id='MyDetails']/div[9]/div[2]/div[2]/span</actualMobileMsg>
+          <CliclOnMoreinformation>//*[@id='MyDetails']/div[12]/h1</CliclOnMoreinformation>
+          <UseforBillingDetailsCheckBoxInMyDetailsPage>input[id='billiingDetails']</UseforBillingDetailsCheckBoxInMyDetailsPage>
+        
+      </PersonsalInfromation>
+        
+        <clickOnMyInformation>a[class='myAccount']</clickOnMyInformation>
+        <SaveInformationBtn>input[id='saveUserDetails']</SaveInformationBtn>
+        <TextAddressOne>input[id='txtAddressOne']</TextAddressOne>
+        <TextCity>input[id='txtCity']</TextCity>
+        <TextZipcode>input[id='txtZipCode']</TextZipcode>
+        <TextContactNumaber>input[id='txtContactNumber']</TextContactNumaber>
+
+
+
+    <MyBillingDetails>
+
+      <ClickOnMyBillingDetails>My Billing Details</ClickOnMyBillingDetails>
+      <ClickOnSaveBillingDetailsBtn>input[id='btnSaveBillingDetails']</ClickOnSaveBillingDetailsBtn>
+      <textcardNumber>input[id='cardNumber']</textcardNumber>
+      <textfirstName>input[id='firstName']</textfirstName>
+      <textlastName>input[id='lastName']</textlastName>
+      <textnickName>input[id='nickName']</textnickName>
+      <textaddressLine1InBillingDetails>input[id='addLine1']</textaddressLine1InBillingDetails>
+      <textaddressLine2InBillingDetails>input[id='addLine2']</textaddressLine2InBillingDetails>
+      <textcityInBillingdetails>input[id='addCity']</textcityInBillingdetails>
+      <textzipInBillingDetails>input[id='addZip']</textzipInBillingDetails>
+      <textBillingphoneNumbers>input[id='addBillingPhone]</textBillingphoneNumbers>
+      <ExistingAddressCheckBoxInBillingPage>input[id='ue']</ExistingAddressCheckBoxInBillingPage>
+      <ExistingAddressContent>//*[@id='useExistingBillingAddress']/div/div[1]/div[2]/p</ExistingAddressContent>
+      <AddNewAddressCheckBox>input[id='an']</AddNewAddressCheckBox>
+      <AddresssShowingAfterAddingCard>html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/form/div/div[3]/div[2]/div/div/div[2]/p</AddresssShowingAfterAddingCard>
+      <BillingAddressCountry>select[id='country']</BillingAddressCountry>
+      <BillingAddressState>select[id='addState']</BillingAddressState>
+      <Deletecard>a[id*='deleteCard']</Deletecard>
+      <YourCard>html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/form/div/div[1]/div/h1</YourCard>
+      <ExistingCCardsDiv>div[id='ExistingCC']</ExistingCCardsDiv>
+      <ViewCard>div[id*='cardView']</ViewCard>
+      <ClickOnEditLinkInBillingDetials>html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/form/div/div[1]/div/div/div[2]/div[1]/div[2]/ul/li[1]/a</ClickOnEditLinkInBillingDetials>
+      <SaveUpdatedInformationInBillingDetails>button[id='btnEditBillingDetails']</SaveUpdatedInformationInBillingDetails>
+      <CalnelBtn>button[id='btnCancelBillingDetails']</CalnelBtn>
+      <UpdatedState>input[id='txtStateEdit']</UpdatedState>
+      <UpdatedCity>input[id='addCityEdit']</UpdatedCity>
+      <UpdatedAddressLine1>input[id='addLine1Edit']</UpdatedAddressLine1>
+      <UpdatedCountry>select[id='countryEdit']</UpdatedCountry>
+      <UpdatedFirstName>input[id='firstNameEdit']</UpdatedFirstName>
+      <UpdatedLastName>input[id='lastNameEdit']</UpdatedLastName>
+      <CliclOnAddCCdiv>div[id='AddCC']</CliclOnAddCCdiv>
+      
+     
+      
+      
+    </MyBillingDetails>
+
+
+
+    <MyCoTraveler>
+
+      <clickOnMyCoTravelerMenu>My Co-Travelers</clickOnMyCoTravelerMenu>
+      <ClickOnAddCoTravelerBtn>button[id='EnableAddCoTraveler']</ClickOnAddCoTravelerBtn>
+      <SaveCoTraveler>input[id='SaveCoTraveler']</SaveCoTraveler>
+      <CoTravelerMonthIsNotSelected>html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/form/div[2]/div[1]/div[3]/div[1]/div[4]</CoTravelerMonthIsNotSelected>
+      <CoTravelerDateIsNotSelected>html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/form/div[2]/div[1]/div[3]/div[1]/div[5]</CoTravelerDateIsNotSelected>
+      <CoTravelerYeadIsNotSelected>html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/form/div[2]/div[1]/div[3]/div[1]/div[6]</CoTravelerYeadIsNotSelected>
+      <SelectCoTravellerTitle>select[id='ddlTitle']</SelectCoTravellerTitle>
+      <textInFirstname>input[id='ctFirstName']</textInFirstname>
+      <textInlastName>input[id='ctLastName']</textInlastName>
+      <CoTravelerfirstnameValidation>html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/form/div[2]/div[1]/div[2]/div[1]/div[2]</CoTravelerfirstnameValidation>
+      <CoTravelerLastnameValidation>html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/form/div[2]/div[1]/div[2]/div[2]/div[2]</CoTravelerLastnameValidation>
+      <CoTravellerMonth>select[id='ddlMonth']</CoTravellerMonth>      
+      <CoTravellerDay>select[id='ddlDate']</CoTravellerDay>
+      <CoTravellerYear>select[id='ddlYear']</CoTravellerYear>
+      <CoTravelerTitleIsNotSelected>html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/form/div[2]/div[1]/div[1]/div/div[3]</CoTravelerTitleIsNotSelected>
+      <CoTravelerGenderIsNotSelected>html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/form/div[2]/div[1]/div[3]/div[2]/div[2]</CoTravelerGenderIsNotSelected>
+      <SelectCoTravellerAgeGroup>select[id='ddlAgeGroup']</SelectCoTravellerAgeGroup>
+      <AddCoTravelerDiv>html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/form/div[1]/div/div[2]</AddCoTravelerDiv>                        
+      <DeleteCoTraveler>a[class='red DeleteCoT']</DeleteCoTraveler>
+      <ClickOnAddCoTravellerBtn>button[id='EnableAddCoTraveler']</ClickOnAddCoTravellerBtn>
+      <AddCoTravelerSection>div[id='coProfile']</AddCoTravelerSection>
+      <CoTravelerFlightPreference>div[id='FlightPreferences']</CoTravelerFlightPreference>
+      <CotravelerHotelPreference>div[id='coHotelPref']</CotravelerHotelPreference>
+      <CoTravelerCarPreference>div[id='coCarPref']</CoTravelerCarPreference>
+      <ClickOnFlightPreferecne>html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/form/div[2]/div[2]/div[1]/h1</ClickOnFlightPreferecne>
+      <CoTravelerHomeAirPort>input[id='txtAirportHome']</CoTravelerHomeAirPort>
+      <ClickOnSaveCoTravelerBtn>input[id='SaveCoTraveler']</ClickOnSaveCoTravelerBtn>
+      <CoTravellerGender>select[id='ddlGender']</CoTravellerGender>
+      <CotravelerDetailsDiv>div[class='pri-container mgBtm10 wid70']</CotravelerDetailsDiv>
+      <ClickOnEditLinkForFirstCotraveler>html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/form/div[1]/div/div[2]/div[2]/div/ul/li[1]/a</ClickOnEditLinkForFirstCotraveler>
+      <EditCoTravelerHeader>html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/form/div[2]/div[1]/div[1]/h1</EditCoTravelerHeader>
+      <MyCoTravelerDiv>div[id='myCoTraveler']</MyCoTravelerDiv>
+      <DeleteLink>Delete</DeleteLink>
+      
+    </MyCoTraveler>
+    
+    
+    
+  </Myinformation>
+
+
+
+    <CreateAnAccount>
+      <ClickOnCreateAnAccountBtn>html/body/div[1]/div[3]/form/div/div[1]/div[1]/div[2]/div/div[2]/a</ClickOnCreateAnAccountBtn>
+      <ClickOnCreateAnAccountBtnSignUpFree>input[id='btnSignUp']</ClickOnCreateAnAccountBtnSignUpFree>
+      <TextInEmail>input[id='txtEmail']</TextInEmail>
+      <CreateAnAccountTextInFirstName>input[id='txtFirstName']</CreateAnAccountTextInFirstName>
+      <CreateAnAccountTextInLastName>input[id='txtLastName']</CreateAnAccountTextInLastName>
+      <TextInPassword>input[id='txtPassword']</TextInPassword>
+      <TextInConfrmPassword>input[id='txtConfirmPassword']</TextInConfrmPassword>
+      <ActualErrorWhileDobIsNotSelected>html/body/div[1]/div[3]/div/div/form/div/div[1]/div/div[7]/div[1]/div[4]</ActualErrorWhileDobIsNotSelected>
+      <ClickOnDivOfSignUpFreeToCheckYourBooking>div[class='reg_form_sec']</ClickOnDivOfSignUpFreeToCheckYourBooking>
+      <ErrorMessageWhileEmailIsWrongOrEmpty>html/body/div[1]/div[3]/div/div/form/div/div[1]/div/div[4]/div[1]/div[2]</ErrorMessageWhileEmailIsWrongOrEmpty>
+      <ClickOnCreateAnAccountDiv>div[class='span8 reg_form']</ClickOnCreateAnAccountDiv>
+     
+    </CreateAnAccount>
+
+  </MyAccount>
+
+  <MyAccountValidations>
+    <MyInformationValidations>span[class='error']</MyInformationValidations>
+    <AirLine1Validation>html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/form/div/div[6]/div[1]/div[2]/span</AirLine1Validation>
+    <CityNamemissingValidation>html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/form/div/div[7]/div[1]/div[2]/span</CityNamemissingValidation>
+    <ZipCodeIsMissingValidation>html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/form/div/div[8]/div[1]/div[2]/span</ZipCodeIsMissingValidation>
+    <ContactNoIsMissingValidation>html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/form/div/div[9]/div[1]/div[2]/span</ContactNoIsMissingValidation>
+    <StateNamemissingValidation>//*[@id='MyDetails']/div[7]/div[2]/div[3]/span</StateNamemissingValidation>
+    <MybillingDetailsValidation>
+
+      <!--<cardNumberValidation>html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/form/div[2]/div[1]/div[3]/span</cardNumberValidation>-->
+      <cardNumberValidation>html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/form/div/div[2]/div[2]/div[1]/div[3]/span</cardNumberValidation>
+      <cardExpiration>//*[@id='AddCC']/div[2]/div[2]/div[2]/span</cardExpiration>
+      <!--<cardExpirationMonthValidation>html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/form/div[2]/div[2]/div[2]/span</cardExpirationMonthValidation>-->
+      <!--<cardExpirationYearValidation>html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/form/div[2]/div[2]/div[3]/span</cardExpirationYearValidation>-->
+      <firstnameValidation>html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/form/div/div[2]/div[3]/div[1]/div[2]/span</firstnameValidation>
+      <lastnameValidation>html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/form/div/div[2]/div[3]/div[2]/div[2]/span</lastnameValidation>
+      <cardNickNameValidation>html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/form/div/div[2]/div[4]/div[1]/div[2]/span</cardNickNameValidation>
+      <addressLine1ValidationInbillingDetails>html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/form/div/div[3]/div[3]/div/div[2]/div[1]/div[2]/span</addressLine1ValidationInbillingDetails>
+      <addressLine2ValidationInbillingDetails>html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/form/div/div[2]/div[7]/div/div[2]/div[2]/div[2]/span</addressLine2ValidationInbillingDetails>
+      <cityValidationInBillingDetails>html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/form/div/div[3]/div[3]/div/div[3]/div[1]/div[2]/span</cityValidationInBillingDetails>
+      <zipValidationInBillingDetails>html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/form/div/div[3]/div[3]/div/div[4]/div[1]/div[2]/span</zipValidationInBillingDetails>
+      <selectStateValidation>html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/form/div/div[3]/div[3]/div/div[3]/div[2]/div[3]/span</selectStateValidation>
+      <BillingPhoneNumberValidation>html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/form/div/div[3]/div[3]/div/div[4]/div[2]/div[2]/span</BillingPhoneNumberValidation>
+      <Month>select[id='ddMonth']</Month>
+      <Year>select[id='ddYear']</Year>
+      <!--<AddNewAddress>//*[@id='AddNewAddress']/div[1]/div/div</AddNewAddress>-->
+      <AddNewCard>html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/form/div/div[2]/div[1]/h1</AddNewCard>
+    </MybillingDetailsValidation>    
+   
+
+    <CreateAnAccountValidations>
+      <TextInEmailValidattion>html/body/div[1]/div[3]/form/div/div/div[1]/div[1]/div/div[3]/div[1]/div/div/span</TextInEmailValidattion>
+      <TextInFirstNamelValidattion>html/body/div[1]/div[3]/form/div/div/div[1]/div[1]/div/div[4]/div[1]/div/div/span</TextInFirstNamelValidattion>
+      <TextInLastNameValidattion>html/body/div[1]/div[3]/form/div/div/div[1]/div[1]/div/div[4]/div[2]/div/div/span</TextInLastNameValidattion>
+      <TextInPasswordValidattion>html/body/div[1]/div[3]/form/div/div/div[1]/div[1]/div/div[6]/div[1]/div/div/span</TextInPasswordValidattion>
+      <SelectGenderValidation>html/body/div[1]/div[3]/form/div/div/div[1]/div[1]/div/div[5]/div[2]/div/div[2]/div/span</SelectGenderValidation>
+
+      <CreateAccountEmailAddress>input[id='txtEmail']</CreateAccountEmailAddress>
+      <CreateAccountFirstName>input[id='txtFirstName']</CreateAccountFirstName>
+      <CreateAccountLastName>input[id='txtLastName']</CreateAccountLastName>
+      <CreateAccountPassword>input[id='txtPassword']</CreateAccountPassword>
+    </CreateAnAccountValidations>
+
+    <TextIsWhenWrongValidattion>
+      <TextInEmailWhenWrongValidattion>html/body/div[1]/div[3]/form/div/div/div[1]/div[1]/div/div[3]/div[1]/div/div/span</TextInEmailWhenWrongValidattion>
+      <TextInPasswordWhenWrongValidattion>html/body/div[1]/div[3]/form/div/div/div[1]/div[1]/div/div[6]/div[1]/div/div</TextInPasswordWhenWrongValidattion>     
+    </TextIsWhenWrongValidattion>
+
+  </MyAccountValidations>
+
+
+  <OverViewPage>
+
+    <FareAlerts>
+      <ClickOnFareAlerts>//*[@id='contentPane']/div/div[1]/div[2]/div[2]/div/div/div</ClickOnFareAlerts>    
+      <NoFare>//*[@id='contentPane']/div/div[1]/div[2]/div[2]/div/div/span</NoFare>
+      <FareAlertFromLable>//*[@id='contentPane']/div/div[1]/div[2]/div[1]/div[2]/ul/li[1]/p</FareAlertFromLable>
+      <FareAlertToLabe>//*[@id='contentPane']/div/div[1]/div[2]/div[1]/div[2]/ul/li[3]/p</FareAlertToLabe>
+      <ClickOnFareAlertDiv>div[id='createFareAlert']</ClickOnFareAlertDiv>      
+    </FareAlerts>
+    
+    <UpCommingTrips>div[class='leftContUt']</UpCommingTrips>
+    <UpCommingTripsTitle>html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/div/div[1]/div[1]/div[2]/div/h1</UpCommingTripsTitle>
+    <FareAlertTitle>html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/div/div[1]/div[2]/div[2]/div/h1</FareAlertTitle>
+    <FareAlert>div[class='leftContFa']</FareAlert>
+    <RecentSearches>div[class='leftContRs']</RecentSearches>
+    <RecentSearchesTitle>html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/div/div[1]/div[3]/div[2]/div/h1</RecentSearchesTitle>
+    <DifferentTravelTools>html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/div/div[2]/div[1]/div</DifferentTravelTools>
+    <TravelTools>html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/div/div[2]/div[1]/h1</TravelTools>
+    <OverViewWelcome>html/body/div[1]/div[1]/div[2]/div[1]/div/div/div/div/ul[2]/li[9]/a</OverViewWelcome>
+    <TravelerNameAccount>html/body/div[1]/div[2]/div[2]/div/div/div[1]</TravelerNameAccount> 
+  </OverViewPage>
+
+  <SettingPage>
+
+    <ClickFareAlertCheckBox>input[id='fareAlerts']</ClickFareAlertCheckBox>
+    <FromCity>input[id='txtFromCity']</FromCity>
+    <ToCity>input[id='txtToCity']</ToCity>
+    <DepartDate>input[id='tbDTime']</DepartDate>
+    <ReturnDate>input[id='tbRTime']</ReturnDate>
+    <ClickOnAddFareAlertBtton>input[id='btnAddFareAlert']</ClickOnAddFareAlertBtton>
+    <UpdateSettingsButton>button[class='UpdateNlSettings']</UpdateSettingsButton>
+    <ClickOnOverViewMenu>Overview</ClickOnOverViewMenu>
+
+  </SettingPage>
+
+
+  <Commmon>
+    <SavingMessage>html/body/div[4]/p/span[1]</SavingMessage>
+    <SelectGender>select[id='ddlGender']</SelectGender>
+    <DobYear>select[id='ddlYear']</DobYear>
+    <DobDay>select[id='ddlDate']</DobDay>
+    <DobMonth>select[id='ddlYear']</DobMonth>
+  </Commmon>
+
+  <MyDeal>
+
+    <MyDealPage>span[class='deals']</MyDealPage>
+    <MouseHoverOnFirstDealInFligts>html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/div[1]/div</MouseHoverOnFirstDealInFligts>
+    <Image>img[class='modDealBoxImg']</Image>
+    <ClickOnSelectBtnOfFirstDeal>html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/div[1]/div/div[1]/div[1]/a[2]</ClickOnSelectBtnOfFirstDeal>
+    <FromCityToCityHeader>html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/div[1]/div/div[1]/div[1]/div[1]</FromCityToCityHeader>
+    
+    
+  </MyDeal>
+</UserProfile>

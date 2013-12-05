@@ -1,0 +1,290 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4168525B-1725-4417-A71D-8E2B0BA4F69F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>UserProfileSPA</RootNamespace>
+    <AssemblyName>UserProfileSPA</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Selenium.WebDriverBackedSelenium, Version=2.35.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Users\s.g.yu7h\Desktop\net35\Selenium.WebDriverBackedSelenium.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.XML" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="ThoughtWorks.Selenium.Core, Version=2.35.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Users\s.g.yu7h\Desktop\net35\ThoughtWorks.Selenium.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="WebDriver, Version=2.35.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Users\s.g.yu7h\Desktop\net35\WebDriver.dll</HintPath>
+    </Reference>
+    <Reference Include="WebDriver.Support, Version=2.35.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Users\s.g.yu7h\Desktop\net35\WebDriver.Support.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <CodeAnalysisDependentAssemblyPaths Condition=" '$(VS100COMNTOOLS)' != '' " Include="$(VS100COMNTOOLS)..\IDE\PrivateAssemblies">
+      <Visible>False</Visible>
+    </CodeAnalysisDependentAssemblyPaths>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Library\InitializeEnvironment.cs" />
+    <Compile Include="TestCases\UserProfile\COA\CreateAnAccount.cs" />
+    <Compile Include="TestCases\UserProfile\COA\MyBillingDetails.cs" />
+    <Compile Include="TestCases\UserProfile\COA\MyCoTraveler.cs" />
+    <Compile Include="TestCases\UserProfile\COA\MyDeals.cs" />
+    <Compile Include="TestCases\UserProfile\COA\MyInformation.cs" />
+    <Compile Include="TestCases\UserProfile\COA\OverViewSection.cs" />
+    <Compile Include="TestCases\UserProfile\COA\Setting.cs" />
+    <Compile Include="TestCases\UserProfile\COA\SignIn.cs" />
+    <Compile Include="TestCases\UserProfile\COA\UserProfileTestBase.cs" />
+    <Compile Include="Utility\UserProfileSettings.cs" />
+    <Compile Include="Utility\Utility.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestCases\Resource\CA_SPA.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CA_SPA.resx</DependentUpon>
+    </Compile>
+    <Compile Include="TestCases\Resource\COA_SP.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>COA_SP.resx</DependentUpon>
+    </Compile>
+    <Compile Include="TestCases\Resource\OT_SPA.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OT_SPA.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="TestCases\UserProfile\CA\" />
+    <Folder Include="TestCases\UserProfile\OT\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="AppData\AddNewCoTraveler.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="AppData\App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="App_Data\CreateAnAccountAllValidations.csv" />
+    <None Include="App_Data\FaceBookSignIn.csv" />
+    <None Include="App_Data\FareAlerts.csv" />
+    <None Include="App_Data\MyBillingDetailsAllValidations.csv" />
+    <None Include="App_Data\MyCoTravelerAllValidations.csv" />
+    <None Include="App_Data\MyInformationsAllValidations.csv" />
+    <None Include="App_Data\PasswordNotMatchingValidation.csv" />
+    <None Include="App_Data\SignInSignUp.csv" />
+    <None Include="App_Data\SignInWithGoogle.csv" />
+    <None Include="App_Data\ValidatingSignIn.csv" />
+    <None Include="AppData\CheckBoxUseForBillingDetails.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="AppData\CheckForZipCodesValidation.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="AppData\CheckTitleForMyCotraveler.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="AppData\ClassDiagram1.cd" />
+    <None Include="AppData\ClickOnEditCardDetailsAndDoChanges.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="AppData\CoTravelerFirstAndLastNameValidations.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="AppData\CreateAnAccountAllValidations.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="AppData\CreateAnAccountFirstAndLastNameValidations.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="AppData\DeleteCard.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="AppData\DeleteLastCoTraveler.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="AppData\FaceBookSignIn.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="AppData\FareAlerts.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="AppData\MinAndMaxDigitInCreditCard.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="AppData\MinAndMaxDigitInCreditCardNegative .csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="AppData\MyBillingDetailsAllValidations.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="AppData\MyCoTravelerAllValidations.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="AppData\MyInformationsAllValidations.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="AppData\PasswordNotMatchingValidation.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="AppData\SignIn.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="AppData\SignInInformationInMyInformation.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="AppData\SignInSignUp.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="AppData\SignInValidationInMyInformation.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="AppData\SignInWithGoogle.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="AppData\StateMustBeDropDownAfterSelectingUSAndCanada.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="AppData\SuccesfullyAddaCard.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="AppData\UpdateDataUsingEditButton.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="AppData\ValidateEmailAddressInCreateAnAccount.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="AppData\ValidatingPasswordForCreateAnAccount.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="AppData\ValidatingSignIn.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="AppData\VerifyContactAndMobilePhoneFields.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="AppData\VerifyingRememberMe.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="AppData\VerifySectionOnOverViewPage.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="AppData\VerifyTheCityAndStateFields.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="AppData\VerifyTheEmailAddressField.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="AppData\VerifyTheFirstAndLastNameValidationsInMyBillingDetails.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="AppData\VerifyTheNameFieldValidations.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="AppData\VerifytheRadioButtonsInBillingSection.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="AppData\VerifytheRadioButtonsOnThisSection.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="AppData\VerifyTheTitleField.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="AppData\VerifyTheTitleFieldWithGenderInCoTraveler.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="AppData\VerifyTheTitleFieldWithGenderInCoTravelerNegative.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="AppData\VerifyTheValidationsOfTheLeapYearInRegisterPage.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="AppData\VerifyTheValidationsOf_TheLeapYear.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="AppData\VerifyTheValuesInFirstNameAndLastName.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="AppData\VeryufyTheRadioButtonsAgainstEachCard.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TestCases\ElementXpath\CA_SP.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="TestCases\ElementXpath\COA_SP.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="TestCases\ElementXpath\OT_SP.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestCases\Resource\CA_SPA.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>CA_SPA.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TestCases\Resource\COA_SP.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>COA_SP.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TestCases\Resource\OT_SPA.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>OT_SPA.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>xcopy /Y "$(ProjectDir)Library\COA\MethodXML\*.xml" "$(ProjectDir)bin\XML\"
+xcopy /Y "$(ProjectDir)TestCases\ResourceXML\*.xml" "$(ProjectDir)bin\XML\"</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
