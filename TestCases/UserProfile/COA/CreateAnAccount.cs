@@ -257,7 +257,7 @@ namespace UserProfileSPA.TestCases
             }
         }
 
-        [DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\ValidatingPasswordForCreateAnAccount.csv", "ValidatingPasswordForCreateAnAccount#csv", DataAccessMethod.Sequential), DeploymentItem("ValidatingPasswordForCreateAnAccount.csv"), TestMethod]
+        [DeploymentItem("ValidatingPasswordForCreateAnAccount.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\ValidatingPasswordForCreateAnAccount.csv", "ValidatingPasswordForCreateAnAccount#csv", DataAccessMethod.Sequential), TestMethod]
         public void ValidatingPasswordForCreateAnAccount()
         {
             IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
@@ -284,7 +284,22 @@ namespace UserProfileSPA.TestCases
                     {
                         if ((password.Length > 5) && (password.Length < 32))
                         {
-                            string str = Utility.GrabAttributeValueByCss("TextInPassword", "value", 4);
+                            string _pass = Utility.GrabAttributeValueByCss("TextInPassword", "value", 4);
+                            string _confrmPass = Utility.GrabAttributeValueByCss("TextInConfrmPassword", "value", 4);
+                            if (_pass == _confrmPass)
+                            {
+                                Assert.IsTrue(true);
+                            }
+                            else
+                            {
+                                string expectedWhenBothNotSame = UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("ecpectedWhenBothNotSame");
+                                string actualWhenBothNotSame = Utility.ByXpath("ConfrmPasswordError", UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
+                                Assert.AreEqual(expectedWhenBothNotSame, actualWhenBothNotSame);
+                            }
+                        }
+                        else
+                        {
+                            Assert.IsTrue(false, "Password should be 5-32 characters");
                         }
                     }
                 }

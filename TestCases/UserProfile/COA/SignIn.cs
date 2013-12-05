@@ -218,7 +218,9 @@ namespace UserProfileSPA.TestCases
                     string[] _actualName = actualName.Split(" ".ToCharArray());
                     Assert.AreEqual(_expectedName[0], _actualName[1]);
                     Utility.Sleep(6);
-                    Driver.Quit();                    
+                    string preUrlValue = Driver.Url;
+                    Driver.Quit();
+                   //Driver = new 
                     Driver.Navigate().GoToUrl(_baseUrl);
                     Utility.Sleep(6);
                     if (_baseUrl != Driver.Url)

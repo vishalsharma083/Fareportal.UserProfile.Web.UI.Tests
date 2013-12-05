@@ -191,6 +191,7 @@
       <ClickOnDivOfSignUpFreeToCheckYourBooking>div[class='reg_form_sec']</ClickOnDivOfSignUpFreeToCheckYourBooking>
       <ErrorMessageWhileEmailIsWrongOrEmpty>html/body/div[1]/div[3]/div/div/form/div/div[1]/div/div[4]/div[1]/div[2]</ErrorMessageWhileEmailIsWrongOrEmpty>
       <ClickOnCreateAnAccountDiv>div[class='span8 reg_form']</ClickOnCreateAnAccountDiv>
+      <ConfrmPasswordError>html/body/div[1]/div[3]/div/div/form/div/div[1]/div/div[5]/div[2]/div[2]/span</ConfrmPasswordError>
      
     </CreateAnAccount>
 
