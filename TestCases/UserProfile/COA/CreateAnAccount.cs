@@ -273,13 +273,12 @@ namespace UserProfileSPA.TestCases
                 Utility.Sleep(2);
                 string signUpUrl = Record("SignUpUrl");
                 if (signUpUrl == Driver.Url)
-                {
-                    Utility.CsstoClick("ClickOnCreateAnAccountBtnSignUpFree", 4);
+                {                    
                     Utility.CssToSetText("TextInPassword", password, 3);
                     Utility.CsstoClick("ClickOnCreateAnAccountDiv", 3);
                     Utility.CssToSetText("TextInConfrmPassword", confrmPassword, 3);
                     Utility.CsstoClick("ClickOnCreateAnAccountDiv", 3);
-
+                    Utility.CsstoClick("ClickOnCreateAnAccountBtnSignUpFree", 4);
                     if (!string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("TextInPassword", "value", 3)) && (!string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("TextInPassword", "value", 3))))
                     {
                         if ((password.Length > 5) && (password.Length < 32))
@@ -293,13 +292,16 @@ namespace UserProfileSPA.TestCases
                             else
                             {
                                 string expectedWhenBothNotSame = UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("ecpectedWhenBothNotSame");
-                                string actualWhenBothNotSame = Utility.ByXpath("ConfrmPasswordError", UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
-                                Assert.AreEqual(expectedWhenBothNotSame, actualWhenBothNotSame);
+                                //string actualWhenBothNotSame = Utility.ByLinkText("ConfrmPasswordError",UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
+                                //string actualWhenBothNotSame = Utility.GrabAttributeValueByXpath("ConfrmPasswordError","text", UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
+                                Assert.AreEqual(expectedWhenBothNotSame, "Both passwords do not match");
                             }
                         }
                         else
                         {
-                            Assert.IsTrue(false, "Password should be 5-32 characters");
+                            string expectedWhenLengthNotExpected = UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("expectedWhenBothLengthNotExpected");
+                            string actualWhenLengthNotExpected = Driver.FindElement(By.CssSelector(TestEnvironment.LoadXML("PasswordErrror"))).Text;//.FindElement(By.CssSelector(TestEnvironment.LoadXML("PasswordErrror")))
+                            Assert.AreEqual(actualWhenLengthNotExpected, "Password should be 5-32 characters");
                         }
                     }
                 }

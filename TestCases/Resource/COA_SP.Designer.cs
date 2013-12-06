@@ -267,6 +267,15 @@ namespace UserProfileSPA.TestCases.Resource {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Password should be 5-32 characters.
+        /// </summary>
+        internal static string expectedWhenBothLengthNotExpected {
+            get {
+                return ResourceManager.GetString("expectedWhenBothLengthNotExpected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please enter valid email address..
         /// </summary>
         internal static string ForgetPasswordValidation {

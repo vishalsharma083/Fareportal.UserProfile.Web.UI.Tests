@@ -218,4 +218,7 @@ Click here to create an account – its quick &amp; easy.</value>
   <data name="titlesForAdultAndSenior" xml:space="preserve">
     <value>Select,Mr,Mrs,Miss,Ms,Dr,Rev</value>
   </data>
+  <data name="expectedWhenBothLengthNotExpected" xml:space="preserve">
+    <value>Password should be 5-32 characters</value>
+  </data>
 </root>
