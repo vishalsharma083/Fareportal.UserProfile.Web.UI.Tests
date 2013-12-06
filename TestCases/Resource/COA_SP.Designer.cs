@@ -106,6 +106,15 @@ namespace UserProfileSPA.TestCases.Resource {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Both passwords do not match.
+        /// </summary>
+        internal static string ecpectedWhenBothNotSame {
+            get {
+                return ResourceManager.GetString("ecpectedWhenBothNotSame", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Contact phone is missing.
         /// </summary>
         internal static string errorContactNomissing {

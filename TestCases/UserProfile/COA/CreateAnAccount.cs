@@ -263,8 +263,8 @@ namespace UserProfileSPA.TestCases
             IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
           
             string signinUrl = Record("SignInUrl");
-            string password = Record("Password");
-            string confrmPassword = Record("ConfrmPassword");
+            string password = "123344";//Record("Password");
+            string confrmPassword = "7755576";//Record("ConfrmPassword");
             Driver.Navigate().GoToUrl(signinUrl);
 
             if (signinUrl == Driver.Url)
@@ -291,23 +291,16 @@ namespace UserProfileSPA.TestCases
                             }
                             else
                             {
-                                string expectedWhenBothNotSame = "L";//UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("ecpectedWhenBothNotSame");
-                                //string actualWhenBothNotSame = Utility.ByLinkText("ConfrmPasswordError",UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
-                                //string actualWhenBothNotSame = Utility.GrabAttributeValueByXpath("ConfrmPasswordError","text", UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
-                                Assert.AreEqual(expectedWhenBothNotSame, "Both passwords do not match");
+                                string expectedWhenBothNotSame = UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("ecpectedWhenBothNotSame");
+                                List<IWebElement> actualWhenBothNotSame = Driver.FindElements(By.ClassName("val_error")).ToList();                                
+                                Assert.AreEqual(expectedWhenBothNotSame, actualWhenBothNotSame[3].Text);
                             }
                         }
                         else
                         {
-                            string expectedWhenLengthNotExpected = "lp";//UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("expectedWhenBothLengthNotExpected");
+                            string expectedWhenLengthNotExpected = UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("expectedWhenBothLengthNotExpected");
                             List<IWebElement> actualWhenLengthNotExpected = Driver.FindElements(By.ClassName("val_error")).ToList();
-                            foreach (var item in actualWhenLengthNotExpected )
-                            {
-                                if (item.Text.Equals(expectedWhenLengthNotExpected))
-                                {
-                                    Assert.AreEqual(expectedWhenLengthNotExpected, item.Text);
-                                }
-                            }
+                            Assert.AreEqual(expectedWhenLengthNotExpected,actualWhenLengthNotExpected[3].Text);
                         }
                     }
                 }

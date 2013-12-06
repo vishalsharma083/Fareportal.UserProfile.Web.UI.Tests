@@ -221,4 +221,7 @@ Click here to create an account – its quick &amp; easy.</value>
   <data name="expectedWhenBothLengthNotExpected" xml:space="preserve">
     <value>Password should be 5-32 characters</value>
   </data>
+  <data name="ecpectedWhenBothNotSame" xml:space="preserve">
+    <value>Both passwords do not match</value>
+  </data>
 </root>
