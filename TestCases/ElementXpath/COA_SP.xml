@@ -193,6 +193,8 @@
       <ClickOnCreateAnAccountDiv>div[class='span8 reg_form']</ClickOnCreateAnAccountDiv>
       <ConfrmPasswordError>div[class='val_main']</ConfrmPasswordError>
       <PasswordErrror>span[class='val_error']</PasswordErrror>
+      <AlreadyExistEmail>boltxt</AlreadyExistEmail>
+      <ClickOnSignUpFreeDiv>reg_head</ClickOnSignUpFreeDiv>
      
     </CreateAnAccount>
 

@@ -67,7 +67,7 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Library\InitializeEnvironment.cs" />
+    <Compile Include="Library\TestEnvironment.cs" />
     <Compile Include="TestCases\UserProfile\COA\CreateAnAccount.cs" />
     <Compile Include="TestCases\UserProfile\COA\MyBillingDetails.cs" />
     <Compile Include="TestCases\UserProfile\COA\MyCoTraveler.cs" />
@@ -243,6 +243,9 @@
     <None Include="ValidatingPasswordForCreateAnAccount.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="VerifyingEmailAddressAlreadyExistInCreateAnAccount.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="TestCases\ElementXpath\CA_SP.xml">
@@ -270,7 +273,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy /Y "$(ProjectDir)TestCases\Resource\*.xml" "$(ProjectDir)bin\XML\"</PostBuildEvent>
+    <PostBuildEvent>xcopy /Y "$(ProjectDir)TestCases\ElementXpath\*.xml" "$(ProjectDir)bin\XML\"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

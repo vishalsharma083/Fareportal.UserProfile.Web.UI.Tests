@@ -22,7 +22,7 @@ namespace UserProfileSPA
 
        public static ArrayList GetElementsByTagName(string FileName, string ParentTag)
         {
-            XmlDocument myXML = UserProfileSPA.Library.TestEnvironment.GetXml(TestEnvironment.FlightEngine, FileName);
+            XmlDocument myXML = TestEnvironment.GetXml(TestEnvironment.FlightEngine, FileName);
             System.Xml.XmlElement root = myXML.DocumentElement;
             System.Xml.XmlNodeList lst = root.GetElementsByTagName(ParentTag)[0].ChildNodes;
             ArrayList arrList = new ArrayList(lst.Count);
@@ -70,6 +70,21 @@ namespace UserProfileSPA
                 string XMLValue = UserProfileSPA.Library.TestEnvironment.LoadXML(xmlTagName_);
                 UserProfileSPA.Library.TestEnvironment.WaitForElementPresent(By.CssSelector(XMLValue), Time_WaitForElementPresent);
                 var element = TestEnvironment.Driver.FindElement(By.CssSelector(XMLValue));
+                element.Click();
+            }
+            catch (Exception ex)
+            {
+                throw new NotFoundException("Not able to locate/click the element <" + xmlTagName_ + "> even after " + Time_WaitForElementPresent + " secs. " + "EXCEPTION: " + ex);
+            }
+        }
+
+        public static void ByClasstoClick(string xmlTagName_, int Time_WaitForElementPresent)
+        {
+            try
+            {
+                string XMLValue = UserProfileSPA.Library.TestEnvironment.LoadXML(xmlTagName_);
+                UserProfileSPA.Library.TestEnvironment.WaitForElementPresent(By.CssSelector(XMLValue), Time_WaitForElementPresent);
+                var element = TestEnvironment.Driver.FindElement(By.ClassName(XMLValue));
                 element.Click();
             }
             catch (Exception ex)
@@ -157,6 +172,20 @@ namespace UserProfileSPA
             {
                 TestEnvironment.WaitForElementPresent(By.XPath(XMLValue), Time_WaitForElementPresent);
                 return TestEnvironment.Driver.FindElement(By.XPath(XMLValue)).Text;
+            }
+            catch (Exception ex)
+            {
+                throw new NotFoundException("Not able to locate/click the element <" + xmlTagName_ + "> even after " + Time_WaitForElementPresent + " secs. " + "EXCEPTION: " + ex);
+            }
+        }
+
+        public static string ByClassName(string xmlTagName_, int Time_WaitForElementPresent)   
+        {
+            string XMLValue = TestEnvironment.LoadXML(xmlTagName_);
+            try
+            {
+                TestEnvironment.WaitForElementPresent(By.ClassName(XMLValue), Time_WaitForElementPresent);
+                return TestEnvironment.Driver.FindElement(By.ClassName(XMLValue)).Text;
             }
             catch (Exception ex)
             {

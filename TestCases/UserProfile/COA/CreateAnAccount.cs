@@ -26,7 +26,7 @@ namespace UserProfileSPA.TestCases
         [DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\CreateAnAccountAllValidations.csv", "CreateAnAccountAllValidations#csv", DataAccessMethod.Sequential), DeploymentItem("CreateAnAccountAllValidations.csv"), TestMethod]
         public void CreateAnAccountAllValidationsAllFieldsAreBlank()
         {
-            IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;           
+            IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
 
             string signinUrl = Record("SignInUrl");
 
@@ -110,7 +110,7 @@ namespace UserProfileSPA.TestCases
         public void CreateAnAccountFirstAndLastNameValidations()
         {
             IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
-           
+
             string _baseUrl = Record("SignInUrl");
             if (_baseUrl == Driver.Url)
             {
@@ -127,7 +127,7 @@ namespace UserProfileSPA.TestCases
                     Utility.CsstoClear("LastName", 3);
                     Utility.CssToSetText("LastName", _lastNametxt, 3);
                     Utility.CsstoClick("ClickOnDivOfSignUpFreeToCheckYourBooking", 4);
-                   
+
 
                     if (!string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("CreateAnAccountTextInFirstName", "value", 3)))
                     {
@@ -213,7 +213,7 @@ namespace UserProfileSPA.TestCases
         public void ValidateEmailAddressInCreateAnAccount()
         {
             IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
-           
+
             string _baseUrl = Record("SignInUrl");
             if (_baseUrl == Driver.Url)
             {
@@ -261,10 +261,10 @@ namespace UserProfileSPA.TestCases
         public void ValidatingPasswordForCreateAnAccount()
         {
             IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
-          
+
             string signinUrl = Record("SignInUrl");
-            string password = "123344";//Record("Password");
-            string confrmPassword = "7755576";//Record("ConfrmPassword");
+            string password = Record("Password");
+            string confrmPassword = Record("ConfrmPassword");
             Driver.Navigate().GoToUrl(signinUrl);
 
             if (signinUrl == Driver.Url)
@@ -273,7 +273,7 @@ namespace UserProfileSPA.TestCases
                 Utility.Sleep(2);
                 string signUpUrl = Record("SignUpUrl");
                 if (signUpUrl == Driver.Url)
-                {                    
+                {
                     Utility.CssToSetText("TextInPassword", password, 3);
                     Utility.CsstoClick("ClickOnCreateAnAccountDiv", 3);
                     Utility.CssToSetText("TextInConfrmPassword", confrmPassword, 3);
@@ -292,7 +292,7 @@ namespace UserProfileSPA.TestCases
                             else
                             {
                                 string expectedWhenBothNotSame = UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("ecpectedWhenBothNotSame");
-                                List<IWebElement> actualWhenBothNotSame = Driver.FindElements(By.ClassName("val_error")).ToList();                                
+                                List<IWebElement> actualWhenBothNotSame = Driver.FindElements(By.ClassName("val_error")).ToList();
                                 Assert.AreEqual(expectedWhenBothNotSame, actualWhenBothNotSame[3].Text);
                             }
                         }
@@ -300,7 +300,7 @@ namespace UserProfileSPA.TestCases
                         {
                             string expectedWhenLengthNotExpected = UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("expectedWhenBothLengthNotExpected");
                             List<IWebElement> actualWhenLengthNotExpected = Driver.FindElements(By.ClassName("val_error")).ToList();
-                            Assert.AreEqual(expectedWhenLengthNotExpected,actualWhenLengthNotExpected[3].Text);
+                            Assert.AreEqual(expectedWhenLengthNotExpected, actualWhenLengthNotExpected[3].Text);
                         }
                     }
                 }
@@ -320,7 +320,7 @@ namespace UserProfileSPA.TestCases
         public void VerifyTheValidationsOfTheLeapYearInRegisterPage()
         {
             IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
-       
+
             string _baseUrl = Record("SignInUrl");
             if (_baseUrl == Driver.Url)
             {
@@ -379,6 +379,27 @@ namespace UserProfileSPA.TestCases
             else
             {
                 Assert.IsTrue(false, "SignInUrl is not opened.");
+            }
+        }
+
+        [DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\VerifyingEmailAddressAlreadyExistInCreateAnAccount.csv", "VerifyingEmailAddressAlreadyExistInCreateAnAccount#csv", DataAccessMethod.Sequential), DeploymentItem("VerifyingEmailAddressAlreadyExistInCreateAnAccount.csv"), TestMethod]
+        public void VerifyingEmailAddressAlreadyExistInCreateAnAccount()
+        {
+            IWebDriver Driver = TestEnvironment.Driver;
+            string signinUrl = Record("SignInUrl");  
+            if (signinUrl == Driver.Url)
+            {
+                Utility.XPathtoClick("ClickOnCreateAnAccountBtn", 4);
+                Utility.Sleep(2);
+                string signUpUrl = Record("SignUpUrl");
+                if (signUpUrl == Driver.Url)
+                {
+                    Utility.CssToSetText("TextInEmail", Record("EnterAlreadyExistEmail"), 3);
+                    Utility.CsstoClick("ClickOnCreateAnAccountBtnSignUpFree", 4);                   
+                    string actualEmailAlreadyExist = Utility.ByClassName("AlreadyExistEmail",4);
+                    string expectedWhenEmailIsAlreadyExist = UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("expectedWhenEmailIsAlreadyExist");
+                    Assert.AreEqual(expectedWhenEmailIsAlreadyExist,actualEmailAlreadyExist);
+                }
             }
         }
     }

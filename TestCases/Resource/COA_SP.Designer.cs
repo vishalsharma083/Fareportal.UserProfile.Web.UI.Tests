@@ -285,6 +285,24 @@ namespace UserProfileSPA.TestCases.Resource {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The email entered is already associated with an account..
+        /// </summary>
+        internal static string expectedWhenEmailIsAlreadyExist {
+            get {
+                return ResourceManager.GetString("expectedWhenEmailIsAlreadyExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your email is required.
+        /// </summary>
+        internal static string expectedWhenEmailIsEmpty {
+            get {
+                return ResourceManager.GetString("expectedWhenEmailIsEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please enter valid email address..
         /// </summary>
         internal static string ForgetPasswordValidation {
