@@ -291,7 +291,7 @@ namespace UserProfileSPA.TestCases
                             }
                             else
                             {
-                                string expectedWhenBothNotSame = UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("ecpectedWhenBothNotSame");
+                                string expectedWhenBothNotSame = "L";//UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("ecpectedWhenBothNotSame");
                                 //string actualWhenBothNotSame = Utility.ByLinkText("ConfrmPasswordError",UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                                 //string actualWhenBothNotSame = Utility.GrabAttributeValueByXpath("ConfrmPasswordError","text", UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                                 Assert.AreEqual(expectedWhenBothNotSame, "Both passwords do not match");
@@ -299,9 +299,15 @@ namespace UserProfileSPA.TestCases
                         }
                         else
                         {
-                            string expectedWhenLengthNotExpected = UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("expectedWhenBothLengthNotExpected");
-                            string actualWhenLengthNotExpected = Driver.FindElement(By.CssSelector(TestEnvironment.LoadXML("PasswordErrror"))).Text;//.FindElement(By.CssSelector(TestEnvironment.LoadXML("PasswordErrror")))
-                            Assert.AreEqual(actualWhenLengthNotExpected, "Password should be 5-32 characters");
+                            string expectedWhenLengthNotExpected = "lp";//UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("expectedWhenBothLengthNotExpected");
+                            List<IWebElement> actualWhenLengthNotExpected = Driver.FindElements(By.ClassName("val_error")).ToList();
+                            foreach (var item in actualWhenLengthNotExpected )
+                            {
+                                if (item.Text.Equals(expectedWhenLengthNotExpected))
+                                {
+                                    Assert.AreEqual(expectedWhenLengthNotExpected, item.Text);
+                                }
+                            }
                         }
                     }
                 }
