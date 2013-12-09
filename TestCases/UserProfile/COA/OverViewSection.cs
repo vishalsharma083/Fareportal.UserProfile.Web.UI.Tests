@@ -10,13 +10,29 @@ using UserProfileSPA.Library;
 namespace UserProfileSPA.TestCases
 {
     [TestClass]
-    public partial class OverViewSection : UserProfileTestBase
+    public class OverViewSection 
     {
 
         [TestInitialize]
         public void Initialize()
         {
             UserProfileSPA.Library.TestEnvironment.Init();
+        }
+        private TestContext testContextInstance;
+        public TestContext TestContext
+        {
+            get
+            {
+                return testContextInstance;
+            }
+            set
+            {
+                testContextInstance = value;
+            }
+        }
+        public string Record(string columnName_)
+        {
+            return TestContext.DataRow[columnName_].ToString();
         }
 
 
@@ -174,6 +190,12 @@ namespace UserProfileSPA.TestCases
                 }
             }
         }
+
+        [TestCleanup]
+        public void Cleanup()
+        {
+            UserProfileSPA.Library.TestEnvironment.Dispose();
+        }    
     }
 }
 

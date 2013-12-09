@@ -11,7 +11,7 @@ using System.Text.RegularExpressions;
 namespace UserProfileSPA.TestCases
 {
     [TestClass]
-    public partial class MyCoTraveler : UserProfileTestBase
+    public class MyCoTraveler 
     {
 
         [TestInitialize]
@@ -19,6 +19,23 @@ namespace UserProfileSPA.TestCases
         {
             UserProfileSPA.Library.TestEnvironment.Init();
         }
+        private TestContext testContextInstance;
+        public TestContext TestContext
+        {
+            get
+            {
+                return testContextInstance;
+            }
+            set
+            {
+                testContextInstance = value;
+            }
+        }
+        public string Record(string columnName_)
+        {
+            return TestContext.DataRow[columnName_].ToString();
+        }
+
 
 
         [DeploymentItem("AddNewCoTraveler.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\AddNewCoTraveler.csv", "AddNewCoTraveler#csv", DataAccessMethod.Sequential), TestMethod]
@@ -912,7 +929,12 @@ namespace UserProfileSPA.TestCases
                 }
             }
         }
+
+        [TestCleanup]
+        public void Cleanup()
+        {
+            UserProfileSPA.Library.TestEnvironment.Dispose();
+        }    
     }
-
-
+    
 }

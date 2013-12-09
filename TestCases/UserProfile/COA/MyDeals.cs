@@ -11,7 +11,7 @@ using OpenQA.Selenium.Interactions;
 namespace UserProfileSPA.TestCases
 {
     [TestClass]
-    public class MyDeals : UserProfileTestBase
+    public class MyDeals
     {
 
         [TestInitialize]
@@ -19,7 +19,22 @@ namespace UserProfileSPA.TestCases
         {
             UserProfileSPA.Library.TestEnvironment.Init();
         }
-
+        private TestContext testContextInstance;
+        public TestContext TestContext
+        {
+            get
+            {
+                return testContextInstance;
+            }
+            set
+            {
+                testContextInstance = value;
+            }
+        }
+        public string Record(string columnName_)
+        {
+            return TestContext.DataRow[columnName_].ToString();
+        }
 
         [TestMethod]
         public void VerifyingTheSourceAndDestinationAndPrice()
@@ -43,5 +58,11 @@ namespace UserProfileSPA.TestCases
             }
 
         }
+
+        [TestCleanup]
+        public void Cleanup()
+        {
+            UserProfileSPA.Library.TestEnvironment.Dispose();
+        }    
     }
 }

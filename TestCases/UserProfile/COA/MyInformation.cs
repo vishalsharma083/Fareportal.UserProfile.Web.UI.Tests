@@ -11,15 +11,29 @@ using System.Text.RegularExpressions;
 namespace UserProfileSPA.TestCases
 {    
     [TestClass]
-    public partial class MyInformation : UserProfileTestBase
+    public class MyInformation 
     {
-
         [TestInitialize]
         public void Initialize()
         {
             UserProfileSPA.Library.TestEnvironment.Init();
         }
-
+        private TestContext testContextInstance;
+        public TestContext TestContext
+        {
+            get
+            {
+                return testContextInstance;
+            }
+            set
+            {
+                testContextInstance = value;
+            }
+        }
+        public string Record(string columnName_)
+        {
+            return TestContext.DataRow[columnName_].ToString();
+        }
 
         [DeploymentItem("CheckBoxUseForBillingDetails.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\CheckBoxUseForBillingDetails.csv", "CheckBoxUseForBillingDetails#csv", DataAccessMethod.Sequential), TestMethod]
         public void CheckBoxUseForBillingDetails()
@@ -167,13 +181,19 @@ namespace UserProfileSPA.TestCases
                             }
                             else
                             {
-                                throw new Exception("Zip code should be more than 4 digit.");
+                                string expectedErrMgs = Record("ExpectedErrMgs");
+                                Utility.CsstoClick("SaveInformationBtn", UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
+                                string actualErrMsg = Utility.ByXpath("MyInfoZipCodeErrorMessage", 3);
+                                Assert.AreEqual(expectedErrMgs, actualErrMsg);                               
                             }
                         }
                     }
                     else
                     {
-                        Assert.IsTrue(false, "Please enter zip code");
+                        string expectedErrMgs = Record("ExpectedErrMgs");
+                        Utility.CsstoClick("SaveInformationBtn", UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
+                        string actualErrMsg = Utility.ByXpath("MyInfoZipCodeErrorMessage", 3);
+                        Assert.AreEqual(expectedErrMgs, actualErrMsg);                               
                     }
                 }
                
@@ -964,5 +984,11 @@ namespace UserProfileSPA.TestCases
             }
         }
 
+
+        [TestCleanup]
+        public void Cleanup()
+        {
+            UserProfileSPA.Library.TestEnvironment.Dispose();
+        }    
     }
 }

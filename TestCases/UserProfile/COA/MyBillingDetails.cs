@@ -9,11 +9,33 @@ using OpenQA.Selenium.Support.UI;
 using System.Text.RegularExpressions;
 
 namespace UserProfileSPA.TestCases
-{     
-
+{  
     [TestClass]
-    public partial class MyBillingDetails : UserProfileTestBase
+    public partial class MyBillingDetails 
     {
+        [TestInitialize]
+        public void Initialize()
+        {
+            UserProfileSPA.Library.TestEnvironment.Init();
+        }
+        private TestContext testContextInstance;
+        public TestContext TestContext
+        {
+            get
+            {
+                return testContextInstance;
+            }
+            set
+            {
+                testContextInstance = value;
+            }
+        }
+        public string Record(string columnName_)
+        {
+            return TestContext.DataRow[columnName_].ToString();
+        }
+
+
         [DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\ClickOnEditCardDetailsAndDoChanges.csv", "ClickOnEditCardDetailsAndDoChanges#csv", DataAccessMethod.Sequential), DeploymentItem("ClickOnEditCardDetailsAndDoChanges.csv"), TestMethod]
         public void ClickOnEditCardDetailsAndDoChanges()
         {
@@ -1068,5 +1090,12 @@ namespace UserProfileSPA.TestCases
                 Assert.IsTrue(false, "SignInUrl is not opened.");
             }
         }
+
+
+        [TestCleanup]
+        public void Cleanup()
+        {
+            UserProfileSPA.Library.TestEnvironment.Dispose();
+        }    
     }
 }

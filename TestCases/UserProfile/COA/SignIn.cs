@@ -9,7 +9,7 @@ using UserProfileSPA.Library;
 namespace UserProfileSPA.TestCases
 {
     [TestClass]
-    public partial class SignIn : UserProfileTestBase
+    public class SignIn 
     {
 
         [TestInitialize]
@@ -17,7 +17,22 @@ namespace UserProfileSPA.TestCases
         {
             UserProfileSPA.Library.TestEnvironment.Init();
         }
-
+        private TestContext testContextInstance;
+        public TestContext TestContext
+        {
+            get
+            {
+                return testContextInstance;
+            }
+            set
+            {
+                testContextInstance = value;
+            }
+        }
+        public string Record(string columnName_)
+        {
+            return TestContext.DataRow[columnName_].ToString();
+        }
 
         [DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\PasswordNotMatchingValidation.csv", "PasswordNotMatchingValidation#csv", DataAccessMethod.Sequential), DeploymentItem("UserProfileSPA\\PasswordNotMatchingValidation.csv"), TestMethod]
 
@@ -247,5 +262,10 @@ namespace UserProfileSPA.TestCases
             }
         }
 
+        [TestCleanup]
+        public void Cleanup()
+        {
+            UserProfileSPA.Library.TestEnvironment.Dispose();
+        }    
     }
 }

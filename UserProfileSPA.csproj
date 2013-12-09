@@ -76,7 +76,7 @@
     <Compile Include="TestCases\UserProfile\COA\OverViewSection.cs" />
     <Compile Include="TestCases\UserProfile\COA\Setting.cs" />
     <Compile Include="TestCases\UserProfile\COA\SignIn.cs" />
-    <Compile Include="TestCases\UserProfile\COA\UserProfileTestBase.cs" />
+    <Compile Include="TestCases\UserProfile\UserProfileTestBase.cs" />
     <Compile Include="Utility\UserProfileSettings.cs" />
     <Compile Include="Utility\Utility.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

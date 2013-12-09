@@ -14,14 +14,30 @@ using OpenQA.Selenium.Support.UI;
 namespace UserProfileSPA.TestCases
 {
     [TestClass]
-    public partial class CreateAnAccount : UserProfileTestBase
+    public class CreateAnAccount 
     {
         [TestInitialize]
         public void Initialize()
         {
             UserProfileSPA.Library.TestEnvironment.Init();
         }
+        private TestContext testContextInstance;
+        public TestContext TestContext
+        {
+            get
+            {
+                return testContextInstance;
+            }
+            set
+            {
+                testContextInstance = value;
+            }
+        }
 
+        public string Record(string columnName_)
+        {
+            return TestContext.DataRow[columnName_].ToString();
+        }
 
         [DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\CreateAnAccountAllValidations.csv", "CreateAnAccountAllValidations#csv", DataAccessMethod.Sequential), DeploymentItem("CreateAnAccountAllValidations.csv"), TestMethod]
         public void CreateAnAccountAllValidationsAllFieldsAreBlank()
@@ -107,7 +123,7 @@ namespace UserProfileSPA.TestCases
         }
 
         [DeploymentItem("CreateAnAccountFirstAndLastNameValidations.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\CreateAnAccountFirstAndLastNameValidations.csv", "CreateAnAccountFirstAndLastNameValidations#csv", DataAccessMethod.Sequential), TestMethod]
-        public void CreateAnAccountFirstAndLastNameValidationsPositive()
+        public void CreateAnAccountFirstAndLastNameValidations() 
         {
             IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
 
@@ -402,5 +418,14 @@ namespace UserProfileSPA.TestCases
                 }
             }
         }
+
+      
+
+        [TestCleanup]
+        public void Cleanup()
+        {
+            UserProfileSPA.Library.TestEnvironment.Dispose();
+        }     
     }
+
 }
