@@ -121,31 +121,63 @@ namespace UserProfileSPA.TestCases
                 selectElement1.SelectByText(Country);
                 if ((Country == "Canada") || (Country == "United Kingdom"))
                 {
-                    Regex r = new Regex("^[a-zA-Z0-9 ]+$");
-                    if (r.IsMatch(_zipCode))
+                    Utility.CsstoClear("Zip",UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
+                    Utility.CssToSetText("Zip", _zipCode, 3);
+                    string zipText = Utility.GrabAttributeValueByCss("Zip", "value", UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
+                    if (!string.IsNullOrEmpty(zipText))
                     {
-                        Utility.CssToSetText("Zip", _zipCode, 3);
+                        Regex r = new Regex("^[a-zA-Z0-9 ]{7}$");
+                        if (r.IsMatch(zipText))
+                        {
+                            Regex r1 = new Regex("^[a-zA-Z0-9 ]+$");
+                            if (r1.IsMatch(zipText))
+                            {
+                                Assert.IsTrue(true);
+                                //Utility.CssToSetText("Zip", _zipCode, 3);
+                            }
+                        }
+                        else
+                        {
+                            string expectedErrMgs = Record("ExpectedErrMgs");
+                            Utility.CsstoClick("SaveInformationBtn", UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
+                            string actualErrMsg = Utility.ByXpath("MyInfoZipCodeErrorMessage", 3);
+                            Assert.AreEqual(expectedErrMgs, actualErrMsg);
+                        }
+                    }
+                    else
+                    {
+                        string expectedErrMgs = Record("ExpectedErrMgs");
+                        Utility.CsstoClick("SaveInformationBtn",UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
+                        string actualErrMsg = Utility.ByXpath("MyInfoZipCodeErrorMessage", 3);
+                        Assert.AreEqual(expectedErrMgs, actualErrMsg);
                     }
                 }
                 //This if is for India or for other remaining countries.
                 else if (Country == "India")
                 {
                     Regex r = new Regex("^[0-9]*$");
-                    int otherZip = Convert.ToInt32(_zipCode);
-                    if (r.IsMatch(_zipCode))
+                    if (!string.IsNullOrEmpty(_zipCode))
                     {
-                        if (otherZip > 4)
+                        if (r.IsMatch(_zipCode))
                         {
-                            Utility.CssToSetText("Zip", _zipCode, 3);
+                            int otherZip = Convert.ToInt32(_zipCode);
+                            if (otherZip > 4)
+                            {
+                                Utility.CssToSetText("Zip", _zipCode, 3);
+                            }
+                            else
+                            {
+                                throw new Exception("Zip code should be more than 4 digit.");
+                            }
                         }
-                        else
-                        {
-                            throw new Exception("Zip code should be more than 4 digit.");
-                        }
+                    }
+                    else
+                    {
+                        Assert.IsTrue(false, "Please enter zip code");
                     }
                 }
                
-                Utility.CsstoClick("SaveInformationBtn", 3);
+               // Utility.CsstoClick("SaveInformationBtn", 3);
             }
         }
 

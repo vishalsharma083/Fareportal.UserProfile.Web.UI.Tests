@@ -107,7 +107,7 @@ namespace UserProfileSPA.TestCases
         }
 
         [DeploymentItem("CreateAnAccountFirstAndLastNameValidations.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\CreateAnAccountFirstAndLastNameValidations.csv", "CreateAnAccountFirstAndLastNameValidations#csv", DataAccessMethod.Sequential), TestMethod]
-        public void CreateAnAccountFirstAndLastNameValidations()
+        public void CreateAnAccountFirstAndLastNameValidationsPositive()
         {
             IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
 
@@ -155,7 +155,7 @@ namespace UserProfileSPA.TestCases
                         }
                         else
                         {
-                            throw new Exception("FirstName should starts with big letter");
+                            throw new Exception("Firstname must be between 2 and 25 characters in length.");
                         }
 
                     }
@@ -191,7 +191,7 @@ namespace UserProfileSPA.TestCases
                         }
                         else
                         {
-                            throw new Exception("FirstName should starts with big letter");
+                            throw new Exception("Firstname must be between 2 and 25 characters in length.");
                         }
 
                     }
@@ -206,7 +206,7 @@ namespace UserProfileSPA.TestCases
                     Assert.IsTrue(false, "SignUp page is not open");
                 }
             }
-        }
+        }  
 
 
         [DeploymentItem("ValidateEmailAddressInCreateAnAccount.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\ValidateEmailAddressInCreateAnAccount.csv", "ValidateEmailAddressInCreateAnAccount#csv", DataAccessMethod.Sequential), TestMethod]

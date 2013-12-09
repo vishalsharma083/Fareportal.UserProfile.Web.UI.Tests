@@ -82,7 +82,7 @@
           <actualMobileMsg>//*[@id='MyDetails']/div[9]/div[2]/div[2]/span</actualMobileMsg>
           <CliclOnMoreinformation>//*[@id='MyDetails']/div[12]/h1</CliclOnMoreinformation>
           <UseforBillingDetailsCheckBoxInMyDetailsPage>input[id='billiingDetails']</UseforBillingDetailsCheckBoxInMyDetailsPage>
-        
+          <MyInfoZipCodeErrorMessage>html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/form/div/div[8]/div[1]/div[2]</MyInfoZipCodeErrorMessage>
       </PersonsalInfromation>
         
         <clickOnMyInformation>a[class='myAccount']</clickOnMyInformation>
@@ -195,6 +195,7 @@
       <PasswordErrror>span[class='val_error']</PasswordErrror>
       <AlreadyExistEmail>boltxt</AlreadyExistEmail>
       <ClickOnSignUpFreeDiv>reg_head</ClickOnSignUpFreeDiv>
+     
      
     </CreateAnAccount>
 
