@@ -39,13 +39,13 @@ namespace UserProfileSPA.TestCases
             return TestContext.DataRow[columnName_].ToString();
         }
 
-        [DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\CreateAnAccountAllValidations.csv", "CreateAnAccountAllValidations#csv", DataAccessMethod.Sequential), DeploymentItem("CreateAnAccountAllValidations.csv"), TestMethod]
+        [DeploymentItem("CreateAnAccountAllValidations.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\CreateAnAccountAllValidations.csv", "CreateAnAccountAllValidations#csv", DataAccessMethod.Sequential), TestMethod]
         public void CreateAnAccountAllValidationsAllFieldsAreBlank()
         {
             IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
 
             string signinUrl = Record("SignInUrl");
-
+            Utility.Sleep(5);
             if (signinUrl == Driver.Url)
             {
                 UserProfileSPA.Utility.XPathtoClick("ClickOnCreateAnAccountBtn", 4);
@@ -53,7 +53,7 @@ namespace UserProfileSPA.TestCases
                 string signUpUrl = Record("SignUpUrl");
                 if (signUpUrl == Driver.Url)
                 {
-                    Utility.CssToSetText("Email", Record("Email"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
+                    Utility.CssToSetText("Email", Record("EmailAddress"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                     string firstName = Record("FirstName");
                     string lastName = Record("LastName");
                     Utility.CssToSetText("Password", Record("Password"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);

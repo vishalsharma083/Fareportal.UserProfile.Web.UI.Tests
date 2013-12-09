@@ -5,6 +5,8 @@ using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using UserProfileSPA.Library;
+using OpenQA.Selenium.Firefox;
+
 
 namespace UserProfileSPA.TestCases
 {
@@ -42,20 +44,21 @@ namespace UserProfileSPA.TestCases
             Utility.CssToSetText("Email", Record("Email"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
             Utility.CssToSetText("Password", Record("Password"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
             Utility.Sleep(2);
-            Utility.CsstoClick("SignInBtn", 2);
+            Utility.CsstoClick("SignInBtn", 3);
             string[] expextedPasswordNotMatchingValidation = UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("expectedPasswordNotMatchingValidationError").Split("\r\n".ToCharArray());
             string actualErr = Utility.ByCss("PasswordNotMatchingValidation", 3);
             string[] actualPasswordNotMatchingValidation = actualErr.Split("\r\n".ToCharArray());
             int i = 0;
             foreach (var item in actualPasswordNotMatchingValidation)
             {
+                Utility.Sleep(2);
                 Assert.AreEqual(expextedPasswordNotMatchingValidation[i], item);
                 i++;
             }
 
         }
 
-        [DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\SignIn.csv", "SignIn#csv", DataAccessMethod.Sequential), DeploymentItem("SignIn.csv"), TestMethod]
+        [DeploymentItem("SignIn.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\SignIn.csv", "SignIn#csv", DataAccessMethod.Sequential), TestMethod]
         public void SignInSucessfully()
         {
             IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
@@ -143,6 +146,7 @@ namespace UserProfileSPA.TestCases
                     Driver.SwitchTo().Window(Driver.WindowHandles[0]);
                     Utility.Sleep(4);
                     string fareportalOverviewUrl = Record("fareportalOverviewUrl");
+                    Utility.Sleep(7);
                     if (fareportalOverviewUrl == Driver.Url)
                     {
                         string actualCompleteGoogleName = Utility.ByCss("GoogleAccountsCompleteName", 5);
@@ -215,9 +219,10 @@ namespace UserProfileSPA.TestCases
         public void VerifyingRememberMe()
         {
             IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
-            string _baseUrl = Record("SignInUrl");           
+            string _baseUrl = Record("SignInUrl");
+            Utility.Sleep(7);
             if (_baseUrl == Driver.Url)
-            {
+            {               
                 Utility.CssToSetText("Email", Record("Email"), 4);
                 Utility.CssToSetText("Password", Record("Password"), 4);
                 Utility.CsstoClick("rememberMe", 3);
@@ -233,22 +238,27 @@ namespace UserProfileSPA.TestCases
                     string[] _actualName = actualName.Split(" ".ToCharArray());
                     Assert.AreEqual(_expectedName[0], _actualName[1]);
                     Utility.Sleep(6);
-                    string preUrlValue = Driver.Url;
-                    Driver.Quit();
-                   //Driver = new 
+                    string preUrlValue = Driver.Url;                   
+                    Driver.Close();                    
+                    Driver = new FirefoxDriver();
                     Driver.Navigate().GoToUrl(_baseUrl);
-                    Utility.Sleep(6);
-                    if (_baseUrl != Driver.Url)
-                    {
-                        if (_overViewUrl == Driver.Url)
-                        {
-                            Assert.AreEqual(_expectedName[0], _actualName[1]);
-                        }
-                        else
-                        {
-                            Assert.IsTrue(false, "OverViewUrl is not opened.");
-                        }
-                    }
+                    Driver.Manage().Window.Maximize();
+                     Utility.Sleep(6);
+                     if (_baseUrl != preUrlValue)
+                     {
+                         if (_overViewUrl == Driver.Url)
+                         {
+                             Assert.AreEqual(_expectedName[0], _actualName[1]);
+                         }
+                         else
+                         {
+                             Assert.IsTrue(false, "OverViewUrl is not opened.");
+                         }
+                     }
+                     else
+                     {
+                         Assert.IsTrue(false,"Should not open SignIn page.");
+                     }
                 }
                 else
                 {
