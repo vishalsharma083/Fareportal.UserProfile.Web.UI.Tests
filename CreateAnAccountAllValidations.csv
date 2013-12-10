@@ -1,3 +1,3 @@
-SignInUrl,SignUpUrl,EmailAddress,FirstName,LastName,Password
-"http://www.cheapoair.com/profiles/#/user-signin","http://www.cheapoair.com/profiles/#/user-signup","","","",""
-"http://www.cheapoair.com/profiles/#/user-signin","http://www.cheapoair.com/profiles/#/user-signup","aa","a","k","aa1"
+SignInUrl,SignUpUrl,EmailAddress,FirstName,LastName,Password,ConfrmPassword
+"http://www.cheapoair.com/profiles/#/user-signin","http://www.cheapoair.com/profiles/#/user-signup","","","","",""
+"http://www.cheapoair.com/profiles/#/user-signin","http://www.cheapoair.com/profiles/#/user-signup","aa","a","k","aa1",""

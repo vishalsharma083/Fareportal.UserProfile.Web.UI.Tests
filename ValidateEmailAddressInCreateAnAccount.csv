@@ -1,0 +1,6 @@
+SignInUrl,SignUpUrl,Email,ExpectedErrorMsg
+"http://www.cheapoair.com/profiles/#/user-signin","http://www.cheapoair.com/profiles/#/user-signup","","Your email is required"
+"http://www.cheapoair.com/profiles/#/user-signin","http://www.cheapoair.com/profiles/#/user-signup","sa@gmail.com","No error"
+"http://www.cheapoair.com/profiles/#/user-signin","http://www.cheapoair.com/profiles/#/user-signup","1","Please enter a valid email address."
+"http://www.cheapoair.com/profiles/#/user-signin","http://www.cheapoair.com/profiles/#/user-signup","sa!#dfo","Please enter a valid email address."
+"http://www.cheapoair.com/profiles/#/user-signin","http://www.cheapoair.com/profiles/#/user-signup","s_a11@gmail.com","No error"

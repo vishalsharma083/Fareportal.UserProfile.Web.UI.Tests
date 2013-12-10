@@ -1,0 +1,9 @@
+SignInUrl,SignUpUrl,FirstName,LastName,ExpectedErrorMsgForFirstname,ExpectedErrorMsgForLastname
+"http://www.cheapoair.com/profiles/#/user-signin","http://www.cheapoair.com/profiles/#/user-signup","rbinJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJ","Ber-ma","Firstname must be between 2 and 25 characters in length.","No Error"
+"http://www.cheapoair.com/profiles/#/user-signin","http://www.cheapoair.com/profiles/#/user-signup","arbind","Berma","No Error","No Error"
+"http://www.cheapoair.com/profiles/#/user-signin","http://www.cheapoair.com/profiles/#/user-signup","arbind!","@erma","Name can only contain apostrophe, space or hyphen.","Name must begin with a letter."
+"http://www.cheapoair.com/profiles/#/user-signin","http://www.cheapoair.com/profiles/#/user-signup"," rbind!"," Berma@","Name must begin with a letter.","Name must begin with a letter."
+"http://www.cheapoair.com/profiles/#/user-signin","http://www.cheapoair.com/profiles/#/user-signup","rbind'S#","Ber-ma","Name can only contain apostrophe, space or hyphen.","No Error"
+"http://www.cheapoair.com/profiles/#/user-signin","http://www.cheapoair.com/profiles/#/user-signup","!rbind'S","Ber-ma","Name must begin with a letter.","No Error"
+"http://www.cheapoair.com/profiles/#/user-signin","http://www.cheapoair.com/profiles/#/user-signup","","Ber-ma","Please enter first name","No Error"
+"http://www.cheapoair.com/profiles/#/user-signin","http://www.cheapoair.com/profiles/#/user-signup","!rbind'S","","Name must begin with a letter.","Please enter last name"

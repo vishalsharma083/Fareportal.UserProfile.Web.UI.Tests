@@ -195,7 +195,10 @@
       <PasswordErrror>span[class='val_error']</PasswordErrror>
       <AlreadyExistEmail>boltxt</AlreadyExistEmail>
       <ClickOnSignUpFreeDiv>reg_head</ClickOnSignUpFreeDiv>
-     
+      <EmailExpectedError>html/body/div[1]/div[3]/div/div/form/div/div[1]/div/div[4]/div[1]/div[2]/span</EmailExpectedError>
+      <EmailAlreadyExistInCreateAnAccount>html/body/div[1]/div[3]/div/div/form/div/div[1]/div/div[3]/p[1]</EmailAlreadyExistInCreateAnAccount>
+      <ErrorMsgForFirstName>html/body/div[1]/div[3]/div/div/form/div/div[1]/div/div[6]/div[1]/div[2]</ErrorMsgForFirstName>
+      <ErrorMsgForLastName>html/body/div[1]/div[3]/div/div/form/div/div[1]/div/div[6]/div[2]/div[2]/span</ErrorMsgForLastName>
      
     </CreateAnAccount>
 

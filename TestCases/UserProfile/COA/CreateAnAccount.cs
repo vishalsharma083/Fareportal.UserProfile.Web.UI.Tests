@@ -20,6 +20,7 @@ namespace UserProfileSPA.TestCases
         public void Initialize()
         {
             UserProfileSPA.Library.TestEnvironment.Init();
+           
         }
         private TestContext testContextInstance;
         public TestContext TestContext
@@ -38,11 +39,12 @@ namespace UserProfileSPA.TestCases
         {
             return TestContext.DataRow[columnName_].ToString();
         }
+        
 
         [DeploymentItem("CreateAnAccountAllValidations.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\CreateAnAccountAllValidations.csv", "CreateAnAccountAllValidations#csv", DataAccessMethod.Sequential), TestMethod]
         public void CreateAnAccountAllValidationsAllFieldsAreBlank()
         {
-            IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
+           IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
 
             string signinUrl = Record("SignInUrl");
             Utility.Sleep(5);
@@ -57,16 +59,10 @@ namespace UserProfileSPA.TestCases
                     string firstName = Record("FirstName");
                     string lastName = Record("LastName");
                     Utility.CssToSetText("Password", Record("Password"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
-                    string cnfrmPassword = Record("ConfrmPassword");
-
-                    if ((firstName) != null)
-                    {
-                        Utility.CssToSetText("CreateAccountEmailAddress", firstName, 4);
-                    }
-                    if ((lastName) != null)
-                    {
-                        Utility.CssToSetText("CreateAccountEmailAddress", lastName, 4);
-                    }
+                    string cnfrmPassword = Record("ConfrmPassword");                  
+                    Utility.CssToSetText("CreateAccountEmailAddress", firstName, 4);                                       
+                    Utility.CssToSetText("CreateAccountEmailAddress", lastName, 4);
+                    
 
                     Utility.CsstoClick("ClickOnCreateAnAccountBtnSignUpFree", 4);
                     Utility.Sleep(2);
@@ -143,6 +139,7 @@ namespace UserProfileSPA.TestCases
                     Utility.CsstoClear("LastName", 3);
                     Utility.CssToSetText("LastName", _lastNametxt, 3);
                     Utility.CsstoClick("ClickOnDivOfSignUpFreeToCheckYourBooking", 4);
+                    Utility.CsstoClick("ClickOnCreateAnAccountBtnSignUpFree", 4);
 
 
                     if (!string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("CreateAnAccountTextInFirstName", "value", 3)))
@@ -152,9 +149,15 @@ namespace UserProfileSPA.TestCases
                             Regex regex = new Regex(@"^[a-zA-Z]");
                             if (regex.IsMatch(_firstNametxt))
                             {
-                                if ((_firstNametxt.Contains("!") || (_firstNametxt.Contains("@")) || (_firstNametxt.Contains("~")) || (_firstNametxt.Contains("$")) || (_firstNametxt.Contains("%")) || (_firstNametxt.Contains("^")) || (_firstNametxt.Contains("&")) || (_firstNametxt.Contains("*")) || (_firstNametxt.Contains("`")) || (_firstNametxt.Contains("+")) || (_firstNametxt.Contains("-")) || (_firstNametxt.Contains(":")) || (_firstNametxt.Contains(".")) || (_firstNametxt.Contains(",")) || (_firstNametxt.Contains("(")) || (_firstNametxt.Contains(")")) || (_firstNametxt.Contains("="))))
+                                if ((_firstNametxt.Contains("!") || (_firstNametxt.Contains("@")) || (_firstNametxt.Contains("~")) || (_firstNametxt.Contains("$")) || (_firstNametxt.Contains("%")) || (_firstNametxt.Contains("^")) || (_firstNametxt.Contains("&")) || (_firstNametxt.Contains("*")) || (_firstNametxt.Contains("`")) || (_firstNametxt.Contains("+")) || (_firstNametxt.Contains("-")) || (_firstNametxt.Contains(":")) || (_firstNametxt.Contains(".")) || (_firstNametxt.Contains(",")) || (_firstNametxt.Contains("(")) || (_firstNametxt.Contains(")")) || (_firstNametxt.Contains("=") || (_firstNametxt.Contains("#")))))
                                 {
-                                    throw new Exception("Name can only contain apostrophe, space or hyphen.");
+                                    string expectedErrorMsg = Record("ExpectedErrorMsgForFirstname");
+                                    if (expectedErrorMsg != "No Error")
+                                    {
+                                        string actualErrorMsg = Utility.ByXpath("ErrorMsgForFirstName", 4);
+                                        Assert.AreEqual(expectedErrorMsg, actualErrorMsg);
+                                    }
+                                        //throw new Exception("Name can only contain apostrophe, space or hyphen.");
                                 }
                                 else { Assert.IsTrue(true); }
                                 if ((_firstNametxt.Contains("'s") || (!_firstNametxt.Contains(" ")) || (!_firstNametxt.Contains("-"))))
@@ -166,18 +169,36 @@ namespace UserProfileSPA.TestCases
                             }
                             else
                             {
-                                throw new Exception("Name must begin with a letter.");
+                                string expectedErrorMsg = Record("ExpectedErrorMsgForFirstname");
+                                if (expectedErrorMsg != "No Error")
+                                {
+                                    string actualErrorMsg = Utility.ByXpath("ErrorMsgForFirstName", 4);
+                                    Assert.AreEqual(expectedErrorMsg, actualErrorMsg);
+                                }
+                                    //throw new Exception("Name must begin with a letter.");
                             }
                         }
                         else
                         {
-                            throw new Exception("Firstname must be between 2 and 25 characters in length.");
+                            string expectedErrorMsg = Record("ExpectedErrorMsgForFirstname");
+                            if (expectedErrorMsg != "No Error")
+                            {
+                                string actualErrorMsg = Utility.ByXpath("ErrorMsgForFirstName", 4);
+                                Assert.AreEqual(expectedErrorMsg, actualErrorMsg);
+                            }
+                              // throw new Exception("Firstname must be between 2 and 25 characters in length.");
                         }
 
                     }
                     else
                     {
-                        Assert.IsTrue(false, "Please enter first name");
+                        string expectedErrorMsg = Record("ExpectedErrorMsgForFirstname");
+                        if (expectedErrorMsg != "No Error")
+                        {
+                            string actualErrorMsg = Utility.ByXpath("ErrorMsgForFirstName", 4);
+                            Assert.AreEqual(expectedErrorMsg, actualErrorMsg);
+                        }
+                        //Assert.IsTrue(false, "Please enter first name");
                     }
 
                     if (!string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("CreateAnAccountTextInLastName", "value", 3)))
@@ -189,7 +210,11 @@ namespace UserProfileSPA.TestCases
                             {
                                 if ((_lastNametxt.Contains("!") || (_lastNametxt.Contains("@")) || (_lastNametxt.Contains("~")) || (_lastNametxt.Contains("$")) || (_lastNametxt.Contains("%")) || (_lastNametxt.Contains("^")) || (_lastNametxt.Contains("&")) || (_lastNametxt.Contains("*")) || (_lastNametxt.Contains("`")) || (_lastNametxt.Contains("+")) || (_lastNametxt.Contains("_")) || (_lastNametxt.Contains(":")) || (_lastNametxt.Contains(".")) || (_lastNametxt.Contains(",")) || (_lastNametxt.Contains("(")) || (_lastNametxt.Contains(")")) || (_lastNametxt.Contains("="))))
                                 {
-                                    throw new Exception("Name can only contain apostrophe, space or hyphen.");
+                                    string expectedErrorMsg = Record("ExpectedErrorMsgForLastname");
+                                    string actualErrorMsg = Utility.ByXpath("ErrorMsgForLastName", 4);
+                                    Assert.AreEqual(expectedErrorMsg, actualErrorMsg);
+                                    //throw new Exception("Firstname must be between 2 and 25 characters in length.");
+                                    //throw new Exception("Name can only contain apostrophe, space or hyphen.");
                                 }
                                 else
                                 {
@@ -202,18 +227,36 @@ namespace UserProfileSPA.TestCases
                             }
                             else
                             {
-                                throw new Exception("Name must begin with a letter.");
+                                string expectedErrorMsg = Record("ExpectedErrorMsgForLastname");
+                                if (expectedErrorMsg != "No Error")
+                                {
+                                    string actualErrorMsg = Utility.ByXpath("ErrorMsgForLastName", 4);
+                                    Assert.AreEqual(expectedErrorMsg, actualErrorMsg);
+                                }
+                               /// throw new Exception("Name must begin with a letter.");
                             }
                         }
                         else
                         {
-                            throw new Exception("Firstname must be between 2 and 25 characters in length.");
+                            string expectedErrorMsg = Record("ExpectedErrorMsgForLastname");
+                            if (expectedErrorMsg != "No Error")
+                            {
+                                string actualErrorMsg = Utility.ByXpath("ErrorMsgForLastName", 4);
+                                Assert.AreEqual(expectedErrorMsg, actualErrorMsg);
+                            }
+                            //throw new Exception("Firstname must be between 2 and 25 characters in length.");
                         }
 
                     }
                     else
                     {
-                        Assert.IsTrue(false, "Please enter last name");
+                        string expectedErrorMsg = Record("ExpectedErrorMsgForLastname");
+                        if (expectedErrorMsg != "No Error")
+                        {
+                            string actualErrorMsg = Utility.ByXpath("ErrorMsgForLastName", 4);
+                            Assert.AreEqual(expectedErrorMsg, actualErrorMsg);
+                        }
+                        //Assert.IsTrue(false, "Please enter last name");
                     }
 
                 }
@@ -222,7 +265,7 @@ namespace UserProfileSPA.TestCases
                     Assert.IsTrue(false, "SignUp page is not open");
                 }
             }
-        }  
+        }
 
 
         [DeploymentItem("ValidateEmailAddressInCreateAnAccount.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\ValidateEmailAddressInCreateAnAccount.csv", "ValidateEmailAddressInCreateAnAccount#csv", DataAccessMethod.Sequential), TestMethod]
@@ -239,27 +282,41 @@ namespace UserProfileSPA.TestCases
                 if (signUpUrl == Driver.Url)
                 {
                     string _email = Record("Email");
+                    Utility.CsstoClick("CreateAccountEmailAddress", 4);
                     Utility.CssToSetText("TextInEmail", _email, 3);
                     Utility.CsstoClear("FirstName", 3);
                     if (!string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("TextInEmail", "value", 3)))
                     {
-                        //string MatchEmailExpr = @"^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.(?:[A-Z]{2}|com";
-                        string MatchEmailExpr = @"^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$";
-                        if (Regex.IsMatch(_email, MatchEmailExpr))
+                        if (!Utility.IsDisplayedUsingXpath("EmailAlreadyExistInCreateAnAccount"))
                         {
-                            if (!Utility.IsDisplayedUsingXpath("ErrorMessageWhileEmailIsWrongOrEmpty"))
+                            //string MatchEmailExpr = @"^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.(?:[A-Z]{2}|com";
+                            string MatchEmailExpr = @"^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$";
+                            if (Regex.IsMatch(_email, MatchEmailExpr))
                             {
-                                Assert.IsTrue(true);
+                                if (!Utility.IsDisplayedUsingXpath("ErrorMessageWhileEmailIsWrongOrEmpty"))
+                                {
+                                    Assert.IsTrue(true);
+                                }
+                            }
+                            else
+                            {
+                                string expectedErrorMsg = Record("ExpectedErrorMsg");
+                                string actualErrorMsg = Utility.ByXpath("EmailExpectedError", 4);
+                                Assert.AreEqual(expectedErrorMsg, actualErrorMsg);
                             }
                         }
                         else
                         {
-                            Assert.IsTrue(false, "Please enter a valid email address.");
+                            string expectedErrorMsg = Record("ExpectedErrorMsg");
+                            string actualErrorMsg = Utility.ByXpath("EmailAlreadyExistInCreateAnAccount", 4);
+                            Assert.AreEqual(expectedErrorMsg, actualErrorMsg);
                         }
                     }
                     else
                     {
-                        Assert.IsTrue(false, "Your email is required");
+                        string expectedErrorMsg = Record("ExpectedErrorMsg");
+                        string actualErrorMsg = Utility.ByXpath("EmailExpectedError", 4); 
+                        Assert.AreEqual(expectedErrorMsg, actualErrorMsg);
                     }
                 }
                 else
