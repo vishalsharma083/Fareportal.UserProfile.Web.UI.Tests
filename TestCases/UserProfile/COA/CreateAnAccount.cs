@@ -382,14 +382,7 @@ namespace UserProfileSPA.TestCases
                                 {
                                     string actualerrorMsgForConfrmPassword = Utility.ByXpath("ExpectedErrorMsgForConfrmPassword", 3);
                                     Assert.AreEqual(expextedErrorMessageForConfrmPassword, actualerrorMsgForConfrmPassword);
-                                }
-                                //string actualerrorMsgForPassword = Utility.ByXpath("ExpectedErrorMsgForPassword",3);
-                                //string actualerrorMsgForConfrmPassword = Utility.ByXpath("ExpectedErrorMsgForConfrmPassword", 3);
-                                //Assert.AreEqual(expectedErrorMsgForpassword, actualerrorMsgForPassword);
-                                //Assert.AreEqual(expextedErrorMessageForConfrmPassword, actualerrorMsgForConfrmPassword);
-                                //UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("ecpectedWhenBothNotSame");
-                                //List<IWebElement> actualWhenBothNotSame = Utility.ByXpath("56756",3);//Driver.FindElements(By.ClassName("val_error")).ToList();
-                                //Assert.AreEqual(expectedWhenBothNotSame, actualWhenBothNotSame[3].Text);
+                                }                                
                             }
                         }
                         else
@@ -405,10 +398,7 @@ namespace UserProfileSPA.TestCases
                             {
                                 string actualerrorMsgForConfrmPassword = Utility.ByXpath("ExpectedErrorMsgForConfrmPassword", 3);
                                 Assert.AreEqual(expextedErrorMessageForConfrmPassword, actualerrorMsgForConfrmPassword);
-                            }
-                            //string expectedWhenLengthNotExpected = UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("expectedWhenBothLengthNotExpected");
-                            //List<IWebElement> actualWhenLengthNotExpected = Driver.FindElements(By.ClassName("val_error")).ToList();
-                            //Assert.AreEqual(expectedWhenLengthNotExpected, actualWhenLengthNotExpected[3].Text);
+                            }                            
                         }
                     }
                 }
@@ -469,7 +459,7 @@ namespace UserProfileSPA.TestCases
                             {
                                 Assert.IsTrue(true, "it is a leap year.");
                             }
-                            Assert.AreEqual(29, day);
+                           // Assert.AreEqual(29, day);
                         }
                     }
                     else if (month == "Feb")
@@ -482,8 +472,7 @@ namespace UserProfileSPA.TestCases
                         { 
                             
                         }
-
-                        Assert.AreEqual(29, day);
+                        //Assert.AreEqual(29, day);
                     }
                 }
                 else
