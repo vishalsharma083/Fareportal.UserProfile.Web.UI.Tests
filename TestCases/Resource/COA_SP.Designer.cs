@@ -204,7 +204,7 @@ namespace UserProfileSPA.TestCases.Resource {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your email is required,Please enter a password,Please confirm your password,Please enter first name,Please enter first name,Please enter last name,Please provide a date of birth,Please select the Gender.
+        ///   Looks up a localized string similar to Your email is required,Please enter a password,Please confirm your password,Please enter first name,Please enter last name,Please provide a date of birth,Please select the Gender.
         /// </summary>
         internal static string expectedValidationsIfCreateMyAccountIsEmpty {
             get {

@@ -199,7 +199,12 @@
       <EmailAlreadyExistInCreateAnAccount>html/body/div[1]/div[3]/div/div/form/div/div[1]/div/div[3]/p[1]</EmailAlreadyExistInCreateAnAccount>
       <ErrorMsgForFirstName>html/body/div[1]/div[3]/div/div/form/div/div[1]/div/div[6]/div[1]/div[2]</ErrorMsgForFirstName>
       <ErrorMsgForLastName>html/body/div[1]/div[3]/div/div/form/div/div[1]/div/div[6]/div[2]/div[2]/span</ErrorMsgForLastName>
-     
+      <ExpectedErrorMsgForPassword>html/body/div[1]/div[3]/div/div/form/div/div[1]/div/div[5]/div[1]/div[2]/span</ExpectedErrorMsgForPassword>
+      <ExpectedErrorMsgForConfrmPassword>html/body/div[1]/div[3]/div/div/form/div/div[1]/div/div[5]/div[2]/div[2]/span</ExpectedErrorMsgForConfrmPassword>
+      <CreateAnAccountMonth>select[id='ddlMonth']</CreateAnAccountMonth>
+      <CreateAnAccountDay>select[id='ddlDate']</CreateAnAccountDay>
+      <CreateAnAccountYear>select[id='ddlYear']</CreateAnAccountYear>
+
     </CreateAnAccount>
 
   </MyAccount>
@@ -239,7 +244,7 @@
       <TextInFirstNamelValidattion>html/body/div[1]/div[3]/form/div/div/div[1]/div[1]/div/div[4]/div[1]/div/div/span</TextInFirstNamelValidattion>
       <TextInLastNameValidattion>html/body/div[1]/div[3]/form/div/div/div[1]/div[1]/div/div[4]/div[2]/div/div/span</TextInLastNameValidattion>
       <TextInPasswordValidattion>html/body/div[1]/div[3]/form/div/div/div[1]/div[1]/div/div[6]/div[1]/div/div/span</TextInPasswordValidattion>
-      <SelectGenderValidation>html/body/div[1]/div[3]/form/div/div/div[1]/div[1]/div/div[5]/div[2]/div/div[2]/div/span</SelectGenderValidation>
+      <SelectGenderValidation>html/body/div[1]/div[3]/div/div/form/div/div[1]/div/div[7]/div[2]/div[2]</SelectGenderValidation>
 
       <CreateAccountEmailAddress>input[id='txtEmail']</CreateAccountEmailAddress>
       <CreateAccountFirstName>input[id='txtFirstName']</CreateAccountFirstName>

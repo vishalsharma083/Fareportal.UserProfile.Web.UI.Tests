@@ -147,7 +147,7 @@ Click here to create an account – its quick &amp; easy.</value>
     <value>Please select proper title.Please enter street details.City name missing.Please enter zip code.Contact phone is missing</value>
   </data>
   <data name="expectedValidationsIfCreateMyAccountIsEmpty" xml:space="preserve">
-    <value>Your email is required,Please enter a password,Please confirm your password,Please enter first name,Please enter first name,Please enter last name,Please provide a date of birth,Please select the Gender</value>
+    <value>Your email is required,Please enter a password,Please confirm your password,Please enter first name,Please enter last name,Please provide a date of birth,Please select the Gender</value>
   </data>
   <data name="NoFares" xml:space="preserve">
     <value>You have no fare alerts.</value>

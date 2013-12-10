@@ -39,7 +39,7 @@ namespace UserProfileSPA.TestCases
         {
             return TestContext.DataRow[columnName_].ToString();
         }
-        
+
 
         [DeploymentItem("CreateAnAccountAllValidations.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\CreateAnAccountAllValidations.csv", "CreateAnAccountAllValidations#csv", DataAccessMethod.Sequential), TestMethod]
         public void CreateAnAccountAllValidationsAllFieldsAreBlank()
@@ -66,25 +66,25 @@ namespace UserProfileSPA.TestCases
 
                     Utility.CsstoClick("ClickOnCreateAnAccountBtnSignUpFree", 4);
                     Utility.Sleep(2);
-                    string expectedValidationsIfCreateMyAccuntIsEmpty = UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("expectedValidationsIfCreateMyCaaountIsEmpty");
+                    string expectedValidationsIfCreateMyAccuntIsEmpty = UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("expectedValidationsIfCreateMyAccountIsEmpty");
                     string[] ValidationsIfCreateMyAccountIsEmpty = expectedValidationsIfCreateMyAccuntIsEmpty.Split(",".ToCharArray());
 
-                    if ((string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("TextInEmail", "value", 2))) && (string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("TextInFirstName", "value", 2))) && (string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("TextInLastName", "value", 2))) && (string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("TextInPassword", "value", 2)) && (string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("TextInConfrmPassword", "value", 2)))))
+                    if ((string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("TextInEmail", "value", 2))) && (string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("CreateAnAccountTextInFirstName", "value", 2))) && (string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("CreateAnAccountTextInLastName", "value", 2))) && (string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("TextInPassword", "value", 2)) && (string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("TextInConfrmPassword", "value", 2)))))
                     {
-                        string TextInEmailValidattion = Utility.ByXpath("TextInEmailValidattion", 4);
+                        string TextInEmailValidattion = Utility.ByXpath("EmailExpectedError", 4);
                         Assert.AreEqual(ValidationsIfCreateMyAccountIsEmpty[0], TextInEmailValidattion);
 
-                        string TextInFirstNamelValidattion = Utility.ByXpath("TextInFirstNamelValidattion", 4);
-                        Assert.AreEqual(ValidationsIfCreateMyAccountIsEmpty[1], TextInFirstNamelValidattion);
+                        string TextInFirstNamelValidattion = Utility.ByXpath("ErrorMsgForFirstName", 4);
+                        Assert.AreEqual(ValidationsIfCreateMyAccountIsEmpty[3], TextInFirstNamelValidattion);
 
-                        string TextInLastNameValidattion = Utility.ByXpath("TextInLastNameValidattion", 4);
-                        Assert.AreEqual(ValidationsIfCreateMyAccountIsEmpty[2], TextInLastNameValidattion);
+                        string TextInLastNameValidattion = Utility.ByXpath("ErrorMsgForLastName", 4);
+                        Assert.AreEqual(ValidationsIfCreateMyAccountIsEmpty[4], TextInLastNameValidattion);
 
-                        string TextInPasswordValidattion = Utility.ByXpath("TextInPasswordValidattion", 4);
-                        Assert.AreEqual(ValidationsIfCreateMyAccountIsEmpty[3], TextInPasswordValidattion);
+                        string TextInPasswordValidattion = Utility.ByXpath("ExpectedErrorMsgForPassword", 4);
+                        Assert.AreEqual(ValidationsIfCreateMyAccountIsEmpty[1], TextInPasswordValidattion);
 
-                        string TextInConfrmPasswordValidattion = Utility.ByXpath("TextInPasswordValidattion", 4);
-                        Assert.AreEqual(ValidationsIfCreateMyAccountIsEmpty[3], TextInConfrmPasswordValidattion);
+                        string TextInConfrmPasswordValidattion = Utility.ByXpath("ExpectedErrorMsgForConfrmPassword", 4);
+                        Assert.AreEqual(ValidationsIfCreateMyAccountIsEmpty[2], TextInConfrmPasswordValidattion);
                     }
                     if (((Utility.GrabAttributeValueByCss("CreateAnAccountMonth", "value", 4)) == "0") && ((Utility.GrabAttributeValueByCss("CreateAnAccountDay", "value", 4)) == "0") && (Utility.GrabAttributeValueByCss("CreateAnAccountYear", "value", 4)) == "0")
                     {
@@ -104,12 +104,19 @@ namespace UserProfileSPA.TestCases
                     }
                     else
                     {
-                        Assert.IsTrue(false, "Gender is selected.");
+                        if (!Utility.IsDisplayedUsingXpath("SelectGenderValidation"))
+                        { 
+                           if((Utility.GrabAttributeValueByCss("SelectGender", "value", 4)) != "0")
+                            {
+                              Assert.IsTrue(true);
+                            }
+                        }                   
+                       
                     }
                 }
                 else
                 {
-                    throw new Exception("SignIn url is not open ");
+                    throw new Exception("SignUpUrl is not open ");
                 }
             }
             else
@@ -338,7 +345,7 @@ namespace UserProfileSPA.TestCases
             string signinUrl = Record("SignInUrl");
             string password = Record("Password");
             string confrmPassword = Record("ConfrmPassword");
-            Driver.Navigate().GoToUrl(signinUrl);
+           // Driver.Navigate().GoToUrl(signinUrl);
 
             if (signinUrl == Driver.Url)
             {
@@ -364,16 +371,44 @@ namespace UserProfileSPA.TestCases
                             }
                             else
                             {
-                                string expectedWhenBothNotSame = UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("ecpectedWhenBothNotSame");
-                                List<IWebElement> actualWhenBothNotSame = Driver.FindElements(By.ClassName("val_error")).ToList();
-                                Assert.AreEqual(expectedWhenBothNotSame, actualWhenBothNotSame[3].Text);
+                                string expectedErrorMsgForpassword = Record("ExpextedErrorMessageForPassword");
+                                if (expectedErrorMsgForpassword != "No Error")
+                                {
+                                    string actualerrorMsgForPassword = Utility.ByXpath("ExpectedErrorMsgForPassword", 6);
+                                    Assert.AreEqual(expectedErrorMsgForpassword, actualerrorMsgForPassword);
+                                }
+                                string expextedErrorMessageForConfrmPassword = Record("ExpextedErrorMessageForConfrmPassword");
+                                if (expextedErrorMessageForConfrmPassword != "No Error")
+                                {
+                                    string actualerrorMsgForConfrmPassword = Utility.ByXpath("ExpectedErrorMsgForConfrmPassword", 3);
+                                    Assert.AreEqual(expextedErrorMessageForConfrmPassword, actualerrorMsgForConfrmPassword);
+                                }
+                                //string actualerrorMsgForPassword = Utility.ByXpath("ExpectedErrorMsgForPassword",3);
+                                //string actualerrorMsgForConfrmPassword = Utility.ByXpath("ExpectedErrorMsgForConfrmPassword", 3);
+                                //Assert.AreEqual(expectedErrorMsgForpassword, actualerrorMsgForPassword);
+                                //Assert.AreEqual(expextedErrorMessageForConfrmPassword, actualerrorMsgForConfrmPassword);
+                                //UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("ecpectedWhenBothNotSame");
+                                //List<IWebElement> actualWhenBothNotSame = Utility.ByXpath("56756",3);//Driver.FindElements(By.ClassName("val_error")).ToList();
+                                //Assert.AreEqual(expectedWhenBothNotSame, actualWhenBothNotSame[3].Text);
                             }
                         }
                         else
                         {
-                            string expectedWhenLengthNotExpected = UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("expectedWhenBothLengthNotExpected");
-                            List<IWebElement> actualWhenLengthNotExpected = Driver.FindElements(By.ClassName("val_error")).ToList();
-                            Assert.AreEqual(expectedWhenLengthNotExpected, actualWhenLengthNotExpected[3].Text);
+                            string expectedErrorMsgForpassword = Record("ExpextedErrorMessageForPassword");
+                            if (expectedErrorMsgForpassword != "No Error")
+                            {
+                                string actualerrorMsgForPassword = Utility.ByXpath("ExpectedErrorMsgForPassword", 3);
+                                Assert.AreEqual(expectedErrorMsgForpassword, actualerrorMsgForPassword);
+                            }
+                            string expextedErrorMessageForConfrmPassword = Record("ExpextedErrorMessageForConfrmPassword");
+                            if (expextedErrorMessageForConfrmPassword != "No Error")
+                            {
+                                string actualerrorMsgForConfrmPassword = Utility.ByXpath("ExpectedErrorMsgForConfrmPassword", 3);
+                                Assert.AreEqual(expextedErrorMessageForConfrmPassword, actualerrorMsgForConfrmPassword);
+                            }
+                            //string expectedWhenLengthNotExpected = UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("expectedWhenBothLengthNotExpected");
+                            //List<IWebElement> actualWhenLengthNotExpected = Driver.FindElements(By.ClassName("val_error")).ToList();
+                            //Assert.AreEqual(expectedWhenLengthNotExpected, actualWhenLengthNotExpected[3].Text);
                         }
                     }
                 }
@@ -389,7 +424,7 @@ namespace UserProfileSPA.TestCases
         }
 
 
-        [DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\VerifyTheValidationsOfTheLeapYearInRegisterPage.csv", "VerifyTheValidationsOfTheLeapYearInRegisterPage#csv", DataAccessMethod.Sequential), DeploymentItem("VerifyTheValidationsOfTheLeapYearInRegisterPage.csv"), TestMethod]
+        [DeploymentItem("VerifyTheValidationsOfTheLeapYearInRegisterPage.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\VerifyTheValidationsOfTheLeapYearInRegisterPage.csv", "VerifyTheValidationsOfTheLeapYearInRegisterPage#csv", DataAccessMethod.Sequential), TestMethod]
         public void VerifyTheValidationsOfTheLeapYearInRegisterPage()
         {
             IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
@@ -432,16 +467,23 @@ namespace UserProfileSPA.TestCases
                         {
                             if (day == 29)
                             {
-                                Assert.IsTrue(true);
+                                Assert.IsTrue(true, "it is a leap year.");
                             }
+                            Assert.AreEqual(29, day);
                         }
                     }
                     else if (month == "Feb")
                     {
                         if (day == 29)
                         {
-                            throw new Exception("Please enter a valid date of birth");
+                            Assert.IsTrue(true, "it is not a leap year.");
                         }
+                        else
+                        { 
+                            
+                        }
+
+                        Assert.AreEqual(29, day);
                     }
                 }
                 else
@@ -473,6 +515,14 @@ namespace UserProfileSPA.TestCases
                     string expectedWhenEmailIsAlreadyExist = UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("expectedWhenEmailIsAlreadyExist");
                     Assert.AreEqual(expectedWhenEmailIsAlreadyExist,actualEmailAlreadyExist);
                 }
+                else
+                {
+                    Assert.IsTrue(false, "SignUpUrl is not opened.");
+                }
+            }
+            else
+            {
+                Assert.IsTrue(false, "SignInUrl is not opened.");
             }
         }
 
