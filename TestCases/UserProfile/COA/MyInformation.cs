@@ -988,10 +988,11 @@ namespace UserProfileSPA.TestCases
                 {
                     if (month == "Feb")
                     {
-                        if (day == 29)
-                        {
-                            Assert.IsTrue(true, "it is a leap year.");
-                        }
+                        Assert.AreEqual(29, day);
+                        //if (day == 29)
+                        //{
+                        //    Assert.IsTrue(true, "it is a leap year.");
+                        //}
                     }
                 }
                 else if (month == "Feb")

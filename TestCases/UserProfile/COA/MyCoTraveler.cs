@@ -482,7 +482,7 @@ namespace UserProfileSPA.TestCases
 
 
 
-        [DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\CoTravelerFirstAndLastNameValidations.csv", "CoTravelerFirstAndLastNameValidations#csv", DataAccessMethod.Sequential), DeploymentItem("CoTravelerFirstAndLastNameValidations.csv"), TestMethod]
+        [DeploymentItem("CoTravelerFirstAndLastNameValidations.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\CoTravelerFirstAndLastNameValidations.csv", "CoTravelerFirstAndLastNameValidations#csv", DataAccessMethod.Sequential), TestMethod]
         public void CoTravelerFirstAndLastNameValidations()
         {
             IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;            
@@ -507,37 +507,73 @@ namespace UserProfileSPA.TestCases
                         Utility.CsstoClick("ClickOnAddCoTravelerBtn", 4);
 
                         string _firstNametxt = Record("FirstName");
-                        char[] firstChar = _firstNametxt.ToCharArray();
+                       // char[] firstChar = _firstNametxt.ToCharArray();
                         string _lastNametxt = Record("LastName");
+                        Utility.CsstoClear("textInFirstname",3);
                         Utility.CssToSetText("textInFirstname", _firstNametxt, 3);
+                        Utility.CsstoClick("ClickOnTsaReaders",3);
+                        Utility.CsstoClear("textInlastName", 3);
                         Utility.CssToSetText("textInlastName", _lastNametxt, 3);
-
-
+                        Utility.CsstoClick("ClickOnTsaReaders", 3);
+                        Utility.CsstoClick("ClickOnSaveCoTravelerBtn",3);
                         if (!string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("textInFirstname", "value", 3)))
                         {
                             if ((_firstNametxt.Length > 2) && (_firstNametxt.Length < 25))
                             {
                                 Regex regex = new Regex(@"^[a-zA-Z]");
                                 if (regex.IsMatch(_firstNametxt))
-                                {
+                                {                                  
+
                                     if ((_firstNametxt.Contains("!") || (_firstNametxt.Contains("@")) || (_firstNametxt.Contains("~")) || (_firstNametxt.Contains("$")) || (_firstNametxt.Contains("%")) || (_firstNametxt.Contains("^")) || (_firstNametxt.Contains("&")) || (_firstNametxt.Contains("*")) || (_firstNametxt.Contains("`")) || (_firstNametxt.Contains("+")) || (_firstNametxt.Contains("-")) || (_firstNametxt.Contains(":")) || (_firstNametxt.Contains(".")) || (_firstNametxt.Contains(",")) || (_firstNametxt.Contains("(")) || (_firstNametxt.Contains(")")) || (_firstNametxt.Contains("="))))
                                     {
-                                        throw new Exception("Name can only contain apostrophe, space or hyphen.");
+                                        string expectedErrorMsg = Record("ExpectedErrorMsgForFirstname");
+                                        if (expectedErrorMsg != "No Error")
+                                        {
+                                            string actualErrorMsg = Utility.ByXpath("ErrorMsgForFirstNameInCoTraveler", 4);
+                                            Assert.AreEqual(expectedErrorMsg, actualErrorMsg);
+                                        }
+                                        //throw new Exception("Name can only contain apostrophe, space or hyphen.");
                                     }
-                                    else { }
+                                    else { Assert.IsTrue(true); }
                                     if ((_firstNametxt.Contains("'s") || (!_firstNametxt.Contains(" ")) || (!_firstNametxt.Contains("-"))))
-                                    { }
+                                    { Assert.IsTrue(true); }
+                                    else
+                                    {
+                                        Assert.IsTrue(false);
+                                    }
                                 }
                                 else
                                 {
-                                    throw new Exception("Name must begin with a letter.");
+                                    string expectedErrorMsg = Record("ExpectedErrorMsgForFirstname");
+                                    if (expectedErrorMsg != "No Error")
+                                    {
+                                        string actualErrorMsg = Utility.ByXpath("ErrorMsgForFirstNameInCoTraveler", 4);
+                                        Assert.AreEqual(expectedErrorMsg, actualErrorMsg);
+                                    }
+                                    //throw new Exception("Name must begin with a letter.");
                                 }
                             }
                             else
                             {
-                                throw new Exception("FirstName should starts with big letter");
+                                string expectedErrorMsg = Record("ExpectedErrorMsgForFirstname");
+                                if (expectedErrorMsg != "No Error")
+                                {
+                                    string actualErrorMsg = Utility.ByXpath("ErrorMsgForFirstNameInCoTraveler", 4);
+                                    Assert.AreEqual(expectedErrorMsg, actualErrorMsg);
+                                }
+                                //throw new Exception("FirstName should starts with big letter");
                             }
 
+                        }
+                        else
+                        {
+                            string expectedErrorMsg = Record("ExpectedErrorMsgForFirstname");
+                            if (expectedErrorMsg != "No Error")
+                            {
+                                string actualErrorMsg = Utility.ByXpath("ErrorMsgForFirstNameInCoTraveler", 4);
+                                Assert.AreEqual(expectedErrorMsg, actualErrorMsg);
+                            }
+                            //Assert.IsTrue(false, "Please enter first name");
                         }
 
                         if (!string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("textInlastName", "value", 3)))
@@ -549,22 +585,51 @@ namespace UserProfileSPA.TestCases
                                 {
                                     if ((_lastNametxt.Contains("!") || (_lastNametxt.Contains("@")) || (_lastNametxt.Contains("~")) || (_lastNametxt.Contains("$")) || (_lastNametxt.Contains("%")) || (_lastNametxt.Contains("^")) || (_lastNametxt.Contains("&")) || (_lastNametxt.Contains("*")) || (_lastNametxt.Contains("`")) || (_lastNametxt.Contains("+")) || (_lastNametxt.Contains("_")) || (_lastNametxt.Contains(":")) || (_lastNametxt.Contains(".")) || (_lastNametxt.Contains(",")) || (_lastNametxt.Contains("(")) || (_lastNametxt.Contains(")")) || (_lastNametxt.Contains("="))))
                                     {
-                                        throw new Exception("Name can only contain apostrophe, space or hyphen.");
+                                        string expectedErrorMsg = Record("ExpectedErrorMsgForLastname");
+                                        string actualErrorMsg = Utility.ByXpath("ErrorMsgForLastNameInCoTraveler", 4);
+                                        Assert.AreEqual(expectedErrorMsg, actualErrorMsg);
+                                        //throw new Exception("Name can only contain apostrophe, space or hyphen.");
                                     }
-                                    else { }
+                                    else { Assert.IsTrue(true); }
                                     if ((_lastNametxt.Contains("'s") || (!_lastNametxt.Contains(" ")) || (!_lastNametxt.Contains("-"))))
-                                    { }
+                                    { Assert.IsTrue(true); }
                                 }
                                 else
                                 {
-                                    throw new Exception("Name must begin with a letter.");
+                                    string expectedErrorMsg = Record("ExpectedErrorMsgForLastname");
+                                    if (expectedErrorMsg != "No Error")
+                                    {
+                                        string actualErrorMsg = Utility.ByXpath("ErrorMsgForLastNameInCoTraveler", 4);
+                                        Assert.AreEqual(expectedErrorMsg, actualErrorMsg);
+                                    }
+                                    // throw new Exception("Name must begin with a letter.");
                                 }
                             }
                             else
                             {
-                                throw new Exception("FirstName should starts with big letter");
+                                string expectedErrorMsg = Record("ExpectedErrorMsgForLastname");
+                                if (expectedErrorMsg != "No Error")
+                                {
+                                    string actualErrorMsg = Utility.ByXpath("ErrorMsgForLastNameInCoTraveler", 4);
+                                    Assert.AreEqual(expectedErrorMsg, actualErrorMsg);
+                                }
+                                //throw new Exception("FirstName should starts with big letter");
                             }
                         }
+                        else
+                        {
+                            string expectedErrorMsg = Record("ExpectedErrorMsgForLastname");
+                            if (expectedErrorMsg != "No Error")
+                            {
+                                string actualErrorMsg = Utility.ByXpath("ErrorMsgForLastNameInCoTraveler", 4);
+                                Assert.AreEqual(expectedErrorMsg, actualErrorMsg);
+                            }
+                            //Assert.IsTrue(false, "Please enter last name");
+                        }
+                    }
+                    else
+                    {
+                        Assert.IsTrue(false, "MyCoTraveler page is not open");
                     }
                 }
             }
@@ -672,6 +737,10 @@ namespace UserProfileSPA.TestCases
                                         {
                                             Assert.IsTrue(false, "Please add new CoTraveler for delete.");
                                         }
+                                    }
+                                    else
+                                    {
+                                        Assert.IsTrue(false, "AddCoTravelerSection is not found.");
                                     }
                                 }
                             }

@@ -131,10 +131,12 @@
       <UpdatedFirstName>input[id='firstNameEdit']</UpdatedFirstName>
       <UpdatedLastName>input[id='lastNameEdit']</UpdatedLastName>
       <CliclOnAddCCdiv>div[id='AddCC']</CliclOnAddCCdiv>
-      
-     
-      
-      
+      <ErrorMsgForFirstNameInBillingDetails>html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/form/div/div[2]/div[3]/div[1]/div[2]</ErrorMsgForFirstNameInBillingDetails>
+      <ErrorMsgForLastNameInBillingDetails>html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/form/div/div[2]/div[3]/div[2]/div[2]</ErrorMsgForLastNameInBillingDetails>
+
+
+
+
     </MyBillingDetails>
 
 
@@ -177,6 +179,9 @@
       <DeleteLink>Delete</DeleteLink>
       <SelectTitleInCoTraveler>select[id='ddlTitle']</SelectTitleInCoTraveler>
       <SelectGenderInCoTraveler>select[id='ddlGender']</SelectGenderInCoTraveler>
+      <ClickOnTsaReaders>input[id='txtTSARedress']</ClickOnTsaReaders>
+      <ErrorMsgForFirstNameInCoTraveler>html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/form/div[2]/div[1]/div[2]/div[1]/div[2]</ErrorMsgForFirstNameInCoTraveler>
+      <ErrorMsgForLastNameInCoTraveler>html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/form/div[2]/div[1]/div[2]/div[2]/div[2]</ErrorMsgForLastNameInCoTraveler>
     </MyCoTraveler>
     
     
@@ -222,6 +227,7 @@
     <ZipCodeIsMissingValidation>html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/form/div/div[8]/div[1]/div[2]/span</ZipCodeIsMissingValidation>
     <ContactNoIsMissingValidation>html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/form/div/div[9]/div[1]/div[2]/span</ContactNoIsMissingValidation>
     <StateNamemissingValidation>//*[@id='MyDetails']/div[7]/div[2]/div[3]/span</StateNamemissingValidation>
+   
     <MybillingDetailsValidation>
 
       <!--<cardNumberValidation>html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/form/div[2]/div[1]/div[3]/span</cardNumberValidation>-->
@@ -242,6 +248,7 @@
       <Year>select[id='ddYear']</Year>
       <!--<AddNewAddress>//*[@id='AddNewAddress']/div[1]/div/div</AddNewAddress>-->
       <AddNewCard>html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/form/div/div[2]/div[1]/h1</AddNewCard>
+      <CardNumberErrorMsg>html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/form/div/div[2]/div[2]/div[1]/div[3]</CardNumberErrorMsg>
     </MybillingDetailsValidation>    
    
 

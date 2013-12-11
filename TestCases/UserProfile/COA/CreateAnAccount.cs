@@ -125,7 +125,7 @@ namespace UserProfileSPA.TestCases
             }
         }
 
-        [DeploymentItem("CreateAnAccountFirstAndLastNameValidations.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\CreateAnAccountFirstAndLastNameValidations.csv", "CreateAnAccountFirstAndLastNameValidations#csv", DataAccessMethod.Sequential), TestMethod]
+        [DeploymentItem("CreateAnAccountFirstAndLastNameValidations.csv"), DeploymentItem("CoTravelerFirstAndLastNameValidations.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\CoTravelerFirstAndLastNameValidations.csv", "CoTravelerFirstAndLastNameValidations#csv", DataAccessMethod.Sequential), TestMethod]
         public void CreateAnAccountFirstAndLastNameValidations() 
         {
             IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;

@@ -84,123 +84,142 @@ namespace UserProfileSPA.TestCases
                                     string prevName = card[6];
                                     Utility.XPathtoClick("ClickOnEditLinkInBillingDetials", 3);
 
-                                    if (!(Utility.IsDisplayedUsingCss("YourCard")) && ((Utility.IsDisplayedUsingCss("CalnelBtn"))))
+                                    if (!(Utility.IsDisplayedUsingCss("YourCard")))
                                     {
-                                        IWebElement alreadyExistCountry = Driver.FindElement(By.CssSelector(TestEnvironment.LoadXML("UpdatedCountry")));
-                                        var selectalreadyExistCountryElementCountry = new SelectElement(alreadyExistCountry);
-                                        string CurrentlySelected = selectalreadyExistCountryElementCountry.SelectedOption.Text;
-                                        if (CurrentlySelected == "Indonesia")
+                                        if ((Utility.IsDisplayedUsingCss("CalnelBtn")))
                                         {
-                                            string _updatedCountry = "India";
-                                            string _updatedFirstName = Record("UpdatedFirstName");
-                                            string _updatedLastName = Record("UpdatedLastName");
-                                            string _fullName = _updatedFirstName + " " + _updatedLastName;
-                                            Utility.CssToSetText("UpdatedFirstName", _updatedFirstName, 3);
-                                            Utility.CssToSetText("UpdatedLastName", _updatedLastName, 3);
-                                            // string _updatedCountry = Record("Country");
-                                            IWebElement elementCountry = Driver.FindElement(By.CssSelector(TestEnvironment.LoadXML("UpdatedCountry")));
-                                            var selectElementCountry = new SelectElement(elementCountry);
-                                            selectElementCountry.SelectByText(_updatedCountry);
-
-                                            string _updatedCity = Record("UpdatedCity");
-                                            _updatedCity = _updatedCity + "Ind";
-                                            Utility.CssToSetText("UpdatedCity", _updatedCity, 3);
-
-                                            string _updatedAddressLine1 = Record("UpdatedAddressLine1");
-                                            Random randomNum = new Random();
-                                            int num = randomNum.Next(5, 100);
-                                            _updatedAddressLine1 = _updatedAddressLine1 + num;
-                                            Utility.CssToSetText("UpdatedAddressLine1", _updatedAddressLine1, 3);
-
-                                            string _updatedState = Record("UpdatedState");
-                                            _updatedState = _updatedState + "Ind";
-                                            Utility.CssToSetText("UpdatedState", _updatedState, 3);
-
-                                            string _ValueOfSelectedCountry = Utility.GrabAttributeValueByCss("UpdatedCountry", "value", 6).ToString();
-                                            Utility.CsstoClick("SaveUpdatedInformationInBillingDetails", 4);
-
-                                            if (!(Utility.IsDisplayedUsingCss("CalnelBtn")))
+                                            IWebElement alreadyExistCountry = Driver.FindElement(By.CssSelector(TestEnvironment.LoadXML("UpdatedCountry")));
+                                            var selectalreadyExistCountryElementCountry = new SelectElement(alreadyExistCountry);
+                                            string CurrentlySelected = selectalreadyExistCountryElementCountry.SelectedOption.Text;
+                                            if (CurrentlySelected == "Indonesia")
                                             {
-                                                if (Utility.IsDisplayedUsingCss("ViewCard"))
+                                                string _updatedCountry = "India";
+                                                string _updatedFirstName = Record("UpdatedFirstName");
+                                                string _updatedLastName = Record("UpdatedLastName");
+                                                string _fullName = _updatedFirstName + " " + _updatedLastName;
+                                                Utility.CssToSetText("UpdatedFirstName", _updatedFirstName, 3);
+                                                Utility.CssToSetText("UpdatedLastName", _updatedLastName, 3);
+                                                // string _updatedCountry = Record("Country");
+                                                IWebElement elementCountry = Driver.FindElement(By.CssSelector(TestEnvironment.LoadXML("UpdatedCountry")));
+                                                var selectElementCountry = new SelectElement(elementCountry);
+                                                selectElementCountry.SelectByText(_updatedCountry);
+
+                                                string _updatedCity = Record("UpdatedCity");
+                                                _updatedCity = _updatedCity + "Ind";
+                                                Utility.CssToSetText("UpdatedCity", _updatedCity, 3);
+
+                                                string _updatedAddressLine1 = Record("UpdatedAddressLine1");
+                                                Random randomNum = new Random();
+                                                int num = randomNum.Next(5, 100);
+                                                _updatedAddressLine1 = _updatedAddressLine1 + num;
+                                                Utility.CssToSetText("UpdatedAddressLine1", _updatedAddressLine1, 3);
+
+                                                string _updatedState = Record("UpdatedState");
+                                                _updatedState = _updatedState + "Ind";
+                                                Utility.CssToSetText("UpdatedState", _updatedState, 3);
+
+                                                string _ValueOfSelectedCountry = Utility.GrabAttributeValueByCss("UpdatedCountry", "value", 6).ToString();
+                                                Utility.CsstoClick("SaveUpdatedInformationInBillingDetails", 4);
+
+                                                if (!(Utility.IsDisplayedUsingCss("CalnelBtn")))
                                                 {
-                                                    string updatedCardValues = Utility.ByCss("ViewCard", 3);
-                                                    string[] updatedCard = updatedCardValues.Replace("\r\n", "_").Split("_".ToCharArray());
-                                                    string[] updatedSplitAddress = updatedCard[7].Split(",".ToCharArray());
-                                                    string[] updatedSplitAddressLine1AndCity = updatedSplitAddress[0].Split(" ".ToCharArray());
-                                                    string updatedAddressLine1 = updatedSplitAddressLine1AndCity[0] + " " + updatedSplitAddressLine1AndCity[1];
-                                                    string updatedCity = updatedSplitAddressLine1AndCity[2];
+                                                    if (Utility.IsDisplayedUsingCss("ViewCard"))
+                                                    {
+                                                        string updatedCardValues = Utility.ByCss("ViewCard", 3);
+                                                        string[] updatedCard = updatedCardValues.Replace("\r\n", "_").Split("_".ToCharArray());
+                                                        string[] updatedSplitAddress = updatedCard[7].Split(",".ToCharArray());
+                                                        string[] updatedSplitAddressLine1AndCity = updatedSplitAddress[0].Split(" ".ToCharArray());
+                                                        string updatedAddressLine1 = updatedSplitAddressLine1AndCity[0] + " " + updatedSplitAddressLine1AndCity[1];
+                                                        string updatedCity = updatedSplitAddressLine1AndCity[2];
 
-                                                    string[] splitUpdatedStateAndCountryCode = updatedSplitAddress[1].Split(" ".ToCharArray());
-                                                    string updatedState = splitUpdatedStateAndCountryCode[1];
-                                                    string updateCountryCode = splitUpdatedStateAndCountryCode[2];
+                                                        string[] splitUpdatedStateAndCountryCode = updatedSplitAddress[1].Split(" ".ToCharArray());
+                                                        string updatedState = splitUpdatedStateAndCountryCode[1];
+                                                        string updateCountryCode = splitUpdatedStateAndCountryCode[2];
 
-                                                    Assert.AreNotEqual(addressLine1, updatedAddressLine1);
-                                                    Assert.AreNotEqual(city, updatedCity);
-                                                    Assert.AreNotEqual(state, updatedState);
-                                                    Assert.AreNotEqual(CountryCode, updateCountryCode);
-                                                    Assert.AreNotEqual(prevName, _fullName);
+                                                        Assert.AreNotEqual(addressLine1, updatedAddressLine1);
+                                                        Assert.AreNotEqual(city, updatedCity);
+                                                        Assert.AreNotEqual(state, updatedState);
+                                                        Assert.AreNotEqual(CountryCode, updateCountryCode);
+                                                        Assert.AreNotEqual(prevName, _fullName);
+                                                    }
+
                                                 }
-
                                             }
-                                        }
 
-                                        else if (CurrentlySelected == "India")
-                                        {
-                                            string _updatedCountry = "Indonesia";
-                                            string _updatedFirstName = Record("UpdatedFirstName");
-                                            string _updatedLastName = Record("UpdatedLastName");
-                                            string _fullName = _updatedFirstName + " " + "Kathuria";
-                                            //string _updatedCountry = Record("Country");
-                                            IWebElement elementCountry = Driver.FindElement(By.CssSelector(TestEnvironment.LoadXML("UpdatedCountry")));
-                                            var selectElementCountry = new SelectElement(elementCountry);
-                                            selectElementCountry.SelectByText(_updatedCountry);
-
-                                            string _updatedCity = Record("UpdatedCity");
-                                            _updatedCity = _updatedCity + "Indo";
-                                            Utility.CssToSetText("UpdatedCity", _updatedCity, 3);
-
-                                            string _updatedAddressLine1 = Record("UpdatedAddressLine1");
-                                            Random randomNum = new Random();
-                                            int num = randomNum.Next(5, 100);
-                                            _updatedAddressLine1 = _updatedAddressLine1 + num;
-                                            Utility.CssToSetText("UpdatedAddressLine1", _updatedAddressLine1, 3);
-
-                                            string _updatedState = Record("UpdatedState");
-                                            _updatedState = _updatedState + "Indo";
-                                            Utility.CssToSetText("UpdatedState", _updatedState, 3);
-
-                                            string _ValueOfSelectedCountry = Utility.GrabAttributeValueByCss("UpdatedCountry", "value", 6).ToString();
-                                            Utility.CsstoClick("SaveUpdatedInformationInBillingDetails", 4);
-
-                                            if (!(Utility.IsDisplayedUsingCss("CalnelBtn")))
+                                            else if (CurrentlySelected == "India")
                                             {
-                                                if (Utility.IsDisplayedUsingCss("ViewCard"))
+                                                string _updatedCountry = "Indonesia";
+                                                string _updatedFirstName = Record("UpdatedFirstName");
+                                                string _updatedLastName = Record("UpdatedLastName");
+                                                string _fullName = _updatedFirstName + " " + "Kathuria";
+                                                //string _updatedCountry = Record("Country");
+                                                IWebElement elementCountry = Driver.FindElement(By.CssSelector(TestEnvironment.LoadXML("UpdatedCountry")));
+                                                var selectElementCountry = new SelectElement(elementCountry);
+                                                selectElementCountry.SelectByText(_updatedCountry);
+
+                                                string _updatedCity = Record("UpdatedCity");
+                                                _updatedCity = _updatedCity + "Indo";
+                                                Utility.CssToSetText("UpdatedCity", _updatedCity, 3);
+
+                                                string _updatedAddressLine1 = Record("UpdatedAddressLine1");
+                                                Random randomNum = new Random();
+                                                int num = randomNum.Next(5, 100);
+                                                _updatedAddressLine1 = _updatedAddressLine1 + num;
+                                                Utility.CssToSetText("UpdatedAddressLine1", _updatedAddressLine1, 3);
+
+                                                string _updatedState = Record("UpdatedState");
+                                                _updatedState = _updatedState + "Indo";
+                                                Utility.CssToSetText("UpdatedState", _updatedState, 3);
+
+                                                string _ValueOfSelectedCountry = Utility.GrabAttributeValueByCss("UpdatedCountry", "value", 6).ToString();
+                                                Utility.CsstoClick("SaveUpdatedInformationInBillingDetails", 4);
+                                                Utility.Sleep(5);
+                                                if (!(Utility.IsDisplayedUsingCss("CalnelBtn")))
                                                 {
-                                                    string updatedCardValues = Utility.ByCss("ViewCard", 3);
-                                                    string[] updatedCard = updatedCardValues.Replace("\r\n", "_").Split("_".ToCharArray());
-                                                    string[] updatedSplitAddress = updatedCard[7].Split(",".ToCharArray());
-                                                    string[] updatedSplitAddressLine1AndCity = updatedSplitAddress[0].Split(" ".ToCharArray());
-                                                    string updatedAddressLine1 = updatedSplitAddressLine1AndCity[0] + " " + updatedSplitAddressLine1AndCity[1];
-                                                    string updatedCity = updatedSplitAddressLine1AndCity[2];
+                                                    if (Utility.IsDisplayedUsingCss("ViewCard"))
+                                                    {
+                                                        string updatedCardValues = Utility.ByCss("ViewCard", 3);
+                                                        string[] updatedCard = updatedCardValues.Replace("\r\n", "_").Split("_".ToCharArray());
+                                                        string[] updatedSplitAddress = updatedCard[7].Split(",".ToCharArray());
+                                                        string[] updatedSplitAddressLine1AndCity = updatedSplitAddress[0].Split(" ".ToCharArray());
+                                                        string updatedAddressLine1 = updatedSplitAddressLine1AndCity[0] + " " + updatedSplitAddressLine1AndCity[1];
+                                                        string updatedCity = updatedSplitAddressLine1AndCity[2];
 
-                                                    string[] splitUpdatedStateAndCountryCode = updatedSplitAddress[1].Split(" ".ToCharArray());
-                                                    string updatedState = splitUpdatedStateAndCountryCode[1];
-                                                    string updateCountryCode = splitUpdatedStateAndCountryCode[2];
+                                                        string[] splitUpdatedStateAndCountryCode = updatedSplitAddress[1].Split(" ".ToCharArray());
+                                                        string updatedState = splitUpdatedStateAndCountryCode[1];
+                                                        string updateCountryCode = splitUpdatedStateAndCountryCode[2];
 
-                                                    Assert.AreNotEqual(addressLine1, updatedAddressLine1);
-                                                    Assert.AreNotEqual(city, updatedCity);
-                                                    Assert.AreNotEqual(state, updatedState);
-                                                    Assert.AreNotEqual(CountryCode, updateCountryCode);
-                                                    Assert.AreNotEqual(prevName, _fullName);
+                                                        Assert.AreNotEqual(addressLine1, updatedAddressLine1);
+                                                        Assert.AreNotEqual(city, updatedCity);
+                                                        Assert.AreNotEqual(state, updatedState);
+                                                        Assert.AreNotEqual(CountryCode, updateCountryCode);
+                                                        Assert.AreNotEqual(prevName, _fullName);
+                                                    }
                                                 }
+                                            }
+                                            else
+                                            {
+                                                Assert.IsTrue(false, "Selected country may not be India or Indonesia.");
                                             }
                                         }
                                         else
                                         {
-                                            Assert.IsTrue(false, "Selected country may not be India.");
+                                            Assert.IsTrue(false, "Cancel button is not displayed.");
                                         }
                                     }
+                                    else
+                                    {
+                                        Assert.IsTrue(false, "YourCard is still displaying.");
+                                    }
                                 }
+                                else
+                                {
+                                    Assert.IsTrue(false,"There is no Card is added please add first.");
+                                }
+                            }
+                            else
+                            {
+                                Assert.IsTrue(false, "There is no Card is added please add first.");
                             }
                         }
                         else
@@ -268,11 +287,12 @@ namespace UserProfileSPA.TestCases
                                 Assert.IsTrue(true);
                             }
                         }
+                        Assert.IsTrue(false,"There is no card mentioned.");
                     }
                 }
                 else
                 {
-                    throw new Exception("No card mentioned here.");
+                    Assert.IsTrue(false, "BillingDetailsUrl is not opened.");
                 }
             }
             else
@@ -282,7 +302,7 @@ namespace UserProfileSPA.TestCases
         }
 
 
-        [DeploymentItem("MinAndMaxDigitInCreditCard.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\MinAndMaxDigitInCreditCard.csv", "MinAndMaxDigitInCreditCard#csv", DataAccessMethod.Sequential), TestMethod]
+        [DeploymentItem("MinAndMaxDigitInCreditCard.csv"), DeploymentItem("MinAndMaxDigitsInCreditCard .csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\MinAndMaxDigitsInCreditCard .csv", "MinAndMaxDigitsInCreditCard #csv", DataAccessMethod.Sequential), TestMethod]
         public void MinAndMaxDigitInCreditCard()
         {
             IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;           
@@ -318,6 +338,7 @@ namespace UserProfileSPA.TestCases
                         if (fareportalMyBillingDetailsUrl == Driver.Url)
                         {
                             Utility.CssToSetText("textcardNumber", enterCardNumber, 3);
+                            Utility.CsstoClick("ClickOnSaveBillingDetailsBtn", 3);
                             if (!string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("textcardNumber", "value", 3)))
                             {
 
@@ -339,17 +360,26 @@ namespace UserProfileSPA.TestCases
                                     }
                                     else
                                     {
-                                        Assert.IsTrue(false, "Sorry, but we don't accept this credit card. Please enter a card from the list above");
+                                        string expectedErrorMsg = Record("ExpectedErrorMsg");
+                                        string actualErrorMsg = Utility.ByXpath("CardNumberErrorMsg", 3);
+                                        Assert.AreEqual(expectedErrorMsg, actualErrorMsg);
+                                        //Assert.IsTrue(false, "Sorry, but we don't accept this credit card. Please enter a card from the list above");
                                     }
                                 }
                                 else
                                 {
-                                    Assert.IsTrue(false, "Only numbers are allowed");
+                                    string expectedErrorMsg = Record("ExpectedErrorMsg");
+                                    string actualErrorMsg = Utility.ByXpath("CardNumberErrorMsg", 3);
+                                    Assert.AreEqual(expectedErrorMsg, actualErrorMsg);
+                                    //Assert.IsTrue(false, "Only numbers are allowed");
                                 }
                             }
                             else
                             {
-                                Assert.IsTrue(false, "Card number is required.");
+                                string expectedErrorMsg = Record("ExpectedErrorMsg");
+                                string actualErrorMsg = Utility.ByXpath("CardNumberErrorMsg", 3);
+                                Assert.AreEqual(expectedErrorMsg, actualErrorMsg);
+                                //Assert.IsTrue(expectedErrorMsg, "Card number is required.");
                             }
                         }
                         else
@@ -372,97 +402,7 @@ namespace UserProfileSPA.TestCases
                 Assert.IsTrue(false, "SignInUrl is not opened.");
             }
         }
-
-
-        [DeploymentItem("MinAndMaxDigitInCreditCard.csv"), DeploymentItem("MinAndMaxDigitInCreditCardNegative .csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\MinAndMaxDigitInCreditCardNegative .csv", "MinAndMaxDigitInCreditCardNegative #csv", DataAccessMethod.Sequential), TestMethod]
-        public void MinAndMaxDigitInCreditCardNegative()
-        {
-            IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
-          
-            string email = Record("Email");
-            string password = Record("Password");
-            string signinUrl = Record("SignInUrl");
-            string enterCardNumber = Record("EnterCardNumber");          
-            Utility.Sleep(4);
-            if (signinUrl == Driver.Url)
-            {
-                Utility.CssToSetText("Email", Record("Email"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
-                Utility.CssToSetText("Password", Record("Password"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);               
-                Utility.CsstoClick("SignInBtn", 4);
-                Utility.Sleep(3);
-                string fareportalOverviewUrl = Record("CheapoairOverviewUrl");
-                Utility.Sleep(4);
-                if (fareportalOverviewUrl == Driver.Url)
-                {
-                    Utility.CsstoClick("clickOnMyInformation", 4);
-                    Utility.Sleep(2);
-
-                    string fareportalMyDetailsUrl = Record("CheapoairMyDetailsUrl");
-                    Utility.Sleep(4);
-                    if (fareportalMyDetailsUrl == Driver.Url)
-                    {
-                        Utility.ByLinkTexttoClick("ClickOnMyBillingDetails", 4);
-                        Utility.Sleep(3);
-
-                        string fareportalMyBillingDetailsUrl = Record("CheapoairMyBillingDetailsUrl");
-                        Utility.Sleep(4);
-                        if (fareportalMyBillingDetailsUrl == Driver.Url)
-                        {
-                            Utility.CssToSetText("textcardNumber", enterCardNumber, 3);
-                            if (!string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("textcardNumber", "value", 3)))
-                            {
-
-                                string cardNumber = Utility.GrabAttributeValueByCss("textcardNumber", "value", 3);
-                                Regex onlyNumeric = new Regex("^[0-9]");
-                                if (onlyNumeric.IsMatch(cardNumber))
-                                {
-                                    Assert.IsTrue(true);
-                                    Regex r1 = new Regex("^[0-9]{13}$");
-                                    Regex r2 = new Regex("^[0-9]{16}$");
-                                    if (r1.IsMatch(cardNumber))
-                                    {
-                                        Assert.IsTrue(true);
-                                    }
-                                    else if (r2.IsMatch(cardNumber))
-                                    {
-                                        Assert.IsTrue(true);
-                                    }
-                                    else
-                                    {
-                                        Assert.IsTrue(false, "Sorry, but we don't accept this credit card. Please enter a card from the list above");
-                                    }
-                                }
-                                else
-                                {
-                                    Assert.IsTrue(false, "Only numbers are allowed");
-                                }
-                            }
-                            else
-                            {
-                                Assert.IsTrue(false, "Card number is required.");
-                            }
-                        }
-                        else
-                        {
-                            Assert.IsTrue(false, "MyBillingDetailUrl is not opened.");
-                        }
-                    }
-                    else
-                    {
-                        Assert.IsTrue(false, "MyDetailUrl is not opened.");
-                    }
-                }
-                else
-                {
-                    Assert.IsTrue(false, "OverViewUrl is not opened.");
-                }
-            }
-            else
-            {
-                Assert.IsTrue(false, "SignInUrl is not opened.");
-            }
-        }
-
+               
 
         [DeploymentItem("MyBillingDetailsAllValidations.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\MyBillingDetailsAllValidations.csv", "MyBillingDetailsAllValidations#csv", DataAccessMethod.Sequential), TestMethod]
         public void MyBillingDetailsAllValidations()
@@ -864,8 +804,7 @@ namespace UserProfileSPA.TestCases
                             Utility.CsstoClick("CliclOnAddCCdiv", 3);
                             Utility.CsstoClear("textlastName", 3);
                             Utility.CssToSetText("textlastName", _lastNametxt, 3);
-                            Utility.CsstoClick("CliclOnAddCCdiv", 3);
-
+                            Utility.CsstoClick("ClickOnSaveBillingDetailsBtn",4);
                             if (!string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("textfirstName", "value", 3)))
                             {
                                 if ((_firstNametxt.Length > 2) && (_firstNametxt.Length < 25))
@@ -875,7 +814,13 @@ namespace UserProfileSPA.TestCases
                                     {
                                         if ((_firstNametxt.Contains("!") || (_firstNametxt.Contains("@")) || (_firstNametxt.Contains("~")) || (_firstNametxt.Contains("$")) || (_firstNametxt.Contains("%")) || (_firstNametxt.Contains("^")) || (_firstNametxt.Contains("&")) || (_firstNametxt.Contains("*")) || (_firstNametxt.Contains("`")) || (_firstNametxt.Contains("+")) || (_firstNametxt.Contains("-")) || (_firstNametxt.Contains(":")) || (_firstNametxt.Contains(".")) || (_firstNametxt.Contains(",")) || (_firstNametxt.Contains("(")) || (_firstNametxt.Contains(")")) || (_firstNametxt.Contains("="))))
                                         {
-                                            throw new Exception("Name can only contain apostrophe, space or hyphen.");
+                                            string expectedErrorMsg = Record("ExpectedErrorMsgForFirstname");
+                                            if (expectedErrorMsg != "No Error")
+                                            {
+                                                string actualErrorMsg = Utility.ByXpath("ErrorMsgForFirstNameInBillingDetails", 4);
+                                                Assert.AreEqual(expectedErrorMsg, actualErrorMsg);
+                                            }
+                                            //throw new Exception("Name can only contain apostrophe, space or hyphen.");
                                         }
                                         else { Assert.IsTrue(true); }
                                         if ((_firstNametxt.Contains("'s") || (!_firstNametxt.Contains(" ")) || (!_firstNametxt.Contains("-"))))
@@ -887,18 +832,36 @@ namespace UserProfileSPA.TestCases
                                     }
                                     else
                                     {
-                                        throw new Exception("Name must begin with a letter.");
+                                        string expectedErrorMsg = Record("ExpectedErrorMsgForFirstname");
+                                        if (expectedErrorMsg != "No Error")
+                                        {
+                                            string actualErrorMsg = Utility.ByXpath("ErrorMsgForFirstNameInBillingDetails", 4);
+                                            Assert.AreEqual(expectedErrorMsg, actualErrorMsg);
+                                        }
+                                        //throw new Exception("Name must begin with a letter.");
                                     }
                                 }
                                 else
                                 {
-                                    throw new Exception("Firstname must be between 2 and 25 characters in length.");
+                                    string expectedErrorMsg = Record("ExpectedErrorMsgForFirstname");
+                                    if (expectedErrorMsg != "No Error")
+                                    {
+                                        string actualErrorMsg = Utility.ByXpath("ErrorMsgForFirstNameInBillingDetails", 4);
+                                        Assert.AreEqual(expectedErrorMsg, actualErrorMsg);
+                                    }
+                                    //throw new Exception("Firstname must be between 2 and 25 characters in length.");
                                 }
 
                             }
                             else
                             {
-                                Assert.IsTrue(false, "Please enter first name");
+                                string expectedErrorMsg = Record("ExpectedErrorMsgForFirstname");
+                                if (expectedErrorMsg != "No Error")
+                                {
+                                    string actualErrorMsg = Utility.ByXpath("ErrorMsgForFirstNameInBillingDetails", 4);
+                                    Assert.AreEqual(expectedErrorMsg, actualErrorMsg);
+                                }
+                                //Assert.IsTrue(false, "Please enter first name");
                             }
 
                             if (!string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("textlastName", "value", 3)))
@@ -910,7 +873,10 @@ namespace UserProfileSPA.TestCases
                                     {
                                         if ((_lastNametxt.Contains("!") || (_lastNametxt.Contains("@")) || (_lastNametxt.Contains("~")) || (_lastNametxt.Contains("$")) || (_lastNametxt.Contains("%")) || (_lastNametxt.Contains("^")) || (_lastNametxt.Contains("&")) || (_lastNametxt.Contains("*")) || (_lastNametxt.Contains("`")) || (_lastNametxt.Contains("+")) || (_lastNametxt.Contains("_")) || (_lastNametxt.Contains(":")) || (_lastNametxt.Contains(".")) || (_lastNametxt.Contains(",")) || (_lastNametxt.Contains("(")) || (_lastNametxt.Contains(")")) || (_lastNametxt.Contains("="))))
                                         {
-                                            throw new Exception("Name can only contain apostrophe, space or hyphen.");
+                                            string expectedErrorMsg = Record("ExpectedErrorMsgForLastname");
+                                            string actualErrorMsg = Utility.ByXpath("ErrorMsgForLastNameInBillingDetails", 4);
+                                            Assert.AreEqual(expectedErrorMsg, actualErrorMsg);
+                                            //throw new Exception("Name can only contain apostrophe, space or hyphen.");
                                         }
                                         else
                                         {
@@ -923,18 +889,36 @@ namespace UserProfileSPA.TestCases
                                     }
                                     else
                                     {
-                                        throw new Exception("Name must begin with a letter.");
+                                        string expectedErrorMsg = Record("ExpectedErrorMsgForLastname");
+                                        if (expectedErrorMsg != "No Error")
+                                        {
+                                            string actualErrorMsg = Utility.ByXpath("ErrorMsgForLastNameInBillingDetails", 4);
+                                            Assert.AreEqual(expectedErrorMsg, actualErrorMsg);
+                                        }
+                                        //throw new Exception("Name must begin with a letter.");
                                     }
                                 }
                                 else
                                 {
-                                    throw new Exception("Firstname must be between 2 and 25 characters in length.");
+                                    string expectedErrorMsg = Record("ExpectedErrorMsgForLastname");
+                                    if (expectedErrorMsg != "No Error")
+                                    {
+                                        string actualErrorMsg = Utility.ByXpath("ErrorMsgForLastNameInBillingDetails", 4);
+                                        Assert.AreEqual(expectedErrorMsg, actualErrorMsg);
+                                    }
+                                    //throw new Exception("Firstname must be between 2 and 25 characters in length.");
                                 }
 
                             }
                             else
                             {
-                                Assert.IsTrue(false, "Please enter last name");
+                                string expectedErrorMsg = Record("ExpectedErrorMsgForLastname");
+                                if (expectedErrorMsg != "No Error")
+                                {
+                                    string actualErrorMsg = Utility.ByXpath("ErrorMsgForLastNameInBillingDetails", 4);
+                                    Assert.AreEqual(expectedErrorMsg, actualErrorMsg);
+                                }
+                                //Assert.IsTrue(false, "Please enter last name");
                             }
 
                         }
