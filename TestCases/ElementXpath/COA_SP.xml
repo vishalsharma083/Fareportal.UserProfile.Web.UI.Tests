@@ -50,13 +50,15 @@
           <ClickOnEmailGrey>div[class='email_grey']</ClickOnEmailGrey>
           <NewPassword>input[id='newPassword']</NewPassword>
           <ConfrmPassword>input[id='newConfirmPassword']</ConfrmPassword>
-          <ClickOnConfrmPasswordCheckBox>div[class='flyer_tick changePasswordBtn']</ClickOnConfrmPasswordCheckBox>
+          <ClickOnConfrmPasswordCheckBox>span[class='tick_icon saveEditedPrefBtn']</ClickOnConfrmPasswordCheckBox>
           <ClickOnWelcomeDropdown>a[class='dropdown-toggle mgLft5']</ClickOnWelcomeDropdown>
           <ClickOnSignOut>a[id='btnLogOut']</ClickOnSignOut>
-          <BlankPasswordError>//*[@id='MyDetails']/div[1]/div[2]/div[4]</BlankPasswordError>
-          <BlankConfrmPassword>//*[@id='MyDetails']/div[1]/div[2]/div[6]/span</BlankConfrmPassword>
-        
-      </SignInInformation>
+          <!--<PasswordError>//*[@id='MyDetails']/div[1]/div[2]/div[4]</PasswordError>
+          <--><!--ConfrmPassword>//*[@id='MyDetails']/div[1]/div[2]/div[6]/span</ConfrmPassword>-->
+        <PasswordErrorWhenBlank>html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/form/div/div[1]/div[2]/div[4]</PasswordErrorWhenBlank>
+        <ConfrmPasswordWhenBlank>html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/form/div/div[1]/div[2]/div[6]</ConfrmPasswordWhenBlank>
+        <ConfrmPaswordErrorMsgWhenPasswordIsNotBlankOrBoth>html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/form/div/div[1]/div[2]/div[5]</ConfrmPaswordErrorMsgWhenPasswordIsNotBlankOrBoth> 
+    </SignInInformation>
 
       <PersonsalInfromation>
           
@@ -83,6 +85,8 @@
           <CliclOnMoreinformation>//*[@id='MyDetails']/div[12]/h1</CliclOnMoreinformation>
           <UseforBillingDetailsCheckBoxInMyDetailsPage>input[id='billiingDetails']</UseforBillingDetailsCheckBoxInMyDetailsPage>
           <MyInfoZipCodeErrorMessage>html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/form/div/div[8]/div[1]/div[2]</MyInfoZipCodeErrorMessage>
+        <GenderErrorMsg>html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/form/div/div[4]/div[2]/div[2]</GenderErrorMsg>
+        <LeapAYearErrorMsg>html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/form/div/div[4]/div[1]/div[4]</LeapAYearErrorMsg>
       </PersonsalInfromation>
         
         <clickOnMyInformation>a[class='myAccount']</clickOnMyInformation>
@@ -140,6 +144,7 @@
       <clickOnMyCoTravelerMenu>My Co-Travelers</clickOnMyCoTravelerMenu>
       <ClickOnAddCoTravelerBtn>button[id='EnableAddCoTraveler']</ClickOnAddCoTravelerBtn>
       <SaveCoTraveler>input[id='SaveCoTraveler']</SaveCoTraveler>
+      <CoTravelerDobErrorMsg>html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/form/div[2]/div[1]/div[3]/div[1]/div[4]</CoTravelerDobErrorMsg>
       <CoTravelerMonthIsNotSelected>html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/form/div[2]/div[1]/div[3]/div[1]/div[4]</CoTravelerMonthIsNotSelected>
       <CoTravelerDateIsNotSelected>html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/form/div[2]/div[1]/div[3]/div[1]/div[5]</CoTravelerDateIsNotSelected>
       <CoTravelerYeadIsNotSelected>html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/form/div[2]/div[1]/div[3]/div[1]/div[6]</CoTravelerYeadIsNotSelected>
@@ -170,7 +175,8 @@
       <EditCoTravelerHeader>html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/form/div[2]/div[1]/div[1]/h1</EditCoTravelerHeader>
       <MyCoTravelerDiv>div[id='myCoTraveler']</MyCoTravelerDiv>
       <DeleteLink>Delete</DeleteLink>
-      
+      <SelectTitleInCoTraveler>select[id='ddlTitle']</SelectTitleInCoTraveler>
+      <SelectGenderInCoTraveler>select[id='ddlGender']</SelectGenderInCoTraveler>
     </MyCoTraveler>
     
     

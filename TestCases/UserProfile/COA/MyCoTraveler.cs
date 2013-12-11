@@ -725,34 +725,29 @@ namespace UserProfileSPA.TestCases
 
                                 string lastnameValidation = Utility.ByXpath("CoTravelerLastnameValidation", 4);
                                 Assert.AreEqual(ValidationsIfMyCoTravelerNameFieldIsEmpty[1], lastnameValidation);
+                                string expectedValidationsInDobDropDownWhileAddingCoTraveler = UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("expectedValidationsInDobDropDownWhileAddingCoTraveler");
+                                string[] ValidationsIfDobDropDown = expectedValidationsInDobDropDownWhileAddingCoTraveler.Split(",".ToCharArray());
 
                                 if (((Utility.GrabAttributeValueByCss("CoTravellerMonth", "value", 4)) == "0") && ((Utility.GrabAttributeValueByCss("CoTravellerDay", "value", 4)) == "0") && (Utility.GrabAttributeValueByCss("CoTravellerYear", "value", 4)) == "0")
                                 {
-                                    string expectedValidationsInDobDropDownWhileAddingCoTraveler = UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("expectedValidationsInDobDropDownWhileAddingCoTraveler");
-                                    string[] ValidationsIfDobDropDownIsNotSelected = expectedValidationsInDobDropDownWhileAddingCoTraveler.Split(",".ToCharArray());
-
-                                    string monthIsNotSelected = Utility.ByXpath("CoTravelerMonthIsNotSelected", 4);
-                                    Assert.AreEqual(ValidationsIfDobDropDownIsNotSelected[0], monthIsNotSelected);
-
-                                    string dateIsNotSelected = Utility.ByXpath("CoTravelerDateIsNotSelected", 4);
-                                    Assert.AreEqual(ValidationsIfDobDropDownIsNotSelected[1], dateIsNotSelected);
-
-                                    string yearIsNotSelected = Utility.ByXpath("CoTravelerYeadIsNotSelected", 4);
-                                    Assert.AreEqual(ValidationsIfDobDropDownIsNotSelected[2], yearIsNotSelected);
+                                   
+                                    string actualErrorMsg = Utility.ByXpath("CoTravelerDobErrorMsg", 4);
+                                    Assert.AreEqual(ValidationsIfDobDropDown[0], actualErrorMsg);                                    
                                 }
-                                else
+                                else if (((Utility.GrabAttributeValueByCss("CoTravellerMonth", "value", 4)) != "0") || ((Utility.GrabAttributeValueByCss("CoTravellerDay", "value", 4)) != "0") || (Utility.GrabAttributeValueByCss("CoTravellerYear", "value", 4)) != "0")
                                 {
-                                    throw new Exception("Month and year is not empty.");
+                                    string actualErrorMsg = Utility.ByXpath("CoTravelerDobErrorMsg", 4);
+                                    Assert.AreEqual(ValidationsIfDobDropDown[1], actualErrorMsg);
                                 }
 
-                                if (((Utility.GrabAttributeValueByCss("SelectTitle", "value", 4)) == "0"))
+                                if (((Utility.GrabAttributeValueByCss("SelectTitleInCoTraveler", "value", 4)) == "0"))
                                 {
                                     string expectedValidationInCoTravelerTitle = UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("expectedValidationInCoTravelerTitle");
                                     string actualValidationInCotravelerTitle = Utility.ByXpath("CoTravelerTitleIsNotSelected", 4);
                                     Assert.AreEqual(expectedValidationInCoTravelerTitle[1], actualValidationInCotravelerTitle);
                                 }
 
-                                if (((Utility.GrabAttributeValueByCss("SelectGender", "value", 4)) == "0"))
+                                if (((Utility.GrabAttributeValueByCss("SelectGenderInCoTraveler", "value", 4)) == "0"))
                                 {
                                     string expectedValidationInCotravelerGender = UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("expectedValidationInCotravelerGender");
                                     string actualValidationInCotravelerGender = Utility.ByXpath("CoTravelerGenderIsNotSelected", 4);
@@ -762,7 +757,7 @@ namespace UserProfileSPA.TestCases
                         }
                     }
                 }
-            }
+            }   
         }
 
 
@@ -777,16 +772,8 @@ namespace UserProfileSPA.TestCases
             {
                 string email = Record("Email");
                 string password = Record("Password");
-                
-                if ((email) != null)
-                {
-                    Utility.CssToSetText("CreateAccountEmailAddress", email, 4);
-                }
-                if ((password) != null)
-                {
-                    Utility.CssToSetText("CreateAccountEmailAddress", password, 4);
-                }
-               
+                Utility.CssToSetText("Email", email, 4);               
+                Utility.CssToSetText("Password", password, 4);
                 Utility.CsstoClick("SignInBtn", 3);
                 Utility.Sleep(2);
                 Utility.CsstoClick("clickOnMyInformation", 4);
@@ -850,7 +837,7 @@ namespace UserProfileSPA.TestCases
         }
 
 
-        [DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\VerifyTheTitleFieldWithGenderInCoTraveler.csv", "VerifyTheTitleFieldWithGenderInCoTraveler#csv", DataAccessMethod.Sequential), DeploymentItem("VerifyTheTitleFieldWithGenderInCoTraveler.csv"), TestMethod]
+        [DeploymentItem("VerifyTheTitleFieldWithGenderInCoTraveler.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\VerifyTheTitleFieldWithGenderInCoTraveler.csv", "VerifyTheTitleFieldWithGenderInCoTraveler#csv", DataAccessMethod.Sequential), TestMethod]
         public void VerifyTheTitleFieldWithGenderInCoTraveler()
         {
             IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
@@ -922,7 +909,13 @@ namespace UserProfileSPA.TestCases
                             }
                             else
                             {
-                                Assert.IsTrue(false, "Please select proper gender");
+                                string expectedErrorMsg = Record("ExpectedErrorMsg");
+                                if(expectedErrorMsg != "No Error")
+                                {
+                                    string actualErrorMsg = Utility.ByXpath("GenderErrorMsg", 4);
+                                    Assert.IsTrue(false, "Please select proper gender");
+                                }
+                                
                             }
                         }
                     }

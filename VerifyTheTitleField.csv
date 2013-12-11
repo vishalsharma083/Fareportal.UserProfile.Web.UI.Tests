@@ -1,0 +1,3 @@
+Email,Password,SignInUrl,SelectedTitle,SelectedGender,ExpectedErrorMsg
+"averma333@fp.com","aaaaaa","http://www.cheapoair.com/profiles/#/user-signin","Mrs","Male","Please select proper gender"
+"averma333@fp.com","aaaaaa","http://www.cheapoair.com/profiles/#/user-signin","Mr","Male","No Error"

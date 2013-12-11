@@ -468,7 +468,7 @@ namespace UserProfileSPA.TestCases
                     if (fareportalMyDetailsUrl == Driver.Url)
                     {
                         string myInformationEmail = Utility.GrabAttributeValueByCss("SignInInformationEmailAddress", "value", 4);
-                        Assert.AreEqual(Record("Email"), myInformationEmail, "Email address is not matched");
+                        Assert.AreEqual(Record("Email"), myInformationEmail, "Email address is matched");
                         Utility.Sleep(2);
                         string _newpassword = Record("NewPassword");
                         string _confrmpassword = Record("ConfrmPassword");
@@ -476,33 +476,27 @@ namespace UserProfileSPA.TestCases
                         int num = randomNum.Next(5, 100);
                         string newpassword = _newpassword + num;
                         string confrmpassword = _confrmpassword + num;
-                        Utility.CsstoClick("ClickOnEmailGrey", 3);
-
-                        if ((newpassword) != null)
-                        {
-                            Utility.CssToSetText("CreateAccountEmailAddress", newpassword, 4);
-                        }
-                        if ((confrmpassword) != null)
-                        {
-                            Utility.CssToSetText("CreateAccountEmailAddress", confrmpassword, 4);
-                        }
-
+                        Utility.CsstoClick("ClickOnEmailGrey", 3);                       
+                        Utility.CssToSetText("NewPassword", newpassword, 4);                       
+                        Utility.CssToSetText("ConfrmPassword", confrmpassword, 4); 
                         Utility.CsstoClick("ClickOnConfrmPasswordCheckBox", 4);
                         Utility.CsstoClick("ClickOnWelcomeDropdown", 4);
                         Utility.CsstoClick("ClickOnSignOut", 4);
                         Utility.Sleep(5);
                         Driver.Close();
+                        Driver = new FirefoxDriver();
                         Driver.Navigate().GoToUrl(_baseUrl);
+                        Driver.FindElement(By.CssSelector("")).SendKeys(Record("Email"));
+                        Driver.FindElement(By.CssSelector("")).SendKeys(Record("Email"));
 
-                        if (Record("Email") != null)
-                        {
-                            Utility.CssToSetText("CreateAccountEmailAddress", Record("Email"), 4);
-                        }
-                        if ((newpassword) != null)
-                        {
-                            Utility.CssToSetText("CreateAccountEmailAddress", newpassword, 4);
-                        }
-                        Utility.CsstoClick("SignInBtn", 2);
+                        Driver.FindElement(By.CssSelector("input[id='txtUserName']")).SendKeys(Record("Email"));
+                        Driver.FindElement(By.CssSelector("input[id='txtPassword']")).SendKeys(Record("NewPassword"));
+                        Driver.FindElement(By.CssSelector("input[id='btnSignIn']")).Click();
+                        Utility.Sleep(4);
+                        Assert.AreEqual(_overViewUrl, Driver.Url);
+                        //Utility.CssToSetText("Email", Record("Email"), 4);
+                        //Utility.CssToSetText("CreateAccountEmailAddress", newpassword, 4);
+                        //Utility.CsstoClick("SignInBtn", 2);
                     }
                     else
                     {
@@ -521,7 +515,7 @@ namespace UserProfileSPA.TestCases
         }
 
 
-        [DeploymentItem("SignInValidationInMyInformation.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\SignInValidationInMyInformation.csv", "SignInValidationInMyInformation#csv", DataAccessMethod.Sequential), TestMethod]
+        [DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\SignInValidationInMyInformation.csv", "SignInValidationInMyInformation#csv", DataAccessMethod.Sequential), DeploymentItem("SignInValidationInMyInformation.csv"), TestMethod]
         public void SignInInformationValidation()
         {
             IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;           
@@ -530,16 +524,9 @@ namespace UserProfileSPA.TestCases
             if (_baseUrl == Driver.Url)
             {
                 string email = Record("Email");
-                string password = Record("Password");
-
-                if ((email) != null)
-                {
-                    Utility.CssToSetText("CreateAccountEmailAddress", email, 4);
-                }
-                if ((password) != null)
-                {
-                    Utility.CssToSetText("CreateAccountEmailAddress", password, 4);
-                }
+                string password = Record("Password");               
+                Utility.CssToSetText("Email", email, 4);
+                Utility.CssToSetText("Password", password, 4);               
                 Utility.CsstoClick("SignInBtn", 3);
                 Utility.Sleep(5);
                 string _overViewUrl = Record("OverviewUrl");
@@ -552,42 +539,45 @@ namespace UserProfileSPA.TestCases
                     if (fareportalMyDetailsUrl == Driver.Url)
                     {
                         string myInformationEmail = Utility.GrabAttributeValueByCss("SignInInformationEmailAddress", "value", 4);
-                        Assert.AreEqual(email, myInformationEmail, "Email address is not matched");
+                        Assert.AreEqual(email, myInformationEmail, "Email address is matched");
                         string _newpasswordvalidation = UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("newpassworderror");
                         string _confrmpasswordvalidation = UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("confrmpassworderror");
                         string[] confrmpasswordvalidation = _confrmpasswordvalidation.Split(",".ToCharArray());
                         Utility.CsstoClick("ClickOnEmailGrey", 3);
                         string _newpassword = Record("NewPassword");
                         string _confrmpassword = Record("ConfrmPassword");
-                        if ((_newpassword) != null)
-                        {
-                            Utility.CssToSetText("CreateAccountEmailAddress", _newpassword, 4);
-                        }
-                        if ((_confrmpassword) != null)
-                        {
-                            Utility.CssToSetText("CreateAccountEmailAddress", _confrmpassword, 4);
-                        }
+                        Utility.CssToSetText("NewPassword", _newpassword, 4);
+                        Utility.CssToSetText("ConfrmPassword", _confrmpassword, 4);
+                       
                         Utility.CsstoClick("ClickOnConfrmPasswordCheckBox", 4);
                         if ((string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("NewPassword", "value", 4))) && (string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("ConfrmPassword", "value", 4))))
                         {
-                            string _blankpassworderror = Utility.ByXpath("BlankPasswordError", 3);
+                            string _blankpassworderror = Utility.ByXpath("PasswordErrorWhenBlank", 3);
                             Assert.AreEqual(_newpasswordvalidation, _blankpassworderror);
-                            string _blankconfrmpassword = Utility.ByXpath("BlankConfrmPassword", 3);
+                            string _blankconfrmpassword = Utility.ByXpath("ConfrmPasswordWhenBlank", 3);
                             Assert.AreEqual(confrmpasswordvalidation[0], _blankconfrmpassword);
                         }
                         else if ((string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("NewPassword", "value", 4))) && (!string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("ConfrmPassword", "value", 4))))
                         {
-                            string _confrmpassworderror = Utility.ByXpath("BlankConfrmPassword", 3);
+                            string _blankpassworderror = Utility.ByXpath("PasswordErrorWhenBlank", 3);
+                            Assert.AreEqual(_newpasswordvalidation, _blankpassworderror);
+                            string _confrmpassworderror = Utility.ByXpath("ConfrmPasswordWhenBlank", 3);
                             Assert.AreEqual(confrmpasswordvalidation[1], _confrmpassworderror);
                         }
                         else if ((!string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("NewPassword", "value", 4))) && (string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("ConfrmPassword", "value", 4))))
                         {
-                            string _blankpassworderror = Utility.ByXpath("BlankPasswordError", 3);
-                            Assert.AreEqual(_newpasswordvalidation, _blankpassworderror);
-                            string _blankconfrmpassword = Utility.ByXpath("BlankConfrmPassword", 3);
+                            //string _blankpassworderror = Utility.ByXpath("BlankPasswordError", 3);
+                            //Assert.AreEqual(_newpasswordvalidation, _blankpassworderror);
+                            string _blankconfrmpassword = Utility.ByXpath("ConfrmPaswordErrorMsgWhenPasswordIsNotBlankOrBoth", 3);
                             Assert.AreEqual(confrmpasswordvalidation[0], _blankconfrmpassword);
                         }
-
+                        else if ((!string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("NewPassword", "value", 4))) && (string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("ConfrmPassword", "value", 4))))
+                        {
+                            //string _blankpassworderror = Utility.ByXpath("BlankPasswordError", 3);
+                            //Assert.AreEqual(_newpasswordvalidation, _blankpassworderror);
+                            string _blankconfrmpassword = Utility.ByXpath("ConfrmPaswordErrorMsgWhenPasswordIsNotBlankOrBoth", 3);
+                            Assert.AreEqual(confrmpasswordvalidation[0], _blankconfrmpassword);
+                        }
                     }
                     else
                     {
@@ -616,7 +606,7 @@ namespace UserProfileSPA.TestCases
                 Utility.CssToSetText("Email", Record("Email"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                 Utility.CssToSetText("Password", Record("Password"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                 string Country = Record("Country");
-                string state = "12sas@";//Record("State");               
+                string state = Record("State");               
                 Utility.CsstoClick("SignInBtn", 3);
                 Utility.Sleep(2);
                 Utility.CsstoClick("clickOnMyInformation", 4);
@@ -625,7 +615,7 @@ namespace UserProfileSPA.TestCases
                 Utility.CsstoClear("State", 2);
 
 
-                string checkType = Utility.GrabAttributeValueByCss("State", "type", 2);
+                
 
 
                 if ((Country == "United States") || (Country == "Canada"))
@@ -640,8 +630,8 @@ namespace UserProfileSPA.TestCases
                 }
                 else
                 {
-
-                    if (checkType == "text")
+                    
+                    if (Utility.GrabAttributeValueByCss("State", "type", 2) == "text")
                     {
 
                         var element = Driver.FindElement(By.CssSelector(UserProfileSPA.Library.TestEnvironment.LoadXML("Country")));
@@ -675,7 +665,7 @@ namespace UserProfileSPA.TestCases
                 Utility.CsstoClick("clickOnMyInformation", 4);
                 Utility.Sleep(2);
                 string myInformationEmail = Utility.GrabAttributeValueByCss("SignInInformationEmailAddress", "value", 4);
-                Assert.AreEqual(email, myInformationEmail, "Email address is not matched");
+                Assert.AreEqual(email, myInformationEmail, "Email address is matched");
             }
             else
             {
@@ -724,7 +714,7 @@ namespace UserProfileSPA.TestCases
                         string actualContactMsg = Utility.ByXpath("actualContactMsg", 3);
                         string actualMobileMsg = Utility.ByXpath("actualMobileMsg", 3);
                         Assert.AreEqual(MsgForContact[0], actualContactMsg, "Please enter a valid contact phone");
-                        Assert.AreEqual(errorMsgForMobile, actualMobileMsg, "Please enter a valid mobile number");
+                        Assert.AreEqual(errorMsgForMobile, actualMobileMsg, "Please enter a valid mobile phone");
                     }
                 }
                 else if ((Regex.IsMatch(ContactNo, @"^$")) && (Regex.IsMatch(MobileNo, @"^$")))
@@ -785,13 +775,15 @@ namespace UserProfileSPA.TestCases
                 Utility.Sleep(2);
                 Utility.CsstoClear("City", 2);
                 Utility.CsstoClear("State", 2);
+                Utility.CssToSetText("City", city, 2);
+                Utility.CssToSetText("State", state, 2);
                 Utility.CsstoClick("SaveInformationBtn", 3);
                 string expectedValidationsOfCityAndState = UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("expectedValidationsOfCityAndState");
                 string[] ValidationsOfCityAndState = expectedValidationsOfCityAndState.Split(",".ToCharArray());
 
 
-                string checkType = Utility.GrabAttributeValueByCss("TextAddressOne", "type", 2);
-                if (checkType == "text")
+                //string checkType = ;
+                if (Utility.GrabAttributeValueByCss("TextAddressOne", "type", 2) == "text")
                 {
 
                     if (string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("TextCity", "value", 2)) && string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("TextCity", "value", 2)))
@@ -806,7 +798,7 @@ namespace UserProfileSPA.TestCases
                     }
                     else
                     {
-                        throw new Exception("May City or State text boxes are not empty.");
+                        Assert.IsTrue(true, "May City or State text boxes are not empty.");                        
                     }
                 }
                 else
@@ -940,7 +932,12 @@ namespace UserProfileSPA.TestCases
                 }
                 else
                 {
-                    throw new Exception("Please select proper gender");
+                    string expectedErrorMsg = Record("ExpectedErrorMsg");
+                    if (expectedErrorMsg != "No Error")
+                    {
+                        string actualErrorMsg = Utility.ByXpath("GenderErrorMsg", UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
+                        Assert.AreEqual(expectedErrorMsg, actualErrorMsg);
+                    }
                 }
             }
             else
@@ -969,14 +966,31 @@ namespace UserProfileSPA.TestCases
                 Utility.CsstoClick("clickOnMyInformation", 4);
                 Utility.Sleep(2);
 
+                var elementMonth = Driver.FindElement(By.CssSelector(UserProfileSPA.Library.TestEnvironment.LoadXML("DobMonth")));
+                var selectElementMonth = new SelectElement(elementMonth);
+                selectElementMonth.SelectByText(month);
 
-                if (((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0))
+                var elementDay = Driver.FindElement(By.CssSelector(UserProfileSPA.Library.TestEnvironment.LoadXML("DobDay")));
+                var selectElementDay = new SelectElement(elementDay);
+                selectElementDay.SelectByText(_day);
+
+                IWebElement _verifyDobyear = Driver.FindElement(By.CssSelector(TestEnvironment.LoadXML("DobYear")));
+                var selectElementOfYear = new SelectElement(_verifyDobyear);
+                selectElementOfYear.SelectByText(_year);
+                string actualDobYear = selectElementOfYear.SelectedOption.Text;
+                int DobYear = Convert.ToInt32(actualDobYear);
+
+                if (((Utility.GrabAttributeValueByCss("DobMonth", "value", 4)) == "0") && ((Utility.GrabAttributeValueByCss("DobDay", "value", 4)) == "0") && (Utility.GrabAttributeValueByCss("DobYear", "value", 4)) == "0")
+                {
+                    Assert.IsTrue(false, "Please provide a date of birth");
+                }
+                else if (((DobYear % 4 == 0) && (DobYear % 100 != 0)) || (DobYear % 400 == 0))
                 {
                     if (month == "Feb")
                     {
                         if (day == 29)
                         {
-                            Assert.IsTrue(true);
+                            Assert.IsTrue(true, "it is a leap year.");
                         }
                     }
                 }
@@ -984,7 +998,12 @@ namespace UserProfileSPA.TestCases
                 {
                     if (day == 29)
                     {
-                        throw new Exception("Please enter a valid date of birth");
+                        string expectedErrorMsg = Record("ExpectedErrorMsg");
+                        if (expectedErrorMsg != "No Error")
+                        {
+                            string actualErrorMsg = Utility.ByXpath("LeapAYearErrorMsg", UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
+                            Assert.AreEqual(expectedErrorMsg, actualErrorMsg);
+                        }
                     }
                 }
             }

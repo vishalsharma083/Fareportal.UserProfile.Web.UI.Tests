@@ -133,7 +133,7 @@ namespace UserProfileSPA.TestCases.Resource {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please enter a valid mobile phone.
+        ///   Looks up a localized string similar to Please enter a valid mobile number.
         /// </summary>
         internal static string errorMsgForMobile {
             get {
@@ -240,7 +240,7 @@ namespace UserProfileSPA.TestCases.Resource {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please select Month,Please select Date,Please select Year.
+        ///   Looks up a localized string similar to Please provide a date of birth,Please enter a valid date of birth,Please select Month,Please select Date,Please select Year.
         /// </summary>
         internal static string expectedValidationsInDobDropDownWhileAddingCoTraveler {
             get {
