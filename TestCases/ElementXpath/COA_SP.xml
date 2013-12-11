@@ -263,6 +263,7 @@
       <CreateAccountFirstName>input[id='txtFirstName']</CreateAccountFirstName>
       <CreateAccountLastName>input[id='txtLastName']</CreateAccountLastName>
       <CreateAccountPassword>input[id='txtPassword']</CreateAccountPassword>
+      <CreateAccountConfrmPassword>input[id='txtConfirmPassword']</CreateAccountConfrmPassword>
     </CreateAnAccountValidations>
 
     <TextIsWhenWrongValidattion>

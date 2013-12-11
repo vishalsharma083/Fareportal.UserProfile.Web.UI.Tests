@@ -273,21 +273,33 @@ namespace UserProfileSPA.TestCases
                         string _yourCard = Utility.ByXpath("YourCard", 4);
                         if (_yourCard == "Your Cards :")
                         {
-                            int str = UserProfileSPA.Library.TestEnvironment.Driver.FindElement(By.CssSelector(UserProfileSPA.Library.TestEnvironment.LoadXML("NumbersOfCards"))).FindElements(By.CssSelector(UserProfileSPA.Library.TestEnvironment.LoadXML("Deletecard"))).Count();
+                            Utility.Sleep(6);
+                            int str = Driver.FindElements(By.CssSelector(UserProfileSPA.Library.TestEnvironment.LoadXML("Deletecard"))).Count();
                             for (int i = 1; i <= str; i++)
                             {
                                 Utility.CsstoClick("Deletecard", 4);
-                                if (Utility.IsDisplayedUsingXpath("YourCard"))
-                                {
-                                    Assert.IsTrue(true);
-                                }
+                                //if (Utility.IsDisplayedUsingXpath("YourCard"))
+                                //{
+                                //    Assert.IsTrue(true);
+                                //}
+                                //else
+                                //{
+                                //    Assert.IsTrue(false, "Your Card is not displayed.");
+                                //}
                             }
                             if (!Utility.IsDisplayedUsingXpath("YourCard"))
                             {
                                 Assert.IsTrue(true);
                             }
                         }
-                        Assert.IsTrue(false,"There is no card mentioned.");
+                        else
+                        {
+                            Assert.IsTrue(false, "There is no card mentioned.");
+                        }
+                    }
+                    else
+                    { 
+                       
                     }
                 }
                 else
@@ -956,16 +968,10 @@ namespace UserProfileSPA.TestCases
             {
                 Utility.CssToSetText("Email", Record("Email"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                 Utility.CssToSetText("Password", Record("Password"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
-                if ((email) != null)
-                {
-                    Utility.CssToSetText("CreateAccountEmailAddress", email, 4);
-                }
-                if ((password) != null)
-                {
-                    Utility.CssToSetText("CreateAccountEmailAddress", password, 4);
-                }
                 Utility.CsstoClick("SignInBtn", 4);
                 Utility.Sleep(3);
+                //Utility.CssToSetText("CreateAccountEmailAddress", email, 4);
+                //Utility.CssToSetText("CreateAccountEmailAddress", password, 4); 
                 string CheapoairOverviewUrl = Record("CheapoairOverviewUrl");
                 Utility.Sleep(3);
                 if (CheapoairOverviewUrl == Driver.Url)
@@ -981,7 +987,7 @@ namespace UserProfileSPA.TestCases
                         if (CheapoairBillingUrl == Driver.Url)
                         {
                             Utility.Sleep(4);
-                            if (Utility.IsDisplayedUsingCss("ExistingAddress") && (Utility.IsDisplayedUsingCss("AddNewAddressCheckBox")))
+                            if (!Utility.IsDisplayedUsingCss("ExistingAddress") && (Utility.IsDisplayedUsingCss("AddNewAddressCheckBox")))
                             {
                                 Assert.IsTrue(true);
                             }

@@ -54,14 +54,12 @@ namespace UserProfileSPA.TestCases
                 Utility.Sleep(2);
                 string signUpUrl = Record("SignUpUrl");
                 if (signUpUrl == Driver.Url)
-                {
-                    Utility.CssToSetText("Email", Record("EmailAddress"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
-                    string firstName = Record("FirstName");
-                    string lastName = Record("LastName");
-                    Utility.CssToSetText("Password", Record("Password"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
-                    string cnfrmPassword = Record("ConfrmPassword");                  
-                    Utility.CssToSetText("CreateAccountEmailAddress", firstName, 4);                                       
-                    Utility.CssToSetText("CreateAccountEmailAddress", lastName, 4);
+                {                      
+                    Utility.CssToSetText("CreateAccountEmailAddress", Record("EmailAddress"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
+                    Utility.CssToSetText("CreateAccountPassword", Record("Password"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
+                    Utility.CssToSetText("CreateAccountFirstName", Record("FirstName"), 4);
+                    Utility.CssToSetText("CreateAccountLastName", Record("LastName"), 4);
+                    Utility.CssToSetText("CreateAccountConfrmPassword", Record("ConfrmPassword"), 4);
                     
 
                     Utility.CsstoClick("ClickOnCreateAnAccountBtnSignUpFree", 4);
@@ -125,7 +123,7 @@ namespace UserProfileSPA.TestCases
             }
         }
 
-        [DeploymentItem("CreateAnAccountFirstAndLastNameValidations.csv"), DeploymentItem("CoTravelerFirstAndLastNameValidations.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\CoTravelerFirstAndLastNameValidations.csv", "CoTravelerFirstAndLastNameValidations#csv", DataAccessMethod.Sequential), TestMethod]
+        [DeploymentItem("CreateAnAccountFirstAndLastNameValidations.csv"), DeploymentItem("CoTravelerFirstAndLastNameValidations.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\CreateAnAccountFirstAndLastNameValidations.csv", "CreateAnAccountFirstAndLastNameValidations#csv", DataAccessMethod.Sequential), TestMethod]
         public void CreateAnAccountFirstAndLastNameValidations() 
         {
             IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
@@ -308,22 +306,31 @@ namespace UserProfileSPA.TestCases
                             else
                             {
                                 string expectedErrorMsg = Record("ExpectedErrorMsg");
-                                string actualErrorMsg = Utility.ByXpath("EmailExpectedError", 4);
-                                Assert.AreEqual(expectedErrorMsg, actualErrorMsg);
+                                if (expectedErrorMsg != "No Error")
+                                {
+                                    string actualErrorMsg = Utility.ByXpath("EmailExpectedError", 4);
+                                    Assert.AreEqual(expectedErrorMsg, actualErrorMsg);
+                                }
                             }
                         }
                         else
                         {
                             string expectedErrorMsg = Record("ExpectedErrorMsg");
-                            string actualErrorMsg = Utility.ByXpath("EmailAlreadyExistInCreateAnAccount", 4);
-                            Assert.AreEqual(expectedErrorMsg, actualErrorMsg);
+                            if (expectedErrorMsg != "No Error")
+                            {
+                                string actualErrorMsg = Utility.ByXpath("EmailAlreadyExistInCreateAnAccount", 4);
+                                Assert.AreEqual(expectedErrorMsg, actualErrorMsg);
+                            }
                         }
                     }
                     else
                     {
                         string expectedErrorMsg = Record("ExpectedErrorMsg");
-                        string actualErrorMsg = Utility.ByXpath("EmailExpectedError", 4); 
-                        Assert.AreEqual(expectedErrorMsg, actualErrorMsg);
+                        if (expectedErrorMsg != "No Error")
+                        {
+                            string actualErrorMsg = Utility.ByXpath("EmailExpectedError", 4);
+                            Assert.AreEqual(expectedErrorMsg, actualErrorMsg);
+                        }
                     }
                 }
                 else
@@ -486,11 +493,12 @@ namespace UserProfileSPA.TestCases
             }
         }
 
-        [DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\VerifyingEmailAddressAlreadyExistInCreateAnAccount.csv", "VerifyingEmailAddressAlreadyExistInCreateAnAccount#csv", DataAccessMethod.Sequential), DeploymentItem("VerifyingEmailAddressAlreadyExistInCreateAnAccount.csv"), TestMethod]
+        [DeploymentItem("VerifyingEmailAddressAlreadyExistInCreateAnAccount.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\VerifyingEmailAddressAlreadyExistInCreateAnAccount.csv", "VerifyingEmailAddressAlreadyExistInCreateAnAccount#csv", DataAccessMethod.Sequential), TestMethod]
         public void VerifyingEmailAddressAlreadyExistInCreateAnAccount()
         {
             IWebDriver Driver = TestEnvironment.Driver;
-            string signinUrl = Record("SignInUrl");  
+            string signinUrl = Record("SignInUrl");
+            Utility.Sleep(5);
             if (signinUrl == Driver.Url)
             {
                 Utility.XPathtoClick("ClickOnCreateAnAccountBtn", 4);
