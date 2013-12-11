@@ -110,7 +110,7 @@
       <textaddressLine2InBillingDetails>input[id='addLine2']</textaddressLine2InBillingDetails>
       <textcityInBillingdetails>input[id='addCity']</textcityInBillingdetails>
       <textzipInBillingDetails>input[id='addZip']</textzipInBillingDetails>
-      <textBillingphoneNumbers>input[id='addBillingPhone]</textBillingphoneNumbers>
+      <textBillingphoneNumbers>input[id='addBillingPhone']</textBillingphoneNumbers>
       <ExistingAddressCheckBoxInBillingPage>input[id='ue']</ExistingAddressCheckBoxInBillingPage>
       <ExistingAddressContent>//*[@id='useExistingBillingAddress']/div/div[1]/div[2]/p</ExistingAddressContent>
       <AddNewAddressCheckBox>input[id='an']</AddNewAddressCheckBox>

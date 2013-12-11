@@ -519,19 +519,11 @@ namespace UserProfileSPA.TestCases
             string signinUrl = Record("SignInUrl");          
             Utility.Sleep(4);
             if (signinUrl == Driver.Url)
-            {
-              
-                if ((email) != null)
-                {
-                    Utility.CssToSetText("CreateAccountEmailAddress", email, 4);
-                }
-                if ((password) != null)
-                {
-                    Utility.CssToSetText("CreateAccountEmailAddress", password, 4);
-                }
-
+            {  
+                Utility.CssToSetText("Email", email, 4);
+                Utility.CssToSetText("Password", password, 4);
                 Utility.CsstoClick("SignInBtn", 4);
-                Utility.Sleep(3);
+                Utility.Sleep(7);
                 string fareportalOverviewUrl = Record("FareportalOverviewUrl");
                 Utility.Sleep(4);
                 if (fareportalOverviewUrl == Driver.Url)
@@ -555,10 +547,10 @@ namespace UserProfileSPA.TestCases
                                 Utility.DeleteFunc();
 
 
-                                string cardNumber = Record("cardNumber");
-                                string firstName = Record("firstName");
-                                string lastName = Record("lastName");
-                                string cardNickName = Record("cardNickName");
+                                //string cardNumber = Record("cardNumber");
+                                //string firstName = Record("firstName");
+                                //string lastName = Record("lastName");
+                                //string cardNickName = Record("cardNickName");
 
                                 string _expMonth = Record("ExpMonth");
                                 var element1 = Driver.FindElement(By.CssSelector(UserProfileSPA.Library.TestEnvironment.LoadXML("Month")));
@@ -569,23 +561,10 @@ namespace UserProfileSPA.TestCases
                                 var element2 = Driver.FindElement(By.CssSelector(UserProfileSPA.Library.TestEnvironment.LoadXML("Year")));
                                 var selectElement2 = new SelectElement(element2);
                                 selectElement2.SelectByText(_expYear);
-                             
-                                if ((cardNumber) != null)
-                                {
-                                    Utility.CssToSetText("CreateAccountEmailAddress", cardNumber, 4);
-                                }
-                                if ((firstName) != null)
-                                {
-                                    Utility.CssToSetText("CreateAccountEmailAddress", firstName, 4);
-                                }
-                                if ((lastName) != null)
-                                {
-                                    Utility.CssToSetText("CreateAccountEmailAddress", lastName, 4);
-                                }
-                                if ((cardNickName) != null)
-                                {
-                                    Utility.CssToSetText("CreateAccountEmailAddress", cardNickName, 4);
-                                }
+                                Utility.CssToSetText("textcardNumber", Record("cardNumber"), 4);
+                                Utility.CssToSetText("textfirstName", Record("firstName"), 4);
+                                Utility.CssToSetText("textlastName", Record("lastName"), 4);
+                                Utility.CssToSetText("textnickName", Record("cardNickName"), 4);
 
                                 string addressLine1 = Record("AddressLine1");
                                 string city = Record("city");
@@ -618,40 +597,27 @@ namespace UserProfileSPA.TestCases
                                         Utility.CssToSetText("State", _state, 4);                                      
                                     }
                                 }
-                                                               
-                                if ((addressLine1) != null)
-                                {
-                                    Utility.CssToSetText("CreateAccountEmailAddress", addressLine1, 4);
-                                }
-                                if ((city) != null)
-                                {
-                                    Utility.CssToSetText("CreateAccountEmailAddress", city, 4);
-                                }
-                                if ((zip) != null)
-                                {
-                                    Utility.CssToSetText("CreateAccountEmailAddress", zip, 4);
-                                }
-                                if ((billingPhone) != null)
-                                {
-                                    Utility.CssToSetText("CreateAccountEmailAddress", billingPhone, 4);
-                                }
 
-                                Utility.CsstoClick("ClickOnSaveBillingDetailsBtn", 5);
-                                Utility.Sleep(5);
-                                string Ischecked = Utility.GrabAttributeValueByCss("ExistingAddress", "Checked", 4);//Here checking the radio button.
-                                if (Utility.IsDisplayedUsingXpath("SavingMessage"))
-                                {
-
-                                    if (Ischecked == "true")
+                                    Utility.CssToSetText("textaddressLine1InBillingDetails", addressLine1, 4);
+                                    Utility.CssToSetText("textcityInBillingdetails", city, 4);
+                                    Utility.CssToSetText("textzipInBillingDetails", zip, 4);
+                                    Utility.CssToSetText("textBillingphoneNumbers", billingPhone, 4);
+                                    Utility.CsstoClick("ClickOnSaveBillingDetailsBtn", 5);
+                                    Utility.Sleep(5);
+                                    string Ischecked = Utility.GrabAttributeValueByCss("ExistingAddress", "Checked", 4);//Here checking the radio button.
+                                    if (Utility.IsDisplayedUsingXpath("SavingMessage"))
                                     {
-                                        string AddresssShowingAfterAddingCard = Utility.ByXpath("AddresssShowingAfterAddingCard", 4);
-                                        string[] ExistingAddressFormPersonalInfo = AddresssShowingAfterAddingCard.Split(",".ToCharArray());
 
+                                        if (Ischecked == "true")
+                                        {
+                                            string AddresssShowingAfterAddingCard = Utility.ByXpath("AddresssShowingAfterAddingCard", 4);
+                                            string[] ExistingAddressFormPersonalInfo = AddresssShowingAfterAddingCard.Split(",".ToCharArray());
+
+                                        }
                                     }
-                                }
-                            }
-                            else
-                            {
+                               }
+                               else
+                               {
 
                                 string cardNumber = Record("cardNumber");
                                 string firstName = Record("firstName");
@@ -666,75 +632,45 @@ namespace UserProfileSPA.TestCases
                                 string _expYear = Record("ExpYear");
                                 var element2 = Driver.FindElement(By.CssSelector(UserProfileSPA.Library.TestEnvironment.LoadXML("Year")));
                                 var selectElement2 = new SelectElement(element2);
-                                selectElement2.SelectByText(_expYear);                            
-
-                                if ((cardNumber) != null)
-                                {
-                                    Utility.CssToSetText("CreateAccountEmailAddress", cardNumber, 4);
-                                }
-                                if ((firstName) != null)
-                                {
-                                    Utility.CssToSetText("CreateAccountEmailAddress", firstName, 4);
-                                }
-                                if ((lastName) != null)
-                                {
-                                    Utility.CssToSetText("CreateAccountEmailAddress", lastName, 4);
-                                }
-                                if ((cardNickName) != null)
-                                {
-                                    Utility.CssToSetText("CreateAccountEmailAddress", cardNickName, 4);
-                                }
-
+                                selectElement2.SelectByText(_expYear);
+                                Utility.CssToSetText("textcardNumber", cardNumber, 4);
+                                Utility.CssToSetText("textfirstName", firstName, 4);
+                                Utility.CssToSetText("textlastName", lastName, 4);
+                                Utility.CssToSetText("textnickName", cardNickName, 4);
 
                                 string addressLine1 = Record("AddressLine1");
                                 string city = Record("city");
                                 string zip = Record("zip");
                                 string billingPhone = Record("billingPhone");
-
-                                string _country = Record("Country");
-                              
+                                string _country = Record("Country");                              
                                 string _state = Record("State");
+                                Utility.CsstoClick("AddNewAddressCheckBox", 4);
                                 
-                                string checkType = Utility.GrabAttributeValueByCss("BillingAddressState", "type", 2);
+                                //string checkType = Utility.GrabAttributeValueByCss("BillingAddressState", "type", 2);
 
                                 if ((_country == "United States") || (_country == "Canada"))
                                 {
                                     var element3 = Driver.FindElement(By.CssSelector(UserProfileSPA.Library.TestEnvironment.LoadXML("BillingAddressCountry")));
                                     var selectElement3 = new SelectElement(element3);
                                     selectElement3.SelectByText(_country);
-
+                                    if (Utility.GrabAttributeValueByCss("BillingAddressState", "type", 2) == "select-one")
+                                    {
                                     var element4 = Driver.FindElement(By.CssSelector(UserProfileSPA.Library.TestEnvironment.LoadXML("BillingAddressState")));
                                     var selectElement4 = new SelectElement(element4);
                                     selectElement4.SelectByText(_state);
+                                    }
                                 }
                                 else
-                                {
-                                    if (checkType == "select-one")
-                                    {
+                                {                                   
                                         var element = Driver.FindElement(By.CssSelector(UserProfileSPA.Library.TestEnvironment.LoadXML("BillingAddressCountry")));
                                         var selectElement = new SelectElement(element);
                                         selectElement.SelectByText(_country);
-                                        Utility.CssToSetText("State", _state, 4);                                        
-                                    }
+                                        Utility.CssToSetText("State", _state, 4); 
                                 }
-                             
-                                if ((addressLine1) != null)
-                                {
-                                    Utility.CssToSetText("CreateAccountEmailAddress", addressLine1, 4);
-                                }
-                                if ((city) != null)
-                                {
-                                    Utility.CssToSetText("CreateAccountEmailAddress", city, 4);
-                                }
-                                if ((zip) != null)
-                                {
-                                    Utility.CssToSetText("CreateAccountEmailAddress", zip, 4);
-                                }
-                                if ((billingPhone) != null)
-                                {
-                                    Utility.CssToSetText("CreateAccountEmailAddress", billingPhone, 4);
-                                }
-
+                                Utility.CssToSetText("textaddressLine1InBillingDetails", addressLine1, 4);
+                                Utility.CssToSetText("textcityInBillingdetails", city, 4);
+                                Utility.CssToSetText("textzipInBillingDetails", zip, 4);
+                                Utility.CssToSetText("textBillingphoneNumbers", billingPhone, 4);
                                 Utility.CsstoClick("ClickOnSaveBillingDetailsBtn", 5);
                                 Utility.Sleep(5);
                                 string Ischecked = Utility.GrabAttributeValueByCss("ExistingAddress", "Checked", 4);//Here checking the radio button.
