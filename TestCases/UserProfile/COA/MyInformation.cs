@@ -842,25 +842,51 @@ namespace UserProfileSPA.TestCases
                         {
                             if ((_firstNametxt.Contains("!") || (_firstNametxt.Contains("@")) || (_firstNametxt.Contains("~")) || (_firstNametxt.Contains("$")) || (_firstNametxt.Contains("%")) || (_firstNametxt.Contains("^")) || (_firstNametxt.Contains("&")) || (_firstNametxt.Contains("*")) || (_firstNametxt.Contains("`")) || (_firstNametxt.Contains("+")) || (_firstNametxt.Contains("-")) || (_firstNametxt.Contains(":")) || (_firstNametxt.Contains(".")) || (_firstNametxt.Contains(",")) || (_firstNametxt.Contains("(")) || (_firstNametxt.Contains(")")) || (_firstNametxt.Contains("="))))
                             {
-                                throw new Exception("Name can only contain apostrophe, space or hyphen.");
+                                string expectedErrorMsg = Record("ExpectedErrorMsgForFirstname");
+                                if (expectedErrorMsg != "No Error")
+                                {
+                                    string actualErrorMsg = Utility.ByXpath("ErrorMsgForFirstName", 4);
+                                    Assert.AreEqual(expectedErrorMsg, actualErrorMsg);
+                                }
+                               //throw new Exception("Name can only contain apostrophe, space or hyphen.");
                             }
-                            else { }
+                            else { Assert.IsTrue(true); }
                             if ((_firstNametxt.Contains("'s") || (!_firstNametxt.Contains(" ")) || (!_firstNametxt.Contains("-"))))
-                            { }
+                            { Assert.IsTrue(true); }
+                            else { Assert.IsTrue(false); }
                         }
                         else
                         {
-                            throw new Exception("Name must begin with a letter.");
+                            string expectedErrorMsg = Record("ExpectedErrorMsgForFirstname");
+                            if (expectedErrorMsg != "No Error")
+                            {
+                                string actualErrorMsg = Utility.ByXpath("ErrorMsgForFirstName", 4);
+                                Assert.AreEqual(expectedErrorMsg, actualErrorMsg);
+                            }
+                            
+                            //throw new Exception("Name must begin with a letter.");
                         }
                     }
                     else
                     {
-                        throw new Exception("FirstName should starts with big letter");
+                        string expectedErrorMsg = Record("ExpectedErrorMsgForFirstname");
+                        if (expectedErrorMsg != "No Error")
+                        {
+                            string actualErrorMsg = Utility.ByXpath("ErrorMsgForFirstName", 4);
+                            Assert.AreEqual(expectedErrorMsg, actualErrorMsg);
+                        }
+                        //throw new Exception("FirstName should starts with big letter");
                     }
                 }
                 else
                 {
-                    Assert.IsTrue(false, "Please enter first name");
+                    string expectedErrorMsg = Record("ExpectedErrorMsgForFirstname");
+                    if (expectedErrorMsg != "No Error")
+                    {
+                        string actualErrorMsg = Utility.ByXpath("ErrorMsgForFirstName", 4);
+                        Assert.AreEqual(expectedErrorMsg, actualErrorMsg);
+                    }
+                   // Assert.IsTrue(false, "Please enter first name");
                 }
 
                 if (!string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("LastName", "value", 3)))
@@ -872,26 +898,47 @@ namespace UserProfileSPA.TestCases
                         {
                             if ((_lastNametxt.Contains("!") || (_lastNametxt.Contains("@")) || (_lastNametxt.Contains("~")) || (_lastNametxt.Contains("$")) || (_lastNametxt.Contains("%")) || (_lastNametxt.Contains("^")) || (_lastNametxt.Contains("&")) || (_lastNametxt.Contains("*")) || (_lastNametxt.Contains("`")) || (_lastNametxt.Contains("+")) || (_lastNametxt.Contains("_")) || (_lastNametxt.Contains(":")) || (_lastNametxt.Contains(".")) || (_lastNametxt.Contains(",")) || (_lastNametxt.Contains("(")) || (_lastNametxt.Contains(")")) || (_lastNametxt.Contains("="))))
                             {
-                                throw new Exception("Name can only contain apostrophe, space or hyphen.");
+                                string expectedErrorMsg = Record("ExpectedErrorMsgForLastname");
+                                string actualErrorMsg = Utility.ByXpath("ErrorMsgForLastName", 4);
+                                Assert.AreEqual(expectedErrorMsg, actualErrorMsg);
+                                //throw new Exception("Name can only contain apostrophe, space or hyphen.");
                             }
-                            else { }
+                            else { Assert.IsTrue(true); }
                             if ((_lastNametxt.Contains("'s") || (!_lastNametxt.Contains(" ")) || (!_lastNametxt.Contains("-"))))
-                            { }
+                            { Assert.IsTrue(true); }
                         }
                         else
                         {
-                            throw new Exception("Name must begin with a letter.");
+                            string expectedErrorMsg = Record("ExpectedErrorMsgForLastname");
+                            if (expectedErrorMsg != "No Error")
+                            {
+                                string actualErrorMsg = Utility.ByXpath("ErrorMsgForLastName", 4);
+                                Assert.AreEqual(expectedErrorMsg, actualErrorMsg);
+                            }
+                           // throw new Exception("Name must begin with a letter.");
                         }
                     }
                     else
                     {
-                        throw new Exception("FirstName should starts with big letter");
+                        string expectedErrorMsg = Record("ExpectedErrorMsgForLastname");
+                        if (expectedErrorMsg != "No Error")
+                        {
+                            string actualErrorMsg = Utility.ByXpath("ErrorMsgForLastName", 4);
+                            Assert.AreEqual(expectedErrorMsg, actualErrorMsg);
+                        }
+                        // throw new Exception("FirstName should starts with big letter");
                     }
 
                 }
                 else
                 {
-                    Assert.IsTrue(false, "Please enter last name");
+                    string expectedErrorMsg = Record("ExpectedErrorMsgForLastname");
+                    if (expectedErrorMsg != "No Error")
+                    {
+                        string actualErrorMsg = Utility.ByXpath("ErrorMsgForLastName", 4);
+                        Assert.AreEqual(expectedErrorMsg, actualErrorMsg);
+                    }
+                    //Assert.IsTrue(false, "Please enter last name");
                 }
             }
             else
@@ -1002,7 +1049,7 @@ namespace UserProfileSPA.TestCases
                         string expectedErrorMsg = Record("ExpectedErrorMsg");
                         if (expectedErrorMsg != "No Error")
                         {
-                            string actualErrorMsg = Utility.ByXpath("LeapAYearErrorMsg", UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
+                            string actualErrorMsg = Utility.ByXpath("LeapYearErrorMsgInMyDetails", UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                             Assert.AreEqual(expectedErrorMsg, actualErrorMsg);
                         }
                     }

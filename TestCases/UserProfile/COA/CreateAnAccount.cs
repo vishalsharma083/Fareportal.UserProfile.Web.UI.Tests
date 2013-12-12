@@ -466,30 +466,30 @@ namespace UserProfileSPA.TestCases
                             {
                                 Assert.IsTrue(true, "it is a leap year.");
                             }
-                           // Assert.AreEqual(29, day);
+                            // Assert.AreEqual(29, day);
                         }
                     }
                     else if (month == "Feb")
                     {
                         if (day == 29)
                         {
-                            Assert.IsTrue(true, "it is not a leap year.");
+                            string expectedErrorMsg = Record("ExpectedErrorMsg");
+                            if (expectedErrorMsg != "No Error")
+                            {
+                                string actualErrorMsg = Utility.ByXpath("LeapYearErrorMsgInCreateAnAccount", UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
+                                Assert.AreEqual(expectedErrorMsg, actualErrorMsg);
+                            }
                         }
-                        else
-                        { 
-                            
-                        }
-                        //Assert.AreEqual(29, day);
+                    }
+                    else
+                    {
+                        Assert.IsTrue(false, "SignUpUrl is not opened.");
                     }
                 }
                 else
                 {
-                    Assert.IsTrue(false, "SignUpUrl is not opened.");
+                    Assert.IsTrue(false, "SignInUrl is not opened.");
                 }
-            }
-            else
-            {
-                Assert.IsTrue(false, "SignInUrl is not opened.");
             }
         }
 
