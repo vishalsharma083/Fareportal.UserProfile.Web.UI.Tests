@@ -103,8 +103,8 @@ namespace UserProfileSPA.TestCases
                                     var existingValueInState = new SelectElement(element2);
                                     string CurrentlySelectedStateValue = existingValueInState.SelectedOption.Text;
 
-                                    //Assert.AreEqual(expectedCountryValue, CurrentlySelectedCountryValue);
-                                    //Assert.AreEqual(expectedStateValue, CurrentlySelectedStateValue);
+                                    Assert.AreEqual(expectedCountryValue, CurrentlySelectedCountryValue);
+                                    Assert.AreEqual(expectedStateValue, CurrentlySelectedStateValue);
                                 }
                             }
                         }
@@ -608,17 +608,11 @@ namespace UserProfileSPA.TestCases
                 string Country = Record("Country");
                 string state = Record("State");               
                 Utility.CsstoClick("SignInBtn", 3);
-                Utility.Sleep(2);
+                Utility.Sleep(6);
                 Utility.CsstoClick("clickOnMyInformation", 4);
                 Utility.Sleep(2);
                 Utility.CsstoClear("City", 2);
-                Utility.CsstoClear("State", 2);
-
-
-                
-
-
-                if ((Country == "United States") || (Country == "Canada"))
+                if ((Utility.GrabAttributeValueByCss("Country", "value", 2) == Country) || (Utility.GrabAttributeValueByCss("Country", "value", 2) == state))
                 {
                     var element1 = Driver.FindElement(By.CssSelector(UserProfileSPA.Library.TestEnvironment.LoadXML("Country")));
                     var selectElement1 = new SelectElement(element1);
@@ -630,7 +624,6 @@ namespace UserProfileSPA.TestCases
                 }
                 else
                 {
-                    
                     if (Utility.GrabAttributeValueByCss("State", "type", 2) == "text")
                     {
 
@@ -639,6 +632,10 @@ namespace UserProfileSPA.TestCases
                         selectElement.SelectByText(Country);
                         Driver.FindElement(By.CssSelector(UserProfileSPA.Library.TestEnvironment.LoadXML("State"))).SendKeys(state);
 
+                    }
+                    else
+                    {
+                        throw new Exception("Still it containig dropdown.");
                     }
                 }
                 Utility.CsstoClick("SaveInformationBtn", 3);
