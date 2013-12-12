@@ -544,9 +544,7 @@ namespace UserProfileSPA.TestCases
                         {
                             if (Utility.IsDisplayedUsingCss("Deletecard"))
                             {
-                                Utility.DeleteFunc();
-
-
+                                Utility.CsstoClick("Deletecard", 4);
                                 //string cardNumber = Record("cardNumber");
                                 //string firstName = Record("firstName");
                                 //string lastName = Record("lastName");
