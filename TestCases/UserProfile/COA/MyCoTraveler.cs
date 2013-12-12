@@ -260,6 +260,7 @@ namespace UserProfileSPA.TestCases
                             if (Utility.IsDisplayedUsingCss("ClickOnAddCoTravellerBtn"))
                             {
                                 Utility.CsstoClick("ClickOnAddCoTravellerBtn", 3);
+                                Utility.Sleep(7);
                                 if ((Utility.IsDisplayedUsingCss("CoTravelerFlightPreference")) && (Utility.IsDisplayedUsingCss("CotravelerHotelPreference")) && (Utility.IsDisplayedUsingCss("CoTravelerCarPreference")) && (Utility.IsDisplayedUsingCss("AddCoTravelerSection")))
                                 {
 
@@ -726,12 +727,8 @@ namespace UserProfileSPA.TestCases
 
                                             if (_countDelete == _countDeleteNew)
                                             {
-                                                Assert.IsTrue(true);
-                                            }
-                                            else
-                                            {
-                                                Assert.IsTrue(false, "Please delete the newly added CoTraveler");
-                                            }
+                                                Assert.IsTrue(true,"Newly added cotraveler is deleted.");
+                                            }                                            
                                         }
                                         else
                                         {

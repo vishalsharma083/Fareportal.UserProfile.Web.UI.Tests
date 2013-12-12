@@ -100,7 +100,7 @@ namespace UserProfileSPA.TestCases
 
                     Utility.Sleep(4);
                     string fareportalOverviewUrl = Record("fareportalOverviewUrl");
-                    Utility.Sleep(5);
+                    Utility.Sleep(7);
                     if (fareportalOverviewUrl == Driver.Url)
                     {
                         string actualCompleteFbName = Utility.ByCss("FbAccountsCompleteName", 5);
@@ -227,7 +227,7 @@ namespace UserProfileSPA.TestCases
                 Utility.CssToSetText("Password", Record("Password"), 4);
                 Utility.CsstoClick("rememberMe", 3);
                 Utility.CsstoClick("SignInBtn", 9);
-                Utility.Sleep(3);
+                Utility.Sleep(7);
 
                 string _overViewUrl = Record("OverViewUrl");
                 if (_overViewUrl == Driver.Url)

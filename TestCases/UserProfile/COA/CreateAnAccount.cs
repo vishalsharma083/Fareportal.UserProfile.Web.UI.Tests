@@ -308,7 +308,7 @@ namespace UserProfileSPA.TestCases
                                 string expectedErrorMsg = Record("ExpectedErrorMsg");
                                 if (expectedErrorMsg != "No Error")
                                 {
-                                    string actualErrorMsg = Utility.ByXpath("EmailExpectedError", 4);
+                                    string actualErrorMsg = Utility.ByXpath("EmailExpectedError", 7);
                                     Assert.AreEqual(expectedErrorMsg, actualErrorMsg);
                                 }
                             }
@@ -508,7 +508,7 @@ namespace UserProfileSPA.TestCases
                 {
                     Utility.CssToSetText("TextInEmail", Record("EnterAlreadyExistEmail"), 3);
                     Utility.CsstoClick("ClickOnCreateAnAccountBtnSignUpFree", 4);                   
-                    string actualEmailAlreadyExist = Utility.ByClassName("AlreadyExistEmail",4);
+                    string actualEmailAlreadyExist = Utility.ByXpath("AlreadyExistEmail",4);
                     string expectedWhenEmailIsAlreadyExist = UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("expectedWhenEmailIsAlreadyExist");
                     Assert.AreEqual(expectedWhenEmailIsAlreadyExist,actualEmailAlreadyExist);
                 }

@@ -53,7 +53,7 @@ namespace UserProfileSPA.TestCases
                 Utility.CsstoClick("SignInBtn", 4);
                 Utility.Sleep(3);
                 string fareportalOverviewUrl = Record("CheapoairOverviewUrl");
-                Utility.Sleep(3);
+                Utility.Sleep(9);
                 if (fareportalOverviewUrl == Driver.Url)
                 {
                     Utility.CsstoClick("clickOnMyInformation", 4);
@@ -430,7 +430,7 @@ namespace UserProfileSPA.TestCases
                 Utility.CssToSetText("Password", Record("Password"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
            
                 Utility.CsstoClick("SignInBtn", 4);
-                Utility.Sleep(3);
+                Utility.Sleep(7);
                 string fareportalOverviewUrl = Record("FareportalOverviewUrl");
                 if (fareportalOverviewUrl == Driver.Url)
                 {

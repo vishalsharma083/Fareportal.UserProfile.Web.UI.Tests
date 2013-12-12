@@ -101,6 +101,9 @@
     <Folder Include="TestCases\UserProfile\OT\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="AddNewCoTraveler.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="AppData\AddNewCoTraveler.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -277,6 +280,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="VerifyTheFirstAndLastNameValidationsInMyBillingDetails.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="VerifyTheNameFieldValidations.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="VerifyTheTitleField.csv">

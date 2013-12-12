@@ -88,6 +88,8 @@
         <GenderErrorMsg>html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/form/div/div[4]/div[2]/div[2]</GenderErrorMsg>
         <LeapAYearErrorMsg>html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/form/div/div[4]/div[1]/div[4]</LeapAYearErrorMsg>
         <LeapYearErrorMsgInMyDetails>html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/form/div/div[3]/div[1]/div[4]</LeapYearErrorMsgInMyDetails>
+        <ErrorMsgForFirstNameInMyInformation>html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/form/div/div[2]/div[1]/div[2]</ErrorMsgForFirstNameInMyInformation>
+        <ErrorMsgForLastNameInMyInformation>html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/form/div/div[2]/div[2]/div[2]</ErrorMsgForLastNameInMyInformation>
       
       </PersonsalInfromation>
         
@@ -206,7 +208,7 @@
       <ClickOnCreateAnAccountDiv>div[class='span8 reg_form']</ClickOnCreateAnAccountDiv>
       <ConfrmPasswordError>div[class='val_main']</ConfrmPasswordError>
       <PasswordErrror>span[class='val_error']</PasswordErrror>
-      <AlreadyExistEmail>boltxt</AlreadyExistEmail>
+      <AlreadyExistEmail>html/body/div[1]/div[3]/div/div/form/div/div[1]/div/div[3]/p[1]</AlreadyExistEmail>
       <ClickOnSignUpFreeDiv>reg_head</ClickOnSignUpFreeDiv>
       <EmailExpectedError>html/body/div[1]/div[3]/div/div/form/div/div[1]/div/div[4]/div[1]/div[2]/span</EmailExpectedError>
       <EmailAlreadyExistInCreateAnAccount>html/body/div[1]/div[3]/div/div/form/div/div[1]/div/div[3]/p[1]</EmailAlreadyExistInCreateAnAccount>
