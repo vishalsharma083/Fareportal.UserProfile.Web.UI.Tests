@@ -60,7 +60,7 @@ namespace UserProfileSPA.TestCases
                     if (myCoTravelerUrl == Driver.Url)
                     {
                         Utility.CsstoClick("ClickOnAddCoTravellerBtn", 3);
-                        Utility.Sleep(2);
+                        Utility.Sleep(7);
                         if (!Utility.IsDisplayedUsingCss("ClickOnAddCoTravellerBtn"))
                         {
                             if ((Utility.IsDisplayedUsingCss("CoTravelerFlightPreference")) && (Utility.IsDisplayedUsingCss("CotravelerHotelPreference")) && (Utility.IsDisplayedUsingCss("CoTravelerCarPreference")) && (Utility.IsDisplayedUsingCss("AddCoTravelerSection")))
@@ -953,15 +953,17 @@ namespace UserProfileSPA.TestCases
                         }
                         else if (((Utility.GrabAttributeValueByCss("SelectCoTravellerAgeGroup", "value", 4)) == "3") || ((Utility.GrabAttributeValueByCss("SelectCoTravellerAgeGroup", "value", 4)) == "4"))
                         {
+                            string _selectedGender = Record("SelectedGender");
+                            var _gender = Driver.FindElement(By.CssSelector(UserProfileSPA.Library.TestEnvironment.LoadXML("Gender")));
+                            var selectelementGender = new SelectElement(_gender);
+                            selectelementGender.SelectByText(_selectedGender);                           
+                           
+
                             string _selectedTitle = Record("SelectedTitle");
                             var _title = Driver.FindElement(By.CssSelector(UserProfileSPA.Library.TestEnvironment.LoadXML("Title")));
                             var selectelementTitle = new SelectElement(_title);
                             selectelementTitle.SelectByText(_selectedTitle);
 
-                            string _selectedGender = Record("SelectedGender");
-                            var _gender = Driver.FindElement(By.CssSelector(UserProfileSPA.Library.TestEnvironment.LoadXML("Gender")));
-                            var selectelementGender = new SelectElement(_gender);
-                            selectelementGender.SelectByText(_selectedGender);                           
                            
 
                             if (((Utility.GrabAttributeValueByCss("SelectCoTravellerTitle", "value", 4)) == "1") && ((Utility.GrabAttributeValueByCss("CoTravellerGender", "value", 4)) == "1"))

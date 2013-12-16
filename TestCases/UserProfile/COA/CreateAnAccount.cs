@@ -308,6 +308,7 @@ namespace UserProfileSPA.TestCases
                                 string expectedErrorMsg = Record("ExpectedErrorMsg");
                                 if (expectedErrorMsg != "No Error")
                                 {
+                                    Utility.Sleep(4);
                                     string actualErrorMsg = Utility.ByXpath("EmailExpectedError", 7);
                                     Assert.AreEqual(expectedErrorMsg, actualErrorMsg);
                                 }

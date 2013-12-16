@@ -409,8 +409,8 @@ namespace UserProfileSPA.TestCases
 
                         if (string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("TextAddressOne", "value", 2)) && string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("TextCity", "value", 2)) && string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("TextZipcode", "value", 2)) && string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("TextContactNumaber", "value", 2)))
                         {
-                            string TitleValidation = Utility.ByXpath("TitleValidation", 4);
-                            Assert.AreEqual(ValidationsIfMyInfoisEmpty[0], TitleValidation);
+                            //string TitleValidation = Utility.ByXpath("TitleValidation", 4);
+                            //Assert.AreEqual(ValidationsIfMyInfoisEmpty[0], TitleValidation);
 
                             string AirLine1Validation = Utility.ByXpath("AirLine1Validation", 4);
                             Assert.AreEqual(ValidationsIfMyInfoisEmpty[1], AirLine1Validation);
@@ -824,9 +824,11 @@ namespace UserProfileSPA.TestCases
                 Utility.CsstoClick("clickOnMyInformation", 4);
                 Utility.Sleep(2);
                 string _firstNametxt = Record("FirstName");
-                char[] firstChar = _firstNametxt.ToCharArray();
+               // char[] firstChar = _firstNametxt.ToCharArray();
                 string _lastNametxt = Record("LastName");
+                Utility.CsstoClear("FirstName", 3);
                 Utility.CssToSetText("FirstName", _firstNametxt, 3);
+                Utility.CsstoClear("LastName", 3);
                 Utility.CssToSetText("LastName", _lastNametxt, 3);
                 Utility.CsstoClick("SaveInformationBtn", 4);
 
@@ -958,14 +960,16 @@ namespace UserProfileSPA.TestCases
                 Utility.Sleep(2);
                 Utility.CsstoClick("clickOnMyInformation", 4);
                 Utility.Sleep(2);
-                string _selectedTitle = Record("SelectedTitle");
-                var _title = Driver.FindElement(By.CssSelector(UserProfileSPA.Library.TestEnvironment.LoadXML("Title")));
-                var selectelementTitle = new SelectElement(_title);
-                selectelementTitle.SelectByText(_selectedTitle);
                 string _selectedGender = Record("SelectedGender");
                 var _gender = Driver.FindElement(By.CssSelector(UserProfileSPA.Library.TestEnvironment.LoadXML("Gender")));
                 var selectelementGender = new SelectElement(_gender);
                 selectelementGender.SelectByText(_selectedGender);
+
+                string _selectedTitle = Record("SelectedTitle");
+                var _title = Driver.FindElement(By.CssSelector(UserProfileSPA.Library.TestEnvironment.LoadXML("Title")));
+                var selectelementTitle = new SelectElement(_title);
+                selectelementTitle.SelectByText(_selectedTitle);
+               
 
                 string _dropdownTitleValue = Utility.GrabAttributeValueByCss("Title", "value", 2);
                 string _dropdownGengerValue = Utility.GrabAttributeValueByCss("Gender", "value", 2);

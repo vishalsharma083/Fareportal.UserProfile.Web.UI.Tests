@@ -258,7 +258,7 @@ namespace UserProfileSPA.TestCases
                 Utility.CssToSetText("Password", Record("Password"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
               
                 Utility.CsstoClick("SignInBtn", 4);
-                Utility.Sleep(3);
+                Utility.Sleep(8);
                 Utility.CsstoClick("clickOnMyInformation", 4);
                 Utility.Sleep(2);
                 Utility.ByLinkTexttoClick("ClickOnMyBillingDetails", 4);
@@ -573,7 +573,7 @@ namespace UserProfileSPA.TestCases
                                
                                 string _state = Record("State");
                               
-                                string checkType = Utility.GrabAttributeValueByCss("BillingAddressState", "type", 2);
+                                //string checkType = Utility.GrabAttributeValueByCss("BillingAddressState", "type", 2);
 
                                 if ((_country == "United States") || (_country == "Canada"))
                                 {
@@ -587,13 +587,13 @@ namespace UserProfileSPA.TestCases
                                 }
                                 else
                                 {
-                                    if (checkType == "select-one")
-                                    {
+                                    //if (checkType == "select-one")
+                                    //{
                                         var element = Driver.FindElement(By.CssSelector(UserProfileSPA.Library.TestEnvironment.LoadXML("BillingAddressCountry")));
                                         var selectElement = new SelectElement(element);
                                         selectElement.SelectByText(_country);
                                         Utility.CssToSetText("State", _state, 4);                                      
-                                    }
+                                    //}
                                 }
 
                                     Utility.CssToSetText("textaddressLine1InBillingDetails", addressLine1, 4);
@@ -610,7 +610,9 @@ namespace UserProfileSPA.TestCases
                                         {
                                             string AddresssShowingAfterAddingCard = Utility.ByXpath("AddresssShowingAfterAddingCard", 4);
                                             string[] ExistingAddressFormPersonalInfo = AddresssShowingAfterAddingCard.Split(",".ToCharArray());
-
+                                            Assert.AreEqual(addressLine1, ExistingAddressFormPersonalInfo[0]);
+                                            ExistingAddressFormPersonalInfo[1] = ExistingAddressFormPersonalInfo[1].Trim();
+                                            Assert.AreEqual(city, ExistingAddressFormPersonalInfo[1]);
                                         }
                                     }
                                }
@@ -671,16 +673,18 @@ namespace UserProfileSPA.TestCases
                                 Utility.CssToSetText("textBillingphoneNumbers", billingPhone, 4);
                                 Utility.CsstoClick("ClickOnSaveBillingDetailsBtn", 5);
                                 Utility.Sleep(5);
-                                string Ischecked = Utility.GrabAttributeValueByCss("ExistingAddress", "Checked", 4);//Here checking the radio button.
+                               // string Ischecked = Utility.GrabAttributeValueByCss("ExistingAddress", "Checked", 4);//Here checking the radio button.
                                 if (Utility.IsDisplayedUsingXpath("SavingMessage"))
                                 {
 
-                                    if (Ischecked == "true")
-                                    {
-                                        string AddresssShowingAfterAddingCard = Utility.ByXpath("AddresssShowingAfterAddingCard", 4);
+                                    //if (Ischecked == "true")
+                                    //{
+                                       string AddresssShowingAfterAddingCard = Utility.ByXpath("AddresssShowingAfterAddingCard", 4);
                                         string[] ExistingAddressFormPersonalInfo = AddresssShowingAfterAddingCard.Split(",".ToCharArray());
-
-                                    }
+                                         Assert.AreEqual(addressLine1, ExistingAddressFormPersonalInfo[0]);
+                                            ExistingAddressFormPersonalInfo[1] = ExistingAddressFormPersonalInfo[1].Trim();
+                                            Assert.AreEqual(city, ExistingAddressFormPersonalInfo[1]);
+                                    //}
                                 }
                                 else
                                 {
