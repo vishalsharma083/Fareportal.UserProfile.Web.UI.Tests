@@ -213,7 +213,7 @@ namespace UserProfileSPA.TestCases.Resource {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Card number is required.,Not a valid expiry date,Please enter first name,Please enter last name,Card Nick Name is required.,Address Line1 is required.,City is required.,Please enter zip code,Please enter billing phone..
+        ///   Looks up a localized string similar to Card number is required.,Not a valid expiry date,Please enter first name,Please enter last name,Card Nick Name is required.,Address Line1 is required.,City is required.,Please enter zip code,Please enter billing phone.,Please select your state.
         /// </summary>
         internal static string expectedValidationsIfMyBillingDetailsIsEmpty {
             get {

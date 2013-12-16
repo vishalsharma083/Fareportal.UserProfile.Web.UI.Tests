@@ -141,7 +141,7 @@ New to the site?
 Click here to create an account – its quick &amp; easy.</value>
   </data>
   <data name="expectedValidationsIfMyBillingDetailsIsEmpty" xml:space="preserve">
-    <value>Card number is required.,Not a valid expiry date,Please enter first name,Please enter last name,Card Nick Name is required.,Address Line1 is required.,City is required.,Please enter zip code,Please enter billing phone.</value>
+    <value>Card number is required.,Not a valid expiry date,Please enter first name,Please enter last name,Card Nick Name is required.,Address Line1 is required.,City is required.,Please enter zip code,Please enter billing phone.,Please select your state</value>
   </data>
   <data name="expectedValidationsIfMyInfoisEmpty" xml:space="preserve">
     <value>Please select proper title.Please enter street details.City name missing.Please enter zip code.Contact phone is missing</value>

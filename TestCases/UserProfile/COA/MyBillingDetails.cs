@@ -473,6 +473,12 @@ namespace UserProfileSPA.TestCases
                                 string zipValidationInBillingDetails = Utility.ByXpath("zipValidationInBillingDetails", 4);
                                 Assert.AreEqual(ValidationsIfMyBillingDetailsIsEmpty[7], zipValidationInBillingDetails);
 
+                                if (((Utility.GrabAttributeValueByCss("BillingAddressState", "value", 4)) == "0"))
+                                {
+                                    string _billingAddressState = Utility.ByXpath("BillingAddressState", 4);
+                                    Assert.AreEqual(ValidationsIfMyBillingDetailsIsEmpty[8], _billingAddressState);
+                                }
+
                                 if (((Utility.GrabAttributeValueByCss("Month", "value", 4)) == "0") && ((Utility.GrabAttributeValueByCss("Year", "value", 4)) == "0"))
                                 {
                                     string cardExpiration = Utility.ByXpath("cardExpiration", 4);
