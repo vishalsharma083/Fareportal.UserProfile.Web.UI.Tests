@@ -41,12 +41,12 @@ namespace UserProfileSPA.TestCases
         [DeploymentItem("AddNewCoTraveler.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\AddNewCoTraveler.csv", "AddNewCoTraveler#csv", DataAccessMethod.Sequential), TestMethod]
         public void AddCoTraveler()
         {
-            IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;         
+            IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
             string _baseUrl = Record("SignInUrl");
             if (_baseUrl == Driver.Url)
             {
                 Utility.CssToSetText("Email", Record("Email"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
-                Utility.CssToSetText("Password", Record("Password"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);                
+                Utility.CssToSetText("Password", Record("Password"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                 Utility.CsstoClick("SignInBtn", 3);
                 Utility.Sleep(2);
                 Utility.CsstoClick("clickOnMyInformation", 4);
@@ -222,201 +222,201 @@ namespace UserProfileSPA.TestCases
         }
 
 
-        [DeploymentItem("AddNewCoTraveler.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\AddNewCoTraveler.csv", "AddNewCoTraveler#csv", DataAccessMethod.Sequential), TestMethod]
-        public void AddNewCoTraveler()
-        {
-            IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;           
-            string _baseUrl = Record("SignInUrl");
-            if (_baseUrl == Driver.Url)
-            {
-                Utility.CssToSetText("Email", Record("Email"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
-                Utility.CssToSetText("Password", Record("Password"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);               
-                Utility.CsstoClick("SignInBtn", 3);
-                Utility.Sleep(2);
-                Utility.CsstoClick("clickOnMyInformation", 4);
-                Utility.Sleep(2);
-                string cheapoairMyInfoUrl = Record("CheapoairMyInfoUrl");
-                if (cheapoairMyInfoUrl == Driver.Url)
-                {
-                    Utility.ByLinkTexttoClick("clickOnMyCoTravelerMenu", 4);
+        //[DeploymentItem("AddNewCoTraveler.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\AddNewCoTraveler.csv", "AddNewCoTraveler#csv", DataAccessMethod.Sequential), TestMethod]
+        //public void AddNewCoTraveler()
+        //{
+        //    IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;           
+        //    string _baseUrl = Record("SignInUrl");
+        //    if (_baseUrl == Driver.Url)
+        //    {
+        //        Utility.CssToSetText("Email", Record("Email"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
+        //        Utility.CssToSetText("Password", Record("Password"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);               
+        //        Utility.CsstoClick("SignInBtn", 3);
+        //        Utility.Sleep(2);
+        //        Utility.CsstoClick("clickOnMyInformation", 4);
+        //        Utility.Sleep(2);
+        //        string cheapoairMyInfoUrl = Record("CheapoairMyInfoUrl");
+        //        if (cheapoairMyInfoUrl == Driver.Url)
+        //        {
+        //            Utility.ByLinkTexttoClick("clickOnMyCoTravelerMenu", 4);
 
-                    string myCoTravelerUrl = Record("MyCoTravelerUrl");
-                    if (myCoTravelerUrl == Driver.Url)
-                    {
+        //            string myCoTravelerUrl = Record("MyCoTravelerUrl");
+        //            if (myCoTravelerUrl == Driver.Url)
+        //            {
 
-                        if (Utility.IsDisplayedUsingXpath("AddCoTravelerDiv"))
-                        {
-                            int str = Driver.FindElements(By.CssSelector(UserProfileSPA.Library.TestEnvironment.LoadXML("DeleteCoTraveler"))).Count();
+        //                if (Utility.IsDisplayedUsingXpath("AddCoTravelerDiv"))
+        //                {
+        //                    int str = Driver.FindElements(By.CssSelector(UserProfileSPA.Library.TestEnvironment.LoadXML("DeleteCoTraveler"))).Count();
 
-                            for (int i = 1; i <= str; i++)
-                            {
-                                Utility.CsstoClick("DeleteCoTraveler", 3);
-                                if (!Utility.IsDisplayedUsingXpath("AddCoTravelerDiv"))
-                                {
-                                    Assert.IsTrue(true);
-                                }
-                            }
+        //                    for (int i = 1; i <= str; i++)
+        //                    {
+        //                        Utility.CsstoClick("DeleteCoTraveler", 3);
+        //                        if (!Utility.IsDisplayedUsingXpath("AddCoTravelerDiv"))
+        //                        {
+        //                            Assert.IsTrue(true);
+        //                        }
+        //                    }
 
-                            if (Utility.IsDisplayedUsingCss("ClickOnAddCoTravellerBtn"))
-                            {
-                                Utility.CsstoClick("ClickOnAddCoTravellerBtn", 3);
-                                Utility.Sleep(7);
-                                if ((Utility.IsDisplayedUsingCss("CoTravelerFlightPreference")) && (Utility.IsDisplayedUsingCss("CotravelerHotelPreference")) && (Utility.IsDisplayedUsingCss("CoTravelerCarPreference")) && (Utility.IsDisplayedUsingCss("AddCoTravelerSection")))
-                                {
+        //                    if (Utility.IsDisplayedUsingCss("ClickOnAddCoTravellerBtn"))
+        //                    {
+        //                        Utility.CsstoClick("ClickOnAddCoTravellerBtn", 3);
+        //                        Utility.Sleep(7);
+        //                        if ((Utility.IsDisplayedUsingCss("CoTravelerFlightPreference")) && (Utility.IsDisplayedUsingCss("CotravelerHotelPreference")) && (Utility.IsDisplayedUsingCss("CoTravelerCarPreference")) && (Utility.IsDisplayedUsingCss("AddCoTravelerSection")))
+        //                        {
 
-                                    string selectAgeGroup = Record("selectAgeGroup");
-                                    var enterAgeGroup = Driver.FindElement(By.CssSelector(TestEnvironment.LoadXML("SelectCoTravellerAgeGroup")));
-                                    var selectElement = new SelectElement(enterAgeGroup);
-                                    selectElement.SelectByText(selectAgeGroup);
+        //                            string selectAgeGroup = Record("selectAgeGroup");
+        //                            var enterAgeGroup = Driver.FindElement(By.CssSelector(TestEnvironment.LoadXML("SelectCoTravellerAgeGroup")));
+        //                            var selectElement = new SelectElement(enterAgeGroup);
+        //                            selectElement.SelectByText(selectAgeGroup);
 
-                                    string selectTitle = Record("SelectTitle");
-                                    var enterTitle = Driver.FindElement(By.CssSelector(TestEnvironment.LoadXML("SelectCoTravellerAgeGroup")));
-                                    var selectElementTitle = new SelectElement(enterTitle);
-                                    selectElementTitle.SelectByText(selectTitle);
+        //                            string selectTitle = Record("SelectTitle");
+        //                            var enterTitle = Driver.FindElement(By.CssSelector(TestEnvironment.LoadXML("SelectCoTravellerAgeGroup")));
+        //                            var selectElementTitle = new SelectElement(enterTitle);
+        //                            selectElementTitle.SelectByText(selectTitle);
 
-                                    string _firstNametxt = Record("FirstName");
-                                    char[] firstChar = _firstNametxt.ToCharArray();
-                                    string _lastNametxt = Record("LastName");
-                                    Utility.CssToSetText("textInFirstname", _firstNametxt, 3);
-                                    Utility.CssToSetText("textInlastName", _lastNametxt, 3);
-
-
-                                    string _month = Record("Month");
-                                    var selectMonth = Driver.FindElement(By.CssSelector(TestEnvironment.LoadXML("CoTravellerMonth")));
-                                    var selectElementMonth = new SelectElement(selectMonth);
-                                    selectElementMonth.SelectByText(_month);
-
-                                    string _day = Record("Day");
-                                    var selectDay = Driver.FindElement(By.CssSelector(TestEnvironment.LoadXML("CoTravellerMonth")));
-                                    var selectElementDay = new SelectElement(selectDay);
-                                    selectElementDay.SelectByText(_day);
-
-                                    string _year = Record("Year");
-                                    var selectYear = Driver.FindElement(By.CssSelector(TestEnvironment.LoadXML("CoTravellerMonth")));
-                                    var selectElementYear = new SelectElement(selectYear);
-                                    selectElementYear.SelectByText(_year);
-
-                                    string _gender = Record("Gender");
-                                    var selectGender = Driver.FindElement(By.CssSelector(TestEnvironment.LoadXML("CoTravellerMonth")));
-                                    var selectElementGender = new SelectElement(selectGender);
-                                    selectElementGender.SelectByText(_gender);
-
-                                    Utility.CsstoClick("ClickOnFlightPreferecne", 3);
-                                    Utility.Sleep(3);
-                                    string _homeAirport = Record("HomeAirport");
-                                    Utility.CssToSetText("CoTravelerHomeAirPort", _homeAirport, 3);
-                                    Utility.CsstoClick("ClickOnSaveCoTravelerBtn", 3);
-
-                                    Utility.Sleep(3);
-                                    if (Utility.IsDisplayedUsingCss("ClickOnAddCoTravellerBtn"))
-                                    {
-                                        string getDetails = Driver.FindElement(By.XPath("html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/form/div[1]/div/div[2]/div[1]")).Text;//CssSelector(TestEnvironment.LoadXML("AddCoTravelerDiv"))).FindElements(By.CssSelector(TestEnvironment.LoadXML("CotravelerDetailsDiv"))).ToList();
-
-                                    }
-
-                                }
-                                else
-                                {
-                                    Assert.IsTrue(false, "Might be sections not displayed");
-                                }
-                            }
-                            else
-                            {
-                                Assert.IsTrue(false, "Add CoTraveler Button still there.");
-                            }
-                        }
-                        else
-                        {
-
-                            if (Utility.IsDisplayedUsingCss("ClickOnAddCoTravellerBtn"))
-                            {
-                                Utility.CsstoClick("ClickOnAddCoTravellerBtn", 3);
-                                Utility.Sleep(2);
-                                if (!Utility.IsDisplayedUsingCss("ClickOnAddCoTravellerBtn"))
-                                {
-                                    if ((Utility.IsDisplayedUsingCss("CoTravelerFlightPreference")) && (Utility.IsDisplayedUsingCss("CotravelerHotelPreference")) && (Utility.IsDisplayedUsingCss("CoTravelerCarPreference")) && (Utility.IsDisplayedUsingCss("AddCoTravelerSection")))
-                                    {
-
-                                        string selectAgeGroup = Record("selectAgeGroup");
-                                        var enterAgeGroup = Driver.FindElement(By.CssSelector(TestEnvironment.LoadXML("SelectCoTravellerAgeGroup")));
-                                        var selectElement = new SelectElement(enterAgeGroup);
-                                        selectElement.SelectByText(selectAgeGroup);
-
-                                        string selectTitle = Record("SelectTitle");
-                                        var enterTitle = Driver.FindElement(By.CssSelector(TestEnvironment.LoadXML("SelectCoTravellerTitle")));
-                                        var selectElementTitle = new SelectElement(enterTitle);
-                                        selectElementTitle.SelectByText(selectTitle);
-
-                                        string _firstNametxt = Record("FirstName");
-                                        char[] firstChar = _firstNametxt.ToCharArray();
-                                        string _lastNametxt = Record("LastName");
-                                        Utility.CssToSetText("textInFirstname", _firstNametxt, 3);
-                                        Utility.CssToSetText("textInlastName", _lastNametxt, 3);
+        //                            string _firstNametxt = Record("FirstName");
+        //                            char[] firstChar = _firstNametxt.ToCharArray();
+        //                            string _lastNametxt = Record("LastName");
+        //                            Utility.CssToSetText("textInFirstname", _firstNametxt, 3);
+        //                            Utility.CssToSetText("textInlastName", _lastNametxt, 3);
 
 
-                                        string _month = Record("Month");
-                                        var selectMonth = Driver.FindElement(By.CssSelector(TestEnvironment.LoadXML("CoTravellerMonth")));
-                                        var selectElementMonth = new SelectElement(selectMonth);
-                                        selectElementMonth.SelectByText(_month);
+        //                            string _month = Record("Month");
+        //                            var selectMonth = Driver.FindElement(By.CssSelector(TestEnvironment.LoadXML("CoTravellerMonth")));
+        //                            var selectElementMonth = new SelectElement(selectMonth);
+        //                            selectElementMonth.SelectByText(_month);
 
-                                        string _day = Record("Day");
-                                        var selectDay = Driver.FindElement(By.CssSelector(TestEnvironment.LoadXML("CoTravellerDay")));
-                                        var selectElementDay = new SelectElement(selectDay);
-                                        selectElementDay.SelectByText(_day);
+        //                            string _day = Record("Day");
+        //                            var selectDay = Driver.FindElement(By.CssSelector(TestEnvironment.LoadXML("CoTravellerMonth")));
+        //                            var selectElementDay = new SelectElement(selectDay);
+        //                            selectElementDay.SelectByText(_day);
 
-                                        string _year = Record("Year");
-                                        var selectYear = Driver.FindElement(By.CssSelector(TestEnvironment.LoadXML("CoTravellerYear")));
-                                        var selectElementYear = new SelectElement(selectYear);
-                                        selectElementYear.SelectByText(_year);
+        //                            string _year = Record("Year");
+        //                            var selectYear = Driver.FindElement(By.CssSelector(TestEnvironment.LoadXML("CoTravellerMonth")));
+        //                            var selectElementYear = new SelectElement(selectYear);
+        //                            selectElementYear.SelectByText(_year);
 
-                                        string _gender = Record("Gender");
-                                        var selectGender = Driver.FindElement(By.CssSelector(TestEnvironment.LoadXML("CoTravellerGender")));
-                                        var selectElementGender = new SelectElement(selectGender);
-                                        selectElementGender.SelectByText(_gender);
+        //                            string _gender = Record("Gender");
+        //                            var selectGender = Driver.FindElement(By.CssSelector(TestEnvironment.LoadXML("CoTravellerMonth")));
+        //                            var selectElementGender = new SelectElement(selectGender);
+        //                            selectElementGender.SelectByText(_gender);
 
-                                        Utility.XPathtoClick("ClickOnFlightPreferecne", 3);
-                                        Utility.Sleep(3);
-                                        string _homeAirport = Record("HomeAirport");
-                                        Utility.CssToSetText("CoTravelerHomeAirPort", _homeAirport, 3);
-                                        Utility.CsstoClick("ClickOnSaveCoTravelerBtn", 3);
+        //                            Utility.CsstoClick("ClickOnFlightPreferecne", 3);
+        //                            Utility.Sleep(3);
+        //                            string _homeAirport = Record("HomeAirport");
+        //                            Utility.CssToSetText("CoTravelerHomeAirPort", _homeAirport, 3);
+        //                            Utility.CsstoClick("ClickOnSaveCoTravelerBtn", 3);
 
-                                        string xpath = "html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/form/div[1]/div/div[2]";
-                                        if (Utility.IsDisplayedUsingXpath(xpath))
-                                        { }
-                                        string getDetails = Driver.FindElement(By.XPath(xpath)).Text;
-                                        int str = Driver.FindElements(By.CssSelector(UserProfileSPA.Library.TestEnvironment.LoadXML("DeleteCoTraveler"))).Count();
-                                        int num = Convert.ToInt32(2);
-                                        for (int i = 1; i <= str; i++)
-                                        {
-                                            xpath = "html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/form/div[1]/div/div[" + (num + i) + "]";
+        //                            Utility.Sleep(3);
+        //                            if (Utility.IsDisplayedUsingCss("ClickOnAddCoTravellerBtn"))
+        //                            {
+        //                                string getDetails = Driver.FindElement(By.XPath("html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/form/div[1]/div/div[2]/div[1]")).Text;//CssSelector(TestEnvironment.LoadXML("AddCoTravelerDiv"))).FindElements(By.CssSelector(TestEnvironment.LoadXML("CotravelerDetailsDiv"))).ToList();
 
-                                            if (Utility.IsDisplayedUsingXpath(xpath))
-                                            {
-                                                getDetails = Driver.FindElement(By.XPath(xpath)).Text;
-                                            }
-                                        }
-                                    }
-                                    else
-                                    {
-                                        Assert.IsTrue(false, "Might be sections not displayed");
-                                    }
-                                }
-                                else
-                                {
-                                    Assert.IsTrue(false, "Add CoTraveler Button still there.");
-                                }
-                            }
-                            else
-                            {
-                                Assert.IsTrue(false, "Add CoTraveler Button not displayed.");
-                            }
+        //                            }
 
-                        }                    
+        //                        }
+        //                        else
+        //                        {
+        //                            Assert.IsTrue(false, "Might be sections not displayed");
+        //                        }
+        //                    }
+        //                    else
+        //                    {
+        //                        Assert.IsTrue(false, "Add CoTraveler Button still there.");
+        //                    }
+        //                }
+        //                else
+        //                {
 
-                    }
-                }
-            }
-        }
+        //                    if (Utility.IsDisplayedUsingCss("ClickOnAddCoTravellerBtn"))
+        //                    {
+        //                        Utility.CsstoClick("ClickOnAddCoTravellerBtn", 3);
+        //                        Utility.Sleep(2);
+        //                        if (!Utility.IsDisplayedUsingCss("ClickOnAddCoTravellerBtn"))
+        //                        {
+        //                            if ((Utility.IsDisplayedUsingCss("CoTravelerFlightPreference")) && (Utility.IsDisplayedUsingCss("CotravelerHotelPreference")) && (Utility.IsDisplayedUsingCss("CoTravelerCarPreference")) && (Utility.IsDisplayedUsingCss("AddCoTravelerSection")))
+        //                            {
+
+        //                                string selectAgeGroup = Record("selectAgeGroup");
+        //                                var enterAgeGroup = Driver.FindElement(By.CssSelector(TestEnvironment.LoadXML("SelectCoTravellerAgeGroup")));
+        //                                var selectElement = new SelectElement(enterAgeGroup);
+        //                                selectElement.SelectByText(selectAgeGroup);
+
+        //                                string selectTitle = Record("SelectTitle");
+        //                                var enterTitle = Driver.FindElement(By.CssSelector(TestEnvironment.LoadXML("SelectCoTravellerTitle")));
+        //                                var selectElementTitle = new SelectElement(enterTitle);
+        //                                selectElementTitle.SelectByText(selectTitle);
+
+        //                                string _firstNametxt = Record("FirstName");
+        //                                char[] firstChar = _firstNametxt.ToCharArray();
+        //                                string _lastNametxt = Record("LastName");
+        //                                Utility.CssToSetText("textInFirstname", _firstNametxt, 3);
+        //                                Utility.CssToSetText("textInlastName", _lastNametxt, 3);
+
+
+        //                                string _month = Record("Month");
+        //                                var selectMonth = Driver.FindElement(By.CssSelector(TestEnvironment.LoadXML("CoTravellerMonth")));
+        //                                var selectElementMonth = new SelectElement(selectMonth);
+        //                                selectElementMonth.SelectByText(_month);
+
+        //                                string _day = Record("Day");
+        //                                var selectDay = Driver.FindElement(By.CssSelector(TestEnvironment.LoadXML("CoTravellerDay")));
+        //                                var selectElementDay = new SelectElement(selectDay);
+        //                                selectElementDay.SelectByText(_day);
+
+        //                                string _year = Record("Year");
+        //                                var selectYear = Driver.FindElement(By.CssSelector(TestEnvironment.LoadXML("CoTravellerYear")));
+        //                                var selectElementYear = new SelectElement(selectYear);
+        //                                selectElementYear.SelectByText(_year);
+
+        //                                string _gender = Record("Gender");
+        //                                var selectGender = Driver.FindElement(By.CssSelector(TestEnvironment.LoadXML("CoTravellerGender")));
+        //                                var selectElementGender = new SelectElement(selectGender);
+        //                                selectElementGender.SelectByText(_gender);
+
+        //                                Utility.XPathtoClick("ClickOnFlightPreferecne", 3);
+        //                                Utility.Sleep(3);
+        //                                string _homeAirport = Record("HomeAirport");
+        //                                Utility.CssToSetText("CoTravelerHomeAirPort", _homeAirport, 3);
+        //                                Utility.CsstoClick("ClickOnSaveCoTravelerBtn", 3);
+
+        //                                string xpath = "html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/form/div[1]/div/div[2]";
+        //                                if (Utility.IsDisplayedUsingXpath(xpath))
+        //                                { }
+        //                                string getDetails = Driver.FindElement(By.XPath(xpath)).Text;
+        //                                int str = Driver.FindElements(By.CssSelector(UserProfileSPA.Library.TestEnvironment.LoadXML("DeleteCoTraveler"))).Count();
+        //                                int num = Convert.ToInt32(2);
+        //                                for (int i = 1; i <= str; i++)
+        //                                {
+        //                                    xpath = "html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/form/div[1]/div/div[" + (num + i) + "]";
+
+        //                                    if (Utility.IsDisplayedUsingXpath(xpath))
+        //                                    {
+        //                                        getDetails = Driver.FindElement(By.XPath(xpath)).Text;
+        //                                    }
+        //                                }
+        //                            }
+        //                            else
+        //                            {
+        //                                Assert.IsTrue(false, "Might be sections not displayed");
+        //                            }
+        //                        }
+        //                        else
+        //                        {
+        //                            Assert.IsTrue(false, "Add CoTraveler Button still there.");
+        //                        }
+        //                    }
+        //                    else
+        //                    {
+        //                        Assert.IsTrue(false, "Add CoTraveler Button not displayed.");
+        //                    }
+
+        //                }                    
+
+        //            }
+        //        }
+        //    }
+        //}
 
 
         [DeploymentItem("CheckTitleForMyCotraveler.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\CheckTitleForMyCotraveler.csv", "CheckTitleForMyCotraveler#csv", DataAccessMethod.Sequential), TestMethod]
@@ -804,21 +804,14 @@ namespace UserProfileSPA.TestCases
                                 {
                                     string actualErrorMsg = Utility.ByXpath("CoTravelerDobErrorMsg", 4);
                                     Assert.AreEqual(ValidationsIfDobDropDown[1], actualErrorMsg);
-                                }
-
-                                if (((Utility.GrabAttributeValueByCss("SelectTitleInCoTraveler", "value", 4)) == "0"))
-                                {
-                                    string expectedValidationInCoTravelerTitle = UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("expectedValidationInCoTravelerTitle");
-                                    string actualValidationInCotravelerTitle = Utility.ByXpath("CoTravelerTitleIsNotSelected", 4);
-                                    Assert.AreEqual(expectedValidationInCoTravelerTitle[1], actualValidationInCotravelerTitle);
-                                }
+                                }                                
 
                                 if (((Utility.GrabAttributeValueByCss("SelectGenderInCoTraveler", "value", 4)) == "0"))
                                 {
                                     string expectedValidationInCotravelerGender = UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("expectedValidationInCotravelerGender");
                                     string actualValidationInCotravelerGender = Utility.ByXpath("CoTravelerGenderIsNotSelected", 4);
                                     Assert.AreEqual(expectedValidationInCotravelerGender, actualValidationInCotravelerGender);
-                                }
+                                }                               
                             }
                         }
                     }
@@ -945,7 +938,8 @@ namespace UserProfileSPA.TestCases
                             string _selectedGender = Record("SelectedGender");
                             var _gender = Driver.FindElement(By.CssSelector(UserProfileSPA.Library.TestEnvironment.LoadXML("Gender")));
                             var selectelementGender = new SelectElement(_gender);
-                            selectelementGender.SelectByText(_selectedGender);
+                            selectelementGender.SelectByText(_selectedGender);                           
+                           
 
                             if (((Utility.GrabAttributeValueByCss("SelectCoTravellerTitle", "value", 4)) == "1") && ((Utility.GrabAttributeValueByCss("CoTravellerGender", "value", 4)) == "1"))
                             {
@@ -967,7 +961,8 @@ namespace UserProfileSPA.TestCases
                             string _selectedGender = Record("SelectedGender");
                             var _gender = Driver.FindElement(By.CssSelector(UserProfileSPA.Library.TestEnvironment.LoadXML("Gender")));
                             var selectelementGender = new SelectElement(_gender);
-                            selectelementGender.SelectByText(_selectedGender);
+                            selectelementGender.SelectByText(_selectedGender);                           
+                           
 
                             if (((Utility.GrabAttributeValueByCss("SelectCoTravellerTitle", "value", 4)) == "1") && ((Utility.GrabAttributeValueByCss("CoTravellerGender", "value", 4)) == "1"))
                             {

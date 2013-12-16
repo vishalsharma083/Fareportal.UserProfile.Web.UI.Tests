@@ -36,7 +36,7 @@ namespace UserProfileSPA.TestCases
         }
 
 
-        [DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\ClickOnEditCardDetailsAndDoChanges.csv", "ClickOnEditCardDetailsAndDoChanges#csv", DataAccessMethod.Sequential), DeploymentItem("ClickOnEditCardDetailsAndDoChanges.csv"), TestMethod]
+        [DeploymentItem("ClickOnEditCardDetailsAndDoChanges.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\ClickOnEditCardDetailsAndDoChanges.csv", "ClickOnEditCardDetailsAndDoChanges#csv", DataAccessMethod.Sequential), TestMethod]
         public void ClickOnEditCardDetailsAndDoChanges()
         {
             IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
@@ -113,7 +113,7 @@ namespace UserProfileSPA.TestCases
                                                 int num = randomNum.Next(5, 100);
                                                 _updatedAddressLine1 = _updatedAddressLine1 + num;
                                                 Utility.CssToSetText("UpdatedAddressLine1", _updatedAddressLine1, 3);
-
+                                               
                                                 string _updatedState = Record("UpdatedState");
                                                 _updatedState = _updatedState + "Ind";
                                                 Utility.CssToSetText("UpdatedState", _updatedState, 3);

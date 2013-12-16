@@ -348,7 +348,7 @@ namespace UserProfileSPA.TestCases.Resource {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select,Mstr,Miss.
+        ///   Looks up a localized string similar to Not Specified,Mstr,Miss.
         /// </summary>
         internal static string titleForChildAndInfant {
             get {
@@ -357,7 +357,7 @@ namespace UserProfileSPA.TestCases.Resource {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select,Mr,Mrs,Miss,Ms,Dr,Rev.
+        ///   Looks up a localized string similar to Not Specified,Mr,Mrs,Miss,Ms,Dr,Rev.
         /// </summary>
         internal static string titlesForAdultAndSenior {
             get {
