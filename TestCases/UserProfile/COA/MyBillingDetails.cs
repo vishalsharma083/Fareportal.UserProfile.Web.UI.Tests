@@ -449,7 +449,7 @@ namespace UserProfileSPA.TestCases
                             string expectedValidationsIfMyBillingDetailsIsEmpty = UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("expectedValidationsIfMyBillingDetailsIsEmpty");
                             string[] ValidationsIfMyBillingDetailsIsEmpty = expectedValidationsIfMyBillingDetailsIsEmpty.Split(",".ToCharArray());
                             string strAddCard = Utility.ByXpath("AddNewCard", 5);
-
+                            Utility.CsstoClick("AddNewAddressCheckBox",4);
                             if ((string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("textcardNumber", "value", 2))) && (string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("textfirstName", "value", 2))) && (string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("textlastName", "value", 2))) && (string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("textnickName", "value", 2))) && (string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("textaddressLine1InBillingDetails", "value", 2))) && (string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("textcityInBillingdetails", "value", 2))) && (string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("textzipInBillingDetails", "value", 2)))) //&& (string.IsNullOrEmpty(GrabAttributeValueByCss("textBillingphoneNumbers", "value", 6))))
                             {
                                 string cardNumberValidation = Utility.ByXpath("cardNumberValidation", 4);

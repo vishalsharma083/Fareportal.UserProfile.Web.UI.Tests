@@ -107,7 +107,7 @@ namespace UserProfileSPA.TestCases
                                 string _homeAirportForFirstCotraveler = Record("HomeAirportForFirstCotraveler");
                                 Utility.CssToSetText("CoTravelerHomeAirPort", _homeAirportForFirstCotraveler, 3);
                                 Utility.CsstoClick("ClickOnSaveCoTravelerBtn", 3);
-                                Utility.Sleep(3);
+                                Utility.Sleep(7);
                                 if (Utility.IsDisplayedUsingCss("ClickOnAddCoTravellerBtn"))
                                 {
                                     Utility.CsstoClick("ClickOnAddCoTravellerBtn", 3);
