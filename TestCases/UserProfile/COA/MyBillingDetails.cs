@@ -475,7 +475,7 @@ namespace UserProfileSPA.TestCases
 
                                 if (((Utility.GrabAttributeValueByCss("BillingAddressState", "value", 4)) == "0"))
                                 {
-                                    string _billingAddressState = Utility.ByXpath("BillingAddressState", 4);
+                                    string _billingAddressState = Utility.ByXpath("BillingAddressStateError", 4);
                                     Assert.AreEqual(ValidationsIfMyBillingDetailsIsEmpty[8], _billingAddressState);
                                 }
 

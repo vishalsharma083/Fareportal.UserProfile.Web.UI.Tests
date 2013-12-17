@@ -137,7 +137,7 @@
       <CliclOnAddCCdiv>div[id='AddCC']</CliclOnAddCCdiv>
       <ErrorMsgForFirstNameInBillingDetails>html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/form/div/div[2]/div[3]/div[1]/div[2]</ErrorMsgForFirstNameInBillingDetails>
       <ErrorMsgForLastNameInBillingDetails>html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/form/div/div[2]/div[3]/div[2]/div[2]</ErrorMsgForLastNameInBillingDetails>
-
+      <BillingAddressStateError>html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/form/div/div[7]/div[2]/div[3]</BillingAddressStateError>
 
 
 
@@ -298,7 +298,10 @@
     <DifferentTravelTools>html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/div/div[2]/div[1]/div</DifferentTravelTools>
     <TravelTools>html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/div/div[2]/div[1]/h1</TravelTools>
     <OverViewWelcome>html/body/div[1]/div[1]/div[2]/div[1]/div/div/div/div/ul[2]/li[9]/a</OverViewWelcome>
-    <TravelerNameAccount>html/body/div[1]/div[2]/div[2]/div/div/div[1]</TravelerNameAccount> 
+    <TravelerNameAccount>html/body/div[1]/div[2]/div[2]/div/div/div[1]</TravelerNameAccount>
+    <OverViewWelcomeName>a[id='rowSignIn']</OverViewWelcomeName>
+    
+    
   </OverViewPage>
 
   <SettingPage>

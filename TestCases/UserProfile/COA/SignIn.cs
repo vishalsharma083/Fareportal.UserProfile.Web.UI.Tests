@@ -234,7 +234,7 @@ namespace UserProfileSPA.TestCases
                 {
                     string expectedName = Utility.ByXpath("TravelerNameAccount", 3);
                     string[] _expectedName = expectedName.Split(" ".ToCharArray());
-                    string actualName = Utility.ByXpath("OverViewWelcome", 3);
+                    string actualName = Utility.ByCss("OverViewWelcomeName", 6);
                     string[] _actualName = actualName.Split(" ".ToCharArray());
                     Assert.AreEqual(_expectedName[0], _actualName[1]);
                     Utility.Sleep(6);

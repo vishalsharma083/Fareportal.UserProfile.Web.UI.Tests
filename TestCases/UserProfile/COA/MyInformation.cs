@@ -671,7 +671,7 @@ namespace UserProfileSPA.TestCases
         }
 
 
-        [DeploymentItem("VerifyContactAndMobilePhoneFields.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\VerifyContactAndMobilePhoneFields.csv", "VerifyContactAndMobilePhoneFields#csv", DataAccessMethod.Sequential), TestMethod]
+        [DeploymentItem("AppData\\VerifyContactAndMobilePhoneFields.csv"), DeploymentItem("VerifyContactAndMobilePhoneFields.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\VerifyContactAndMobilePhoneFields.csv", "VerifyContactAndMobilePhoneFields#csv", DataAccessMethod.Sequential), TestMethod]
         public void VerifyContactAndMobilePhoneFields()
         {
             IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;           
@@ -683,7 +683,7 @@ namespace UserProfileSPA.TestCases
                 string _contactPhone = Record("ContactPhone");
                 string _mobilePhone = Record("MobilePhone");
                 Utility.CsstoClick("SignInBtn", 3);
-                Utility.Sleep(2);
+                Utility.Sleep(6);
                 Utility.CsstoClick("clickOnMyInformation", 4);
                 Utility.Sleep(2);
                 Utility.CsstoClear("TextContactNumaber", 6);
