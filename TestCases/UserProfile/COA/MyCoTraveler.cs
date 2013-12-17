@@ -947,7 +947,13 @@ namespace UserProfileSPA.TestCases
                             }
                             else
                             {
-                                throw new Exception("Please select proper gender");
+                                string expectedErrorMsg = Record("ExpectedErrorMsg");
+                                if (expectedErrorMsg != "No Error")
+                                {
+                                    string actualErrorMsg = Utility.ByXpath("GenderErrorMsg", 4);
+                                    Assert.IsTrue(false, "Please select proper gender");
+                                }
+                               // throw new Exception("Please select proper gender");
                             }
                            
                         }

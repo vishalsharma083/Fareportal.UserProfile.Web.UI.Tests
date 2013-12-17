@@ -234,20 +234,12 @@ namespace UserProfileSPA.TestCases
                     string confrmPassword = Record("ConfrmPassword");
                     string _confrmPassword = num + confrmPassword ;
                     string _firstName = Record("FirstName");
-                    string _lastName = Record("LastName");
-                    
-                    if ((_confrmPassword) != null)
-                    {
-                        Utility.CssToSetText("TextInConfrmPassword", _confrmPassword, 4);
-                    }
-                    if ((_firstName) != null)
-                    {
-                        Utility.CssToSetText("CreateAnAccountTextInFirstName", _firstName, 4);
-                    }
-                    if ((_lastName) != null)
-                    {
-                        Utility.CssToSetText("CreateAnAccountTextInLastName", _lastName, 4);
-                    }
+                    string _lastName = Record("LastName");                    
+                   
+                    Utility.CssToSetText("TextInConfrmPassword", _confrmPassword, 4);
+                    Utility.CssToSetText("CreateAnAccountTextInFirstName", _firstName, 4);
+                    Utility.CssToSetText("CreateAnAccountTextInLastName", _lastName, 4);
+
                     string dobMonth = Record("DobMonth");
                     var element1 = Driver.FindElement(By.CssSelector(TestEnvironment.LoadXML("DobMonth")));
                     var selectElement1 = new SelectElement(element1);
@@ -638,7 +630,7 @@ namespace UserProfileSPA.TestCases
                         throw new Exception("Still it containig dropdown.");
                     }
                 }
-                Utility.CsstoClick("SaveInformationBtn", 3);
+                Utility.CsstoClick("SaveInformationBtn", 7);
             }
             else
             {
@@ -972,11 +964,10 @@ namespace UserProfileSPA.TestCases
                
 
                 string _dropdownTitleValue = Utility.GrabAttributeValueByCss("Title", "value", 2);
-                string _dropdownGengerValue = Utility.GrabAttributeValueByCss("Gender", "value", 2);
+                string _dropdownGenderValue = Utility.GrabAttributeValueByCss("Gender", "value", 2);
 
-                if ((_dropdownTitleValue == "1") && (_dropdownGengerValue == "1"))
-                {
-                    Assert.IsTrue(true);
+                if ((_dropdownTitleValue == "1") && (_dropdownGenderValue == "1"))
+                {      
                 }
                 else
                 {
@@ -995,7 +986,7 @@ namespace UserProfileSPA.TestCases
         }
 
 
-        [DeploymentItem("VerifyTheValidationsOf_TheLeapYear.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\VerifyTheValidationsOf_TheLeapYear.csv", "VerifyTheValidationsOf_TheLeapYear#csv", DataAccessMethod.Sequential), TestMethod]
+        [DeploymentItem("AppData\\VerifyTheValidationsOf_TheLeapYear.csv"), DeploymentItem("VerifyTheValidationsOf_TheLeapYear.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\VerifyTheValidationsOf_TheLeapYear.csv", "VerifyTheValidationsOf_TheLeapYear#csv", DataAccessMethod.Sequential), TestMethod]
         public void VerifyTheValidationsOf_TheLeapYear()
         {
             IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;          
