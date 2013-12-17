@@ -482,7 +482,7 @@ namespace UserProfileSPA.TestCases
                         Driver.FindElement(By.CssSelector("")).SendKeys(Record("Email"));
 
                         Driver.FindElement(By.CssSelector("input[id='txtUserName']")).SendKeys(Record("Email"));
-                        Driver.FindElement(By.CssSelector("input[id='txtPassword']")).SendKeys(Record("NewPassword"));
+                        Driver.FindElement(By.CssSelector("input[id='txtPassword']")).SendKeys(newpassword);
                         Driver.FindElement(By.CssSelector("input[id='btnSignIn']")).Click();
                         Utility.Sleep(4);
                         Assert.AreEqual(_overViewUrl, Driver.Url);
@@ -604,7 +604,7 @@ namespace UserProfileSPA.TestCases
                 Utility.CsstoClick("clickOnMyInformation", 4);
                 Utility.Sleep(2);
                 Utility.CsstoClear("City", 2);
-                if ((Utility.GrabAttributeValueByCss("Country", "value", 2) == Country) || (Utility.GrabAttributeValueByCss("Country", "value", 2) == state))
+                if ((Utility.GrabAttributeValueByCss("Country", "value", 2) == "United States") || (Utility.GrabAttributeValueByCss("Country", "value", 2) == "Canada"))
                 {
                     var element1 = Driver.FindElement(By.CssSelector(UserProfileSPA.Library.TestEnvironment.LoadXML("Country")));
                     var selectElement1 = new SelectElement(element1);
@@ -1042,6 +1042,7 @@ namespace UserProfileSPA.TestCases
                         if (expectedErrorMsg != "No Error")
                         {
                             string actualErrorMsg = Utility.ByXpath("LeapYearErrorMsgInMyDetails", UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
+                            Utility.Sleep(10);
                             Assert.AreEqual(expectedErrorMsg, actualErrorMsg);
                         }
                     }

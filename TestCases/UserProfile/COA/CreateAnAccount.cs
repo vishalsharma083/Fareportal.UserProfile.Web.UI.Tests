@@ -292,6 +292,7 @@ namespace UserProfileSPA.TestCases
                     Utility.CsstoClear("FirstName", 3);
                     if (!string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("TextInEmail", "value", 3)))
                     {
+                        Utility.CsstoClick("ClickOnCreateAnAccountBtnSignUpFree", 4);
                         if (!Utility.IsDisplayedUsingXpath("EmailAlreadyExistInCreateAnAccount"))
                         {
                             //string MatchEmailExpr = @"^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.(?:[A-Z]{2}|com";
@@ -329,7 +330,7 @@ namespace UserProfileSPA.TestCases
                         string expectedErrorMsg = Record("ExpectedErrorMsg");
                         if (expectedErrorMsg != "No Error")
                         {
-                            string actualErrorMsg = Utility.ByXpath("EmailExpectedError", 4);
+                            string actualErrorMsg = Utility.ByXpath("EmailExpectedError", 22);
                             Assert.AreEqual(expectedErrorMsg, actualErrorMsg);
                         }
                     }
@@ -508,7 +509,7 @@ namespace UserProfileSPA.TestCases
                 if (signUpUrl == Driver.Url)
                 {
                     Utility.CssToSetText("TextInEmail", Record("EnterAlreadyExistEmail"), 3);
-                    Utility.CsstoClick("ClickOnCreateAnAccountBtnSignUpFree", 4);                   
+                    Utility.CsstoClick("TextInPassword", 4);                   
                     string actualEmailAlreadyExist = Utility.ByXpath("AlreadyExistEmail",4);
                     string expectedWhenEmailIsAlreadyExist = UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("expectedWhenEmailIsAlreadyExist");
                     Assert.AreEqual(expectedWhenEmailIsAlreadyExist,actualEmailAlreadyExist);

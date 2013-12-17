@@ -314,7 +314,7 @@ namespace UserProfileSPA.TestCases
         }
 
 
-        [DeploymentItem("MinAndMaxDigitInCreditCard.csv"), DeploymentItem("MinAndMaxDigitsInCreditCard .csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\MinAndMaxDigitsInCreditCard .csv", "MinAndMaxDigitsInCreditCard #csv", DataAccessMethod.Sequential), TestMethod]
+        [DeploymentItem("AppData\\MinAndMaxDigitInCreditCard.csv"), DeploymentItem("MinAndMaxDigitsInCreditCard .csv"), DeploymentItem("MinAndMaxDigitInCreditCard.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\MinAndMaxDigitInCreditCard.csv", "MinAndMaxDigitInCreditCard#csv", DataAccessMethod.Sequential), TestMethod]
         public void MinAndMaxDigitInCreditCard()
         {
             IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;           
@@ -329,7 +329,7 @@ namespace UserProfileSPA.TestCases
                 Utility.CssToSetText("Email", Record("Email"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                 Utility.CssToSetText("Password", Record("Password"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
              
-                Utility.CsstoClick("SignInBtn", 4);
+                 Utility.CsstoClick("SignInBtn", 4);
                 Utility.Sleep(3);
                 string fareportalOverviewUrl = Record("CheapoairOverviewUrl");
                 Utility.Sleep(4);
@@ -342,6 +342,7 @@ namespace UserProfileSPA.TestCases
                     Utility.Sleep(4);
                     if (fareportalMyDetailsUrl == Driver.Url)
                     {
+                        Utility.Sleep(8);
                         Utility.ByLinkTexttoClick("ClickOnMyBillingDetails", 4);
                         Utility.Sleep(3);
 
@@ -350,6 +351,7 @@ namespace UserProfileSPA.TestCases
                         if (fareportalMyBillingDetailsUrl == Driver.Url)
                         {
                             Utility.CssToSetText("textcardNumber", enterCardNumber, 3);
+                            Utility.CsstoClick("textfirstName", 3);
                             Utility.CsstoClick("ClickOnSaveBillingDetailsBtn", 3);
                             if (!string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("textcardNumber", "value", 3)))
                             {
@@ -359,7 +361,7 @@ namespace UserProfileSPA.TestCases
 
                                 if (onlyNumeric.IsMatch(cardNumber))
                                 {
-                                    Assert.IsTrue(true);
+                                    //Assert.IsTrue(true);
                                     Regex r1 = new Regex("^[0-9]{13}$");
                                     Regex r2 = new Regex("^[0-9]{16}$");
                                     if (r1.IsMatch(cardNumber))
@@ -449,8 +451,7 @@ namespace UserProfileSPA.TestCases
                             Utility.Sleep(3);
                             Utility.CsstoClick("ClickOnSaveBillingDetailsBtn", 4);
                             string expectedValidationsIfMyBillingDetailsIsEmpty = UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("expectedValidationsIfMyBillingDetailsIsEmpty");
-                            string[] ValidationsIfMyBillingDetailsIsEmpty = expectedValidationsIfMyBillingDetailsIsEmpty.Split(",".ToCharArray());
-                            string strAddCard = Utility.ByXpath("AddNewCard", 5);
+                            string[] ValidationsIfMyBillingDetailsIsEmpty = expectedValidationsIfMyBillingDetailsIsEmpty.Split(",".ToCharArray());                            
                             
                             if ((string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("textcardNumber", "value", 2))) && (string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("textfirstName", "value", 2))) && (string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("textlastName", "value", 2))) && (string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("textnickName", "value", 2))) && (string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("textaddressLine1InBillingDetails", "value", 2))) && (string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("textcityInBillingdetails", "value", 2))) && (string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("textzipInBillingDetails", "value", 2)))) //&& (string.IsNullOrEmpty(GrabAttributeValueByCss("textBillingphoneNumbers", "value", 6))))
                             {
@@ -475,7 +476,7 @@ namespace UserProfileSPA.TestCases
                                 string zipValidationInBillingDetails = Utility.ByXpath("zipValidationInBillingDetails", 4);
                                 Assert.AreEqual(ValidationsIfMyBillingDetailsIsEmpty[7], zipValidationInBillingDetails);
 
-                                if (((Utility.GrabAttributeValueByCss("BillingAddressState", "value", 4)) == "0"))
+                                if (((Utility.GrabAttributeValueByCss("BillingAddressState", "value", 4)) == "00"))
                                 {
                                     string _billingAddressState = Utility.ByXpath("BillingAddressStateError", 4);
                                     Assert.AreEqual(ValidationsIfMyBillingDetailsIsEmpty[8], _billingAddressState);
