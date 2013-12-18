@@ -1073,6 +1073,80 @@ namespace UserProfileSPA.TestCases
         }
 
 
+        [DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\verifyGenderAgainstTitle.csv", "verifyGenderAgainstTitle#csv", DataAccessMethod.Sequential), DeploymentItem("verifyGenderAgainstTitle.csv"), TestMethod]
+        public void verifyGenderAgainstTitle()
+        {
+            IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
+
+            string _baseUrl = Record("SignInUrl");
+            if (_baseUrl == Driver.Url)
+            {
+                Utility.CssToSetText("Email", Record("Email"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
+                Utility.CssToSetText("Password", Record("Password"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
+
+                Utility.CsstoClick("SignInBtn", 3);
+                Utility.Sleep(2);
+                Utility.CsstoClick("clickOnMyInformation", 4);
+                Utility.Sleep(2);
+                string cheapoairMyInfoUrl = Record("CheapoairMyInfoUrl");
+                if (cheapoairMyInfoUrl == Driver.Url)
+                {                
+
+
+                        string titlesWhenGenderIsNoSpecified = UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("titlesWhenGenderIsNoSpecified");
+                        string[] _titlesWhenGenderIsNoSpecified = titlesWhenGenderIsNoSpecified.Split(",".ToCharArray());
+                        string titleForMales = UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("titleForMales");
+                        string[] _titleForMales = titleForMales.Split(",".ToCharArray());
+                        string titleForFemales = UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("titleForFemales");
+                        string[] _titleForFemales = titleForFemales.Split(",".ToCharArray());
+
+                        string _selectedGender = Record("SelectedGender");
+                        var _gender = Driver.FindElement(By.CssSelector(UserProfileSPA.Library.TestEnvironment.LoadXML("Gender")));
+                        var selectelementGender = new SelectElement(_gender);
+                        selectelementGender.SelectByText(_selectedGender);
+
+                        if (((Utility.GrabAttributeValueByCss("SelectCoTravellerAgeGroup", "value", 4)) == "1"))
+                        {
+                            string elements = Utility.ByCss("SelectCoTravellerTitle", 4);
+                            string[] title = elements.Replace("\r\n", "_").Split("_".ToCharArray());
+
+                            int i = 0;
+                            foreach (var element in title)
+                            {
+                                Assert.AreEqual(_titleForMales[i], element);
+                                i++;
+                            }
+                        }
+                        else if (((Utility.GrabAttributeValueByCss("SelectCoTravellerAgeGroup", "value", 4)) == "2"))
+                        {
+                            string elements = Utility.ByCss("SelectCoTravellerTitle", 4);
+                            string[] title = elements.Replace("\r\n", "_").Split("_".ToCharArray());
+
+                            int i = 0;
+                            foreach (var element in title)
+                            {
+                                Assert.AreEqual(_titleForFemales[i], element);
+                                i++;
+                            }
+                        }
+                        else
+                        {
+                            string elements = Utility.ByCss("SelectCoTravellerTitle", 4);
+                            string[] title = elements.Replace("\r\n", "_").Split("_".ToCharArray());
+
+                            int i = 0;
+                            foreach (var element in title)
+                            {
+                                Assert.AreEqual(_titlesWhenGenderIsNoSpecified[i], element);
+                                i++;
+                            }
+                        }
+                    
+                }
+            }
+        }
+
+
         [TestCleanup]
         public void Cleanup()
         {
