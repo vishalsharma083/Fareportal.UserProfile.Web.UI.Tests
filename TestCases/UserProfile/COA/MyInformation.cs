@@ -480,35 +480,39 @@ namespace UserProfileSPA.TestCases
                         Driver.Navigate().GoToUrl(_baseUrl);
                         Driver.Manage().Window.Maximize();
                         Utility.Sleep(6);
-                        //Driver.FindElement(By.CssSelector("")).SendKeys(Record("Email"));
-                        //Driver.FindElement(By.CssSelector("")).SendKeys(Record("Email"));
+                        if (_baseUrl == Driver.Url)
+                        {
+                            Driver.FindElement(By.CssSelector("input[id='txtUserName']")).SendKeys(Record("Email"));
+                            Driver.FindElement(By.CssSelector("input[id='txtPassword']")).SendKeys(_newpassword);
+                            Driver.FindElement(By.CssSelector("input[id='btnSignIn']")).Click();
+                            Utility.Sleep(4);
+                            Assert.AreEqual(_overViewUrl, Driver.Url);
+                            Driver.FindElement(By.CssSelector("a[class='myAccount']")).Click();
+                            Utility.Sleep(2);
+                            if (fareportalMyDetailsUrl == Driver.Url)
+                            {
+                                Assert.AreEqual(Record("Email"), myInformationEmail, "Email address is matched");
+                                Utility.Sleep(2);
+                                string _prevpassword = Record("Password");
+                                string _confrmPrevpassword = Record("Password");
+                                Driver.FindElement(By.CssSelector("div[class='email_grey']")).Click();
+                                Driver.FindElement(By.CssSelector("input[id='newPassword']")).SendKeys(_prevpassword);
+                                Driver.FindElement(By.CssSelector("input[id='newConfirmPassword']")).SendKeys(_confrmPrevpassword);
 
-                        Driver.FindElement(By.CssSelector("input[id='txtUserName']")).SendKeys(Record("Email"));
-                        Driver.FindElement(By.CssSelector("input[id='txtPassword']")).SendKeys(_newpassword);
-                        Driver.FindElement(By.CssSelector("input[id='btnSignIn']")).Click();
-                        Utility.Sleep(4);
-                        Assert.AreEqual(_overViewUrl, Driver.Url);
-                        Driver.FindElement(By.CssSelector("a[class='myAccount']")).Click();                         
-                         Utility.Sleep(2);
-                         if (fareportalMyDetailsUrl == Driver.Url)
-                         {                           
-                             Assert.AreEqual(Record("Email"), myInformationEmail, "Email address is matched");
-                             Utility.Sleep(2);
-                             string _prevpassword = Record("Password");
-                             string _confrmPrevpassword = Record("Password");
-                             Driver.FindElement(By.CssSelector("div[class='email_grey']")).Click();
-                             Driver.FindElement(By.CssSelector("input[id='newPassword']")).SendKeys(_prevpassword);
-                             Driver.FindElement(By.CssSelector("input[id='newConfirmPassword']")).SendKeys(_confrmPrevpassword);
+                                Driver.FindElement(By.CssSelector("span[class='tick_icon saveEditedPrefBtn']")).Click();
+                                Driver.FindElement(By.CssSelector("a[class='dropdown-toggle mgLft5']")).Click();
+                                Driver.FindElement(By.CssSelector("a[id='btnLogOut']")).Click();
 
-                             Driver.FindElement(By.CssSelector("span[class='tick_icon saveEditedPrefBtn']")).Click();
-                             Driver.FindElement(By.CssSelector("a[class='dropdown-toggle mgLft5']")).Click();
-                             Driver.FindElement(By.CssSelector("a[id='btnLogOut']")).Click();
-                            
-                         }
+                            }
 
-                        //Utility.CssToSetText("Email", Record("Email"), 4);
-                        //Utility.CssToSetText("CreateAccountEmailAddress", newpassword, 4);
-                        //Utility.CsstoClick("SignInBtn", 2);
+                            //Utility.CssToSetText("Email", Record("Email"), 4);
+                            //Utility.CssToSetText("CreateAccountEmailAddress", newpassword, 4);
+                            //Utility.CsstoClick("SignInBtn", 2);
+                        }
+                        else
+                        {
+                            Assert.IsTrue(false, "SignInUrl is not opened for second time.");
+                        }
                     }
                     else
                     {
