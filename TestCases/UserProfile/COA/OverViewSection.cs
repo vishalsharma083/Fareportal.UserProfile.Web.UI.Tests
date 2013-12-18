@@ -36,19 +36,19 @@ namespace UserProfileSPA.TestCases
         }
 
 
-        [DeploymentItem("FareAlerts.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\FareAlerts.csv", "FareAlerts#csv", DataAccessMethod.Sequential), TestMethod]
+        [DeploymentItem("FareAlerts.csv"), DeploymentItem("AppData\\FareAlerts.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\FareAlerts.csv", "FareAlerts#csv", DataAccessMethod.Sequential), TestMethod]
         public void FareAlerts()
         {
             IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;         
-            string Error = Record("Error");
-            Utility.CssToSetText("Email", Record("Email"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
-            Utility.CssToSetText("Password", Record("Password"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);        
+            string Error = Record("Error");                  
             string _fromCity = Record("FromCity");
             string _toCity = Record("ToCity");
             string _baseUrl = Record("URL");
             string _overViewUrl = Record("OverviewUrl");
             if (_baseUrl == Driver.Url)
-            {              
+            {
+                Utility.CssToSetText("Email", Record("Email"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
+                Utility.CssToSetText("Password", Record("Password"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT); 
                 Utility.CsstoClick("SignInBtn", 3);
                 Utility.Sleep(5);
                 if (_overViewUrl == Driver.Url)
