@@ -57,7 +57,8 @@
           <--><!--ConfrmPassword>//*[@id='MyDetails']/div[1]/div[2]/div[6]/span</ConfrmPassword>-->
         <PasswordErrorWhenBlank>html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/form/div/div[1]/div[2]/div[4]</PasswordErrorWhenBlank>
         <ConfrmPasswordWhenBlank>html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/form/div/div[1]/div[2]/div[6]</ConfrmPasswordWhenBlank>
-        <ConfrmPaswordErrorMsgWhenPasswordIsNotBlankOrBoth>html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/form/div/div[1]/div[2]/div[5]</ConfrmPaswordErrorMsgWhenPasswordIsNotBlankOrBoth> 
+        <ConfrmPaswordErrorMsgWhenPasswordIsNotBlankOrBoth>html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/form/div/div[1]/div[2]/div[5]</ConfrmPaswordErrorMsgWhenPasswordIsNotBlankOrBoth>
+        <ClickOnDismissLink>html/body/div[4]/p/span[2]</ClickOnDismissLink>
     </SignInInformation>
 
       <PersonsalInfromation>

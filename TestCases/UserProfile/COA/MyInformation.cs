@@ -479,6 +479,7 @@ namespace UserProfileSPA.TestCases
                         Driver = new FirefoxDriver();
                         Driver.Navigate().GoToUrl(_baseUrl);
                         Driver.Manage().Window.Maximize();
+                        Utility.Sleep(6);
                         //Driver.FindElement(By.CssSelector("")).SendKeys(Record("Email"));
                         //Driver.FindElement(By.CssSelector("")).SendKeys(Record("Email"));
 
