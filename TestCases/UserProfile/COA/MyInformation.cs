@@ -469,6 +469,8 @@ namespace UserProfileSPA.TestCases
                         Utility.CssToSetText("NewPassword", _newpassword, 4);
                         Utility.CssToSetText("ConfrmPassword", _confrmpassword, 4); 
                         Utility.CsstoClick("ClickOnConfrmPasswordCheckBox", 4);
+                        Utility.XPathtoClick("ClickOnDismissLink",4);
+                        Utility.Sleep(2);
                         Utility.CsstoClick("ClickOnWelcomeDropdown", 4);
                         Utility.Sleep(2);
                         Utility.CsstoClick("ClickOnSignOut", 4);
