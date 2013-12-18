@@ -438,7 +438,7 @@ namespace UserProfileSPA.TestCases
         }
 
 
-        [DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\SignInInformationInMyInformation.csv", "SignInInformationInMyInformation#csv", DataAccessMethod.Sequential), DeploymentItem("AppData\\SignInInformationInMyInformation.csv"), TestMethod]
+        [DeploymentItem("AppData\\SignInInformationInMyInformation.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\SignInInformationInMyInformation.csv", "SignInInformationInMyInformation#csv", DataAccessMethod.Sequential), TestMethod]
         public void SignInInformation()
         {
             IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;            

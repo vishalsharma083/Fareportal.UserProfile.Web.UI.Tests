@@ -332,7 +332,7 @@ namespace UserProfileSPA.TestCases
                  Utility.CsstoClick("SignInBtn", 4);
                 Utility.Sleep(3);
                 string fareportalOverviewUrl = Record("CheapoairOverviewUrl");
-                Utility.Sleep(4);
+                Utility.Sleep(10);
                 if (fareportalOverviewUrl == Driver.Url)
                 {
                     Utility.CsstoClick("clickOnMyInformation", 4);
@@ -416,9 +416,9 @@ namespace UserProfileSPA.TestCases
                 Assert.IsTrue(false, "SignInUrl is not opened.");
             }
         }
-               
 
-        [DeploymentItem("MyBillingDetailsAllValidations.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\MyBillingDetailsAllValidations.csv", "MyBillingDetailsAllValidations#csv", DataAccessMethod.Sequential), TestMethod]
+
+        [DeploymentItem("MyBillingDetailsAllValidations.csv"), DeploymentItem("AppData\\MyBillingDetailsAllValidations.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\MyBillingDetailsAllValidations.csv", "MyBillingDetailsAllValidations#csv", DataAccessMethod.Sequential), TestMethod]
         public void MyBillingDetailsAllValidations()
         {
             IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;            
