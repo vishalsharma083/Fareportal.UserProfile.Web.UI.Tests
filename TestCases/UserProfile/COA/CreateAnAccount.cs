@@ -478,6 +478,7 @@ namespace UserProfileSPA.TestCases
                             string expectedErrorMsg = Record("ExpectedErrorMsg");
                             if (expectedErrorMsg != "No Error")
                             {
+                                Utility.CsstoClick("ClickOnCreateAnAccountBtnSignUpFree", 4);
                                 string actualErrorMsg = Utility.ByXpath("LeapYearErrorMsgInCreateAnAccount", UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                                 Assert.AreEqual(expectedErrorMsg, actualErrorMsg);
                             }

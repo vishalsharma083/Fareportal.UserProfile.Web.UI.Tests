@@ -470,6 +470,7 @@ namespace UserProfileSPA.TestCases
                         Utility.CssToSetText("ConfrmPassword", _confrmpassword, 4); 
                         Utility.CsstoClick("ClickOnConfrmPasswordCheckBox", 4);
                         Utility.CsstoClick("ClickOnWelcomeDropdown", 4);
+                        Utility.Sleep(2);
                         Utility.CsstoClick("ClickOnSignOut", 4);
                         Utility.Sleep(5);
                         Driver.Close();
@@ -1073,7 +1074,7 @@ namespace UserProfileSPA.TestCases
         }
 
 
-        [DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\verifyGenderAgainstTitle.csv", "verifyGenderAgainstTitle#csv", DataAccessMethod.Sequential), DeploymentItem("verifyGenderAgainstTitle.csv"), TestMethod]
+        [DeploymentItem("verifyGenderAgainstTitle.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\verifyGenderAgainstTitle.csv", "verifyGenderAgainstTitle#csv", DataAccessMethod.Sequential), TestMethod]
         public void verifyGenderAgainstTitle()
         {
             IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
@@ -1105,7 +1106,7 @@ namespace UserProfileSPA.TestCases
                         var selectelementGender = new SelectElement(_gender);
                         selectelementGender.SelectByText(_selectedGender);
 
-                        if (((Utility.GrabAttributeValueByCss("SelectCoTravellerAgeGroup", "value", 4)) == "1"))
+                        if (((Utility.GrabAttributeValueByCss("CoTravellerGender", "value", 4)) == "1"))
                         {
                             string elements = Utility.ByCss("SelectCoTravellerTitle", 4);
                             string[] title = elements.Replace("\r\n", "_").Split("_".ToCharArray());
@@ -1117,7 +1118,7 @@ namespace UserProfileSPA.TestCases
                                 i++;
                             }
                         }
-                        else if (((Utility.GrabAttributeValueByCss("SelectCoTravellerAgeGroup", "value", 4)) == "2"))
+                        else if (((Utility.GrabAttributeValueByCss("CoTravellerGender", "value", 4)) == "2"))
                         {
                             string elements = Utility.ByCss("SelectCoTravellerTitle", 4);
                             string[] title = elements.Replace("\r\n", "_").Split("_".ToCharArray());

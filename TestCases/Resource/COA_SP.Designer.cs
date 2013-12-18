@@ -366,7 +366,7 @@ namespace UserProfileSPA.TestCases.Resource {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Not Specified,Mr,,Dr,Rev.
+        ///   Looks up a localized string similar to Not Specified,Mr,Dr,Rev.
         /// </summary>
         internal static string titleForMales {
             get {

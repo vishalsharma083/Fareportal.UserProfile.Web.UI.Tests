@@ -992,7 +992,7 @@ namespace UserProfileSPA.TestCases
             }
         }
 
-        [DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\verifyGenderAgainstTitle.csv", "verifyGenderAgainstTitle#csv", DataAccessMethod.Sequential), DeploymentItem("verifyGenderAgainstTitle.csv"), TestMethod]
+        [DeploymentItem("verifyGenderAgainstTitle.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\verifyGenderAgainstTitle.csv", "verifyGenderAgainstTitle#csv", DataAccessMethod.Sequential), TestMethod]
         public void verifyGenderAgainstTitle()
         { 
            IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;

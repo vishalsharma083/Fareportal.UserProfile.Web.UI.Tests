@@ -234,7 +234,7 @@ Click here to create an account – its quick &amp; easy.</value>
     <value>Not Specified,Mrs,Miss,Ms,Dr,Rev</value>
   </data>
   <data name="titleForMales" xml:space="preserve">
-    <value>Not Specified,Mr,,Dr,Rev</value>
+    <value>Not Specified,Mr,Dr,Rev</value>
   </data>
   <data name="titlesWhenGenderIsNoSpecified" xml:space="preserve">
     <value>Not Specified,Mr,Mrs,Miss,Ms,Dr,Rev</value>
