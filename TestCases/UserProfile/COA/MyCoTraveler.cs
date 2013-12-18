@@ -38,7 +38,7 @@ namespace UserProfileSPA.TestCases
 
 
 
-        [DeploymentItem("AddNewCoTraveler.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\AddNewCoTraveler.csv", "AddNewCoTraveler#csv", DataAccessMethod.Sequential), TestMethod]
+        [DeploymentItem("AddNewCoTraveler.csv"), DeploymentItem("AppData\\AddNewCoTraveler.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\AddNewCoTraveler.csv", "AddNewCoTraveler#csv", DataAccessMethod.Sequential), TestMethod]
         public void AddCoTraveler()
         {
             IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;

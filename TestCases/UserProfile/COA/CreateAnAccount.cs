@@ -509,7 +509,8 @@ namespace UserProfileSPA.TestCases
                 if (signUpUrl == Driver.Url)
                 {
                     Utility.CssToSetText("TextInEmail", Record("EnterAlreadyExistEmail"), 3);
-                    Utility.CsstoClick("ClickOnCreateAnAccountBtnSignUpFree", 4);                   
+                    Utility.CsstoClick("ClickOnCreateAnAccountBtnSignUpFree", 4);
+                    Utility.Sleep(15);
                     string actualEmailAlreadyExist = Utility.ByXpath("AlreadyExistEmail",4);
                     string expectedWhenEmailIsAlreadyExist = UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("expectedWhenEmailIsAlreadyExist");
                     Assert.AreEqual(expectedWhenEmailIsAlreadyExist,actualEmailAlreadyExist);
