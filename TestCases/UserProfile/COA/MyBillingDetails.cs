@@ -450,9 +450,10 @@ namespace UserProfileSPA.TestCases
                             Utility.CsstoClick("AddNewAddressCheckBox", 4);
                             Utility.Sleep(3);
                             Utility.CsstoClick("ClickOnSaveBillingDetailsBtn", 4);
+                            Utility.Sleep(4);
                             string expectedValidationsIfMyBillingDetailsIsEmpty = UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("expectedValidationsIfMyBillingDetailsIsEmpty");
-                            string[] ValidationsIfMyBillingDetailsIsEmpty = expectedValidationsIfMyBillingDetailsIsEmpty.Split(",".ToCharArray());                            
-                            
+                            string[] ValidationsIfMyBillingDetailsIsEmpty = expectedValidationsIfMyBillingDetailsIsEmpty.Split(",".ToCharArray());
+
                             if ((string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("textcardNumber", "value", 4))) && (string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("textfirstName", "value", 4))) && (string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("textlastName", "value", 4))) && (string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("textnickName", "value", 4))) && (string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("textaddressLine1InBillingDetails", "value", 4))) && (string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("textcityInBillingdetails", "value", 4))) && (string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("textzipInBillingDetails", "value", 4)))) //&& (string.IsNullOrEmpty(GrabAttributeValueByCss("textBillingphoneNumbers", "value", 6))))
                             {
                                 string cardNumberValidation = Utility.ByXpath("cardNumberValidation", 4);

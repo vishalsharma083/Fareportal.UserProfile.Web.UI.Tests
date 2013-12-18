@@ -438,7 +438,7 @@ namespace UserProfileSPA.TestCases
         }
 
 
-        [DeploymentItem("AppData\\SignInInformationInMyInformation.csv"), DeploymentItem("SignInInformationInMyInformation.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\SignInInformationInMyInformation.csv", "SignInInformationInMyInformation#csv", DataAccessMethod.Sequential), TestMethod]
+        [DeploymentItem("AppData\\SignInInformationInMyInformation.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\SignInInformationInMyInformation.csv", "SignInInformationInMyInformation#csv", DataAccessMethod.Sequential), TestMethod]
         public void SignInInformation()
         {
             IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;            
@@ -449,7 +449,7 @@ namespace UserProfileSPA.TestCases
                 Utility.CssToSetText("Email", Record("Email"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                 Utility.CssToSetText("Password", Record("Password"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                 Utility.CsstoClick("SignInBtn", 3);
-                Utility.Sleep(7);
+                Utility.Sleep(3);
                 string _overViewUrl = Record("OverviewUrl");
                 if (_overViewUrl == Driver.Url)
                 {
@@ -486,6 +486,24 @@ namespace UserProfileSPA.TestCases
                         Driver.FindElement(By.CssSelector("input[id='btnSignIn']")).Click();
                         Utility.Sleep(4);
                         Assert.AreEqual(_overViewUrl, Driver.Url);
+                        Driver.FindElement(By.CssSelector("a[class='myAccount']")).Click();                         
+                         Utility.Sleep(2);
+                         if (fareportalMyDetailsUrl == Driver.Url)
+                         {                           
+                             Assert.AreEqual(Record("Email"), myInformationEmail, "Email address is matched");
+                             Utility.Sleep(2);
+                             string _prevpassword = Record("Password");
+                             string _confrmPrevpassword = Record("Password");
+                             Driver.FindElement(By.CssSelector("div[class='email_grey']")).Click();
+                             Driver.FindElement(By.CssSelector("input[id='newPassword']")).SendKeys(_prevpassword);
+                             Driver.FindElement(By.CssSelector("input[id='newConfirmPassword']")).SendKeys(_confrmPrevpassword);
+
+                             Driver.FindElement(By.CssSelector("span[class='tick_icon saveEditedPrefBtn']")).Click();
+                             Driver.FindElement(By.CssSelector("a[class='dropdown-toggle mgLft5']")).Click();
+                             Driver.FindElement(By.CssSelector("a[id='btnLogOut']")).Click();
+                            
+                         }
+
                         //Utility.CssToSetText("Email", Record("Email"), 4);
                         //Utility.CssToSetText("CreateAccountEmailAddress", newpassword, 4);
                         //Utility.CsstoClick("SignInBtn", 2);
@@ -1042,6 +1060,7 @@ namespace UserProfileSPA.TestCases
                         if (expectedErrorMsg != "No Error")
                         {
                             Utility.CsstoClick("SaveInformationBtn",3);
+                            Utility.Sleep(7);
                             string actualErrorMsg = Utility.ByXpath("LeapYearErrorMsgInMyDetails", UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                             Utility.Sleep(3);
                             Assert.AreEqual(expectedErrorMsg, actualErrorMsg);
