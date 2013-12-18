@@ -68,12 +68,7 @@ namespace UserProfileSPA.TestCases
                                 string selectAgeGroupForFirstCotraveler = Record("selectAgeGroupForFirstCotraveler");
                                 var enterAgeGroupForFirstCoTraveler = Driver.FindElement(By.CssSelector(TestEnvironment.LoadXML("SelectCoTravellerAgeGroup")));
                                 var selectElementForFirstCotraveler = new SelectElement(enterAgeGroupForFirstCoTraveler);
-                                selectElementForFirstCotraveler.SelectByText(selectAgeGroupForFirstCotraveler);
-
-                                string SelectTitleForFirstCotraveler = Record("SelectTitleForFirstCotraveler");
-                                var enterTitleForFirstCotraveler = Driver.FindElement(By.CssSelector(TestEnvironment.LoadXML("SelectCoTravellerTitle")));
-                                var selectElementTitleForFirstCotraveler = new SelectElement(enterTitleForFirstCotraveler);
-                                selectElementTitleForFirstCotraveler.SelectByText(SelectTitleForFirstCotraveler);
+                                selectElementForFirstCotraveler.SelectByText(selectAgeGroupForFirstCotraveler);                               
 
                                 string _firstNameForFirstCotraveler = Record("FirstNameForFirstCotraveler");
                                 string _lastNameForFirstCotraveler = Record("LastNameForFirstCotraveler");
@@ -102,6 +97,11 @@ namespace UserProfileSPA.TestCases
                                 var selectElementGenderForFirstCotraveler = new SelectElement(selectGenderForFirstCotraveler);
                                 selectElementGenderForFirstCotraveler.SelectByText(_genderForFirstCotraveler);
 
+                                string SelectTitleForFirstCotraveler = Record("SelectTitleForFirstCotraveler");
+                                var enterTitleForFirstCotraveler = Driver.FindElement(By.CssSelector(TestEnvironment.LoadXML("SelectCoTravellerTitle")));
+                                var selectElementTitleForFirstCotraveler = new SelectElement(enterTitleForFirstCotraveler);
+                                selectElementTitleForFirstCotraveler.SelectByText(SelectTitleForFirstCotraveler);
+
                                 Utility.XPathtoClick("ClickOnFlightPreferecne", 3);
                                 Utility.Sleep(3);
                                 string _homeAirportForFirstCotraveler = Record("HomeAirportForFirstCotraveler");
@@ -121,12 +121,7 @@ namespace UserProfileSPA.TestCases
                                             string selectAgeGroupForSecondCotraveler = Record("selectAgeGroupForSecondCotraveler");
                                             var enterAgeGroupForSecondCoTraveler = Driver.FindElement(By.CssSelector(TestEnvironment.LoadXML("SelectCoTravellerAgeGroup")));
                                             var selectElementForSecondCotraveler = new SelectElement(enterAgeGroupForSecondCoTraveler);
-                                            selectElementForSecondCotraveler.SelectByText(selectAgeGroupForSecondCotraveler);
-
-                                            string SelectTitleForSecondCotraveler = Record("SelectTitleForSecondCotraveler");
-                                            var enterTitleForSecondCotraveler = Driver.FindElement(By.CssSelector(TestEnvironment.LoadXML("SelectCoTravellerTitle")));
-                                            var selectElementTitleForSecondCotraveler = new SelectElement(enterTitleForSecondCotraveler);
-                                            selectElementTitleForSecondCotraveler.SelectByText(SelectTitleForSecondCotraveler);
+                                            selectElementForSecondCotraveler.SelectByText(selectAgeGroupForSecondCotraveler);                                           
 
                                             string _firstNameForSecondCotraveler = Record("FirstNameForSecondCotraveler");
                                             string _lastNameForSecondCotraveler = Record("LastNameForSecondCotraveler");
@@ -154,6 +149,11 @@ namespace UserProfileSPA.TestCases
                                             var selectGenderForSecondCotraveler = Driver.FindElement(By.CssSelector(TestEnvironment.LoadXML("CoTravellerGender")));
                                             var selectElementGenderForSecondCotraveler = new SelectElement(selectGenderForSecondCotraveler);
                                             selectElementGenderForSecondCotraveler.SelectByText(_genderForSecondCotraveler);
+
+                                            string SelectTitleForSecondCotraveler = Record("SelectTitleForSecondCotraveler");
+                                            var enterTitleForSecondCotraveler = Driver.FindElement(By.CssSelector(TestEnvironment.LoadXML("SelectCoTravellerTitle")));
+                                            var selectElementTitleForSecondCotraveler = new SelectElement(enterTitleForSecondCotraveler);
+                                            selectElementTitleForSecondCotraveler.SelectByText(SelectTitleForSecondCotraveler);
 
                                             Utility.XPathtoClick("ClickOnFlightPreferecne", 3);
                                             Utility.Sleep(3);

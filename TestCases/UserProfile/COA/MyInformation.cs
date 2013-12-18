@@ -1008,17 +1008,17 @@ namespace UserProfileSPA.TestCases
                 var elementMonth = Driver.FindElement(By.CssSelector(UserProfileSPA.Library.TestEnvironment.LoadXML("DobMonth")));
                 var selectElementMonth = new SelectElement(elementMonth);
                 selectElementMonth.SelectByText(month);
-
+                Utility.Sleep(4);
                 var elementDay = Driver.FindElement(By.CssSelector(UserProfileSPA.Library.TestEnvironment.LoadXML("DobDay")));
                 var selectElementDay = new SelectElement(elementDay);
                 selectElementDay.SelectByText(_day);
-
+                Utility.Sleep(4);
                 IWebElement _verifyDobyear = Driver.FindElement(By.CssSelector(TestEnvironment.LoadXML("DobYear")));
                 var selectElementOfYear = new SelectElement(_verifyDobyear);
                 selectElementOfYear.SelectByText(_year);
                 string actualDobYear = selectElementOfYear.SelectedOption.Text;
                 int DobYear = Convert.ToInt32(actualDobYear);
-
+                Utility.Sleep(4);
                 if (((Utility.GrabAttributeValueByCss("DobMonth", "value", 4)) == "0") && ((Utility.GrabAttributeValueByCss("DobDay", "value", 4)) == "0") && (Utility.GrabAttributeValueByCss("DobYear", "value", 4)) == "0")
                 {
                     Assert.IsTrue(false, "Please provide a date of birth");
@@ -1041,8 +1041,9 @@ namespace UserProfileSPA.TestCases
                         string expectedErrorMsg = Record("ExpectedErrorMsg");
                         if (expectedErrorMsg != "No Error")
                         {
+                            Utility.CsstoClick("SaveInformationBtn",3);
                             string actualErrorMsg = Utility.ByXpath("LeapYearErrorMsgInMyDetails", UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
-                            Utility.Sleep(10);
+                            Utility.Sleep(3);
                             Assert.AreEqual(expectedErrorMsg, actualErrorMsg);
                         }
                     }
