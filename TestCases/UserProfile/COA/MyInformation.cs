@@ -438,7 +438,7 @@ namespace UserProfileSPA.TestCases
         }
 
 
-        [DeploymentItem("AppData\\SignInInformationInMyInformation.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\SignInInformationInMyInformation.csv", "SignInInformationInMyInformation#csv", DataAccessMethod.Sequential), TestMethod]
+        [DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\SignInInformationInMyInformation.csv", "SignInInformationInMyInformation#csv", DataAccessMethod.Sequential), DeploymentItem("AppData\\SignInInformationInMyInformation.csv"), TestMethod]
         public void SignInInformation()
         {
             IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;            
@@ -464,13 +464,10 @@ namespace UserProfileSPA.TestCases
                         Utility.Sleep(2);
                         string _newpassword = Record("NewPassword");
                         string _confrmpassword = Record("ConfrmPassword");
-                        Random randomNum = new Random();
-                        int num = randomNum.Next(5, 100);
-                        string newpassword = _newpassword + num;
-                        string confrmpassword = _confrmpassword + num;
-                        Utility.CsstoClick("ClickOnEmailGrey", 3);                       
-                        Utility.CssToSetText("NewPassword", newpassword, 4);                       
-                        Utility.CssToSetText("ConfrmPassword", confrmpassword, 4); 
+                        
+                        Utility.CsstoClick("ClickOnEmailGrey", 3);
+                        Utility.CssToSetText("NewPassword", _newpassword, 4);
+                        Utility.CssToSetText("ConfrmPassword", _confrmpassword, 4); 
                         Utility.CsstoClick("ClickOnConfrmPasswordCheckBox", 4);
                         Utility.CsstoClick("ClickOnWelcomeDropdown", 4);
                         Utility.CsstoClick("ClickOnSignOut", 4);
@@ -478,11 +475,12 @@ namespace UserProfileSPA.TestCases
                         Driver.Close();
                         Driver = new FirefoxDriver();
                         Driver.Navigate().GoToUrl(_baseUrl);
+                        Driver.Manage().Window.Maximize();
                         //Driver.FindElement(By.CssSelector("")).SendKeys(Record("Email"));
                         //Driver.FindElement(By.CssSelector("")).SendKeys(Record("Email"));
 
                         Driver.FindElement(By.CssSelector("input[id='txtUserName']")).SendKeys(Record("Email"));
-                        Driver.FindElement(By.CssSelector("input[id='txtPassword']")).SendKeys(newpassword);
+                        Driver.FindElement(By.CssSelector("input[id='txtPassword']")).SendKeys(_newpassword);
                         Driver.FindElement(By.CssSelector("input[id='btnSignIn']")).Click();
                         Utility.Sleep(4);
                         Assert.AreEqual(_overViewUrl, Driver.Url);

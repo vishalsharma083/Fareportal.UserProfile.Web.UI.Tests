@@ -357,11 +357,38 @@ namespace UserProfileSPA.TestCases.Resource {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Not Specified,Mrs,Miss,Ms,Dr,Rev.
+        /// </summary>
+        internal static string titleForFemales {
+            get {
+                return ResourceManager.GetString("titleForFemales", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Not Specified,Mr,,Dr,Rev.
+        /// </summary>
+        internal static string titleForMales {
+            get {
+                return ResourceManager.GetString("titleForMales", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Not Specified,Mr,Mrs,Miss,Ms,Dr,Rev.
         /// </summary>
         internal static string titlesForAdultAndSenior {
             get {
                 return ResourceManager.GetString("titlesForAdultAndSenior", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Not Specified,Mr,Mrs,Miss,Ms,Dr,Rev.
+        /// </summary>
+        internal static string titlesWhenGenderIsNoSpecified {
+            get {
+                return ResourceManager.GetString("titlesWhenGenderIsNoSpecified", resourceCulture);
             }
         }
         

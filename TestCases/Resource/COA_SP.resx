@@ -230,4 +230,13 @@ Click here to create an account – its quick &amp; easy.</value>
   <data name="expectedWhenEmailIsEmpty" xml:space="preserve">
     <value>Your email is required</value>
   </data>
+  <data name="titleForFemales" xml:space="preserve">
+    <value>Not Specified,Mrs,Miss,Ms,Dr,Rev</value>
+  </data>
+  <data name="titleForMales" xml:space="preserve">
+    <value>Not Specified,Mr,,Dr,Rev</value>
+  </data>
+  <data name="titlesWhenGenderIsNoSpecified" xml:space="preserve">
+    <value>Not Specified,Mr,Mrs,Miss,Ms,Dr,Rev</value>
+  </data>
 </root>
