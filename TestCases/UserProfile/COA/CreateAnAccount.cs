@@ -495,7 +495,7 @@ namespace UserProfileSPA.TestCases
             }
         }
 
-        [DeploymentItem("VerifyingEmailAddressAlreadyExistInCreateAnAccount.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\VerifyingEmailAddressAlreadyExistInCreateAnAccount.csv", "VerifyingEmailAddressAlreadyExistInCreateAnAccount#csv", DataAccessMethod.Sequential), TestMethod]
+        [DeploymentItem("AppData\\VerifyingEmailAddressAlreadyExistInCreateAnAccount.csv"), DeploymentItem("VerifyingEmailAddressAlreadyExistInCreateAnAccount.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\VerifyingEmailAddressAlreadyExistInCreateAnAccount.csv", "VerifyingEmailAddressAlreadyExistInCreateAnAccount#csv", DataAccessMethod.Sequential), TestMethod]
         public void VerifyingEmailAddressAlreadyExistInCreateAnAccount()
         {
             IWebDriver Driver = TestEnvironment.Driver;
@@ -509,7 +509,7 @@ namespace UserProfileSPA.TestCases
                 if (signUpUrl == Driver.Url)
                 {
                     Utility.CssToSetText("TextInEmail", Record("EnterAlreadyExistEmail"), 3);
-                    Utility.CsstoClick("TextInPassword", 4);                   
+                    Utility.CsstoClick("ClickOnCreateAnAccountBtnSignUpFree", 4);                   
                     string actualEmailAlreadyExist = Utility.ByXpath("AlreadyExistEmail",4);
                     string expectedWhenEmailIsAlreadyExist = UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("expectedWhenEmailIsAlreadyExist");
                     Assert.AreEqual(expectedWhenEmailIsAlreadyExist,actualEmailAlreadyExist);

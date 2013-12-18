@@ -438,7 +438,7 @@ namespace UserProfileSPA.TestCases
         }
 
 
-        [DeploymentItem("SignInInformationInMyInformation.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\SignInInformationInMyInformation.csv", "SignInInformationInMyInformation#csv", DataAccessMethod.Sequential), TestMethod]
+        [DeploymentItem("SignInInformationInMyInformation.csv"), DeploymentItem("AppData\\SignInInformationInMyInformation.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\SignInInformationInMyInformation.csv", "SignInInformationInMyInformation#csv", DataAccessMethod.Sequential), TestMethod]
         public void SignInInformation()
         {
             IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;            
@@ -478,8 +478,8 @@ namespace UserProfileSPA.TestCases
                         Driver.Close();
                         Driver = new FirefoxDriver();
                         Driver.Navigate().GoToUrl(_baseUrl);
-                        Driver.FindElement(By.CssSelector("")).SendKeys(Record("Email"));
-                        Driver.FindElement(By.CssSelector("")).SendKeys(Record("Email"));
+                        //Driver.FindElement(By.CssSelector("")).SendKeys(Record("Email"));
+                        //Driver.FindElement(By.CssSelector("")).SendKeys(Record("Email"));
 
                         Driver.FindElement(By.CssSelector("input[id='txtUserName']")).SendKeys(Record("Email"));
                         Driver.FindElement(By.CssSelector("input[id='txtPassword']")).SendKeys(newpassword);
@@ -604,7 +604,7 @@ namespace UserProfileSPA.TestCases
                 Utility.CsstoClick("clickOnMyInformation", 4);
                 Utility.Sleep(2);
                 Utility.CsstoClear("City", 2);
-                if ((Utility.GrabAttributeValueByCss("Country", "value", 2) == "United States") || (Utility.GrabAttributeValueByCss("Country", "value", 2) == "Canada"))
+                if ((Country == "United States") || (Country == "Canada"))
                 {
                     var element1 = Driver.FindElement(By.CssSelector(UserProfileSPA.Library.TestEnvironment.LoadXML("Country")));
                     var selectElement1 = new SelectElement(element1);

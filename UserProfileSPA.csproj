@@ -279,7 +279,7 @@
     <None Include="ValidatingPasswordForCreateAnAccount.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="VerifyingEmailAddressAlreadyExistInCreateAnAccount.csv">
+    <None Include="AppData\VerifyingEmailAddressAlreadyExistInCreateAnAccount.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="VerifyTheFirstAndLastNameValidationsInMyBillingDetails.csv">

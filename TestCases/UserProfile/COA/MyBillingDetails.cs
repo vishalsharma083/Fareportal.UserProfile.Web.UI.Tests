@@ -314,7 +314,7 @@ namespace UserProfileSPA.TestCases
         }
 
 
-        [DeploymentItem("AppData\\MinAndMaxDigitInCreditCard.csv"), DeploymentItem("MinAndMaxDigitsInCreditCard .csv"), DeploymentItem("MinAndMaxDigitInCreditCard.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\MinAndMaxDigitInCreditCard.csv", "MinAndMaxDigitInCreditCard#csv", DataAccessMethod.Sequential), TestMethod]
+        [DeploymentItem("MinAndMaxDigitInCreditCard.csv"), DeploymentItem("MinAndMaxDigitsInCreditCard .csv"), DeploymentItem("AppData\\MinAndMaxDigitInCreditCard.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\MinAndMaxDigitInCreditCard.csv", "MinAndMaxDigitInCreditCard#csv", DataAccessMethod.Sequential), TestMethod]
         public void MinAndMaxDigitInCreditCard()
         {
             IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;           
@@ -479,7 +479,7 @@ namespace UserProfileSPA.TestCases
                                 if (((Utility.GrabAttributeValueByCss("BillingAddressState", "value", 4)) == "00"))
                                 {
                                     string _billingAddressState = Utility.ByXpath("BillingAddressStateError", 4);
-                                    Assert.AreEqual(ValidationsIfMyBillingDetailsIsEmpty[8], _billingAddressState);
+                                    Assert.AreEqual(ValidationsIfMyBillingDetailsIsEmpty[9], _billingAddressState);
                                 }
 
                                 if (((Utility.GrabAttributeValueByCss("Month", "value", 4)) == "0") && ((Utility.GrabAttributeValueByCss("Year", "value", 4)) == "0"))
