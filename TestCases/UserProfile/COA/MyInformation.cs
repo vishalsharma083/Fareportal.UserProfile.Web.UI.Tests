@@ -785,20 +785,20 @@ namespace UserProfileSPA.TestCases
                 Utility.CssToSetText("Email", Record("Email"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                 Utility.CssToSetText("Password", Record("Password"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                 Utility.CsstoClick("SignInBtn", 3);
-
+                Utility.Sleep(5);
                 string _overView = Record("OverView");
                 if (Prefix + _overView == Driver.Url)
                 {
-                    string city = Record("City");
-                    string state = Record("State");
-                    Utility.Sleep(2);
+                    
                     Utility.CsstoClick("clickOnMyInformation", 4);
                     string _myInformationUrl = Record("MyInformationUrl");
                     if (Prefix + _myInformationUrl == Driver.Url)
                     {
+                        string city = Record("City");
+                        string state = Record("State");
                         Utility.Sleep(2);
-                        Utility.CsstoClear("City", 2);
-                        Utility.CsstoClear("State", 2);
+                        Utility.CsstoClear("City", 4);
+                        //Utility.CsstoClear("State", 4);
                         Utility.CssToSetText("City", city, 2);
                         Utility.CssToSetText("State", state, 2);
                         Utility.CsstoClick("SaveInformationBtn", 3);
@@ -1154,71 +1154,84 @@ namespace UserProfileSPA.TestCases
         {
             IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
 
-            string _baseUrl = Record("SignInUrl");
-            if (_baseUrl == Driver.Url)
+            if (Prefix+SignInUrl == Driver.Url)
             {
                 Utility.CssToSetText("Email", Record("Email"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                 Utility.CssToSetText("Password", Record("Password"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
-
                 Utility.CsstoClick("SignInBtn", 3);
-                Utility.Sleep(2);
-                Utility.CsstoClick("clickOnMyInformation", 4);
-                Utility.Sleep(2);
-                string cheapoairMyInfoUrl = Record("CheapoairMyInfoUrl");
-                if (cheapoairMyInfoUrl == Driver.Url)
+
+                string _overViewUrl = Record("OverViewUrl");
+                if (Prefix + _overViewUrl == Driver.Url)
                 {
-
-
-                    string titlesWhenGenderIsNoSpecified = UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("titlesWhenGenderIsNoSpecified");
-                    string[] _titlesWhenGenderIsNoSpecified = titlesWhenGenderIsNoSpecified.Split(",".ToCharArray());
-                    string titleForMales = UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("titleForMales");
-                    string[] _titleForMales = titleForMales.Split(",".ToCharArray());
-                    string titleForFemales = UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("titleForFemales");
-                    string[] _titleForFemales = titleForFemales.Split(",".ToCharArray());
-
-                    string _selectedGender = Record("SelectedGender");
-                    var _gender = Driver.FindElement(By.CssSelector(UserProfileSPA.Library.TestEnvironment.LoadXML("Gender")));
-                    var selectelementGender = new SelectElement(_gender);
-                    selectelementGender.SelectByText(_selectedGender);
-
-                    if (((Utility.GrabAttributeValueByCss("CoTravellerGender", "value", 4)) == "1"))
+                    Utility.Sleep(2);
+                    Utility.CsstoClick("clickOnMyInformation", 4);
+                    Utility.Sleep(2);
+                    string cheapoairMyInfoUrl = Record("MyInformationUrl");
+                    if (cheapoairMyInfoUrl == Driver.Url)
                     {
-                        string elements = Utility.ByCss("SelectCoTravellerTitle", 4);
-                        string[] title = elements.Replace("\r\n", "_").Split("_".ToCharArray());
+                        string titlesWhenGenderIsNoSpecified = UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("titlesWhenGenderIsNoSpecified");
+                        string[] _titlesWhenGenderIsNoSpecified = titlesWhenGenderIsNoSpecified.Split(",".ToCharArray());
+                        string titleForMales = UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("titleForMales");
+                        string[] _titleForMales = titleForMales.Split(",".ToCharArray());
+                        string titleForFemales = UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("titleForFemales");
+                        string[] _titleForFemales = titleForFemales.Split(",".ToCharArray());
 
-                        int i = 0;
-                        foreach (var element in title)
-                        {
-                            Assert.AreEqual(_titleForMales[i], element);
-                            i++;
-                        }
-                    }
-                    else if (((Utility.GrabAttributeValueByCss("CoTravellerGender", "value", 4)) == "2"))
-                    {
-                        string elements = Utility.ByCss("SelectCoTravellerTitle", 4);
-                        string[] title = elements.Replace("\r\n", "_").Split("_".ToCharArray());
+                        string _selectedGender = Record("SelectedGender");
+                        var _gender = Driver.FindElement(By.CssSelector(UserProfileSPA.Library.TestEnvironment.LoadXML("Gender")));
+                        var selectelementGender = new SelectElement(_gender);
+                        selectelementGender.SelectByText(_selectedGender);
 
-                        int i = 0;
-                        foreach (var element in title)
+                        if (((Utility.GrabAttributeValueByCss("CoTravellerGender", "value", 4)) == "1"))
                         {
-                            Assert.AreEqual(_titleForFemales[i], element);
-                            i++;
+                            string elements = Utility.ByCss("SelectCoTravellerTitle", 4);
+                            string[] title = elements.Replace("\r\n", "_").Split("_".ToCharArray());
+
+                            int i = 0;
+                            foreach (var element in title)
+                            {
+                                Assert.AreEqual(_titleForMales[i], element);
+                                i++;
+                            }
                         }
+                        else if (((Utility.GrabAttributeValueByCss("CoTravellerGender", "value", 4)) == "2"))
+                        {
+                            string elements = Utility.ByCss("SelectCoTravellerTitle", 4);
+                            string[] title = elements.Replace("\r\n", "_").Split("_".ToCharArray());
+
+                            int i = 0;
+                            foreach (var element in title)
+                            {
+                                Assert.AreEqual(_titleForFemales[i], element);
+                                i++;
+                            }
+                        }
+                        else
+                        {
+                            string elements = Utility.ByCss("SelectCoTravellerTitle", 4);
+                            string[] title = elements.Replace("\r\n", "_").Split("_".ToCharArray());
+
+                            int i = 0;
+                            foreach (var element in title)
+                            {
+                                Assert.AreEqual(_titlesWhenGenderIsNoSpecified[i], element);
+                                i++;
+                            }
+                        }
+
                     }
                     else
                     {
-                        string elements = Utility.ByCss("SelectCoTravellerTitle", 4);
-                        string[] title = elements.Replace("\r\n", "_").Split("_".ToCharArray());
-
-                        int i = 0;
-                        foreach (var element in title)
-                        {
-                            Assert.AreEqual(_titlesWhenGenderIsNoSpecified[i], element);
-                            i++;
-                        }
+                        Assert.IsTrue(true, "MyInformation Url is not opened.");
                     }
-
                 }
+                else
+                {
+                    Assert.IsTrue(true,"OverView Url is not opened.");
+                }
+            }
+            else
+            {
+                Assert.IsTrue(true, "SignIn Url is not opened.");
             }
         }
 

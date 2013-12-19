@@ -1,4 +1,4 @@
-SignInUrl,Email,Password,CheapoairMyInfoUrl,MyCoTravelerUrl,SelectedGender
-"http://www.cheapoair.com/profiles/#/user-signin","raja@gmail.com","bulletraja","http://www.cheapoair.com/profiles/#/my-account/my-details","http://www.cheapoair.com/profiles/#/my-account/my-co-travelers","Female"
-"http://www.cheapoair.com/profiles/#/user-signin","raja@gmail.com","bulletraja","http://www.cheapoair.com/profiles/#/my-account/my-details","http://www.cheapoair.com/profiles/#/my-account/my-co-travelers","Male"
-"http://www.cheapoair.com/profiles/#/user-signin","raja@gmail.com","bulletraja","http://www.cheapoair.com/profiles/#/my-account/my-details","http://www.cheapoair.com/profiles/#/my-account/my-co-travelers","Not Specified"
+Email,Password,MyInformationUrl,MyCoTravelerUrl,SelectedGender
+"raja@gmail.com","bulletraja","//www.cheapoair.com/profiles/#/my-account/my-details","//www.cheapoair.com/profiles/#/my-account/my-co-travelers","Female"
+"raja@gmail.com","bulletraja","//www.cheapoair.com/profiles/#/my-account/my-details","//www.cheapoair.com/profiles/#/my-account/my-co-travelers","Male"
+"raja@gmail.com","bulletraja","//www.cheapoair.com/profiles/#/my-account/my-details","//www.cheapoair.com/profiles/#/my-account/my-co-travelers","Not Specified"
