@@ -13,11 +13,11 @@ using System.Configuration;
 namespace UserProfileSPA.TestCases
 {
     [TestClass]
-    public class SignIn 
+    public class SignIn
     {
-        string SignInUrl = ConfigurationManager.AppSettings["URL"]; 
-        string Prefix = ConfigurationManager.AppSettings["UrlPrefix"]; 
-       
+        string SignInUrl = ConfigurationManager.AppSettings["URL"];
+        string Prefix = ConfigurationManager.AppSettings["UrlPrefix"];
+
 
         [TestInitialize]
         public void Initialize()
@@ -46,7 +46,7 @@ namespace UserProfileSPA.TestCases
         public void PasswordNotMatchingValidation()
         {
             IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
-            
+
             if (Prefix + SignInUrl == Driver.Url)
             {
                 Utility.Sleep(2);
@@ -66,7 +66,7 @@ namespace UserProfileSPA.TestCases
             }
             else
             {
-                Assert.IsTrue(false,"SignIn url is not opened.");
+                Assert.IsTrue(false, "SignIn url is not opened.");
             }
 
         }
@@ -92,12 +92,12 @@ namespace UserProfileSPA.TestCases
                 }
                 else
                 {
-                    Assert.IsTrue(false,"OverView Url is not opened.");
+                    Assert.IsTrue(false, "OverView Url is not opened.");
                 }
             }
             else
             {
-                Assert.IsTrue(false,"Problem seems in SignIn page.");
+                Assert.IsTrue(false, "Problem seems in SignIn page.");
             }
         }
 
@@ -107,7 +107,7 @@ namespace UserProfileSPA.TestCases
         {
             IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
             //string UserProfileURL = Record("UserProfileURL");
-            if (Prefix + SignInUrl  == Driver.Url)
+            if (Prefix + SignInUrl == Driver.Url)
             {
                 Utility.XPathtoClick("SignInWithFaceBook", 3);
                 if (Driver.WindowHandles.Count > 1)
@@ -152,7 +152,7 @@ namespace UserProfileSPA.TestCases
         {
             IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
             //string UserProfileURL = Record("UserProfileURL");
-            if (SignInUrl + Prefix == Driver.Url)
+            if (Prefix + SignInUrl == Driver.Url)
             {
                 Utility.XPathtoClick("signInWithGoogle", 6);
                 if (Driver.WindowHandles.Count > 1)
@@ -208,32 +208,39 @@ namespace UserProfileSPA.TestCases
         }
 
 
-        [DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\ValidatingSignIn.csv", "ValidatingSignIn#csv", DataAccessMethod.Sequential), DeploymentItem("ValidatingSignIn.csv"), TestMethod]
+        [DeploymentItem("AppData\\ValidatingSignIn.csv"), DeploymentItem("ValidatingSignIn.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\ValidatingSignIn.csv", "ValidatingSignIn#csv", DataAccessMethod.Sequential), TestMethod]
         public void ValidatingSignIn()
         {
             IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
             //string email = Record("Email");
             //string pass = Record("Password");
-            Utility.CssToSetText("Email", Record("Email"), 4);
-            Utility.CssToSetText("Password", Record("Password"), 4);
-            Utility.CsstoClick("SignInBtn", 9);
-            Utility.Sleep(3);
-
-            if (string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("Email", "value", 2)) && (string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("Password", "value", 2))))
+            if (Prefix + SignInUrl == Driver.Url)
             {
-                string expectedEmailErrorWhenBlank = UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("expectedEmailErrorWhenBlank");
-                string expectedPasswordErrorWhenBlank = UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("expectedPasswordErrorWhenBlank");
+                Utility.CssToSetText("Email", Record("Email"), 4);
+                Utility.CssToSetText("Password", Record("Password"), 4);
+                Utility.CsstoClick("SignInBtn", 9);
+                Utility.Sleep(3);
 
-                string actualEmailError = (Utility.ByXpath("SignInValidationErrors", 2));
-                Assert.AreEqual(expectedEmailErrorWhenBlank, actualEmailError);
-                string actualPasswordError = (Utility.ByXpath("PasswordValidationError", 2));
-                Assert.AreEqual(expectedPasswordErrorWhenBlank, actualPasswordError);
+                if (string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("Email", "value", 2)) && (string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("Password", "value", 2))))
+                {
+                    string expectedEmailErrorWhenBlank = UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("expectedEmailErrorWhenBlank");
+                    string expectedPasswordErrorWhenBlank = UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("expectedPasswordErrorWhenBlank");
+
+                    string actualEmailError = (Utility.ByXpath("SignInValidationErrors", 2));
+                    Assert.AreEqual(expectedEmailErrorWhenBlank, actualEmailError);
+                    string actualPasswordError = (Utility.ByXpath("PasswordValidationError", 2));
+                    Assert.AreEqual(expectedPasswordErrorWhenBlank, actualPasswordError);
+                }
+                else if (!string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("Email", "value", 2)) && (!string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("Password", "value", 2))))
+                {
+                    string expectedEmailErrorWhenWrong = UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("expectedEmailErrorWhenWrong");
+                    string actualEmailError = (Utility.ByXpath("SignInValidationErrors", 2));
+                    Assert.AreEqual(expectedEmailErrorWhenWrong, actualEmailError);
+                }
             }
-            else if (!string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("Email", "value", 2)) && (!string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("Password", "value", 2))))
+            else
             {
-                string expectedEmailErrorWhenWrong = UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("expectedEmailErrorWhenWrong");
-                string actualEmailError = (Utility.ByXpath("SignInValidationErrors", 2));
-                Assert.AreEqual(expectedEmailErrorWhenWrong, actualEmailError);
+                Assert.IsTrue(false,"SignIn url is not opened.");
             }
         }
 
@@ -244,7 +251,7 @@ namespace UserProfileSPA.TestCases
             //string _baseUrl = Record("SignInUrl");
             Utility.Sleep(7);
             if (SignInUrl + Prefix == Driver.Url)
-            {               
+            {
                 Utility.CssToSetText("Email", Record("Email"), 4);
                 Utility.CssToSetText("Password", Record("Password"), 4);
                 Utility.CsstoClick("rememberMe", 3);
@@ -260,27 +267,27 @@ namespace UserProfileSPA.TestCases
                     string[] _actualName = actualName.Split(" ".ToCharArray());
                     Assert.AreEqual(_expectedName[0], _actualName[1]);
                     Utility.Sleep(6);
-                    string preUrlValue = Driver.Url;                   
-                    Driver.Close();                    
+                    string preUrlValue = Driver.Url;
+                    Driver.Close();
                     Driver = new FirefoxDriver();
                     Driver.Navigate().GoToUrl(SignInUrl + Prefix);
                     Driver.Manage().Window.Maximize();
-                     Utility.Sleep(6);
-                     if (SignInUrl + Prefix != preUrlValue)
-                     {
-                         if (Prefix + _overViewUrl == Driver.Url)
-                         {
-                             Assert.AreEqual(_expectedName[0], _actualName[1]);
-                         }
-                         else
-                         {
-                             Assert.IsTrue(false, "OverViewUrl is not opened.");
-                         }
-                     }
-                     else
-                     {
-                         Assert.IsTrue(false,"Should not open SignIn page.");
-                     }
+                    Utility.Sleep(6);
+                    if (SignInUrl + Prefix != preUrlValue)
+                    {
+                        if (Prefix + _overViewUrl == Driver.Url)
+                        {
+                            Assert.AreEqual(_expectedName[0], _actualName[1]);
+                        }
+                        else
+                        {
+                            Assert.IsTrue(false, "OverViewUrl is not opened.");
+                        }
+                    }
+                    else
+                    {
+                        Assert.IsTrue(false, "Should not open SignIn page.");
+                    }
                 }
                 else
                 {
@@ -298,6 +305,6 @@ namespace UserProfileSPA.TestCases
         public void Cleanup()
         {
             UserProfileSPA.Library.TestEnvironment.Dispose();
-        }    
+        }
     }
 }
