@@ -6,6 +6,8 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using UserProfileSPA.Library;
 using OpenQA.Selenium.Firefox;
+using System.Configuration;
+
 
 
 namespace UserProfileSPA.TestCases
@@ -13,6 +15,9 @@ namespace UserProfileSPA.TestCases
     [TestClass]
     public class SignIn 
     {
+        string SignInUrl = ConfigurationManager.AppSettings["URL"]; 
+        string Prefix = ConfigurationManager.AppSettings["UrlPrefix"]; 
+       
 
         [TestInitialize]
         public void Initialize()
@@ -40,7 +45,7 @@ namespace UserProfileSPA.TestCases
 
         public void PasswordNotMatchingValidation()
         {
-            IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
+            IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;           
             Utility.CssToSetText("Email", Record("Email"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
             Utility.CssToSetText("Password", Record("Password"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
             Utility.Sleep(2);
@@ -58,7 +63,7 @@ namespace UserProfileSPA.TestCases
 
         }
 
-        [DeploymentItem("SignIn.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\SignIn.csv", "SignIn#csv", DataAccessMethod.Sequential), TestMethod]
+        [DeploymentItem("SignIn.csv"), DeploymentItem("AppData\\SignIn.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\SignIn.csv", "SignIn#csv", DataAccessMethod.Sequential), TestMethod]
         public void SignInSucessfully()
         {
             IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
@@ -66,7 +71,7 @@ namespace UserProfileSPA.TestCases
             Utility.CssToSetText("Password", Record("Password"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
             Utility.CsstoClick("SignInBtn", 2);
             string _overViewUrl = Record("OverViewUrl");
-            if (_overViewUrl == Driver.Url)
+            if (Prefix + _overViewUrl == Driver.Url)
             {
                 string expectedName = Utility.ByXpath("TravelerNameAccount", 3);
                 string[] _expectedName = expectedName.Split(" ".ToCharArray());
@@ -83,8 +88,8 @@ namespace UserProfileSPA.TestCases
         {
             IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
 
-            string UserProfileURL = Record("UserProfileURL");
-            if (UserProfileURL == Driver.Url)
+            //string UserProfileURL = Record("UserProfileURL");
+            if (Prefix + SignInUrl  == Driver.Url)
             {
                 Utility.XPathtoClick("SignInWithFaceBook", 3);
                 if (Driver.WindowHandles.Count > 1)
@@ -101,7 +106,7 @@ namespace UserProfileSPA.TestCases
                     Utility.Sleep(4);
                     string fareportalOverviewUrl = Record("fareportalOverviewUrl");
                     Utility.Sleep(7);
-                    if (fareportalOverviewUrl == Driver.Url)
+                    if (Prefix + fareportalOverviewUrl == Driver.Url)
                     {
                         string actualCompleteFbName = Utility.ByCss("FbAccountsCompleteName", 5);
                         string expectedCompleteFbName = Record("ExpectedCompleteFbName");
@@ -129,8 +134,8 @@ namespace UserProfileSPA.TestCases
         {
             IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
 
-            string UserProfileURL = Record("UserProfileURL");
-            if (UserProfileURL == Driver.Url)
+            //string UserProfileURL = Record("UserProfileURL");
+            if (SignInUrl + Prefix == Driver.Url)
             {
                 Utility.XPathtoClick("signInWithGoogle", 6);
                 if (Driver.WindowHandles.Count > 1)
@@ -147,7 +152,7 @@ namespace UserProfileSPA.TestCases
                     Utility.Sleep(4);
                     string fareportalOverviewUrl = Record("fareportalOverviewUrl");
                     Utility.Sleep(7);
-                    if (fareportalOverviewUrl == Driver.Url)
+                    if (Prefix + fareportalOverviewUrl == Driver.Url)
                     {
                         string actualCompleteGoogleName = Utility.ByCss("GoogleAccountsCompleteName", 5);
                         string expectedCompleteGoogleName = Record("ExpectedCompleteGoogleName");
@@ -219,9 +224,9 @@ namespace UserProfileSPA.TestCases
         public void VerifyingRememberMe()
         {
             IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
-            string _baseUrl = Record("SignInUrl");
+            //string _baseUrl = Record("SignInUrl");
             Utility.Sleep(7);
-            if (_baseUrl == Driver.Url)
+            if (SignInUrl + Prefix == Driver.Url)
             {               
                 Utility.CssToSetText("Email", Record("Email"), 4);
                 Utility.CssToSetText("Password", Record("Password"), 4);
@@ -230,7 +235,7 @@ namespace UserProfileSPA.TestCases
                 Utility.Sleep(7);
 
                 string _overViewUrl = Record("OverViewUrl");
-                if (_overViewUrl == Driver.Url)
+                if (Prefix + _overViewUrl == Driver.Url)
                 {
                     string expectedName = Utility.ByXpath("TravelerNameAccount", 3);
                     string[] _expectedName = expectedName.Split(" ".ToCharArray());
@@ -241,12 +246,12 @@ namespace UserProfileSPA.TestCases
                     string preUrlValue = Driver.Url;                   
                     Driver.Close();                    
                     Driver = new FirefoxDriver();
-                    Driver.Navigate().GoToUrl(_baseUrl);
+                    Driver.Navigate().GoToUrl(SignInUrl + Prefix);
                     Driver.Manage().Window.Maximize();
                      Utility.Sleep(6);
-                     if (_baseUrl != preUrlValue)
+                     if (SignInUrl + Prefix != preUrlValue)
                      {
-                         if (_overViewUrl == Driver.Url)
+                         if (Prefix + _overViewUrl == Driver.Url)
                          {
                              Assert.AreEqual(_expectedName[0], _actualName[1]);
                          }

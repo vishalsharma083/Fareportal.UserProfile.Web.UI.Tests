@@ -200,7 +200,7 @@ namespace UserProfileSPA.Library
         public static void LoadPage()
         {
             if (TestEnvironment.FlightEngine == EngineType.COA)
-            { Driver.Url = "http://www.cheapoair.com/profiles/#/user-signin"; }
+            { Driver.Url = ConfigurationManager.AppSettings["UrlPrefix"] + ConfigurationManager.AppSettings["URL"]; } //"http://www.cheapoair.com/profiles/#/user-signin"; }
 
             if (TestEnvironment.FlightEngine == EngineType.CA)
             { Driver.Url = "http://www.cheapoair.ca"; }
