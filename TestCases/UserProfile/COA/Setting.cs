@@ -6,13 +6,15 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using UserProfileSPA.Library;
 using System.Text.RegularExpressions;
-
+using System.Configuration;
 
 namespace UserProfileSPA.TestCases
 {
     [TestClass]
     public class Setting 
     {
+        string SignInUrl = ConfigurationManager.AppSettings["URL"];
+        string Prefix = ConfigurationManager.AppSettings["UrlPrefix"];
 
         [TestInitialize]
         public void Initialize()
@@ -44,9 +46,9 @@ namespace UserProfileSPA.TestCases
             string _addFareAlertValidationsInSettingsPage = UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("AddFareAlertValidationsInSettingsPage");
             string[] addFareAlertValidationsInSettingsPage = _addFareAlertValidationsInSettingsPage.Split(",".ToCharArray());
 
-            string _baseUrl = Record("URL");
+            //string _baseUrl = Record("URL");
 
-            if (_baseUrl == Driver.Url)
+            if (Prefix + SignInUrl == Driver.Url)
             {
                 Utility.CssToSetText("Email", Record("Email"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                 Utility.CssToSetText("Password", Record("Password"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
@@ -54,11 +56,11 @@ namespace UserProfileSPA.TestCases
                 Utility.Sleep(6);
                 string _signInUrl = Record("SignInUrl");
                 string _overViewUrl = Record("OverviewUrl");
-                if (_overViewUrl == Driver.Url)
+                if (Prefix + _overViewUrl == Driver.Url)
                 {
                     Utility.XPathtoClick("ClickOnSettingMenu", 4);
                     string _settingPageUrl = Record("SettingPageUrl");
-                    if (_settingPageUrl == Driver.Url)
+                    if (Prefix + _settingPageUrl == Driver.Url)
                     {
                         Utility.Sleep(6);
                         Utility.CsstoClick("ClickOnAddFareAlertBtton", 8);
@@ -72,7 +74,7 @@ namespace UserProfileSPA.TestCases
 
                             Regex r = new Regex(@"^(0?[1-9]|[12][0-9]|3[01])[ \/.-](0?[1-9]|1[012])[ \/.-](19|20)\d\d$");
 
-                           
+
                             string _Ddate = Record("DepDate");
                             Utility.CsstoClear("DateInFromCityInSetting", 4);
                             Utility.CssToSetText("DateInFromCityInSetting", _Ddate, 4);
@@ -87,7 +89,7 @@ namespace UserProfileSPA.TestCases
                             else if (!r.IsMatch(Utility.GrabAttributeValueByCss("DateInFromCityInSetting", "value", 2)))// && (string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("DateInToCityInSetting", "value", 2))))
                             {
                                 string DateValidationInFromCityInSetting = Utility.ByXpath("DateValidationInFromCityInSetting", 4);
-                                Assert.AreEqual(addFareAlertValidationsInSettingsPage[2], DateValidationInFromCityInSetting);                                
+                                Assert.AreEqual(addFareAlertValidationsInSettingsPage[2], DateValidationInFromCityInSetting);
                             }
 
                             if (string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("DateInToCityInSetting", "value", 2)))
@@ -95,14 +97,27 @@ namespace UserProfileSPA.TestCases
                                 string DateValidationInToCityInSetting = Utility.ByXpath("DateValidationInToCityInSetting", 4);
                                 Assert.AreEqual(addFareAlertValidationsInSettingsPage[3], DateValidationInToCityInSetting);
                             }
-                           else if (!r.IsMatch(Utility.GrabAttributeValueByCss("DateInToCityInSetting", "value", 2)))// && (string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("DateInToCityInSetting", "value", 2))))
+                            else if (!r.IsMatch(Utility.GrabAttributeValueByCss("DateInToCityInSetting", "value", 2)))// && (string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("DateInToCityInSetting", "value", 2))))
                             {
                                 string DateValidationInToCityInSetting = Utility.ByXpath("DateValidationInToCityInSetting", 4);
                                 Assert.AreEqual(addFareAlertValidationsInSettingsPage[3], DateValidationInToCityInSetting);
                             }
                         }
                     }
+                    else
+                    {
+                        Assert.IsTrue(false, "SettingPage url is not opened.");
+                    }
                 }
+                else
+                {
+                    Assert.IsTrue(false, "OverView url is not opened.");
+                }
+
+            }
+            else
+            {
+                Assert.IsTrue(false,"SignIn url is not opened.");
             }
         }
 
