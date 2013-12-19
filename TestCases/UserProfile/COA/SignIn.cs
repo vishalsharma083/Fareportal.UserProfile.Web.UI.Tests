@@ -69,17 +69,27 @@ namespace UserProfileSPA.TestCases
             IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
             Utility.CssToSetText("Email", Record("Email"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
             Utility.CssToSetText("Password", Record("Password"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
-            Utility.CsstoClick("SignInBtn", 2);
-            string _overViewUrl = Record("OverViewUrl");
-            if (Prefix + _overViewUrl == Driver.Url)
+            if (Prefix + SignInUrl == Driver.Url)
             {
-                string expectedName = Utility.ByXpath("TravelerNameAccount", 3);
-                string[] _expectedName = expectedName.Split(" ".ToCharArray());
-                string actualName = Utility.ByXpath("OverViewWelcome", 3);
-                string[] _actualName = actualName.Split(" ".ToCharArray());
-                Assert.AreEqual(_expectedName[0], _actualName[1]);
+                Utility.CsstoClick("SignInBtn", 2);
+                string _overViewUrl = Record("OverViewUrl");
+                if (Prefix + _overViewUrl == Driver.Url)
+                {
+                    string expectedName = Utility.ByXpath("TravelerNameAccount", 3);
+                    string[] _expectedName = expectedName.Split(" ".ToCharArray());
+                    string actualName = Utility.ByXpath("OverViewWelcome", 3);
+                    string[] _actualName = actualName.Split(" ".ToCharArray());
+                    Assert.AreEqual(_expectedName[0], _actualName[1]);
+                }
+                else
+                {
+                    Assert.IsTrue(false,"OverView Url is not opened.");
+                }
             }
-
+            else
+            {
+                Assert.IsTrue(false,"Problem seems in SignIn page.");
+            }
         }
 
 
