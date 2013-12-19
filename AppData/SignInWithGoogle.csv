@@ -1,2 +1,2 @@
-GoogleEmail,GooglePassword,ExpectedCompleteGoogleName,UserProfileURL,fareportalOverviewUrl
-saurabh88htest@gmail.com,saurabh123456,Saurabh Test's Account,http://www.cheapoair.com/profiles/#/user-signin,http://www.cheapoair.com/profiles/#/overview
+GoogleEmail,GooglePassword,ExpectedCompleteGoogleName,OverviewUrl
+saurabh88htest@gmail.com,saurabh123456,Saurabh Test's Account,//www.cheapoair.com/profiles/#/overview

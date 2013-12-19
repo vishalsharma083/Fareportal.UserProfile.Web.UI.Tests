@@ -59,7 +59,7 @@ namespace UserProfileSPA.TestCases
                 int i = 0;
                 foreach (var item in actualPasswordNotMatchingValidation)
                 {
-                    Utility.Sleep(2);
+                    Utility.Sleep(5);
                     Assert.AreEqual(expextedPasswordNotMatchingValidation[i], item);
                     i++;
                 }
@@ -147,11 +147,10 @@ namespace UserProfileSPA.TestCases
         }
 
 
-        [DeploymentItem("SignInWithGoogle.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\SignInWithGoogle.csv", "SignInWithGoogle#csv", DataAccessMethod.Sequential), TestMethod]
+        [DeploymentItem("AppData\\SignInWithGoogle.csv"), DeploymentItem("SignInWithGoogle.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\SignInWithGoogle.csv", "SignInWithGoogle#csv", DataAccessMethod.Sequential), TestMethod]
         public void SignInWithGoogle()
         {
             IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
-
             //string UserProfileURL = Record("UserProfileURL");
             if (SignInUrl + Prefix == Driver.Url)
             {
@@ -168,7 +167,7 @@ namespace UserProfileSPA.TestCases
                     Utility.CsstoClick("GoogleLoginBtn", 6);
                     Driver.SwitchTo().Window(Driver.WindowHandles[0]);
                     Utility.Sleep(4);
-                    string fareportalOverviewUrl = Record("fareportalOverviewUrl");
+                    string fareportalOverviewUrl = Record("OverviewUrl");
                     Utility.Sleep(7);
                     if (Prefix + fareportalOverviewUrl == Driver.Url)
                     {
@@ -178,12 +177,12 @@ namespace UserProfileSPA.TestCases
                     }
                     else
                     {
-                        throw new Exception("fareportal Overview page is not opened.");
+                        throw new Exception("Overview page is not opened.");
                     }
                 }
                 else
                 {
-                    throw new Exception("google page is not opened.");
+                    throw new Exception("Google SignIn window is not opened.");
                 }
             }
             else
