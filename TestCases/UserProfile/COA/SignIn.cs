@@ -45,20 +45,28 @@ namespace UserProfileSPA.TestCases
 
         public void PasswordNotMatchingValidation()
         {
-            IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;           
-            Utility.CssToSetText("Email", Record("Email"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
-            Utility.CssToSetText("Password", Record("Password"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
-            Utility.Sleep(2);
-            Utility.CsstoClick("SignInBtn", 3);
-            string[] expextedPasswordNotMatchingValidation = UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("expectedPasswordNotMatchingValidationError").Split("\r\n".ToCharArray());
-            string actualErr = Utility.ByCss("PasswordNotMatchingValidation", 3);
-            string[] actualPasswordNotMatchingValidation = actualErr.Split("\r\n".ToCharArray());
-            int i = 0;
-            foreach (var item in actualPasswordNotMatchingValidation)
+            IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
+            
+            if (Prefix + SignInUrl == Driver.Url)
             {
                 Utility.Sleep(2);
-                Assert.AreEqual(expextedPasswordNotMatchingValidation[i], item);
-                i++;
+                Utility.CssToSetText("Email", Record("Email"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
+                Utility.CssToSetText("Password", Record("Password"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
+                Utility.CsstoClick("SignInBtn", 3);
+                string[] expextedPasswordNotMatchingValidation = UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("expectedPasswordNotMatchingValidationError").Split("\r\n".ToCharArray());
+                string actualErr = Utility.ByCss("PasswordNotMatchingValidation", 3);
+                string[] actualPasswordNotMatchingValidation = actualErr.Split("\r\n".ToCharArray());
+                int i = 0;
+                foreach (var item in actualPasswordNotMatchingValidation)
+                {
+                    Utility.Sleep(2);
+                    Assert.AreEqual(expextedPasswordNotMatchingValidation[i], item);
+                    i++;
+                }
+            }
+            else
+            {
+                Assert.IsTrue(false,"SignIn url is not opened.");
             }
 
         }
@@ -94,11 +102,10 @@ namespace UserProfileSPA.TestCases
         }
 
 
-        [DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\FaceBookSignIn.csv", "FaceBookSignIn#csv", DataAccessMethod.Sequential), TestMethod]
+        [DeploymentItem("AppData\\FaceBookSignIn.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\FaceBookSignIn.csv", "FaceBookSignIn#csv", DataAccessMethod.Sequential), TestMethod]
         public void FaceBookSignIn()
         {
             IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
-
             //string UserProfileURL = Record("UserProfileURL");
             if (Prefix + SignInUrl  == Driver.Url)
             {
@@ -115,7 +122,7 @@ namespace UserProfileSPA.TestCases
                     Driver.SwitchTo().Window(Driver.WindowHandles[0]);
 
                     Utility.Sleep(4);
-                    string fareportalOverviewUrl = Record("fareportalOverviewUrl");
+                    string fareportalOverviewUrl = Record("OverviewUrl");
                     Utility.Sleep(7);
                     if (Prefix + fareportalOverviewUrl == Driver.Url)
                     {
@@ -125,7 +132,7 @@ namespace UserProfileSPA.TestCases
                     }
                     else
                     {
-                        throw new Exception("fareportal Overview page is not opened.");
+                        throw new Exception("Overview page is not opened.");
                     }
                 }
                 else
