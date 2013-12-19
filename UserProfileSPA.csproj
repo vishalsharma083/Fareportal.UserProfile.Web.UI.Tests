@@ -297,9 +297,6 @@
     <None Include="VerifyTheValidationsOfTheLeapYearInRegisterPage.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="VerifyTheValidationsOf_TheLeapYear.csv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="TestCases\ElementXpath\CA_SP.xml">
