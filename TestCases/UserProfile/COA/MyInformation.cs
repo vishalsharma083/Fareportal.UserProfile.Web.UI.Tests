@@ -779,8 +779,8 @@ namespace UserProfileSPA.TestCases
         public void VerifyTheCityAndStateFields()
         {
             IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
-            string _baseUrl = Record("SignInUrl");
-            if (_baseUrl == Driver.Url)
+           
+            if (Prefix+SignInUrl == Driver.Url)
             {
                 Utility.CssToSetText("Email", Record("Email"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                 Utility.CssToSetText("Password", Record("Password"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
