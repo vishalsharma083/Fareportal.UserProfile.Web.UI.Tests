@@ -8,12 +8,16 @@ using UserProfileSPA.Library;
 using OpenQA.Selenium.Support.UI;
 using System.Text.RegularExpressions;
 using OpenQA.Selenium.Firefox;
+using System.Configuration;
 
 namespace UserProfileSPA.TestCases
 {    
     [TestClass]
     public class MyInformation 
     {
+        string SignInUrl = ConfigurationManager.AppSettings["URL"];
+        string Prefix = ConfigurationManager.AppSettings["UrlPrefix"];
+
         [TestInitialize]
         public void Initialize()
         {
@@ -1014,69 +1018,83 @@ namespace UserProfileSPA.TestCases
         public void VerifyTheValidationsOf_TheLeapYear()
         {
             IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;          
-            string _baseUrl = Record("SignInUrl");
-            if (_baseUrl == Driver.Url)
+            
+            if (Prefix + SignInUrl == Driver.Url)
             {
                 Utility.CssToSetText("Email", Record("Email"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                 Utility.CssToSetText("Password", Record("Password"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
-                string _year = Record("DobYear");
-                string month = Record("DobMonth");
-                string _day = Record("DobDay");
-                int year = Convert.ToInt32(_year);
-                int day = Convert.ToInt32(_day);
                 Utility.CsstoClick("SignInBtn", 3);
-                Utility.Sleep(2);
-                Utility.CsstoClick("clickOnMyInformation", 4);
-                Utility.Sleep(2);
+                string _overViewUrl = Record("OverViewUrl");
+                if (Prefix + _overViewUrl == Driver.Url)
+                {
+                    string _year = Record("DobYear");
+                    string month = Record("DobMonth");
+                    string _day = Record("DobDay");
+                    int year = Convert.ToInt32(_year);
+                    int day = Convert.ToInt32(_day);
 
-                var elementMonth = Driver.FindElement(By.CssSelector(UserProfileSPA.Library.TestEnvironment.LoadXML("DobMonth")));
-                var selectElementMonth = new SelectElement(elementMonth);
-                selectElementMonth.SelectByText(month);
-                Utility.Sleep(4);
-                var elementDay = Driver.FindElement(By.CssSelector(UserProfileSPA.Library.TestEnvironment.LoadXML("DobDay")));
-                var selectElementDay = new SelectElement(elementDay);
-                selectElementDay.SelectByText(_day);
-                Utility.Sleep(4);
-                IWebElement _verifyDobyear = Driver.FindElement(By.CssSelector(TestEnvironment.LoadXML("DobYear")));
-                var selectElementOfYear = new SelectElement(_verifyDobyear);
-                selectElementOfYear.SelectByText(_year);
-                string actualDobYear = selectElementOfYear.SelectedOption.Text;
-                int DobYear = Convert.ToInt32(actualDobYear);
-                Utility.Sleep(4);
-                if (((Utility.GrabAttributeValueByCss("DobMonth", "value", 4)) == "0") && ((Utility.GrabAttributeValueByCss("DobDay", "value", 4)) == "0") && (Utility.GrabAttributeValueByCss("DobYear", "value", 4)) == "0")
-                {
-                    Assert.IsTrue(false, "Please provide a date of birth");
-                }
-                else if (((DobYear % 4 == 0) && (DobYear % 100 != 0)) || (DobYear % 400 == 0))
-                {
-                    if (month == "Feb")
+                    Utility.Sleep(2);
+                    Utility.CsstoClick("clickOnMyInformation", 4);
+
+                    string _myInfoUrl = Record("MyInformationUrl");
+                    if (Prefix + _myInfoUrl == Driver.Url)
                     {
-                        Assert.AreEqual(29, day);
-                        //if (day == 29)
-                        //{
-                        //    Assert.IsTrue(true, "it is a leap year.");
-                        //}
-                    }
-                }
-                else if (month == "Feb")
-                {
-                    if (day == 29)
-                    {
-                        string expectedErrorMsg = Record("ExpectedErrorMsg");
-                        if (expectedErrorMsg != "No Error")
+                        Utility.Sleep(2);
+
+                        var elementMonth = Driver.FindElement(By.CssSelector(UserProfileSPA.Library.TestEnvironment.LoadXML("DobMonth")));
+                        var selectElementMonth = new SelectElement(elementMonth);
+                        selectElementMonth.SelectByText(month);
+                        Utility.Sleep(4);
+                        var elementDay = Driver.FindElement(By.CssSelector(UserProfileSPA.Library.TestEnvironment.LoadXML("DobDay")));
+                        var selectElementDay = new SelectElement(elementDay);
+                        selectElementDay.SelectByText(_day);
+                        Utility.Sleep(4);
+                        IWebElement _verifyDobyear = Driver.FindElement(By.CssSelector(TestEnvironment.LoadXML("DobYear")));
+                        var selectElementOfYear = new SelectElement(_verifyDobyear);
+                        selectElementOfYear.SelectByText(_year);
+                        string actualDobYear = selectElementOfYear.SelectedOption.Text;
+                        int DobYear = Convert.ToInt32(actualDobYear);
+                        Utility.Sleep(4);
+                        if (((Utility.GrabAttributeValueByCss("DobMonth", "value", 4)) == "0") && ((Utility.GrabAttributeValueByCss("DobDay", "value", 4)) == "0") && (Utility.GrabAttributeValueByCss("DobYear", "value", 4)) == "0")
                         {
-                            Utility.CsstoClick("SaveInformationBtn",3);
-                            Utility.Sleep(7);
-                            string actualErrorMsg = Utility.ByXpath("LeapYearErrorMsgInMyDetails", UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
-                            Utility.Sleep(3);
-                            Assert.AreEqual(expectedErrorMsg, actualErrorMsg);
+                            Assert.IsTrue(false, "Please provide a date of birth");
+                        }
+                        else if (((DobYear % 4 == 0) && (DobYear % 100 != 0)) || (DobYear % 400 == 0))
+                        {
+                            if (month == "Feb")
+                            {
+                                Assert.AreEqual(29, day);
+                            }
+                        }
+                        else if (month == "Feb")
+                        {
+                            if (day == 29)
+                            {
+                                string expectedErrorMsg = Record("ExpectedErrorMsg");
+                                if (expectedErrorMsg != "No Error")
+                                {
+                                    Utility.CsstoClick("SaveInformationBtn", 3);
+                                    Utility.Sleep(7);
+                                    string actualErrorMsg = Utility.ByXpath("LeapYearErrorMsgInMyDetails", UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
+                                    Utility.Sleep(3);
+                                    Assert.AreEqual(expectedErrorMsg, actualErrorMsg);
+                                }
+                            }
                         }
                     }
+                    else
+                    {
+                        Assert.IsTrue(false, "MyInformation Url is not opened.");
+                    }
+                }
+                else
+                {
+                    Assert.IsTrue(false, "OverView Url is not opened.");
                 }
             }
             else
             {
-                Assert.IsTrue(false, "SignInUrl is not opened.");
+                Assert.IsTrue(false, "SignIn Url is not opened.");
             }
         }
 

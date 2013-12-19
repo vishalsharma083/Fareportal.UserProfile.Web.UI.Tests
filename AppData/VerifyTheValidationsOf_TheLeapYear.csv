@@ -1,3 +1,3 @@
-Email,Password,SignInUrl,DobYear,DobMonth,DobDay
-"averma333@fp.com","aaaaaa","http://www.cheapoair.com/profiles/#/user-signin","1904","Feb","29"
-"averma333@fp.com","aaaaaa","http://www.cheapoair.com/profiles/#/user-signin","1903","Feb","29"
+Email,Password,DobYear,DobMonth,DobDay,OverViewUrl,MyInformationUrl,ExpectedErrorMsg
+"averma333@fp.com","aaaaaa","1904","Feb","29","//www.cheapoair.com/profiles/#/overviw","//www.cheapoair.com/profiles/#/my-account/my-details","No Error"
+"averma333@fp.com","aaaaaa","1903","Feb","29","//www.cheapoair.com/profiles/#/overview","//www.cheapoair.com/profiles/#/my-account/my-details","Please enter a valid date of birth"
