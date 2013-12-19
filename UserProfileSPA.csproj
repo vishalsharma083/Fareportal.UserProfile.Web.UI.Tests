@@ -101,6 +101,9 @@
     <Folder Include="TestCases\UserProfile\OT\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="AddFareAllAlertValidationsInSettingsPage.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="AddNewCoTraveler.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

@@ -315,6 +315,23 @@
     <ClickOnAddFareAlertBtton>input[id='btnAddFareAlert']</ClickOnAddFareAlertBtton>
     <UpdateSettingsButton>button[class='UpdateNlSettings']</UpdateSettingsButton>
     <ClickOnOverViewMenu>Overview</ClickOnOverViewMenu>
+    <ClickOnSettingMenu>html/body/div[1]/div[2]/div[2]/div/div/div[2]/ul/li[5]/a/span</ClickOnSettingMenu>
+
+    <ValidationInFromCityInSetting>html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/div[1]/div/div[1]/div[1]/div[2]/form/div/div[1]/div[2]</ValidationInFromCityInSetting>
+    <ValidationInToCityInSetting>html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/div[1]/div/div[1]/div[1]/div[2]/form/div/div[2]/div[2]</ValidationInToCityInSetting>
+    <DateValidationInFromCityInSetting>html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/div[1]/div/div[1]/div[1]/div[2]/form/div/div[3]/div[2]</DateValidationInFromCityInSetting>
+    <DateValidationInToCityInSetting>html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/div[1]/div/div[1]/div[1]/div[2]/form/div/div[4]/div[2]</DateValidationInToCityInSetting>
+
+
+    <TextInFromCityInSetting>input[id='txtFromCity']</TextInFromCityInSetting>
+    <TextInToCityInSetting>input[id='txtToCity']</TextInToCityInSetting>
+    <DateInFromCityInSetting>input[id='tbDTime']</DateInFromCityInSetting>
+    <DateInToCityInSetting>input[id='tbRTime']</DateInToCityInSetting>
+
+    <createNewFaresForFlights>button[class='createNewFaresForFlights']</createNewFaresForFlights>
+
+    <ValidationInHomeAway>html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/div[1]/div/div[1]/div[1]/div[7]/div[3]</ValidationInHomeAway>
+
 
   </SettingPage>
 

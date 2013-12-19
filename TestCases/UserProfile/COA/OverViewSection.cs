@@ -108,11 +108,11 @@ namespace UserProfileSPA.TestCases
         }
 
 
-        [DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\VerifySectionOnOverViewPage.csv", "VerifySectionOnOverViewPage#csv", DataAccessMethod.Sequential), DeploymentItem("VerifySectionOnOverViewPage.csv"), TestMethod]
+        [DeploymentItem("VerifySectionOnOverViewPage.csv"), DeploymentItem("AppData\\VerifySectionOnOverViewPage.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\VerifySectionOnOverViewPage.csv", "VerifySectionOnOverViewPage#csv", DataAccessMethod.Sequential), TestMethod]
         public void VerifySectionOnPage()
         {
             IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;           
-            Utility.CssToSetText("Email", Record("Password"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
+            Utility.CssToSetText("Email", Record("Email"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
             Utility.CssToSetText("Password", Record("Password"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);          
             string signinUrl = Record("SignInUrl");
             string CommentUTinOverviewPage = UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("CommentUTinOverviewPage");

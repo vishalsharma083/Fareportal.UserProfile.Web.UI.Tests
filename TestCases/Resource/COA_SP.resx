@@ -230,6 +230,9 @@ Click here to create an account – its quick &amp; easy.</value>
   <data name="expectedWhenEmailIsEmpty" xml:space="preserve">
     <value>Your email is required</value>
   </data>
+  <data name="AddFareAlertValidationsInSettingsPage" xml:space="preserve">
+    <value>Please specify from city,Please specify to city,Please enter a valid date.,Please enter a valid date.</value>
+  </data>
   <data name="titleForFemales" xml:space="preserve">
     <value>Not Specified,Mrs,Miss,Ms,Dr,Rev</value>
   </data>
@@ -238,5 +241,8 @@ Click here to create an account – its quick &amp; easy.</value>
   </data>
   <data name="titlesWhenGenderIsNoSpecified" xml:space="preserve">
     <value>Not Specified,Mr,Mrs,Miss,Ms,Dr,Rev</value>
+  </data>
+  <data name="ValidationsInHomeAway" xml:space="preserve">
+    <value>Please enter both city codes</value>
   </data>
 </root>

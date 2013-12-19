@@ -61,6 +61,15 @@ namespace UserProfileSPA.TestCases.Resource {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please specify from city,Please specify to city,Please enter a valid date.,Please enter a valid date..
+        /// </summary>
+        internal static string AddFareAlertValidationsInSettingsPage {
+            get {
+                return ResourceManager.GetString("AddFareAlertValidationsInSettingsPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You have no fare alerts..
         /// </summary>
         internal static string CommentFTinOverViewpage {
@@ -407,6 +416,15 @@ namespace UserProfileSPA.TestCases.Resource {
         internal static string UpdateStatus {
             get {
                 return ResourceManager.GetString("UpdateStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please enter both city codes.
+        /// </summary>
+        internal static string ValidationsInHomeAway {
+            get {
+                return ResourceManager.GetString("ValidationsInHomeAway", resourceCulture);
             }
         }
     }
