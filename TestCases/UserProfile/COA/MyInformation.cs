@@ -830,7 +830,7 @@ namespace UserProfileSPA.TestCases
         }
 
 
-        [DeploymentItem("VerifyTheNameFieldValidations.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\VerifyTheNameFieldValidations.csv", "VerifyTheNameFieldValidations#csv", DataAccessMethod.Sequential), TestMethod]
+        [DeploymentItem("VerifyTheNameFieldValidations.csv"), DeploymentItem("AppData\\VerifyTheNameFieldValidations.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\VerifyTheNameFieldValidations.csv", "VerifyTheNameFieldValidations#csv", DataAccessMethod.Sequential), TestMethod]
         public void VerifyTheNameFieldValidations()
         {
             IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
@@ -840,7 +840,7 @@ namespace UserProfileSPA.TestCases
                 Utility.CssToSetText("Email", Record("Email"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                 Utility.CssToSetText("Password", Record("Password"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                 Utility.CsstoClick("SignInBtn", 3);
-                Utility.Sleep(2);
+                Utility.Sleep(5);
                 string _overViewUrl = Record("OverViewUrl");
                 if (Prefix + _overViewUrl == Driver.Url)
                 {

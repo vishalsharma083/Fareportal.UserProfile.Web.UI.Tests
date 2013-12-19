@@ -213,9 +213,6 @@
     <None Include="AppData\VerifyTheFirstAndLastNameValidationsInMyBillingDetails.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="AppData\VerifyTheNameFieldValidations.csv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="AppData\VerifytheRadioButtonsInBillingSection.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -285,7 +282,7 @@
     <None Include="VerifyTheFirstAndLastNameValidationsInMyBillingDetails.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="VerifyTheNameFieldValidations.csv">
+    <None Include="AppData\VerifyTheNameFieldValidations.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="VerifyTheTitleFieldWithGenderInCoTraveler.csv">
