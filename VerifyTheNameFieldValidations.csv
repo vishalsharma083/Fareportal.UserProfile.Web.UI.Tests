@@ -1,9 +1,0 @@
-Email,Password,SignInUrl,FirstName,LastName,ExpectedErrorMsgForFirstname,ExpectedErrorMsgForLastname
-averma333@fp.com,aaaaaa,http://www.cheapoair.com/profiles/#/user-signin,rbinJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJ,Ber-ma,Firstname must be between 2 and 25 characters in length.,No Error
-averma333@fp.com,aaaaaa,http://www.cheapoair.com/profiles/#/user-signin,arbind,Berma,No Error,No Error
-averma333@fp.com,aaaaaa,http://www.cheapoair.com/profiles/#/user-signin,arbind!,@erma,"Name can only contain apostrophe, space or hyphen.",Name must begin with a letter.
-averma333@fp.com,aaaaaa,http://www.cheapoair.com/profiles/#/user-signin,rbind!,Berma@,"Name can only contain apostrophe, space or hyphen.","Name can only contain apostrophe, space or hyphen."
-averma333@fp.com,aaaaaa,http://www.cheapoair.com/profiles/#/user-signin,rbind'S#,Ber-ma,"Name can only contain apostrophe, space or hyphen.",No Error
-averma333@fp.com,aaaaaa,http://www.cheapoair.com/profiles/#/user-signin,!rbind'S,Ber-ma,Name must begin with a letter.,No Error
-averma333@fp.com,aaaaaa,http://www.cheapoair.com/profiles/#/user-signin,,Ber-ma,Please enter first name,No Error
-averma333@fp.com,aaaaaa,http://www.cheapoair.com/profiles/#/user-signin,!rbind'S,,Name must begin with a letter.,Please enter last name
