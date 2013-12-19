@@ -1159,6 +1159,7 @@ namespace UserProfileSPA.TestCases
                 Utility.CssToSetText("Email", Record("Email"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                 Utility.CssToSetText("Password", Record("Password"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                 Utility.CsstoClick("SignInBtn", 3);
+                Utility.Sleep(5);
 
                 string _overViewUrl = Record("OverViewUrl");
                 if (Prefix + _overViewUrl == Driver.Url)
@@ -1166,8 +1167,8 @@ namespace UserProfileSPA.TestCases
                     Utility.Sleep(2);
                     Utility.CsstoClick("clickOnMyInformation", 4);
                     Utility.Sleep(2);
-                    string cheapoairMyInfoUrl = Record("MyInformationUrl");
-                    if (cheapoairMyInfoUrl == Driver.Url)
+                    string _myInfoUrl = Record("MyInformationUrl");
+                    if (Prefix+_myInfoUrl == Driver.Url)
                     {
                         string titlesWhenGenderIsNoSpecified = UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("titlesWhenGenderIsNoSpecified");
                         string[] _titlesWhenGenderIsNoSpecified = titlesWhenGenderIsNoSpecified.Split(",".ToCharArray());
