@@ -11,9 +11,9 @@ using OpenQA.Selenium.Firefox;
 using System.Configuration;
 
 namespace UserProfileSPA.TestCases
-{    
+{
     [TestClass]
-    public class MyInformation 
+    public class MyInformation
     {
         string SignInUrl = ConfigurationManager.AppSettings["URL"];
         string Prefix = ConfigurationManager.AppSettings["UrlPrefix"];
@@ -43,17 +43,17 @@ namespace UserProfileSPA.TestCases
         [DeploymentItem("CheckBoxUseForBillingDetails.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\CheckBoxUseForBillingDetails.csv", "CheckBoxUseForBillingDetails#csv", DataAccessMethod.Sequential), TestMethod]
         public void CheckBoxUseForBillingDetails()
         {
-            IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;           
+            IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
             Utility.CssToSetText("Email", Record("Email"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
             Utility.CssToSetText("Password", Record("Password"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
-            
+
             string _billingUrl = Record("MyBillingUrl");
-           
+
             string signinUrl = Record("SignInUrl");
             if (signinUrl == Driver.Url)
-            {               
+            {
                 Utility.CsstoClick("SignInBtn", 4);
-                Utility.Sleep(3);            
+                Utility.Sleep(3);
 
                 string _overViewUrl = Record("OverviewUrl");
                 if (_overViewUrl == Driver.Url)
@@ -71,7 +71,7 @@ namespace UserProfileSPA.TestCases
                             string actualCity = Utility.GrabAttributeValueByCss("TextCity", "value", 4);
                             string actualCountryCode = Utility.GrabAttributeValueByCss("Country", "value", 4);
 
-                            Utility.ByLinkTexttoClick("ClickOnMyBillingDetails", 3);                           
+                            Utility.ByLinkTexttoClick("ClickOnMyBillingDetails", 3);
                             if (_billingUrl == Driver.Url)
                             {
 
@@ -120,7 +120,7 @@ namespace UserProfileSPA.TestCases
         [DeploymentItem("CheckForZipCodesValidation.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\CheckForZipCodesValidation.csv", "CheckForZipCodesValidation#csv", DataAccessMethod.Sequential), TestMethod]
         public void CheckForZipCodesValidation()
         {
-            IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;       
+            IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
             string _baseUrl = Record("SignInUrl");
             if (_baseUrl == Driver.Url)
             {
@@ -128,8 +128,8 @@ namespace UserProfileSPA.TestCases
                 Utility.CssToSetText("Password", Record("Password"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                 Utility.CsstoClick("SignInBtn", 3);
                 string _zipCode = Record("ZipCode");
-                string Country = Record("Country");    
-                
+                string Country = Record("Country");
+
                 Utility.Sleep(2);
                 Utility.CsstoClick("clickOnMyInformation", 4);
                 Utility.Sleep(2);
@@ -138,7 +138,7 @@ namespace UserProfileSPA.TestCases
                 selectElement1.SelectByText(Country);
                 if ((Country == "Canada") || (Country == "United Kingdom"))
                 {
-                    Utility.CsstoClear("Zip",UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
+                    Utility.CsstoClear("Zip", UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                     Utility.CssToSetText("Zip", _zipCode, 3);
                     string zipText = Utility.GrabAttributeValueByCss("Zip", "value", UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                     if (!string.IsNullOrEmpty(zipText))
@@ -211,8 +211,8 @@ namespace UserProfileSPA.TestCases
                         }
                     }
                 }
-               
-               // Utility.CsstoClick("SaveInformationBtn", 3);
+
+                // Utility.CsstoClick("SaveInformationBtn", 3);
             }
         }
 
@@ -220,7 +220,7 @@ namespace UserProfileSPA.TestCases
         [DeploymentItem("VerifyTheValuesInFirstNameAndLastName.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\VerifyTheValuesInFirstNameAndLastName.csv", "VerifyTheValuesInFirstNameAndLastName#csv", DataAccessMethod.Sequential), TestMethod]
         public void CheckTheValuesInFirstNameAndLastName()
         {
-            IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;           
+            IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
             string _baseUrl = Record("SignInUrl");
             if (_baseUrl == Driver.Url)
             {
@@ -236,10 +236,10 @@ namespace UserProfileSPA.TestCases
                     Utility.CssToSetText("TextInEmail", emailAddress, UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                     Utility.CssToSetText("TextInPassword", password, UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                     string confrmPassword = Record("ConfrmPassword");
-                    string _confrmPassword = num + confrmPassword ;
+                    string _confrmPassword = num + confrmPassword;
                     string _firstName = Record("FirstName");
-                    string _lastName = Record("LastName");                    
-                   
+                    string _lastName = Record("LastName");
+
                     Utility.CssToSetText("TextInConfrmPassword", _confrmPassword, 4);
                     Utility.CssToSetText("CreateAnAccountTextInFirstName", _firstName, 4);
                     Utility.CssToSetText("CreateAnAccountTextInLastName", _lastName, 4);
@@ -305,16 +305,16 @@ namespace UserProfileSPA.TestCases
                             Utility.CsstoClick("ClickOnSignOut", 4);
 
                             Driver.Close();
-                            Driver.Navigate().GoToUrl(_baseUrl);                           
+                            Driver.Navigate().GoToUrl(_baseUrl);
                             Utility.CssToSetText("Email", emailAddress, UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                             Utility.CssToSetText("Password", Record("Password"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
-                            
+
                             Utility.CsstoClick("SignInBtn", 2);
                             Assert.AreEqual(emailAddress, _veyfyEmail);
                         }
                         else
                         {
-                            Assert.IsTrue(false,"OverView Page is not loaded.");
+                            Assert.IsTrue(false, "OverView Page is not loaded.");
                         }
                     }
                     else
@@ -369,21 +369,21 @@ namespace UserProfileSPA.TestCases
                             //Utility.CsstoClick("SignInBtn", 2);
                             Assert.AreEqual(emailAddress, _veyfyEmail);
                         }
-                        else{Assert.IsTrue(false,"OverViewUrl is not opened.");}
+                        else { Assert.IsTrue(false, "OverViewUrl is not opened."); }
                     }
                 }
-                else{Assert.IsTrue(false, "SignUpUrl is not opened.");}
+                else { Assert.IsTrue(false, "SignUpUrl is not opened."); }
             }
-            else{Assert.IsTrue(false, "SignInUrl is not opened.");}
+            else { Assert.IsTrue(false, "SignInUrl is not opened."); }
         }
 
 
         [DeploymentItem("MyInformationsAllValidations.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\MyInformationsAllValidations.csv", "MyInformationsAllValidations#csv", DataAccessMethod.Sequential), TestMethod]
         public void MyInformationsAllValidations()
         {
-            IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;           
+            IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
             Utility.CssToSetText("Email", Record("Email"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
-            Utility.CssToSetText("Password", Record("Password"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);            
+            Utility.CssToSetText("Password", Record("Password"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
             string signinUrl = Record("SignInUrl");
             if (signinUrl == Driver.Url)
             {
@@ -445,7 +445,7 @@ namespace UserProfileSPA.TestCases
         [DeploymentItem("AppData\\SignInInformationInMyInformation.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\SignInInformationInMyInformation.csv", "SignInInformationInMyInformation#csv", DataAccessMethod.Sequential), TestMethod]
         public void SignInInformation()
         {
-            IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;            
+            IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
             string _baseUrl = Record("SignInUrl");
 
             if (_baseUrl == Driver.Url)
@@ -468,12 +468,12 @@ namespace UserProfileSPA.TestCases
                         Utility.Sleep(2);
                         string _newpassword = Record("NewPassword");
                         string _confrmpassword = Record("ConfrmPassword");
-                        
+
                         Utility.CsstoClick("ClickOnEmailGrey", 3);
                         Utility.CssToSetText("NewPassword", _newpassword, 4);
-                        Utility.CssToSetText("ConfrmPassword", _confrmpassword, 4); 
+                        Utility.CssToSetText("ConfrmPassword", _confrmpassword, 4);
                         Utility.CsstoClick("ClickOnConfrmPasswordCheckBox", 4);
-                        Utility.XPathtoClick("ClickOnDismissLink",4);
+                        Utility.XPathtoClick("ClickOnDismissLink", 4);
                         Utility.Sleep(2);
                         Utility.CsstoClick("ClickOnWelcomeDropdown", 4);
                         Utility.Sleep(2);
@@ -538,15 +538,15 @@ namespace UserProfileSPA.TestCases
         [DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\SignInValidationInMyInformation.csv", "SignInValidationInMyInformation#csv", DataAccessMethod.Sequential), DeploymentItem("SignInValidationInMyInformation.csv"), TestMethod]
         public void SignInInformationValidation()
         {
-            IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;           
+            IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
             string _baseUrl = Record("SignInUrl");
 
             if (_baseUrl == Driver.Url)
             {
                 string email = Record("Email");
-                string password = Record("Password");               
+                string password = Record("Password");
                 Utility.CssToSetText("Email", email, 4);
-                Utility.CssToSetText("Password", password, 4);               
+                Utility.CssToSetText("Password", password, 4);
                 Utility.CsstoClick("SignInBtn", 3);
                 Utility.Sleep(5);
                 string _overViewUrl = Record("OverviewUrl");
@@ -568,7 +568,7 @@ namespace UserProfileSPA.TestCases
                         string _confrmpassword = Record("ConfrmPassword");
                         Utility.CssToSetText("NewPassword", _newpassword, 4);
                         Utility.CssToSetText("ConfrmPassword", _confrmpassword, 4);
-                       
+
                         Utility.CsstoClick("ClickOnConfrmPasswordCheckBox", 4);
                         if ((string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("NewPassword", "value", 4))) && (string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("ConfrmPassword", "value", 4))))
                         {
@@ -619,14 +619,14 @@ namespace UserProfileSPA.TestCases
         [DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\StateMustBeDropDownAfterSelectingUSAndCanada.csv", "StateMustBeDropDownAfterSelectingUSAndCanada#csv", DataAccessMethod.Sequential), DeploymentItem("StateMustBeDropDownAfterSelectingUSAndCanada.csv"), TestMethod]
         public void StateMustBeDropDownAfterSelectingUSAndCanada()
         {
-            IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;           
+            IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
             string _baseUrl = Record("SignInUrl");
             if (_baseUrl == Driver.Url)
             {
                 Utility.CssToSetText("Email", Record("Email"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                 Utility.CssToSetText("Password", Record("Password"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                 string Country = Record("Country");
-                string state = Record("State");               
+                string state = Record("State");
                 Utility.CsstoClick("SignInBtn", 3);
                 Utility.Sleep(6);
                 Utility.CsstoClick("clickOnMyInformation", 4);
@@ -670,7 +670,7 @@ namespace UserProfileSPA.TestCases
         [DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\VerifyTheEmailAddressField.csv", "VerifyTheEmailAddressField#csv", DataAccessMethod.Sequential), DeploymentItem("VerifyTheEmailAddressField.csv"), TestMethod]
         public void VerifingTheEmailAddress()
         {
-            IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;          
+            IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
             string _baseUrl = Record("SignInUrl");
             if (_baseUrl == Driver.Url)
             {
@@ -694,7 +694,7 @@ namespace UserProfileSPA.TestCases
         [DeploymentItem("AppData\\VerifyContactAndMobilePhoneFields.csv"), DeploymentItem("VerifyContactAndMobilePhoneFields.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\VerifyContactAndMobilePhoneFields.csv", "VerifyContactAndMobilePhoneFields#csv", DataAccessMethod.Sequential), TestMethod]
         public void VerifyContactAndMobilePhoneFields()
         {
-            IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;           
+            IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
             string _baseUrl = Record("SignInUrl");
             if (_baseUrl == Driver.Url)
             {
@@ -778,7 +778,7 @@ namespace UserProfileSPA.TestCases
         [DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\VerifyTheCityAndStateFields.csv", "VerifyTheCityAndStateFields#csv", DataAccessMethod.Sequential), DeploymentItem("VerifyTheCityAndStateFields.csv"), TestMethod]
         public void VerifyTheCityAndStateFields()
         {
-            IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;           
+            IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
             string _baseUrl = Record("SignInUrl");
             if (_baseUrl == Driver.Url)
             {
@@ -815,7 +815,7 @@ namespace UserProfileSPA.TestCases
                     }
                     else
                     {
-                        Assert.IsTrue(true, "May City or State text boxes are not empty.");                        
+                        Assert.IsTrue(true, "May City or State text boxes are not empty.");
                     }
                 }
                 else
@@ -833,33 +833,66 @@ namespace UserProfileSPA.TestCases
         [DeploymentItem("VerifyTheNameFieldValidations.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\VerifyTheNameFieldValidations.csv", "VerifyTheNameFieldValidations#csv", DataAccessMethod.Sequential), TestMethod]
         public void VerifyTheNameFieldValidations()
         {
-            IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;          
-            string _baseUrl = Record("SignInUrl");
-            if (_baseUrl == Driver.Url)
+            IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
+
+            if (Prefix + SignInUrl == Driver.Url)
             {
                 Utility.CssToSetText("Email", Record("Email"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                 Utility.CssToSetText("Password", Record("Password"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                 Utility.CsstoClick("SignInBtn", 3);
                 Utility.Sleep(2);
-                Utility.CsstoClick("clickOnMyInformation", 4);
-                Utility.Sleep(2);
-                string _firstNametxt = Record("FirstName");
-               // char[] firstChar = _firstNametxt.ToCharArray();
-                string _lastNametxt = Record("LastName");
-                Utility.CsstoClear("FirstName", 3);
-                Utility.CssToSetText("FirstName", _firstNametxt, 3);
-                Utility.CsstoClear("LastName", 3);
-                Utility.CssToSetText("LastName", _lastNametxt, 3);
-                Utility.CsstoClick("SaveInformationBtn", 4);
-
-                if (!string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("FirstName", "value", 3)))
+                string _overViewUrl = Record("OverViewUrl");
+                if (Prefix + _overViewUrl == Driver.Url)
                 {
-                    if ((_firstNametxt.Length > 2) && (_firstNametxt.Length < 25))
+                    Utility.CsstoClick("clickOnMyInformation", 4);
+                    Utility.Sleep(2);
+                    string _myInfoUrl = Record("MyInformationUrl");
+                    if (Prefix + _myInfoUrl == Driver.Url)
                     {
-                        Regex regex = new Regex(@"^[a-zA-Z]");
-                        if (regex.IsMatch(_firstNametxt))
+                        string _firstNametxt = Record("FirstName");
+                        // char[] firstChar = _firstNametxt.ToCharArray();
+                        string _lastNametxt = Record("LastName");
+                        Utility.CsstoClear("FirstName", 3);
+                        Utility.CssToSetText("FirstName", _firstNametxt, 3);
+                        Utility.CsstoClear("LastName", 3);
+                        Utility.CssToSetText("LastName", _lastNametxt, 3);
+                        Utility.CsstoClick("SaveInformationBtn", 4);
+
+                        if (!string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("FirstName", "value", 3)))
                         {
-                            if ((_firstNametxt.Contains("!") || (_firstNametxt.Contains("@")) || (_firstNametxt.Contains("~")) || (_firstNametxt.Contains("$")) || (_firstNametxt.Contains("%")) || (_firstNametxt.Contains("^")) || (_firstNametxt.Contains("&")) || (_firstNametxt.Contains("*")) || (_firstNametxt.Contains("`")) || (_firstNametxt.Contains("+")) || (_firstNametxt.Contains("-")) || (_firstNametxt.Contains(":")) || (_firstNametxt.Contains(".")) || (_firstNametxt.Contains(",")) || (_firstNametxt.Contains("(")) || (_firstNametxt.Contains(")")) || (_firstNametxt.Contains("="))))
+                            if ((_firstNametxt.Length > 2) && (_firstNametxt.Length < 25))
+                            {
+                                Regex regex = new Regex(@"^[a-zA-Z]");
+                                if (regex.IsMatch(_firstNametxt))
+                                {
+                                    if ((_firstNametxt.Contains("!") || (_firstNametxt.Contains("@")) || (_firstNametxt.Contains("~")) || (_firstNametxt.Contains("$")) || (_firstNametxt.Contains("%")) || (_firstNametxt.Contains("^")) || (_firstNametxt.Contains("&")) || (_firstNametxt.Contains("*")) || (_firstNametxt.Contains("`")) || (_firstNametxt.Contains("+")) || (_firstNametxt.Contains("-")) || (_firstNametxt.Contains(":")) || (_firstNametxt.Contains(".")) || (_firstNametxt.Contains(",")) || (_firstNametxt.Contains("(")) || (_firstNametxt.Contains(")")) || (_firstNametxt.Contains("="))))
+                                    {
+                                        string expectedErrorMsg = Record("ExpectedErrorMsgForFirstname");
+                                        if (expectedErrorMsg != "No Error")
+                                        {
+                                            string actualErrorMsg = Utility.ByXpath("ErrorMsgForFirstNameInMyInformation", 4);
+                                            Assert.AreEqual(expectedErrorMsg, actualErrorMsg);
+                                        }
+                                        //throw new Exception("Name can only contain apostrophe, space or hyphen.");
+                                    }
+                                    else { Assert.IsTrue(true); }
+                                    if ((_firstNametxt.Contains("'s") || (!_firstNametxt.Contains(" ")) || (!_firstNametxt.Contains("-"))))
+                                    { Assert.IsTrue(true); }
+                                    else { Assert.IsTrue(false); }
+                                }
+                                else
+                                {
+                                    string expectedErrorMsg = Record("ExpectedErrorMsgForFirstname");
+                                    if (expectedErrorMsg != "No Error")
+                                    {
+                                        string actualErrorMsg = Utility.ByXpath("ErrorMsgForFirstNameInMyInformation", 4);
+                                        Assert.AreEqual(expectedErrorMsg, actualErrorMsg);
+                                    }
+
+                                    //throw new Exception("Name must begin with a letter.");
+                                }
+                            }
+                            else
                             {
                                 string expectedErrorMsg = Record("ExpectedErrorMsgForFirstname");
                                 if (expectedErrorMsg != "No Error")
@@ -867,12 +900,8 @@ namespace UserProfileSPA.TestCases
                                     string actualErrorMsg = Utility.ByXpath("ErrorMsgForFirstNameInMyInformation", 4);
                                     Assert.AreEqual(expectedErrorMsg, actualErrorMsg);
                                 }
-                               //throw new Exception("Name can only contain apostrophe, space or hyphen.");
+                                //throw new Exception("FirstName should starts with big letter");
                             }
-                            else { Assert.IsTrue(true); }
-                            if ((_firstNametxt.Contains("'s") || (!_firstNametxt.Contains(" ")) || (!_firstNametxt.Contains("-"))))
-                            { Assert.IsTrue(true); }
-                            else { Assert.IsTrue(false); }
                         }
                         else
                         {
@@ -882,49 +911,49 @@ namespace UserProfileSPA.TestCases
                                 string actualErrorMsg = Utility.ByXpath("ErrorMsgForFirstNameInMyInformation", 4);
                                 Assert.AreEqual(expectedErrorMsg, actualErrorMsg);
                             }
-                            
-                            //throw new Exception("Name must begin with a letter.");
+                            // Assert.IsTrue(false, "Please enter first name");
                         }
-                    }
-                    else
-                    {
-                        string expectedErrorMsg = Record("ExpectedErrorMsgForFirstname");
-                        if (expectedErrorMsg != "No Error")
-                        {
-                            string actualErrorMsg = Utility.ByXpath("ErrorMsgForFirstNameInMyInformation", 4);
-                            Assert.AreEqual(expectedErrorMsg, actualErrorMsg);
-                        }
-                        //throw new Exception("FirstName should starts with big letter");
-                    }
-                }
-                else
-                {
-                    string expectedErrorMsg = Record("ExpectedErrorMsgForFirstname");
-                    if (expectedErrorMsg != "No Error")
-                    {
-                        string actualErrorMsg = Utility.ByXpath("ErrorMsgForFirstNameInMyInformation", 4);
-                        Assert.AreEqual(expectedErrorMsg, actualErrorMsg);
-                    }
-                   // Assert.IsTrue(false, "Please enter first name");
-                }
 
-                if (!string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("LastName", "value", 3)))
-                {
-                    if ((_lastNametxt.Length > 2) && (_lastNametxt.Length < 25))
-                    {
-                        Regex regex = new Regex(@"^[a-zA-Z]");
-                        if (regex.IsMatch(_firstNametxt))
+                        if (!string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("LastName", "value", 3)))
                         {
-                            if ((_lastNametxt.Contains("!") || (_lastNametxt.Contains("@")) || (_lastNametxt.Contains("~")) || (_lastNametxt.Contains("$")) || (_lastNametxt.Contains("%")) || (_lastNametxt.Contains("^")) || (_lastNametxt.Contains("&")) || (_lastNametxt.Contains("*")) || (_lastNametxt.Contains("`")) || (_lastNametxt.Contains("+")) || (_lastNametxt.Contains("_")) || (_lastNametxt.Contains(":")) || (_lastNametxt.Contains(".")) || (_lastNametxt.Contains(",")) || (_lastNametxt.Contains("(")) || (_lastNametxt.Contains(")")) || (_lastNametxt.Contains("="))))
+                            if ((_lastNametxt.Length > 2) && (_lastNametxt.Length < 25))
+                            {
+                                Regex regex = new Regex(@"^[a-zA-Z]");
+                                if (regex.IsMatch(_firstNametxt))
+                                {
+                                    if ((_lastNametxt.Contains("!") || (_lastNametxt.Contains("@")) || (_lastNametxt.Contains("~")) || (_lastNametxt.Contains("$")) || (_lastNametxt.Contains("%")) || (_lastNametxt.Contains("^")) || (_lastNametxt.Contains("&")) || (_lastNametxt.Contains("*")) || (_lastNametxt.Contains("`")) || (_lastNametxt.Contains("+")) || (_lastNametxt.Contains("_")) || (_lastNametxt.Contains(":")) || (_lastNametxt.Contains(".")) || (_lastNametxt.Contains(",")) || (_lastNametxt.Contains("(")) || (_lastNametxt.Contains(")")) || (_lastNametxt.Contains("="))))
+                                    {
+                                        string expectedErrorMsg = Record("ExpectedErrorMsgForLastname");
+                                        string actualErrorMsg = Utility.ByXpath("ErrorMsgForLastNameInMyInformation", 4);
+                                        Assert.AreEqual(expectedErrorMsg, actualErrorMsg);
+                                        //throw new Exception("Name can only contain apostrophe, space or hyphen.");
+                                    }
+                                    else { Assert.IsTrue(true); }
+                                    if ((_lastNametxt.Contains("'s") || (!_lastNametxt.Contains(" ")) || (!_lastNametxt.Contains("-"))))
+                                    { Assert.IsTrue(true); }
+                                }
+                                else
+                                {
+                                    string expectedErrorMsg = Record("ExpectedErrorMsgForLastname");
+                                    if (expectedErrorMsg != "No Error")
+                                    {
+                                        string actualErrorMsg = Utility.ByXpath("ErrorMsgForLastNameInMyInformation", 4);
+                                        Assert.AreEqual(expectedErrorMsg, actualErrorMsg);
+                                    }
+                                    // throw new Exception("Name must begin with a letter.");
+                                }
+                            }
+                            else
                             {
                                 string expectedErrorMsg = Record("ExpectedErrorMsgForLastname");
-                                string actualErrorMsg = Utility.ByXpath("ErrorMsgForLastNameInMyInformation", 4);
-                                Assert.AreEqual(expectedErrorMsg, actualErrorMsg);
-                                //throw new Exception("Name can only contain apostrophe, space or hyphen.");
+                                if (expectedErrorMsg != "No Error")
+                                {
+                                    string actualErrorMsg = Utility.ByXpath("ErrorMsgForLastNameInMyInformation", 4);
+                                    Assert.AreEqual(expectedErrorMsg, actualErrorMsg);
+                                }
+                                // throw new Exception("FirstName should starts with big letter");
                             }
-                            else { Assert.IsTrue(true); }
-                            if ((_lastNametxt.Contains("'s") || (!_lastNametxt.Contains(" ")) || (!_lastNametxt.Contains("-"))))
-                            { Assert.IsTrue(true); }
+
                         }
                         else
                         {
@@ -934,30 +963,17 @@ namespace UserProfileSPA.TestCases
                                 string actualErrorMsg = Utility.ByXpath("ErrorMsgForLastNameInMyInformation", 4);
                                 Assert.AreEqual(expectedErrorMsg, actualErrorMsg);
                             }
-                           // throw new Exception("Name must begin with a letter.");
+                            //Assert.IsTrue(false, "Please enter last name");
                         }
                     }
                     else
                     {
-                        string expectedErrorMsg = Record("ExpectedErrorMsgForLastname");
-                        if (expectedErrorMsg != "No Error")
-                        {
-                            string actualErrorMsg = Utility.ByXpath("ErrorMsgForLastNameInMyInformation", 4);
-                            Assert.AreEqual(expectedErrorMsg, actualErrorMsg);
-                        }
-                        // throw new Exception("FirstName should starts with big letter");
+                        Assert.IsTrue(false, "MyIformation Url is not opened.");
                     }
-
                 }
                 else
                 {
-                    string expectedErrorMsg = Record("ExpectedErrorMsgForLastname");
-                    if (expectedErrorMsg != "No Error")
-                    {
-                        string actualErrorMsg = Utility.ByXpath("ErrorMsgForLastNameInMyInformation", 4);
-                        Assert.AreEqual(expectedErrorMsg, actualErrorMsg);
-                    }
-                    //Assert.IsTrue(false, "Please enter last name");
+                    Assert.IsTrue(false, "OverView Url is not opened.");
                 }
             }
             else
@@ -967,44 +983,60 @@ namespace UserProfileSPA.TestCases
         }
 
 
-        [DeploymentItem("VerifyTheTitleField.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\VerifyTheTitleField.csv", "VerifyTheTitleField#csv", DataAccessMethod.Sequential), TestMethod]
+        [DeploymentItem("AppData\\VerifyTheTitleField.csv"), DeploymentItem("VerifyTheTitleField.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\VerifyTheTitleField.csv", "VerifyTheTitleField#csv", DataAccessMethod.Sequential), TestMethod]
         public void VerifyTheTitleField()
         {
-            IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;          
-            string _baseUrl = Record("SignInUrl");
-            if (_baseUrl == Driver.Url)
+            IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
+            //string _baseUrl = Record("SignInUrl");
+            if (Prefix + SignInUrl == Driver.Url)
             {
                 Utility.CssToSetText("Email", Record("Email"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                 Utility.CssToSetText("Password", Record("Password"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                 Utility.CsstoClick("SignInBtn", 3);
                 Utility.Sleep(2);
-                Utility.CsstoClick("clickOnMyInformation", 4);
-                Utility.Sleep(2);
-                string _selectedGender = Record("SelectedGender");
-                var _gender = Driver.FindElement(By.CssSelector(UserProfileSPA.Library.TestEnvironment.LoadXML("Gender")));
-                var selectelementGender = new SelectElement(_gender);
-                selectelementGender.SelectByText(_selectedGender);
+                string _overViewUrl = Record("OverViewUrl");
+                if (Prefix + _overViewUrl == Driver.Url)
+                {
+                    string _myinfoUrl = Record("MyInformationUrl");
+                    Utility.CsstoClick("clickOnMyInformation", 4);
+                    Utility.Sleep(2);
+                    if (Prefix + _myinfoUrl == Driver.Url)
+                    {
+                        string _selectedGender = Record("SelectedGender");
+                        var _gender = Driver.FindElement(By.CssSelector(UserProfileSPA.Library.TestEnvironment.LoadXML("Gender")));
+                        var selectelementGender = new SelectElement(_gender);
+                        selectelementGender.SelectByText(_selectedGender);
 
-                string _selectedTitle = Record("SelectedTitle");
-                var _title = Driver.FindElement(By.CssSelector(UserProfileSPA.Library.TestEnvironment.LoadXML("Title")));
-                var selectelementTitle = new SelectElement(_title);
-                selectelementTitle.SelectByText(_selectedTitle);
-               
+                        string _selectedTitle = Record("SelectedTitle");
+                        var _title = Driver.FindElement(By.CssSelector(UserProfileSPA.Library.TestEnvironment.LoadXML("Title")));
+                        var selectelementTitle = new SelectElement(_title);
+                        selectelementTitle.SelectByText(_selectedTitle);
 
-                string _dropdownTitleValue = Utility.GrabAttributeValueByCss("Title", "value", 2);
-                string _dropdownGenderValue = Utility.GrabAttributeValueByCss("Gender", "value", 2);
 
-                if ((_dropdownTitleValue == "1") && (_dropdownGenderValue == "1"))
-                {      
+                        string _dropdownTitleValue = Utility.GrabAttributeValueByCss("Title", "value", 2);
+                        string _dropdownGenderValue = Utility.GrabAttributeValueByCss("Gender", "value", 2);
+
+                        if ((_dropdownTitleValue == "1") && (_dropdownGenderValue == "1"))
+                        {
+                        }
+                        else
+                        {
+                            string expectedErrorMsg = Record("ExpectedErrorMsg");
+                            if (expectedErrorMsg != "No Error")
+                            {
+                                string actualErrorMsg = Utility.ByXpath("GenderErrorMsg", UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
+                                Assert.AreEqual(expectedErrorMsg, actualErrorMsg);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        Assert.IsTrue(false, "MyInformation Url is not opened.");
+                    }
                 }
                 else
                 {
-                    string expectedErrorMsg = Record("ExpectedErrorMsg");
-                    if (expectedErrorMsg != "No Error")
-                    {
-                        string actualErrorMsg = Utility.ByXpath("GenderErrorMsg", UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
-                        Assert.AreEqual(expectedErrorMsg, actualErrorMsg);
-                    }
+                    Assert.IsTrue(false, "OverView Url is not opened.");
                 }
             }
             else
@@ -1117,58 +1149,58 @@ namespace UserProfileSPA.TestCases
                 Utility.Sleep(2);
                 string cheapoairMyInfoUrl = Record("CheapoairMyInfoUrl");
                 if (cheapoairMyInfoUrl == Driver.Url)
-                {                
+                {
 
 
-                        string titlesWhenGenderIsNoSpecified = UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("titlesWhenGenderIsNoSpecified");
-                        string[] _titlesWhenGenderIsNoSpecified = titlesWhenGenderIsNoSpecified.Split(",".ToCharArray());
-                        string titleForMales = UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("titleForMales");
-                        string[] _titleForMales = titleForMales.Split(",".ToCharArray());
-                        string titleForFemales = UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("titleForFemales");
-                        string[] _titleForFemales = titleForFemales.Split(",".ToCharArray());
+                    string titlesWhenGenderIsNoSpecified = UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("titlesWhenGenderIsNoSpecified");
+                    string[] _titlesWhenGenderIsNoSpecified = titlesWhenGenderIsNoSpecified.Split(",".ToCharArray());
+                    string titleForMales = UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("titleForMales");
+                    string[] _titleForMales = titleForMales.Split(",".ToCharArray());
+                    string titleForFemales = UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("titleForFemales");
+                    string[] _titleForFemales = titleForFemales.Split(",".ToCharArray());
 
-                        string _selectedGender = Record("SelectedGender");
-                        var _gender = Driver.FindElement(By.CssSelector(UserProfileSPA.Library.TestEnvironment.LoadXML("Gender")));
-                        var selectelementGender = new SelectElement(_gender);
-                        selectelementGender.SelectByText(_selectedGender);
+                    string _selectedGender = Record("SelectedGender");
+                    var _gender = Driver.FindElement(By.CssSelector(UserProfileSPA.Library.TestEnvironment.LoadXML("Gender")));
+                    var selectelementGender = new SelectElement(_gender);
+                    selectelementGender.SelectByText(_selectedGender);
 
-                        if (((Utility.GrabAttributeValueByCss("CoTravellerGender", "value", 4)) == "1"))
+                    if (((Utility.GrabAttributeValueByCss("CoTravellerGender", "value", 4)) == "1"))
+                    {
+                        string elements = Utility.ByCss("SelectCoTravellerTitle", 4);
+                        string[] title = elements.Replace("\r\n", "_").Split("_".ToCharArray());
+
+                        int i = 0;
+                        foreach (var element in title)
                         {
-                            string elements = Utility.ByCss("SelectCoTravellerTitle", 4);
-                            string[] title = elements.Replace("\r\n", "_").Split("_".ToCharArray());
-
-                            int i = 0;
-                            foreach (var element in title)
-                            {
-                                Assert.AreEqual(_titleForMales[i], element);
-                                i++;
-                            }
+                            Assert.AreEqual(_titleForMales[i], element);
+                            i++;
                         }
-                        else if (((Utility.GrabAttributeValueByCss("CoTravellerGender", "value", 4)) == "2"))
+                    }
+                    else if (((Utility.GrabAttributeValueByCss("CoTravellerGender", "value", 4)) == "2"))
+                    {
+                        string elements = Utility.ByCss("SelectCoTravellerTitle", 4);
+                        string[] title = elements.Replace("\r\n", "_").Split("_".ToCharArray());
+
+                        int i = 0;
+                        foreach (var element in title)
                         {
-                            string elements = Utility.ByCss("SelectCoTravellerTitle", 4);
-                            string[] title = elements.Replace("\r\n", "_").Split("_".ToCharArray());
-
-                            int i = 0;
-                            foreach (var element in title)
-                            {
-                                Assert.AreEqual(_titleForFemales[i], element);
-                                i++;
-                            }
+                            Assert.AreEqual(_titleForFemales[i], element);
+                            i++;
                         }
-                        else
+                    }
+                    else
+                    {
+                        string elements = Utility.ByCss("SelectCoTravellerTitle", 4);
+                        string[] title = elements.Replace("\r\n", "_").Split("_".ToCharArray());
+
+                        int i = 0;
+                        foreach (var element in title)
                         {
-                            string elements = Utility.ByCss("SelectCoTravellerTitle", 4);
-                            string[] title = elements.Replace("\r\n", "_").Split("_".ToCharArray());
-
-                            int i = 0;
-                            foreach (var element in title)
-                            {
-                                Assert.AreEqual(_titlesWhenGenderIsNoSpecified[i], element);
-                                i++;
-                            }
+                            Assert.AreEqual(_titlesWhenGenderIsNoSpecified[i], element);
+                            i++;
                         }
-                    
+                    }
+
                 }
             }
         }
@@ -1178,6 +1210,6 @@ namespace UserProfileSPA.TestCases
         public void Cleanup()
         {
             UserProfileSPA.Library.TestEnvironment.Dispose();
-        }    
+        }
     }
 }

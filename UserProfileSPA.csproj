@@ -288,9 +288,6 @@
     <None Include="VerifyTheNameFieldValidations.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="VerifyTheTitleField.csv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="VerifyTheTitleFieldWithGenderInCoTraveler.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
