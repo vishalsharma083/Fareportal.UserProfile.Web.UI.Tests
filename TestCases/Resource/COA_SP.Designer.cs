@@ -61,7 +61,7 @@ namespace UserProfileSPA.TestCases.Resource {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please specify from city,Please specify to city,Please enter a valid date.,Please enter a valid date..
+        ///   Looks up a localized string similar to Please specify from city,Please specify to city,Please enter a valid date.,Please enter a valid date.,This field is required.,This field is required..
         /// </summary>
         internal static string AddFareAlertValidationsInSettingsPage {
             get {
