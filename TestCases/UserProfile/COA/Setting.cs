@@ -39,7 +39,7 @@ namespace UserProfileSPA.TestCases
         }
 
 
-        [DeploymentItem("AddFareAllAlertValidationsInSettingsPage.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\AddFareAllAlertValidationsInSettingsPage.csv", "AddFareAllAlertValidationsInSettingsPage#csv", DataAccessMethod.Sequential), TestMethod]
+        [DeploymentItem("AddFareAllAlertValidationsInSettingsPage.csv"), DeploymentItem("AppData\\AddFareAllAlertValidationsInSettingsPage.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\AddFareAllAlertValidationsInSettingsPage.csv", "AddFareAllAlertValidationsInSettingsPage#csv", DataAccessMethod.Sequential), TestMethod]
         public void AddFareAllAlertValidationsInSettingsPage()
         {
             IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
@@ -73,8 +73,6 @@ namespace UserProfileSPA.TestCases
                             Assert.AreEqual(addFareAlertValidationsInSettingsPage[1], ValidationInToCityInSetting);
 
                             Regex r = new Regex(@"^(0?[1-9]|[12][0-9]|3[01])[ \/.-](0?[1-9]|1[012])[ \/.-](19|20)\d\d$");
-
-
                             string _Ddate = Record("DepDate");
                             Utility.CsstoClear("DateInFromCityInSetting", 4);
                             Utility.CssToSetText("DateInFromCityInSetting", _Ddate, 4);
@@ -84,7 +82,7 @@ namespace UserProfileSPA.TestCases
                             if (string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("DateInFromCityInSetting", "value", 2)))
                             {
                                 string DateValidationInFromCityInSetting = Utility.ByXpath("DateValidationInFromCityInSetting", 4);
-                                Assert.AreEqual(addFareAlertValidationsInSettingsPage[4], DateValidationInFromCityInSetting);
+                                Assert.AreEqual(addFareAlertValidationsInSettingsPage[2], DateValidationInFromCityInSetting);
                             }
                             else if (!r.IsMatch(Utility.GrabAttributeValueByCss("DateInFromCityInSetting", "value", 2)))// && (string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("DateInToCityInSetting", "value", 2))))
                             {
@@ -95,7 +93,7 @@ namespace UserProfileSPA.TestCases
                             if (string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("DateInToCityInSetting", "value", 2)))
                             {
                                 string DateValidationInToCityInSetting = Utility.ByXpath("DateValidationInToCityInSetting", 4);
-                                Assert.AreEqual(addFareAlertValidationsInSettingsPage[3], DateValidationInToCityInSetting);
+                                Assert.AreEqual(addFareAlertValidationsInSettingsPage[2], DateValidationInToCityInSetting);
                             }
                             else if (!r.IsMatch(Utility.GrabAttributeValueByCss("DateInToCityInSetting", "value", 2)))// && (string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("DateInToCityInSetting", "value", 2))))
                             {

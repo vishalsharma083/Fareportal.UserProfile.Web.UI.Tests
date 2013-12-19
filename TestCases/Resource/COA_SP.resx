@@ -231,7 +231,7 @@ Click here to create an account – its quick &amp; easy.</value>
     <value>Your email is required</value>
   </data>
   <data name="AddFareAlertValidationsInSettingsPage" xml:space="preserve">
-    <value>Please specify from city,Please specify to city,Please enter a valid date.,Please enter a valid date.,This field is required.,This field is required.</value>
+    <value>Please specify from city,Please specify to city,Please enter a valid date.,This field is required.</value>
   </data>
   <data name="titleForFemales" xml:space="preserve">
     <value>Not Specified,Mrs,Miss,Ms,Dr,Rev</value>
