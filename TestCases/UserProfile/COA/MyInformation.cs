@@ -1017,13 +1017,14 @@ namespace UserProfileSPA.TestCases
         [DeploymentItem("AppData\\VerifyTheValidationsOf_TheLeapYear.csv"), DeploymentItem("VerifyTheValidationsOf_TheLeapYear.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\VerifyTheValidationsOf_TheLeapYear.csv", "VerifyTheValidationsOf_TheLeapYear#csv", DataAccessMethod.Sequential), TestMethod]
         public void VerifyTheValidationsOf_TheLeapYear()
         {
-            IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;          
-            
+            IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
+            Utility.Sleep(4);
             if (Prefix + SignInUrl == Driver.Url)
             {
                 Utility.CssToSetText("Email", Record("Email"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                 Utility.CssToSetText("Password", Record("Password"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                 Utility.CsstoClick("SignInBtn", 3);
+                Utility.Sleep(5);
                 string _overViewUrl = Record("OverViewUrl");
                 if (Prefix + _overViewUrl == Driver.Url)
                 {
@@ -1073,7 +1074,7 @@ namespace UserProfileSPA.TestCases
                                 string expectedErrorMsg = Record("ExpectedErrorMsg");
                                 if (expectedErrorMsg != "No Error")
                                 {
-                                    Utility.CsstoClick("SaveInformationBtn", 3);
+                                    Utility.CsstoClick("SaveInformationBtn", 5);
                                     Utility.Sleep(7);
                                     string actualErrorMsg = Utility.ByXpath("LeapYearErrorMsgInMyDetails", UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                                     Utility.Sleep(3);
