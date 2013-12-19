@@ -51,7 +51,7 @@ namespace UserProfileSPA.TestCases
                 Utility.CssToSetText("Email", Record("Email"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                 Utility.CssToSetText("Password", Record("Password"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                 Utility.CsstoClick("SignInBtn", 3);
-                Utility.Sleep(5);
+                Utility.Sleep(6);
                 string _signInUrl = Record("SignInUrl");
                 string _overViewUrl = Record("OverviewUrl");
                 if (_overViewUrl == Driver.Url)
@@ -60,7 +60,8 @@ namespace UserProfileSPA.TestCases
                     string _settingPageUrl = Record("SettingPageUrl");
                     if (_settingPageUrl == Driver.Url)
                     {
-                        Utility.CsstoClick("ClickOnAddFareAlertBtton", 4);
+                        Utility.Sleep(6);
+                        Utility.CsstoClick("ClickOnAddFareAlertBtton", 8);
                         if ((string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("TextInFromCityInSetting", "value", 2))) && (string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("TextInToCityInSetting", "value", 2))))// && (string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("DateInFromCityInSetting", "value", 2))) && (string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("DateInToCityInSetting", "value", 2))))
                         {
                             string ValidationInFromCityInSetting = Utility.ByXpath("ValidationInFromCityInSetting", 4);
@@ -73,23 +74,29 @@ namespace UserProfileSPA.TestCases
 
                            
                             string _Ddate = Record("DepDate");
+                            Utility.CsstoClear("DateInFromCityInSetting", 4);
                             Utility.CssToSetText("DateInFromCityInSetting", _Ddate, 4);
                             string _Rdate = Record("Rdate");
+                            Utility.CsstoClear("DateInToCityInSetting", 4);
                             Utility.CssToSetText("DateInToCityInSetting", _Rdate, 4);
-                            if (!r.IsMatch(Utility.GrabAttributeValueByCss("DateInFromCityInSetting", "value", 2)))// && (string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("DateInToCityInSetting", "value", 2))))
+                            if (string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("DateInFromCityInSetting", "value", 2)))
                             {
                                 string DateValidationInFromCityInSetting = Utility.ByXpath("DateValidationInFromCityInSetting", 4);
-                                Assert.AreEqual(addFareAlertValidationsInSettingsPage[2], DateValidationInFromCityInSetting);
+                                Assert.AreEqual(addFareAlertValidationsInSettingsPage[4], DateValidationInFromCityInSetting);
+                            }
+                            else if (!r.IsMatch(Utility.GrabAttributeValueByCss("DateInFromCityInSetting", "value", 2)))// && (string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("DateInToCityInSetting", "value", 2))))
+                            {
+                                string DateValidationInFromCityInSetting = Utility.ByXpath("DateValidationInFromCityInSetting", 4);
+                                Assert.AreEqual(addFareAlertValidationsInSettingsPage[2], DateValidationInFromCityInSetting);                                
+                            }
 
+                            if (string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("DateInToCityInSetting", "value", 2)))
+                            {
                                 string DateValidationInToCityInSetting = Utility.ByXpath("DateValidationInToCityInSetting", 4);
                                 Assert.AreEqual(addFareAlertValidationsInSettingsPage[3], DateValidationInToCityInSetting);
                             }
-                            
-                            if (!r.IsMatch(Utility.GrabAttributeValueByCss("DateInToCityInSetting", "value", 2)))// && (string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("DateInToCityInSetting", "value", 2))))
+                           else if (!r.IsMatch(Utility.GrabAttributeValueByCss("DateInToCityInSetting", "value", 2)))// && (string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("DateInToCityInSetting", "value", 2))))
                             {
-                                string DateValidationInFromCityInSetting = Utility.ByXpath("DateValidationInFromCityInSetting", 4);
-                                Assert.AreEqual(addFareAlertValidationsInSettingsPage[2], DateValidationInFromCityInSetting);
-
                                 string DateValidationInToCityInSetting = Utility.ByXpath("DateValidationInToCityInSetting", 4);
                                 Assert.AreEqual(addFareAlertValidationsInSettingsPage[3], DateValidationInToCityInSetting);
                             }
