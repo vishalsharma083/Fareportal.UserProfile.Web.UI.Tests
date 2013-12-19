@@ -73,6 +73,7 @@ namespace UserProfileSPA.TestCases
             {
                 Utility.CsstoClick("SignInBtn", 2);
                 string _overViewUrl = Record("OverViewUrl");
+                Utility.Sleep(4);
                 if (Prefix + _overViewUrl == Driver.Url)
                 {
                     string expectedName = Utility.ByXpath("TravelerNameAccount", 3);

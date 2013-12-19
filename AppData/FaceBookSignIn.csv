@@ -1,2 +1,2 @@
-FbEmailorPhoneNo,Password,ExpectedCompleteFbName,UserProfileURL,fareportalOverviewUrl
-gulatisaurabh88@gmail.com,sgulati4321,Saurabh Gulati's Account,http://www.cheapoair.com/profiles/#/user-signin,http://www.cheapoair.com/profiles/#/overview
+FbEmailorPhoneNo,Password,ExpectedCompleteFbName,OverviewUrl
+gulatisaurabh88@gmail.com,sgulati4321,Saurabh Gulati's Account,//www.cheapoair.com/profiles/#/overview
