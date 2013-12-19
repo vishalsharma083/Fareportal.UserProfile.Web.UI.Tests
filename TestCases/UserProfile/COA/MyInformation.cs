@@ -775,7 +775,7 @@ namespace UserProfileSPA.TestCases
         }
 
 
-        [DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\VerifyTheCityAndStateFields.csv", "VerifyTheCityAndStateFields#csv", DataAccessMethod.Sequential), DeploymentItem("VerifyTheCityAndStateFields.csv"), TestMethod]
+        [DeploymentItem("VerifyTheCityAndStateFields.csv"), DeploymentItem("AppData\\VerifyTheCityAndStateFields.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\VerifyTheCityAndStateFields.csv", "VerifyTheCityAndStateFields#csv", DataAccessMethod.Sequential), TestMethod]
         public void VerifyTheCityAndStateFields()
         {
             IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
@@ -784,43 +784,60 @@ namespace UserProfileSPA.TestCases
             {
                 Utility.CssToSetText("Email", Record("Email"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                 Utility.CssToSetText("Password", Record("Password"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
-                string city = Record("City");
-                string state = Record("State");
                 Utility.CsstoClick("SignInBtn", 3);
-                Utility.Sleep(2);
-                Utility.CsstoClick("clickOnMyInformation", 4);
-                Utility.Sleep(2);
-                Utility.CsstoClear("City", 2);
-                Utility.CsstoClear("State", 2);
-                Utility.CssToSetText("City", city, 2);
-                Utility.CssToSetText("State", state, 2);
-                Utility.CsstoClick("SaveInformationBtn", 3);
-                string expectedValidationsOfCityAndState = UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("expectedValidationsOfCityAndState");
-                string[] ValidationsOfCityAndState = expectedValidationsOfCityAndState.Split(",".ToCharArray());
 
-
-                //string checkType = ;
-                if (Utility.GrabAttributeValueByCss("TextAddressOne", "type", 2) == "text")
+                string _overView = Record("OverView");
+                if (Prefix + _overView == Driver.Url)
                 {
-
-                    if (string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("TextCity", "value", 2)) && string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("TextCity", "value", 2)))
+                    string city = Record("City");
+                    string state = Record("State");
+                    Utility.Sleep(2);
+                    Utility.CsstoClick("clickOnMyInformation", 4);
+                    string _myInformationUrl = Record("MyInformationUrl");
+                    if (Prefix + _myInformationUrl == Driver.Url)
                     {
+                        Utility.Sleep(2);
+                        Utility.CsstoClear("City", 2);
+                        Utility.CsstoClear("State", 2);
+                        Utility.CssToSetText("City", city, 2);
+                        Utility.CssToSetText("State", state, 2);
+                        Utility.CsstoClick("SaveInformationBtn", 3);
+                        string expectedValidationsOfCityAndState = UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("expectedValidationsOfCityAndState");
+                        string[] ValidationsOfCityAndState = expectedValidationsOfCityAndState.Split(",".ToCharArray());
 
-                        string CityNamemissingValidation = Utility.ByXpath("CityNamemissingValidation", 4);
-                        Assert.AreEqual(ValidationsOfCityAndState[0], CityNamemissingValidation);
 
-                        string StateNamemissingValidation = Utility.ByXpath("StateNamemissingValidation", 4);
-                        Assert.AreEqual(ValidationsOfCityAndState[1], StateNamemissingValidation);
+                        //string checkType = ;
+                        if (Utility.GrabAttributeValueByCss("TextAddressOne", "type", 2) == "text")
+                        {
 
+                            if (string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("TextCity", "value", 2)) && string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("TextCity", "value", 2)))
+                            {
+
+                                string CityNamemissingValidation = Utility.ByXpath("CityNamemissingValidation", 4);
+                                Assert.AreEqual(ValidationsOfCityAndState[0], CityNamemissingValidation);
+
+                                string StateNamemissingValidation = Utility.ByXpath("StateNamemissingValidation", 4);
+                                Assert.AreEqual(ValidationsOfCityAndState[1], StateNamemissingValidation);
+
+                            }
+                            else
+                            {
+                                Assert.IsTrue(true, "May City or State text boxes are not empty.");
+                            }
+                        }
+                        else
+                        {
+                            Assert.IsTrue(false, "CheckType is not text type.");
+                        }
                     }
                     else
                     {
-                        Assert.IsTrue(true, "May City or State text boxes are not empty.");
+                        Assert.IsTrue(false, "MyInformation url is not opened.");
                     }
                 }
                 else
                 {
-                    Assert.IsTrue(false, "CheckType is not text type.");
+                    Assert.IsTrue(false, "OverView url is not opened.");
                 }
             }
             else
