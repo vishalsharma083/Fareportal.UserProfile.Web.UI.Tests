@@ -1,2 +1,2 @@
-Email,Password,SignInUrl,OverviewUrl,FareportalMyDetailsUrl,NewPassword,ConfrmPassword
-saurabhtest22@gmail.com,aaaaaa,http://www.cheapoair.com/profiles/#/user-signin,http://www.cheapoair.com/profiles/#/overview,http://www.cheapoair.com/profiles/#/my-account/my-details,saurabh123456,saurabh123456
+Email,Password,OverviewUrl,MyInformationUrl,NewPassword,ConfrmPassword
+saurabhtest22@gmail.com,aaaaaa,//www.cheapoair.com/profiles/#/overview,//www.cheapoair.com/profiles/#/my-account/my-details,saurabh123456,saurabh123456

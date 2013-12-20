@@ -446,29 +446,23 @@ namespace UserProfileSPA.TestCases
         public void SignInInformation()
         {
             IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
-            string _baseUrl = Record("SignInUrl");
-
-            if (_baseUrl == Driver.Url)
+            if (Prefix+SignInUrl == Driver.Url)
             {
                 Utility.CssToSetText("Email", Record("Email"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                 Utility.CssToSetText("Password", Record("Password"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                 Utility.CsstoClick("SignInBtn", 3);
                 Utility.Sleep(3);
-                string _overViewUrl = Record("OverviewUrl");
-                if (_overViewUrl == Driver.Url)
+                if (Record("OverviewUrl") == Driver.Url)
                 {
                     Utility.CsstoClick("clickOnMyInformation", 4);
                     Utility.Sleep(2);
-
-                    string fareportalMyDetailsUrl = Record("FareportalMyDetailsUrl");
-                    if (fareportalMyDetailsUrl == Driver.Url)
+                    if (Record("MyInformationUrl") == Driver.Url)
                     {
                         string myInformationEmail = Utility.GrabAttributeValueByCss("SignInInformationEmailAddress", "value", 4);
                         Assert.AreEqual(Record("Email"), myInformationEmail, "Email address is matched");
                         Utility.Sleep(2);
                         string _newpassword = Record("NewPassword");
                         string _confrmpassword = Record("ConfrmPassword");
-
                         Utility.CsstoClick("ClickOnEmailGrey", 3);
                         Utility.CssToSetText("NewPassword", _newpassword, 4);
                         Utility.CssToSetText("ConfrmPassword", _confrmpassword, 4);
