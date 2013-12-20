@@ -667,22 +667,36 @@ namespace UserProfileSPA.TestCases
         }
 
 
-        [DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\VerifyTheEmailAddressField.csv", "VerifyTheEmailAddressField#csv", DataAccessMethod.Sequential), DeploymentItem("VerifyTheEmailAddressField.csv"), TestMethod]
+        [DeploymentItem("VerifyTheEmailAddressField.csv"), DeploymentItem("AppData\\VerifyTheEmailAddressField.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\VerifyTheEmailAddressField.csv", "VerifyTheEmailAddressField#csv", DataAccessMethod.Sequential), TestMethod]
         public void VerifingTheEmailAddress()
         {
             IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
-            string _baseUrl = Record("SignInUrl");
-            if (_baseUrl == Driver.Url)
-            {
-                string email = Record("Email");
+            if (Prefix+SignInUrl == Driver.Url)
+            {               
                 Utility.CssToSetText("Email", Record("Email"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                 Utility.CssToSetText("Password", Record("Password"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                 Utility.CsstoClick("SignInBtn", 3);
                 Utility.Sleep(2);
-                Utility.CsstoClick("clickOnMyInformation", 4);
-                Utility.Sleep(2);
-                string myInformationEmail = Utility.GrabAttributeValueByCss("SignInInformationEmailAddress", "value", 4);
-                Assert.AreEqual(email, myInformationEmail, "Email address is matched");
+                
+                if (Prefix + Record("OverViewUrl") == Driver.Url)
+                {
+                    Utility.CsstoClick("clickOnMyInformation", 4);
+                    Utility.Sleep(2);
+                    if (Prefix + Record("MyInformationUrl") == Driver.Url)
+                    {
+                        string email = Record("Email");
+                        string myInformationEmail = Utility.GrabAttributeValueByCss("SignInInformationEmailAddress", "value", 4);
+                        Assert.AreEqual(email, myInformationEmail, "Email address is matched");
+                    }
+                    else
+                    {
+                        Assert.IsTrue(false, "MyInformation Url is not opened.");
+                    }
+                }
+                else
+                {
+                    Assert.IsTrue(false, "OverViewUrl is not opened.");
+                }
             }
             else
             {
