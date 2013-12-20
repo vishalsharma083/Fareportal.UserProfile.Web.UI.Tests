@@ -378,25 +378,23 @@ namespace UserProfileSPA.TestCases
         }
 
 
-        [DeploymentItem("MyInformationsAllValidations.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\MyInformationsAllValidations.csv", "MyInformationsAllValidations#csv", DataAccessMethod.Sequential), TestMethod]
+        [DeploymentItem("MyInformationsAllValidations.csv"), DeploymentItem("AppData\\MyInformationsAllValidations.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\MyInformationsAllValidations.csv", "MyInformationsAllValidations#csv", DataAccessMethod.Sequential), TestMethod]
         public void MyInformationsAllValidations()
         {
             IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
-            Utility.CssToSetText("Email", Record("Email"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
-            Utility.CssToSetText("Password", Record("Password"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
-            string signinUrl = Record("SignInUrl");
-            if (signinUrl == Driver.Url)
+           
+            if (Prefix+SignInUrl == Driver.Url)
             {
+                Utility.CssToSetText("Email", Record("Email"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
+                Utility.CssToSetText("Password", Record("Password"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
+           
                 Utility.CsstoClick("SignInBtn", 4);
                 Utility.Sleep(3);
-                string fareportalOverviewUrl = Record("FareportalOverviewUrl");
-                if (fareportalOverviewUrl == Driver.Url)
+                if (Prefix+Record("verViewUrl") == Driver.Url)
                 {
                     Utility.CsstoClick("clickOnMyInformation", 4);
                     Utility.Sleep(2);
-
-                    string fareportalMyDetailsUrl = Record("FareportalMyDetailsUrl");
-                    if (fareportalMyDetailsUrl == Driver.Url)
+                    if (Prefix+Record("MyInformationUrl") == Driver.Url)
                     {
                         Utility.CsstoClick("SaveInformationBtn", 4);
                         Utility.Sleep(1);
@@ -405,9 +403,6 @@ namespace UserProfileSPA.TestCases
 
                         if (string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("TextAddressOne", "value", 2)) && string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("TextCity", "value", 2)) && string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("TextZipcode", "value", 2)) && string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("TextContactNumaber", "value", 2)))
                         {
-                            //string TitleValidation = Utility.ByXpath("TitleValidation", 4);
-                            //Assert.AreEqual(ValidationsIfMyInfoisEmpty[0], TitleValidation);
-
                             string AirLine1Validation = Utility.ByXpath("AirLine1Validation", 4);
                             Assert.AreEqual(ValidationsIfMyInfoisEmpty[1], AirLine1Validation);
 
@@ -427,7 +422,7 @@ namespace UserProfileSPA.TestCases
                     }
                     else
                     {
-                        Assert.IsTrue(false, "MyDetailsUrl is not opened.");
+                        Assert.IsTrue(false, "MyInformation url is not opened.");
                     }
                 }
                 else
