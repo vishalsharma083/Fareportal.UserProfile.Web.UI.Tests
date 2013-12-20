@@ -40,29 +40,22 @@ namespace UserProfileSPA.TestCases
             return TestContext.DataRow[columnName_].ToString();
         }
 
-        [DeploymentItem("CheckBoxUseForBillingDetails.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\CheckBoxUseForBillingDetails.csv", "CheckBoxUseForBillingDetails#csv", DataAccessMethod.Sequential), TestMethod]
+        [DeploymentItem("AppData\\CheckBoxUseForBillingDetails.csv"), DeploymentItem("CheckBoxUseForBillingDetails.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\CheckBoxUseForBillingDetails.csv", "CheckBoxUseForBillingDetails#csv", DataAccessMethod.Sequential), TestMethod]
         public void CheckBoxUseForBillingDetails()
         {
             IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
-            Utility.CssToSetText("Email", Record("Email"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
-            Utility.CssToSetText("Password", Record("Password"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
 
-            string _billingUrl = Record("MyBillingUrl");
-
-            string signinUrl = Record("SignInUrl");
-            if (signinUrl == Driver.Url)
+            if (Prefix + SignInUrl == Driver.Url)
             {
+                Utility.CssToSetText("Email", Record("Email"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
+                Utility.CssToSetText("Password", Record("Password"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                 Utility.CsstoClick("SignInBtn", 4);
                 Utility.Sleep(3);
-
-                string _overViewUrl = Record("OverviewUrl");
-                if (_overViewUrl == Driver.Url)
+                if (Prefix + Record("OverViewUrl") == Driver.Url)
                 {
                     Utility.CsstoClick("clickOnMyInformation", 4);
                     Utility.Sleep(2);
-
-                    string CheapoairMyDetailsUrl = Record("CheapoairMyDetailsUrl");
-                    if (CheapoairMyDetailsUrl == Driver.Url)
+                    if (Prefix + Record("MyInformationUrl") == Driver.Url)
                     {
                         string IscheckedMyInfoPage = Utility.GrabAttributeValueByCss("UseforBillingDetailsCheckBoxInMyDetailsPage", "Checked", 4);
                         if (IscheckedMyInfoPage == "true")
@@ -72,7 +65,7 @@ namespace UserProfileSPA.TestCases
                             string actualCountryCode = Utility.GrabAttributeValueByCss("Country", "value", 4);
 
                             Utility.ByLinkTexttoClick("ClickOnMyBillingDetails", 3);
-                            if (_billingUrl == Driver.Url)
+                            if (Prefix + Record("MyBillingUrl") == Driver.Url)
                             {
 
                                 string ExistingAddressCheckBoxInBillingPage = Utility.GrabAttributeValueByCss("ExistingAddressCheckBoxInBillingPage", "Checked", 4);
@@ -113,7 +106,19 @@ namespace UserProfileSPA.TestCases
                             }
                         }
                     }
+                    else
+                    { 
+                      
+                    }
                 }
+                else
+                {
+
+                }
+            }
+            else
+            { 
+             
             }
         }
 

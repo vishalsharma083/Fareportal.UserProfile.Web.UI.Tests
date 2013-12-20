@@ -240,9 +240,6 @@
     <None Include="AppData\VeryufyTheRadioButtonsAgainstEachCard.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="CheckBoxUseForBillingDetails.csv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="ClickOnEditCardDetailsAndDoChanges.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

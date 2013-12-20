@@ -1,3 +1,2 @@
-Email,Password,SignInUrl,MybillingUrl,ExpectedCountryValue,ExpectedStateValue,OverViewUrl,CheapoairMyDetailsUrl
-"ravi3@gmail.com","aaaaaa","http://www.cheapoair.com/profiles/#/user-signin","http://www.cheapoair.com/profiles/#/my-account/my-billing-details","United States","New York","http://www.cheapoair.com/profiles/#/overview","http://www.cheapoair.com/profiles/#/my-account/my-details"
-"ravi4@gmail.com","aaaaaa","http://www.cheapoair.com/profiles/#/user-signin","http://www.cheapoair.com/profiles/#/my-account/my-billing-details","United States","New York","http://www.cheapoair.com/profiles/#/overview","http://www.cheapoair.com/profiles/#/my-account/my-details"
+Email,Password,Country,Zip,BillingUrl,AddressLine1,City,State,ContactPhone,MyBillingUrl,OverviewUrl,MyInformationUrl,ExpectedCountryValue,ExpectedStateValue
+ravi3@gmail.com,aaaaaa,Canada,T0E 1S2,//www.cheapoair.com/profiles/#/my-account/my-billing-details,Asaf ali road,Delhi,Alberta,1234567889,//www.cheapoair.com/profiles/#/my-account/my-billing-details,//www.cheapoair.com/profiles/#/overview,//www.cheapoair.com/profiles/#/my-account/my-details,United States,Not Specified
