@@ -694,77 +694,91 @@ namespace UserProfileSPA.TestCases
         [DeploymentItem("AppData\\VerifyContactAndMobilePhoneFields.csv"), DeploymentItem("VerifyContactAndMobilePhoneFields.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\VerifyContactAndMobilePhoneFields.csv", "VerifyContactAndMobilePhoneFields#csv", DataAccessMethod.Sequential), TestMethod]
         public void VerifyContactAndMobilePhoneFields()
         {
-            IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
-            string _baseUrl = Record("SignInUrl");
-            if (_baseUrl == Driver.Url)
+            IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;           
+            if (Prefix + SignInUrl == Driver.Url)
             {
                 Utility.CssToSetText("Email", Record("Email"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                 Utility.CssToSetText("Password", Record("Password"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
-                string _contactPhone = Record("ContactPhone");
-                string _mobilePhone = Record("MobilePhone");
+               
                 Utility.CsstoClick("SignInBtn", 3);
                 Utility.Sleep(6);
-                Utility.CsstoClick("clickOnMyInformation", 4);
-                Utility.Sleep(2);
-                Utility.CsstoClear("TextContactNumaber", 6);
-                Utility.CsstoClear("MobilePhone", 6);
-                Utility.CssToSetText("TextContactNumaber", _contactPhone, 3);
-                Utility.XPathtoClick("CliclOnMoreinformation", 3);
-                Utility.CssToSetText("MobilePhone", _mobilePhone, 3);
-                Utility.XPathtoClick("CliclOnMoreinformation", 3);
-                string errorMsgForContact = UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("errorMsgForContact");
-                string errorMsgForMobile = UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("errorMsgForMobile");
-                string MobileNo = Utility.GrabAttributeValueByCss("MobilePhone", "value", 3);
-                string ContactNo = Utility.GrabAttributeValueByCss("TextContactNumaber", "value", 3);
-                string[] MsgForContact = errorMsgForContact.Split(",".ToCharArray());
-
-
-
-                if ((Regex.IsMatch(ContactNo, @"^(?!\s*$).+") && (Regex.IsMatch(MobileNo, @"^(?!\s*$).+"))))
+                string _overViewUrl = Record("OverViewUrl");
+                if (Prefix + _overViewUrl == Driver.Url)
                 {
-                    if ((Regex.IsMatch(ContactNo, @"^\d{7,15}$")) && (Regex.IsMatch(MobileNo, @"^\d{7,15}$"))) //It checks upto 15 digits - Not allowed Alphanumeric
+                    Utility.CsstoClick("clickOnMyInformation", 4);
+                    Utility.Sleep(2);
+                    string _myInfoUrl = Record("MyInformationUrl");
+                    if (Prefix + _myInfoUrl == Driver.Url)
                     {
-                        Assert.IsTrue(true);
+                        string _contactPhone = Record("ContactPhone");
+                        string _mobilePhone = Record("MobilePhone");
+                        Utility.CsstoClear("TextContactNumaber", 6);
+                        Utility.CsstoClear("MobilePhone", 6);
+                        Utility.CssToSetText("TextContactNumaber", _contactPhone, 3);
+                        Utility.XPathtoClick("CliclOnMoreinformation", 3);
+                        Utility.CssToSetText("MobilePhone", _mobilePhone, 3);
+                        Utility.XPathtoClick("CliclOnMoreinformation", 3);
+                        string errorMsgForContact = UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("errorMsgForContact");
+                        string errorMsgForMobile = UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("errorMsgForMobile");
+                        string MobileNo = Utility.GrabAttributeValueByCss("MobilePhone", "value", 3);
+                        string ContactNo = Utility.GrabAttributeValueByCss("TextContactNumaber", "value", 3);
+                        string[] MsgForContact = errorMsgForContact.Split(",".ToCharArray());
+                        
+                        if ((Regex.IsMatch(ContactNo, @"^(?!\s*$).+") && (Regex.IsMatch(MobileNo, @"^(?!\s*$).+"))))
+                        {
+                            if ((Regex.IsMatch(ContactNo, @"^\d{7,15}$")) && (Regex.IsMatch(MobileNo, @"^\d{7,15}$"))) //It checks upto 15 digits - Not allowed Alphanumeric
+                            {
+                                Assert.IsTrue(true);
+                            }
+                            else
+                            {
+                                string actualContactMsg = Utility.ByXpath("actualContactMsg", 3);
+                                string actualMobileMsg = Utility.ByXpath("actualMobileMsg", 3);
+                                Assert.AreEqual(MsgForContact[0], actualContactMsg, "Please enter a valid contact phone");
+                                Assert.AreEqual(errorMsgForMobile, actualMobileMsg, "Please enter a valid mobile phone");
+                            }
+                        }
+                        else if ((Regex.IsMatch(ContactNo, @"^$")) && (Regex.IsMatch(MobileNo, @"^$")))
+                        {
+                            Utility.CsstoClick("SaveInformationBtn", 3);
+                            string actualContactMsg = Utility.ByXpath("actualContactMsg", 3);
+                            Assert.AreEqual(MsgForContact[1], actualContactMsg);
+
+                        }
+                        else if ((Regex.IsMatch(ContactNo, @"^(?!\s*$).+")) && (Regex.IsMatch(MobileNo, @"^$")))
+                        {
+                            if ((Regex.IsMatch(ContactNo, @"^\d{7,15}$")))
+                            {
+                                Assert.IsTrue(true);
+                            }
+                            else
+                            {
+                                string actualContactMsg = Utility.ByXpath("actualContactMsg", 3);
+                                Assert.AreEqual(MsgForContact[0], actualContactMsg, "Please enter a valid contact phone");
+
+                            }
+                        }
+                        else if ((Regex.IsMatch(ContactNo, @"^$")) && (Regex.IsMatch(MobileNo, @"^(?!\s*$).+")))
+                        {
+                            if ((Regex.IsMatch(MobileNo, @"^\d{7,15}$")))
+                            {
+                                Assert.IsTrue(true);
+                            }
+                            else
+                            {
+                                string actualMobileMsg = Utility.ByXpath("actualMobileMsg", 3);
+                                Assert.AreEqual(errorMsgForMobile, actualMobileMsg);
+                            }
+                        }
                     }
                     else
                     {
-                        string actualContactMsg = Utility.ByXpath("actualContactMsg", 3);
-                        string actualMobileMsg = Utility.ByXpath("actualMobileMsg", 3);
-                        Assert.AreEqual(MsgForContact[0], actualContactMsg, "Please enter a valid contact phone");
-                        Assert.AreEqual(errorMsgForMobile, actualMobileMsg, "Please enter a valid mobile phone");
+                        Assert.IsTrue(false, "MyInformation Url is not opened.");
                     }
                 }
-                else if ((Regex.IsMatch(ContactNo, @"^$")) && (Regex.IsMatch(MobileNo, @"^$")))
+                else
                 {
-                    Utility.CsstoClick("SaveInformationBtn", 3);
-                    string actualContactMsg = Utility.ByXpath("actualContactMsg", 3);
-                    Assert.AreEqual(MsgForContact[1], actualContactMsg);
-
-                }
-                else if ((Regex.IsMatch(ContactNo, @"^(?!\s*$).+")) && (Regex.IsMatch(MobileNo, @"^$")))
-                {
-                    if ((Regex.IsMatch(ContactNo, @"^\d{7,15}$")))
-                    {
-                        Assert.IsTrue(true);
-                    }
-                    else
-                    {
-                        string actualContactMsg = Utility.ByXpath("actualContactMsg", 3);
-                        Assert.AreEqual(MsgForContact[0], actualContactMsg, "Please enter a valid contact phone");
-
-                    }
-                }
-                else if ((Regex.IsMatch(ContactNo, @"^$")) && (Regex.IsMatch(MobileNo, @"^(?!\s*$).+")))
-                {
-                    if ((Regex.IsMatch(MobileNo, @"^\d{7,15}$")))
-                    {
-                        Assert.IsTrue(true);
-                    }
-                    else
-                    {
-                        string actualMobileMsg = Utility.ByXpath("actualMobileMsg", 3);
-                        Assert.AreEqual(errorMsgForMobile, actualMobileMsg);
-                    }
+                    Assert.IsTrue(false, "OverViewUrl is not opened.");
                 }
 
             }

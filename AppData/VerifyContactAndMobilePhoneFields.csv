@@ -1,6 +1,6 @@
-Email,Password,SignInUrl,ContactPhone,MobilePhone
-"averma333@fp.com","aaaaaa","http://www.cheapoair.com/profiles/#/user-signin","",""
-"averma333@fp.com","aaaaaa","http://www.cheapoair.com/profiles/#/user-signin","123456787654321","123456787654321"
-"averma333@fp.com","aaaaaa","http://www.cheapoair.com/profiles/#/user-signin","12345678aas4321","12345678765ggv1"
-"averma333@fp.com","aaaaaa","http://www.cheapoair.com/profiles/#/user-signin","1234567",""
-"averma333@fp.com","aaaaaa","http://www.cheapoair.com/profiles/#/user-signin","","1234567"
+Email,Password,ContactPhone,MobilePhone,OverViewUrl,MyInformationUrl
+"averma333@fp.com","aaaaaa","","","//www.cheapoair.com/profiles/#/overview","//www.cheapoair.com/profiles/#/my-account/my-details"
+"averma333@fp.com","aaaaaa","123456787654321","123456787654321","//www.cheapoair.com/profiles/#/overview","//www.cheapoair.com/profiles/#/my-account/my-details"
+"averma333@fp.com","aaaaaa","12345678aas4321","12345678765ggv1","//www.cheapoair.com/profiles/#/overview","//www.cheapoair.com/profiles/#/my-account/my-details"
+"averma333@fp.com","aaaaaa","1234567","","//www.cheapoair.com/profiles/#/overview","//www.cheapoair.com/profiles/#/my-account/my-details"
+"averma333@fp.com","aaaaaa","","1234567","//www.cheapoair.com/profiles/#/overview","//www.cheapoair.com/profiles/#/my-account/my-details"
