@@ -1,2 +1,2 @@
-Email,Password,OverViewUrl,MyInformationUrl
-myinfromation@gmail.com,aaaaaa,//www.cheapoair.com/profiles/#/overview,//www.cheapoair.com/profiles/#/my-account/my-details
+SignUpUrl,Email,Password,OverViewUrl,MyInformationUrl
+//www.cheapoair.com/profiles/#/user-signup,myinformation@gmail.com,aaaaaa,//www.cheapoair.com/profiles/#/overview,//www.cheapoair.com/profiles/#/my-account/my-details

@@ -1,2 +1,2 @@
-SignInUrl,SignUpUrl,OverViewPage,EmailAddress,Password,ConfrmPassword,FirstName,LastName,DobMonth,DobDay,DobYear,Gender
-http://www.cheapoair.com/profiles/#/user-signin,http://www.cheapoair.com/profiles/#/user-signup,http://www.cheapoair.com/profiles/#/overview,sameer@fareportal.com,1234,1234,sameer,kumar,Feb,10,1985,Male
+SignUpUrl,OverViewPage,EmailAddress,Password,ConfrmPassword,FirstName,LastName,DobMonth,DobDay,DobYear,Gender
+//www.cheapoair.com/profiles/#/user-signup,//www.cheapoair.com/profiles/#/overview,sameer@fareportal.com,1234,1234,sameer,kumar,Feb,10,1985,Male

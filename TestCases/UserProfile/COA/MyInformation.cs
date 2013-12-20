@@ -117,76 +117,55 @@ namespace UserProfileSPA.TestCases
             }
         }
 
-        [DeploymentItem("CheckForZipCodesValidation.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\CheckForZipCodesValidation.csv", "CheckForZipCodesValidation#csv", DataAccessMethod.Sequential), TestMethod]
+        [DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\CheckForZipCodesValidation.csv", "CheckForZipCodesValidation#csv", DataAccessMethod.Sequential), DeploymentItem("CheckForZipCodesValidation.csv"), DeploymentItem("AppData\\CheckForZipCodesValidation.csv"), TestMethod]
         public void CheckForZipCodesValidation()
         {
             IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
-            string _baseUrl = Record("SignInUrl");
-            if (_baseUrl == Driver.Url)
+            if (Prefix+SignInUrl == Driver.Url)
             {
                 Utility.CssToSetText("Email", Record("Email"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                 Utility.CssToSetText("Password", Record("Password"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                 Utility.CsstoClick("SignInBtn", 3);
-                string _zipCode = Record("ZipCode");
-                string Country = Record("Country");
-
-                Utility.Sleep(2);
-                Utility.CsstoClick("clickOnMyInformation", 4);
-                Utility.Sleep(2);
-                var element1 = Driver.FindElement(By.CssSelector(TestEnvironment.LoadXML("Country")));
-                var selectElement1 = new SelectElement(element1);
-                selectElement1.SelectByText(Country);
-                if ((Country == "Canada") || (Country == "United Kingdom"))
+                Utility.Sleep(4);
+                if (Record("OverViewUrl") == Driver.Url)
                 {
-                    Utility.CsstoClear("Zip", UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
-                    Utility.CssToSetText("Zip", _zipCode, 3);
-                    string zipText = Utility.GrabAttributeValueByCss("Zip", "value", UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
-                    if (!string.IsNullOrEmpty(zipText))
+                    string _zipCode = Record("ZipCode");
+                    string Country = Record("Country");
+                    Utility.Sleep(2);
+                    Utility.CsstoClick("clickOnMyInformation", 4);
+                    Utility.Sleep(2);
+                    if (Record("MyInformationUrl") == Driver.Url)
                     {
-                        Regex r = new Regex("^[a-zA-Z0-9 ]{7}$");
-                        if (r.IsMatch(zipText))
+                        var element1 = Driver.FindElement(By.CssSelector(TestEnvironment.LoadXML("Country")));
+                        var selectElement1 = new SelectElement(element1);
+                        selectElement1.SelectByText(Country);
+                        if ((Country == "Canada") || (Country == "United Kingdom"))
                         {
-                            Regex r1 = new Regex("^[a-zA-Z0-9 ]+$");
-                            if (r1.IsMatch(zipText))
+                            Utility.CsstoClear("Zip", UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
+                            Utility.CssToSetText("Zip", _zipCode, 3);
+                            string zipText = Utility.GrabAttributeValueByCss("Zip", "value", UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
+                            if (!string.IsNullOrEmpty(zipText))
                             {
-                                Assert.IsTrue(true);
-                                //Utility.CssToSetText("Zip", _zipCode, 3);
-                            }
-                        }
-                        else
-                        {
-                            string expectedErrMgs = Record("ExpectedErrMgs");
-                            if (expectedErrMgs != "No Error")
-                            {
-                                Utility.CsstoClick("SaveInformationBtn", UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
-                                string actualErrMsg = Utility.ByXpath("MyInfoZipCodeErrorMessage", 3);
-                                Assert.AreEqual(expectedErrMgs, actualErrMsg);
-                            }
-                        }
-                    }
-                    else
-                    {
-                        string expectedErrMgs = Record("ExpectedErrMgs");
-                        if (expectedErrMgs != "No Error")
-                        {
-                            Utility.CsstoClick("SaveInformationBtn", UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
-                            string actualErrMsg = Utility.ByXpath("MyInfoZipCodeErrorMessage", 3);
-                            Assert.AreEqual(expectedErrMgs, actualErrMsg);
-                        }
-                    }
-                }
-                //This if is for India or for other remaining countries.
-                else if (Country == "India")
-                {
-                    Regex r = new Regex("^[0-9]*$");
-                    if (!string.IsNullOrEmpty(_zipCode))
-                    {
-                        if (r.IsMatch(_zipCode))
-                        {
-                            //int otherZip = _zipCode.Length;//Convert.ToInt32(_zipCode);
-                            if (_zipCode.Length > 4)
-                            {
-                                Utility.CssToSetText("Zip", _zipCode, 3);
+                                Regex r = new Regex("^[a-zA-Z0-9 ]{7}$");
+                                if (r.IsMatch(zipText))
+                                {
+                                    Regex r1 = new Regex("^[a-zA-Z0-9 ]+$");
+                                    if (r1.IsMatch(zipText))
+                                    {
+                                        Assert.IsTrue(true);
+                                        //Utility.CssToSetText("Zip", _zipCode, 3);
+                                    }
+                                }
+                                else
+                                {
+                                    string expectedErrMgs = Record("ExpectedErrMgs");
+                                    if (expectedErrMgs != "No Error")
+                                    {
+                                        Utility.CsstoClick("SaveInformationBtn", UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
+                                        string actualErrMsg = Utility.ByXpath("MyInfoZipCodeErrorMessage", 3);
+                                        Assert.AreEqual(expectedErrMgs, actualErrMsg);
+                                    }
+                                }
                             }
                             else
                             {
@@ -199,34 +178,74 @@ namespace UserProfileSPA.TestCases
                                 }
                             }
                         }
+                        //This if is for India or for other remaining countries.
+                        else if (Country == "India")
+                        {
+                            Regex r = new Regex("^[0-9]*$");
+                            if (!string.IsNullOrEmpty(_zipCode))
+                            {
+                                if (r.IsMatch(_zipCode))
+                                {
+                                    //int otherZip = _zipCode.Length;//Convert.ToInt32(_zipCode);
+                                    if (_zipCode.Length > 4)
+                                    {
+                                        Utility.CssToSetText("Zip", _zipCode, 3);
+                                    }
+                                    else
+                                    {
+                                        string expectedErrMgs = Record("ExpectedErrMgs");
+                                        if (expectedErrMgs != "No Error")
+                                        {
+                                            Utility.CsstoClick("SaveInformationBtn", UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
+                                            string actualErrMsg = Utility.ByXpath("MyInfoZipCodeErrorMessage", 3);
+                                            Assert.AreEqual(expectedErrMgs, actualErrMsg);
+                                        }
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                string expectedErrMgs = Record("ExpectedErrMgs");
+                                if (expectedErrMgs != "No Error")
+                                {
+                                    Utility.CsstoClick("SaveInformationBtn", UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
+                                    string actualErrMsg = Utility.ByXpath("MyInfoZipCodeErrorMessage", 3);
+                                    Assert.AreEqual(expectedErrMgs, actualErrMsg);
+                                }
+                            }
+                        }
+
+                        // Utility.CsstoClick("SaveInformationBtn", 3);
                     }
                     else
                     {
-                        string expectedErrMgs = Record("ExpectedErrMgs");
-                        if (expectedErrMgs != "No Error")
-                        {
-                            Utility.CsstoClick("SaveInformationBtn", UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
-                            string actualErrMsg = Utility.ByXpath("MyInfoZipCodeErrorMessage", 3);
-                            Assert.AreEqual(expectedErrMgs, actualErrMsg);
-                        }
+                        Assert.IsTrue(true, "MyInformation Url is not opened.");
                     }
                 }
-
-                // Utility.CsstoClick("SaveInformationBtn", 3);
+                else 
+                {
+                    Assert.IsTrue(true,"OverView Url is not opened.");
+                }
+            }
+            else
+            {
+                Assert.IsTrue(true, "SignIn Url is not opened.");
             }
         }
 
 
-        [DeploymentItem("VerifyTheValuesInFirstNameAndLastName.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\VerifyTheValuesInFirstNameAndLastName.csv", "VerifyTheValuesInFirstNameAndLastName#csv", DataAccessMethod.Sequential), TestMethod]
+        [DeploymentItem("AppData\\VerifyTheValuesInFirstNameAndLastName.csv"), DeploymentItem("VerifyTheValuesInFirstNameAndLastName.csv"), DeploymentItem("AppData\\MyInformationsAllValidations.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\VerifyTheValuesInFirstNameAndLastName.csv", "VerifyTheValuesInFirstNameAndLastName#csv", DataAccessMethod.Sequential), TestMethod]
         public void CheckTheValuesInFirstNameAndLastName()
         {
             IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
-            string _baseUrl = Record("SignInUrl");
-            if (_baseUrl == Driver.Url)
+
+            if (Prefix + SignInUrl == Driver.Url)
             {
+                Utility.Sleep(4);
                 Utility.XPathtoClick("ClickOnCreateAnAccount", 4);
-                string _signUpUrl = Record("SignUpUrl");
-                if (_signUpUrl == Driver.Url)
+                Utility.Sleep(4);
+
+                if (Prefix+Record("SignUpUrl") == Driver.Url)
                 {
                     Random randomNum = new Random();
                     int num = randomNum.Next(5, 100);
@@ -305,7 +324,7 @@ namespace UserProfileSPA.TestCases
                             Utility.CsstoClick("ClickOnSignOut", 4);
 
                             Driver.Close();
-                            Driver.Navigate().GoToUrl(_baseUrl);
+                            Driver.Navigate().GoToUrl(Prefix + SignInUrl);
                             Utility.CssToSetText("Email", emailAddress, UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                             Utility.CssToSetText("Password", Record("Password"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
 
@@ -320,9 +339,8 @@ namespace UserProfileSPA.TestCases
                     else
                     {
                         Utility.Sleep(5);
-                        string _overViewPage = Record("OverViewPage");
-                        Utility.Sleep(6);
-                        if (_overViewPage == Driver.Url)
+
+                        if (Prefix + Record("OverViewPage") == Driver.Url)
                         {
                             Utility.CsstoClick("clickOnMyInformation", 4);
                             Utility.Sleep(2);
@@ -358,7 +376,7 @@ namespace UserProfileSPA.TestCases
                             string prev = Driver.Url;
                             Driver.Close();
                             Driver = new FirefoxDriver();
-                            Driver.Navigate().GoToUrl(_baseUrl);
+                            Driver.Navigate().GoToUrl(Prefix + SignInUrl);
                             Driver.Manage().Window.Maximize();
                             Utility.Sleep(6);
                             Driver.FindElement(By.CssSelector("input[id='txtUserName']")).SendKeys(emailAddress);
@@ -367,6 +385,7 @@ namespace UserProfileSPA.TestCases
                             //Utility.CssToSetText("Email", emailAddress, UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                             //Utility.CssToSetText("Password", password, UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);                           
                             //Utility.CsstoClick("SignInBtn", 2);
+                            Utility.CsstoClick("clickOnMyInformation", 4);
                             Assert.AreEqual(emailAddress, _veyfyEmail);
                         }
                         else { Assert.IsTrue(false, "OverViewUrl is not opened."); }
@@ -374,7 +393,7 @@ namespace UserProfileSPA.TestCases
                 }
                 else { Assert.IsTrue(false, "SignUpUrl is not opened."); }
             }
-            else { Assert.IsTrue(false, "SignInUrl is not opened."); }
+            else { Assert.IsTrue(false, "SignIn url is not opened."); }
         }
 
 
@@ -390,7 +409,7 @@ namespace UserProfileSPA.TestCases
            
                 Utility.CsstoClick("SignInBtn", 4);
                 Utility.Sleep(3);
-                if (Prefix+Record("verViewUrl") == Driver.Url)
+                if (Prefix+Record("OverViewUrl") == Driver.Url)
                 {
                     Utility.CsstoClick("clickOnMyInformation", 4);
                     Utility.Sleep(2);

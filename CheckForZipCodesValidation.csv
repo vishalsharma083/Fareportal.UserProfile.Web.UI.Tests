@@ -1,8 +1,8 @@
-Email,Password,SignInUrl,Country,ZipCode,ExpectedErrMgs
-"averma333@fp.com","aaaaaa","http://www.cheapoair.com/profiles/#/user-signin","Canada",,"Please enter zip code"
-"averma333@fp.com","aaaaaa","http://www.cheapoair.com/profiles/#/user-signin","Canada","T0","Please enter a valid zip code"
-"averma333@fp.com","aaaaaa","http://www.cheapoair.com/profiles/#/user-signin","India",,"Please enter a valid zip code"
-"averma333@fp.com","aaaaaa","http://www.cheapoair.com/profiles/#/user-signin","India","11","Please enter a valid zip code"
-"averma333@fp.com","aaaaaa","http://www.cheapoair.com/profiles/#/user-signin","Canada","T0E 1S2","No Error"
-"averma333@fp.com","aaaaaa","http://www.cheapoair.com/profiles/#/user-signin","India","110008","No Error"
-"averma333@fp.com","aaaaaa","http://www.cheapoair.com/profiles/#/user-signin","United Kingdom","TR26 2RN","No Error"
+Email,Password,Country,ZipCode,ExpectedErrMgs,OverViewUrl,MyInformationUrl
+"averma333@fp.com","aaaaaa","Canada",,"Please enter zip code","//www.cheapoair.com/profiles/#/overview","//www.cheapoair.com/profiles/#/my-account/my-details"
+"averma333@fp.com","aaaaaa","Canada","T0","Please enter a valid zip code","//www.cheapoair.com/profiles/#/overview","//www.cheapoair.com/profiles/#/my-account/my-details"
+"averma333@fp.com","aaaaaa","India",,"Please enter a valid zip code","//www.cheapoair.com/profiles/#/overview","//www.cheapoair.com/profiles/#/my-account/my-details"
+"averma333@fp.com","aaaaaa","India","11","Please enter a valid zip code","//www.cheapoair.com/profiles/#/overview","//www.cheapoair.com/profiles/#/my-account/my-details"
+"averma333@fp.com","aaaaaa","Canada","T0E 1S2","No Error","//www.cheapoair.com/profiles/#/overview","//www.cheapoair.com/profiles/#/my-account/my-details"
+"averma333@fp.com","aaaaaa","India","110008","No Error","//www.cheapoair.com/profiles/#/overview","//www.cheapoair.com/profiles/#/my-account/my-details"
+"averma333@fp.com","aaaaaa","United Kingdom","TR26 2RN","No Error","//www.cheapoair.com/profiles/#/overview","//www.cheapoair.com/profiles/#/my-account/my-details"
