@@ -659,7 +659,7 @@ namespace UserProfileSPA.TestCases
                     {
                         Utility.Sleep(2);
                         Utility.ByLinkTexttoClick("clickOnMyCoTravelerMenu", 4);
-                        if (Record("MyCoTravelerUrl") == Driver.Url)
+                        if (Prefix+Record("MyCoTravelerUrl") == Driver.Url)
                         {
                             string xpath = "html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/form/div[1]/div/div[2]";
                             if (Utility.IsDisplayedUsingXpathForMoltingInnerText(xpath))
@@ -718,7 +718,7 @@ namespace UserProfileSPA.TestCases
                                             string _homeAirportForSecondCotraveler = Record("HomeAirportForCotraveler");
                                             Utility.CssToSetText("CoTravelerHomeAirPort", _homeAirportForSecondCotraveler, 3);
                                             Utility.CsstoClick("ClickOnSaveCoTravelerBtn", 3);
-                                            Utility.Sleep(3);
+                                            Utility.Sleep(5);
 
                                             int _countDeleteNew = UserProfileSPA.Library.TestEnvironment.Driver.FindElements(By.CssSelector(UserProfileSPA.Library.TestEnvironment.LoadXML("DeleteCoTraveler"))).Count();
                                             if (_countDelete != _countDeleteNew)
