@@ -541,6 +541,7 @@ namespace UserProfileSPA.TestCases
             IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
             if (Prefix + SignInUrl == Driver.Url)
             {
+                Utility.Sleep(5);
                 Utility.CssToSetText("Email", Record("Email"), 4);
                 Utility.CssToSetText("Password", Record("Password"), 4);
                 Utility.CsstoClick("SignInBtn", 3);
