@@ -243,9 +243,6 @@
     <None Include="CheckBoxUseForBillingDetails.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="CheckForZipCodesValidation.csv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="ClickOnEditCardDetailsAndDoChanges.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

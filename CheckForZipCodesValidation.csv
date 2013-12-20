@@ -1,8 +1,0 @@
-Email,Password,Country,ZipCode,ExpectedErrMgs,OverViewUrl,MyInformationUrl
-"averma333@fp.com","aaaaaa","Canada",,"Please enter zip code","//www.cheapoair.com/profiles/#/overview","//www.cheapoair.com/profiles/#/my-account/my-details"
-"averma333@fp.com","aaaaaa","Canada","T0","Please enter a valid zip code","//www.cheapoair.com/profiles/#/overview","//www.cheapoair.com/profiles/#/my-account/my-details"
-"averma333@fp.com","aaaaaa","India",,"Please enter a valid zip code","//www.cheapoair.com/profiles/#/overview","//www.cheapoair.com/profiles/#/my-account/my-details"
-"averma333@fp.com","aaaaaa","India","11","Please enter a valid zip code","//www.cheapoair.com/profiles/#/overview","//www.cheapoair.com/profiles/#/my-account/my-details"
-"averma333@fp.com","aaaaaa","Canada","T0E 1S2","No Error","//www.cheapoair.com/profiles/#/overview","//www.cheapoair.com/profiles/#/my-account/my-details"
-"averma333@fp.com","aaaaaa","India","110008","No Error","//www.cheapoair.com/profiles/#/overview","//www.cheapoair.com/profiles/#/my-account/my-details"
-"averma333@fp.com","aaaaaa","United Kingdom","TR26 2RN","No Error","//www.cheapoair.com/profiles/#/overview","//www.cheapoair.com/profiles/#/my-account/my-details"

@@ -127,14 +127,14 @@ namespace UserProfileSPA.TestCases
                 Utility.CssToSetText("Password", Record("Password"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                 Utility.CsstoClick("SignInBtn", 3);
                 Utility.Sleep(4);
-                if (Record("OverViewUrl") == Driver.Url)
+                if (Prefix+Record("OverViewUrl") == Driver.Url)
                 {
                     string _zipCode = Record("ZipCode");
                     string Country = Record("Country");
                     Utility.Sleep(2);
                     Utility.CsstoClick("clickOnMyInformation", 4);
-                    Utility.Sleep(2);
-                    if (Record("MyInformationUrl") == Driver.Url)
+                    Utility.Sleep(6);
+                    if (Prefix+Record("MyInformationUrl") == Driver.Url)
                     {
                         var element1 = Driver.FindElement(By.CssSelector(TestEnvironment.LoadXML("Country")));
                         var selectElement1 = new SelectElement(element1);
