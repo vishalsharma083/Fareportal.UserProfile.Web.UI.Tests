@@ -691,7 +691,7 @@ namespace UserProfileSPA.TestCases
         }
 
 
-        [DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\VerifyContactAndMobilePhoneFields.csv", "VerifyContactAndMobilePhoneFields#csv", DataAccessMethod.Sequential), DeploymentItem("AppData\\VerifyContactAndMobilePhoneFields.csv"), DeploymentItem("VerifyContactAndMobilePhoneFields.csv"), TestMethod]
+        [DeploymentItem("AppData\\VerifyContactAndMobilePhoneFields.csv"), DeploymentItem("VerifyContactAndMobilePhoneFields.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\VerifyContactAndMobilePhoneFields.csv", "VerifyContactAndMobilePhoneFields#csv", DataAccessMethod.Sequential), TestMethod]
         public void VerifyContactAndMobilePhoneFields()
         {
             IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;           
