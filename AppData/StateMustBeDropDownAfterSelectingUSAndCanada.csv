@@ -1,4 +1,4 @@
-Email,Password,SignInUrl,Country,State
-"averma333@fp.com","aaaaaa","http://www.cheapoair.com/profiles/#/user-signin","United States","Alaska"
-"averma333@fp.com","aaaaaa","http://www.cheapoair.com/profiles/#/user-signin","India","Delhi"
-"averma333@fp.com","aaaaaa","http://www.cheapoair.com/profiles/#/user-signin","Canada","Alberta"
+Email,Password,Country,State,OverViewUrl,MyInformationUrl
+"averma333@fp.com","aaaaaa","United States","Alaska","//www.cheapoair.com/profiles/#/overview","//www.cheapoair.com/profiles/#/my-account/my-details"
+"averma333@fp.com","aaaaaa","India","Delhi","//www.cheapoair.com/profiles/#/overview","//www.cheapoair.com/profiles/#/my-account/my-details"
+"averma333@fp.com","aaaaaa","Canada","Alberta","//www.cheapoair.com/profiles/#/overview","//www.cheapoair.com/profiles/#/my-account/my-details"

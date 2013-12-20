@@ -535,130 +535,140 @@ namespace UserProfileSPA.TestCases
         }
 
 
-        [DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\SignInValidationInMyInformation.csv", "SignInValidationInMyInformation#csv", DataAccessMethod.Sequential), DeploymentItem("SignInValidationInMyInformation.csv"), TestMethod]
+        [DeploymentItem("SignInValidationInMyInformation.csv"), DeploymentItem("AppData\\SignInValidationInMyInformation.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\SignInValidationInMyInformation.csv", "SignInValidationInMyInformation#csv", DataAccessMethod.Sequential), TestMethod]
         public void SignInInformationValidation()
         {
             IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
-            string _baseUrl = Record("SignInUrl");
-
-            if (_baseUrl == Driver.Url)
+            if (Prefix + SignInUrl == Driver.Url)
             {
-                string email = Record("Email");
-                string password = Record("Password");
-                Utility.CssToSetText("Email", email, 4);
-                Utility.CssToSetText("Password", password, 4);
+                Utility.CssToSetText("Email", Record("Email"), 4);
+                Utility.CssToSetText("Password", Record("Password"), 4);
                 Utility.CsstoClick("SignInBtn", 3);
-                Utility.Sleep(5);
-                string _overViewUrl = Record("OverviewUrl");
-                if (_overViewUrl == Driver.Url)
-                {
-                    Utility.CsstoClick("clickOnMyInformation", 4);
-                    Utility.Sleep(2);
-
-                    string fareportalMyDetailsUrl = Record("FareportalMyDetailsUrl");
-                    if (fareportalMyDetailsUrl == Driver.Url)
+                Utility.Sleep(3);
+               
+                    if (Prefix + Record("OverviewUrl") == Driver.Url)
                     {
-                        string myInformationEmail = Utility.GrabAttributeValueByCss("SignInInformationEmailAddress", "value", 4);
-                        Assert.AreEqual(email, myInformationEmail, "Email address is matched");
-                        string _newpasswordvalidation = UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("newpassworderror");
-                        string _confrmpasswordvalidation = UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("confrmpassworderror");
-                        string[] confrmpasswordvalidation = _confrmpasswordvalidation.Split(",".ToCharArray());
-                        Utility.CsstoClick("ClickOnEmailGrey", 3);
-                        string _newpassword = Record("NewPassword");
-                        string _confrmpassword = Record("ConfrmPassword");
-                        Utility.CssToSetText("NewPassword", _newpassword, 4);
-                        Utility.CssToSetText("ConfrmPassword", _confrmpassword, 4);
+                        Utility.CsstoClick("clickOnMyInformation", 4);
+                        Utility.Sleep(2);
+                        if (Prefix + Record("MyInformationUrl") == Driver.Url)
+                        {
+                            string myInformationEmail = Utility.GrabAttributeValueByCss("SignInInformationEmailAddress", "value", 4);
+                            Assert.AreEqual(Record("Email"), myInformationEmail, "Email address is matched");
+                            string _newpasswordvalidation = UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("newpassworderror");
+                            string _confrmpasswordvalidation = UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("confrmpassworderror");
+                            string[] confrmpasswordvalidation = _confrmpasswordvalidation.Split(",".ToCharArray());
+                            Utility.CsstoClick("ClickOnEmailGrey", 3);
+                            string _newpassword = Record("NewPassword");
+                            string _confrmpassword = Record("ConfrmPassword");
+                            Utility.CssToSetText("NewPassword", _newpassword, 4);
+                            Utility.CssToSetText("ConfrmPassword", _confrmpassword, 4);
 
-                        Utility.CsstoClick("ClickOnConfrmPasswordCheckBox", 4);
-                        if ((string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("NewPassword", "value", 4))) && (string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("ConfrmPassword", "value", 4))))
-                        {
-                            string _blankpassworderror = Utility.ByXpath("PasswordErrorWhenBlank", 3);
-                            Assert.AreEqual(_newpasswordvalidation, _blankpassworderror);
-                            string _blankconfrmpassword = Utility.ByXpath("ConfrmPasswordWhenBlank", 3);
-                            Assert.AreEqual(confrmpasswordvalidation[0], _blankconfrmpassword);
+                            Utility.CsstoClick("ClickOnConfrmPasswordCheckBox", 4);
+                            if ((string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("NewPassword", "value", 4))) && (string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("ConfrmPassword", "value", 4))))
+                            {
+                                string _blankpassworderror = Utility.ByXpath("PasswordErrorWhenBlank", 3);
+                                Assert.AreEqual(_newpasswordvalidation, _blankpassworderror);
+                                string _blankconfrmpassword = Utility.ByXpath("ConfrmPasswordWhenBlank", 3);
+                                Assert.AreEqual(confrmpasswordvalidation[0], _blankconfrmpassword);
+                            }
+                            else if ((string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("NewPassword", "value", 4))) && (!string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("ConfrmPassword", "value", 4))))
+                            {
+                                string _blankpassworderror = Utility.ByXpath("PasswordErrorWhenBlank", 3);
+                                Assert.AreEqual(_newpasswordvalidation, _blankpassworderror);
+                                string _confrmpassworderror = Utility.ByXpath("ConfrmPasswordWhenBlank", 3);
+                                Assert.AreEqual(confrmpasswordvalidation[1], _confrmpassworderror);
+                            }
+                            else if ((!string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("NewPassword", "value", 4))) && (string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("ConfrmPassword", "value", 4))))
+                            {
+                                //string _blankpassworderror = Utility.ByXpath("BlankPasswordError", 3);
+                                //Assert.AreEqual(_newpasswordvalidation, _blankpassworderror);
+                                string _blankconfrmpassword = Utility.ByXpath("ConfrmPaswordErrorMsgWhenPasswordIsNotBlankOrBoth", 3);
+                                Assert.AreEqual(confrmpasswordvalidation[0], _blankconfrmpassword);
+                            }
+                            else if ((!string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("NewPassword", "value", 4))) && (string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("ConfrmPassword", "value", 4))))
+                            {
+                                //string _blankpassworderror = Utility.ByXpath("BlankPasswordError", 3);
+                                //Assert.AreEqual(_newpasswordvalidation, _blankpassworderror);
+                                string _blankconfrmpassword = Utility.ByXpath("ConfrmPaswordErrorMsgWhenPasswordIsNotBlankOrBoth", 3);
+                                Assert.AreEqual(confrmpasswordvalidation[0], _blankconfrmpassword);
+                            }
+
                         }
-                        else if ((string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("NewPassword", "value", 4))) && (!string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("ConfrmPassword", "value", 4))))
+                        else
                         {
-                            string _blankpassworderror = Utility.ByXpath("PasswordErrorWhenBlank", 3);
-                            Assert.AreEqual(_newpasswordvalidation, _blankpassworderror);
-                            string _confrmpassworderror = Utility.ByXpath("ConfrmPasswordWhenBlank", 3);
-                            Assert.AreEqual(confrmpasswordvalidation[1], _confrmpassworderror);
-                        }
-                        else if ((!string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("NewPassword", "value", 4))) && (string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("ConfrmPassword", "value", 4))))
-                        {
-                            //string _blankpassworderror = Utility.ByXpath("BlankPasswordError", 3);
-                            //Assert.AreEqual(_newpasswordvalidation, _blankpassworderror);
-                            string _blankconfrmpassword = Utility.ByXpath("ConfrmPaswordErrorMsgWhenPasswordIsNotBlankOrBoth", 3);
-                            Assert.AreEqual(confrmpasswordvalidation[0], _blankconfrmpassword);
-                        }
-                        else if ((!string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("NewPassword", "value", 4))) && (string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("ConfrmPassword", "value", 4))))
-                        {
-                            //string _blankpassworderror = Utility.ByXpath("BlankPasswordError", 3);
-                            //Assert.AreEqual(_newpasswordvalidation, _blankpassworderror);
-                            string _blankconfrmpassword = Utility.ByXpath("ConfrmPaswordErrorMsgWhenPasswordIsNotBlankOrBoth", 3);
-                            Assert.AreEqual(confrmpasswordvalidation[0], _blankconfrmpassword);
+                            Assert.IsTrue(false, "MyInformationUrl is not opened.");
                         }
                     }
                     else
                     {
-                        Assert.IsTrue(false, "MyDetailsUrl is not opened.");
+                        Assert.IsTrue(false, "OverViewUrl is not opened.");
+                    }
+                }
+                else
+                {
+                    Assert.IsTrue(false, "SignInUrl is not opened.");
+                }
+        }
+
+
+        [DeploymentItem("AppData\\StateMustBeDropDownAfterSelectingUSAndCanada.csv"), DeploymentItem("StateMustBeDropDownAfterSelectingUSAndCanada.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\StateMustBeDropDownAfterSelectingUSAndCanada.csv", "StateMustBeDropDownAfterSelectingUSAndCanada#csv", DataAccessMethod.Sequential), TestMethod]
+        public void StateMustBeDropDownAfterSelectingUSAndCanada()
+        {
+            IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
+            if (Prefix+SignInUrl == Driver.Url)
+            {
+                Utility.CssToSetText("Email", Record("Email"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
+                Utility.CssToSetText("Password", Record("Password"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
+                Utility.CsstoClick("SignInBtn", 3);
+                Utility.Sleep(3);
+                if (Prefix + Record("OverViewUrl") == Driver.Url)
+                {
+                    
+                    Utility.Sleep(6);
+                    Utility.CsstoClick("clickOnMyInformation", 4);
+                    Utility.Sleep(2);
+                    if (Prefix + Record("MyInformationUrl") == Driver.Url)
+                    {
+                        string Country = Record("Country");
+                        string state = Record("State");
+                        Utility.CsstoClear("City", 2);
+                        if ((Country == "United States") || (Country == "Canada"))
+                        {
+                            var element1 = Driver.FindElement(By.CssSelector(UserProfileSPA.Library.TestEnvironment.LoadXML("Country")));
+                            var selectElement1 = new SelectElement(element1);
+                            selectElement1.SelectByText(Country);
+
+                            var element2 = Driver.FindElement(By.CssSelector(UserProfileSPA.Library.TestEnvironment.LoadXML("SelectState")));
+                            var selectElement2 = new SelectElement(element2);
+                            selectElement2.SelectByText(state);
+                        }
+                        else
+                        {
+                            if (Utility.GrabAttributeValueByCss("State", "type", 2) == "text")
+                            {
+
+                                var element = Driver.FindElement(By.CssSelector(UserProfileSPA.Library.TestEnvironment.LoadXML("Country")));
+                                var selectElement = new SelectElement(element);
+                                selectElement.SelectByText(Country);
+                                Driver.FindElement(By.CssSelector(UserProfileSPA.Library.TestEnvironment.LoadXML("State"))).SendKeys(state);
+
+                            }
+                            else
+                            {
+                                throw new Exception("Still it containig dropdown.");
+                            }
+                        }
+                        Utility.CsstoClick("SaveInformationBtn", 7);
+                    }
+                    else
+                    {
+                        Assert.IsTrue(false, "MyInformation url is not opened.");
                     }
                 }
                 else
                 {
                     Assert.IsTrue(false, "OverViewUrl is not opened.");
                 }
-            }
-            else
-            {
-                Assert.IsTrue(false, "SignInUrl is not opened.");
-            }
-        }
-
-
-        [DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\StateMustBeDropDownAfterSelectingUSAndCanada.csv", "StateMustBeDropDownAfterSelectingUSAndCanada#csv", DataAccessMethod.Sequential), DeploymentItem("StateMustBeDropDownAfterSelectingUSAndCanada.csv"), TestMethod]
-        public void StateMustBeDropDownAfterSelectingUSAndCanada()
-        {
-            IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
-            string _baseUrl = Record("SignInUrl");
-            if (_baseUrl == Driver.Url)
-            {
-                Utility.CssToSetText("Email", Record("Email"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
-                Utility.CssToSetText("Password", Record("Password"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
-                string Country = Record("Country");
-                string state = Record("State");
-                Utility.CsstoClick("SignInBtn", 3);
-                Utility.Sleep(6);
-                Utility.CsstoClick("clickOnMyInformation", 4);
-                Utility.Sleep(2);
-                Utility.CsstoClear("City", 2);
-                if ((Country == "United States") || (Country == "Canada"))
-                {
-                    var element1 = Driver.FindElement(By.CssSelector(UserProfileSPA.Library.TestEnvironment.LoadXML("Country")));
-                    var selectElement1 = new SelectElement(element1);
-                    selectElement1.SelectByText(Country);
-
-                    var element2 = Driver.FindElement(By.CssSelector(UserProfileSPA.Library.TestEnvironment.LoadXML("SelectState")));
-                    var selectElement2 = new SelectElement(element2);
-                    selectElement2.SelectByText(state);
-                }
-                else
-                {
-                    if (Utility.GrabAttributeValueByCss("State", "type", 2) == "text")
-                    {
-
-                        var element = Driver.FindElement(By.CssSelector(UserProfileSPA.Library.TestEnvironment.LoadXML("Country")));
-                        var selectElement = new SelectElement(element);
-                        selectElement.SelectByText(Country);
-                        Driver.FindElement(By.CssSelector(UserProfileSPA.Library.TestEnvironment.LoadXML("State"))).SendKeys(state);
-
-                    }
-                    else
-                    {
-                        throw new Exception("Still it containig dropdown.");
-                    }
-                }
-                Utility.CsstoClick("SaveInformationBtn", 7);
             }
             else
             {

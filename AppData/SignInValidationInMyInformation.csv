@@ -1,4 +1,4 @@
-Email,Password,SignInUrl,OverviewUrl,FareportalMyDetailsUrl,NewPassword,ConfrmPassword
-testsaurabh@fareportal.com,saurabh12,http://www.cheapoair.com/profiles/#/user-signin,http://www.cheapoair.com/profiles/#/overview,http://www.cheapoair.com/profiles/#/my-account/my-details,,
-testsaurabh@fareportal.com,saurabh12,http://www.cheapoair.com/profiles/#/user-signin,http://www.cheapoair.com/profiles/#/overview,http://www.cheapoair.com/profiles/#/my-account/my-details,,123456
-testsaurabh@fareportal.com,saurabh12,http://www.cheapoair.com/profiles/#/user-signin,http://www.cheapoair.com/profiles/#/overview,http://www.cheapoair.com/profiles/#/my-account/my-details,saurabh123,
+Email,Password,OverviewUrl,MyInformationUrl,NewPassword,ConfrmPassword
+sumit@gmail.com,aaaaaa,//www.cheapoair.com/profiles/#/overview,//www.cheapoair.com/profiles/#/my-account/my-details,,
+sumit@gmail.com,aaaaaa,//www.cheapoair.com/profiles/#/overview,//www.cheapoair.com/profiles/#/my-account/my-details,,123456
+sumit@gmail.com.com,aaaaaa,//www.cheapoair.com/profiles/#/overview,//www.cheapoair.com/profiles/#/my-account/my-details,saurabh123,
