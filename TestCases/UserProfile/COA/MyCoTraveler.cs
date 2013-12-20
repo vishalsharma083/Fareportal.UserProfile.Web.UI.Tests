@@ -640,149 +640,167 @@ namespace UserProfileSPA.TestCases
         }
 
 
-        [DeploymentItem("DeleteLastCoTraveler.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\DeleteLastCoTraveler.csv", "DeleteLastCoTraveler#csv", DataAccessMethod.Sequential), TestMethod]
+        [DeploymentItem("DeleteLastCoTraveler.csv"), DeploymentItem("AppData\\DeleteLastCoTraveler.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\DeleteLastCoTraveler.csv", "DeleteLastCoTraveler#csv", DataAccessMethod.Sequential), TestMethod]
         public void DeleteLastCoTraveler()
         {
             IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
-            string _baseUrl = Record("SignInUrl");
-            if (_baseUrl == Driver.Url)
+            if (Prefix+SignInUrl == Driver.Url)
             {
                 Utility.CssToSetText("Email", Record("Email"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                 Utility.CssToSetText("Password", Record("Password"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
-
                 Utility.CsstoClick("SignInBtn", 3);
                 Utility.Sleep(2);
-                Utility.CsstoClick("clickOnMyInformation", 4);
-                Utility.Sleep(2);
-                string cheapoairMyInfoUrl = Record("CheapoairMyInfoUrl");
-                if (cheapoairMyInfoUrl == Driver.Url)
-                {
-                    Utility.ByLinkTexttoClick("clickOnMyCoTravelerMenu", 4);
-
-                    string myCoTravelerUrl = Record("MyCoTravelerUrl");
-                    if (myCoTravelerUrl == Driver.Url)
-                    {
-                        string xpath = "html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/form/div[1]/div/div[2]";
-                        if (Utility.IsDisplayedUsingXpathForMoltingInnerText(xpath))
-                        {
-                            int _countDelete = UserProfileSPA.Library.TestEnvironment.Driver.FindElements(By.CssSelector(UserProfileSPA.Library.TestEnvironment.LoadXML("DeleteCoTraveler"))).Count();
-
-                            if (Utility.IsDisplayedUsingCss("ClickOnAddCoTravellerBtn"))
-                            {
-                                Utility.CsstoClick("ClickOnAddCoTravellerBtn", 3);
-
-                                if (!Utility.IsDisplayedUsingCss("ClickOnAddCoTravellerBtn"))
-                                {
-                                    if ((Utility.IsDisplayedUsingCss("CoTravelerFlightPreference")) && (Utility.IsDisplayedUsingCss("CotravelerHotelPreference")) && (Utility.IsDisplayedUsingCss("CoTravelerCarPreference")) && (Utility.IsDisplayedUsingCss("AddCoTravelerSection")))
-                                    {
-
-                                        string selectAgeGroupForSecondCotraveler = Record("selectAgeGroupForCotraveler");
-                                        var enterAgeGroupForSecondCoTraveler = Driver.FindElement(By.CssSelector(TestEnvironment.LoadXML("SelectCoTravellerAgeGroup")));
-                                        var selectElementForSecondCotraveler = new SelectElement(enterAgeGroupForSecondCoTraveler);
-                                        selectElementForSecondCotraveler.SelectByText(selectAgeGroupForSecondCotraveler);
-
-
-                                        string _firstNameForSecondCotraveler = Record("FirstNameForCotraveler");
-                                        string _lastNameForSecondCotraveler = Record("LastNameForCotraveler");
-                                        Utility.CssToSetText("textInFirstname", _firstNameForSecondCotraveler, 3);
-                                        Utility.CssToSetText("textInlastName", _lastNameForSecondCotraveler, 3);
-                                        string _completeNameForSecondCoTraveler = _firstNameForSecondCotraveler + " " + _lastNameForSecondCotraveler;
-
-
-                                        string _monthForSecondCotraveler = Record("MonthForCotraveler");
-                                        var selectMonthForSecondCotraveler = Driver.FindElement(By.CssSelector(TestEnvironment.LoadXML("CoTravellerMonth")));
-                                        var selectElementMonthForSecondCotraveler = new SelectElement(selectMonthForSecondCotraveler);
-                                        selectElementMonthForSecondCotraveler.SelectByText(_monthForSecondCotraveler);
-
-                                        string _dayForSecondCotraveler = Record("DayForCotraveler");
-                                        var selectDaySecondCotraveler = Driver.FindElement(By.CssSelector(TestEnvironment.LoadXML("CoTravellerDay")));
-                                        var selectElementDayForSecondCotraveler = new SelectElement(selectDaySecondCotraveler);
-                                        selectElementDayForSecondCotraveler.SelectByText(_dayForSecondCotraveler);
-
-                                        string _yearForSecondCotraveler = Record("YearForCotraveler");
-                                        var selectYearSecondCotraveler = Driver.FindElement(By.CssSelector(TestEnvironment.LoadXML("CoTravellerYear")));
-                                        var selectElementYearForSecondCotraveler = new SelectElement(selectYearSecondCotraveler);
-                                        selectElementYearForSecondCotraveler.SelectByText(_yearForSecondCotraveler);
-
-                                        string _genderForSecondCotraveler = Record("GenderForCotraveler");
-                                        var selectGenderForSecondCotraveler = Driver.FindElement(By.CssSelector(TestEnvironment.LoadXML("CoTravellerGender")));
-                                        var selectElementGenderForSecondCotraveler = new SelectElement(selectGenderForSecondCotraveler);
-                                        selectElementGenderForSecondCotraveler.SelectByText(_genderForSecondCotraveler);
-
-                                        string SelectTitleForSecondCotraveler = Record("SelectTitleForCotraveler");
-                                        var enterTitleForSecondCotraveler = Driver.FindElement(By.CssSelector(TestEnvironment.LoadXML("SelectCoTravellerTitle")));
-                                        var selectElementTitleForSecondCotraveler = new SelectElement(enterTitleForSecondCotraveler);
-                                        selectElementTitleForSecondCotraveler.SelectByText(SelectTitleForSecondCotraveler);
-
-                                        Utility.XPathtoClick("ClickOnFlightPreferecne", 3);
-                                        Utility.Sleep(3);
-                                        string _homeAirportForSecondCotraveler = Record("HomeAirportForCotraveler");
-                                        Utility.CssToSetText("CoTravelerHomeAirPort", _homeAirportForSecondCotraveler, 3);
-                                        Utility.CsstoClick("ClickOnSaveCoTravelerBtn", 3);
-                                        Utility.Sleep(3);
-
-                                        int _countDeleteNew = UserProfileSPA.Library.TestEnvironment.Driver.FindElements(By.CssSelector(UserProfileSPA.Library.TestEnvironment.LoadXML("DeleteCoTraveler"))).Count();
-                                        if (_countDelete != _countDeleteNew)
-                                        {
-                                            UserProfileSPA.Library.TestEnvironment.Driver.FindElements(By.CssSelector(UserProfileSPA.Library.TestEnvironment.LoadXML("DeleteCoTraveler"))).LastOrDefault().Click();
-
-                                            _countDeleteNew = UserProfileSPA.Library.TestEnvironment.Driver.FindElements(By.CssSelector(UserProfileSPA.Library.TestEnvironment.LoadXML("DeleteCoTraveler"))).Count();
-
-                                            if (_countDelete == _countDeleteNew)
-                                            {
-                                                Assert.IsTrue(true, "Newly added cotraveler is deleted.");
-                                            }
-                                        }
-                                        else
-                                        {
-                                            Assert.IsTrue(false, "Please add new CoTraveler for delete.");
-                                        }
-                                    }
-                                    else
-                                    {
-                                        Assert.IsTrue(false, "AddCoTravelerSection is not found.");
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-
-        [DeploymentItem("MyCoTravelerAllValidations.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\MyCoTravelerAllValidations.csv", "MyCoTravelerAllValidations#csv", DataAccessMethod.Sequential), TestMethod]
-        public void MyCoTravellerValidations()
-        {
-            IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
-
-            Utility.CssToSetText("Email", Record("Email"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
-            Utility.CssToSetText("Password", Record("Password"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
-
-            string signinUrl = Record("SignInUrl");
-            if (signinUrl == Driver.Url)
-            {
-
-                Utility.CsstoClick("SignInBtn", 4);
-                Utility.Sleep(3);
-                string fareportalOverviewUrl = Record("CheapoairOverviewUrl");
-                if (fareportalOverviewUrl == Driver.Url)
+                if (Prefix + Record("OverViewUrl") == Driver.Url)
                 {
                     Utility.CsstoClick("clickOnMyInformation", 4);
                     Utility.Sleep(2);
 
-                    string fareportalMyDetailsUrl = Record("CheapoairMyDetailsUrl");
-                    if (fareportalMyDetailsUrl == Driver.Url)
+                    if (Prefix + Record("MyInformationUrl") == Driver.Url)
+                    {
+                        Utility.Sleep(2);
+                        Utility.ByLinkTexttoClick("clickOnMyCoTravelerMenu", 4);
+                        if (Record("MyCoTravelerUrl") == Driver.Url)
+                        {
+                            string xpath = "html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/form/div[1]/div/div[2]";
+                            if (Utility.IsDisplayedUsingXpathForMoltingInnerText(xpath))
+                            {
+                                int _countDelete = UserProfileSPA.Library.TestEnvironment.Driver.FindElements(By.CssSelector(UserProfileSPA.Library.TestEnvironment.LoadXML("DeleteCoTraveler"))).Count();
+
+                                if (Utility.IsDisplayedUsingCss("ClickOnAddCoTravellerBtn"))
+                                {
+                                    Utility.CsstoClick("ClickOnAddCoTravellerBtn", 3);
+
+                                    if (!Utility.IsDisplayedUsingCss("ClickOnAddCoTravellerBtn"))
+                                    {
+                                        if ((Utility.IsDisplayedUsingCss("CoTravelerFlightPreference")) && (Utility.IsDisplayedUsingCss("CotravelerHotelPreference")) && (Utility.IsDisplayedUsingCss("CoTravelerCarPreference")) && (Utility.IsDisplayedUsingCss("AddCoTravelerSection")))
+                                        {
+
+                                            string selectAgeGroupForSecondCotraveler = Record("selectAgeGroupForCotraveler");
+                                            var enterAgeGroupForSecondCoTraveler = Driver.FindElement(By.CssSelector(TestEnvironment.LoadXML("SelectCoTravellerAgeGroup")));
+                                            var selectElementForSecondCotraveler = new SelectElement(enterAgeGroupForSecondCoTraveler);
+                                            selectElementForSecondCotraveler.SelectByText(selectAgeGroupForSecondCotraveler);
+
+
+                                            string _firstNameForSecondCotraveler = Record("FirstNameForCotraveler");
+                                            string _lastNameForSecondCotraveler = Record("LastNameForCotraveler");
+                                            Utility.CssToSetText("textInFirstname", _firstNameForSecondCotraveler, 3);
+                                            Utility.CssToSetText("textInlastName", _lastNameForSecondCotraveler, 3);
+                                            string _completeNameForSecondCoTraveler = _firstNameForSecondCotraveler + " " + _lastNameForSecondCotraveler;
+
+
+                                            string _monthForSecondCotraveler = Record("MonthForCotraveler");
+                                            var selectMonthForSecondCotraveler = Driver.FindElement(By.CssSelector(TestEnvironment.LoadXML("CoTravellerMonth")));
+                                            var selectElementMonthForSecondCotraveler = new SelectElement(selectMonthForSecondCotraveler);
+                                            selectElementMonthForSecondCotraveler.SelectByText(_monthForSecondCotraveler);
+
+                                            string _dayForSecondCotraveler = Record("DayForCotraveler");
+                                            var selectDaySecondCotraveler = Driver.FindElement(By.CssSelector(TestEnvironment.LoadXML("CoTravellerDay")));
+                                            var selectElementDayForSecondCotraveler = new SelectElement(selectDaySecondCotraveler);
+                                            selectElementDayForSecondCotraveler.SelectByText(_dayForSecondCotraveler);
+
+                                            string _yearForSecondCotraveler = Record("YearForCotraveler");
+                                            var selectYearSecondCotraveler = Driver.FindElement(By.CssSelector(TestEnvironment.LoadXML("CoTravellerYear")));
+                                            var selectElementYearForSecondCotraveler = new SelectElement(selectYearSecondCotraveler);
+                                            selectElementYearForSecondCotraveler.SelectByText(_yearForSecondCotraveler);
+
+                                            string _genderForSecondCotraveler = Record("GenderForCotraveler");
+                                            var selectGenderForSecondCotraveler = Driver.FindElement(By.CssSelector(TestEnvironment.LoadXML("CoTravellerGender")));
+                                            var selectElementGenderForSecondCotraveler = new SelectElement(selectGenderForSecondCotraveler);
+                                            selectElementGenderForSecondCotraveler.SelectByText(_genderForSecondCotraveler);
+
+                                            string SelectTitleForSecondCotraveler = Record("SelectTitleForCotraveler");
+                                            var enterTitleForSecondCotraveler = Driver.FindElement(By.CssSelector(TestEnvironment.LoadXML("SelectCoTravellerTitle")));
+                                            var selectElementTitleForSecondCotraveler = new SelectElement(enterTitleForSecondCotraveler);
+                                            selectElementTitleForSecondCotraveler.SelectByText(SelectTitleForSecondCotraveler);
+
+                                            Utility.XPathtoClick("ClickOnFlightPreferecne", 3);
+                                            Utility.Sleep(3);
+                                            string _homeAirportForSecondCotraveler = Record("HomeAirportForCotraveler");
+                                            Utility.CssToSetText("CoTravelerHomeAirPort", _homeAirportForSecondCotraveler, 3);
+                                            Utility.CsstoClick("ClickOnSaveCoTravelerBtn", 3);
+                                            Utility.Sleep(3);
+
+                                            int _countDeleteNew = UserProfileSPA.Library.TestEnvironment.Driver.FindElements(By.CssSelector(UserProfileSPA.Library.TestEnvironment.LoadXML("DeleteCoTraveler"))).Count();
+                                            if (_countDelete != _countDeleteNew)
+                                            {
+                                                UserProfileSPA.Library.TestEnvironment.Driver.FindElements(By.CssSelector(UserProfileSPA.Library.TestEnvironment.LoadXML("DeleteCoTraveler"))).LastOrDefault().Click();
+
+                                                _countDeleteNew = UserProfileSPA.Library.TestEnvironment.Driver.FindElements(By.CssSelector(UserProfileSPA.Library.TestEnvironment.LoadXML("DeleteCoTraveler"))).Count();
+
+                                                if (_countDelete == _countDeleteNew)
+                                                {
+                                                    Assert.IsTrue(true, "Newly added cotraveler is deleted.");
+                                                }
+                                            }
+                                            else
+                                            {
+                                                Assert.IsTrue(false, "Please add new CoTraveler for delete.");
+                                            }
+                                        }
+                                        else
+                                        {
+                                            Assert.IsTrue(false, "AddCoTravelerSection is not found.");
+                                        }
+                                    }
+                                    else
+                                    {
+                                        Assert.IsTrue(false, "ClickOnAddCoTravellerBtn is still displayed.");
+                                    }
+                                }
+                                else
+                                {
+                                    Assert.IsTrue(false, "ClickOnAddCoTravellerBtn is not found.");
+                                }
+                            }
+                            else
+                            {
+                                Assert.IsTrue(false, "There is no Cotraveler added previously.");
+                            }
+                        }
+                        else
+                        {
+                            Assert.IsTrue(false, "MyCotraverler url is not opened.");
+                        }
+                    }
+                    else
+                    {
+                        Assert.IsTrue(false, "MyInformation url is not opened.");
+                    }
+                }
+                else
+                {
+                    Assert.IsTrue(false, "OverViewUrl is not opened.");
+                }
+            }
+            else
+            {
+                Assert.IsTrue(false, "SignIn Url is not opened.");
+            }
+        }
+
+
+        [DeploymentItem("AppData\\MyCoTravelerAllValidations.csv"), DeploymentItem("MyCoTravelerAllValidations.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\MyCoTravelerAllValidations.csv", "MyCoTravelerAllValidations#csv", DataAccessMethod.Sequential), TestMethod]
+        public void MyCoTravellerValidations()
+        {
+            IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
+            if (Prefix+SignInUrl == Driver.Url)
+            {
+                Utility.CssToSetText("Email", Record("Email"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
+                Utility.CssToSetText("Password", Record("Password"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
+                Utility.CsstoClick("SignInBtn", 4);
+                Utility.Sleep(3);                               
+                if (Prefix+Record("OverViewUrl") == Driver.Url)
+                {
+                    Utility.CsstoClick("clickOnMyInformation", 4);
+                    Utility.Sleep(2);
+                    if (Prefix+Record("MyInformationUrl") == Driver.Url)
                     {
                         Utility.ByLinkTexttoClick("clickOnMyCoTravelerMenu", 4);
 
-                        string myCoTravelerUrl = Record("CheapoairMyCoTravelerDetailsUrl");
-                        if (myCoTravelerUrl == Driver.Url)
+                        if (Prefix+Record("MyCotravelerUrl") == Driver.Url)
                         {
                             Utility.CsstoClick("ClickOnAddCoTravelerBtn", 4);
                             Utility.CsstoClick("SaveCoTraveler", 4);
-
-
 
                             if ((string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("textInFirstname", "value", 2))) && (string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("textInlastName", "value", 2))))
                             {
@@ -817,13 +835,29 @@ namespace UserProfileSPA.TestCases
                                 }
                             }
                         }
+                        else
+                        {
+                            Assert.IsTrue(true, "MyCotraveler url is not opened.");
+                        }
+                    }
+                    else
+                    {
+                        Assert.IsTrue(true, "MyInformation url is not opened.");
                     }
                 }
+                else
+                {
+                    Assert.IsTrue(true, "OverView url is not opened.");
+                }
+            }
+            else
+            {
+                Assert.IsTrue(true, "SignIn url is not opened.");
             }
         }
 
 
-        [DeploymentItem("UpdateDataUsingEditButton.csv"), DeploymentItem("AppData\\UpdateDataUsingEditButton.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\UpdateDataUsingEditButton.csv", "UpdateDataUsingEditButton#csv", DataAccessMethod.Sequential), TestMethod]
+        [DeploymentItem("AppData\\UpdateDataUsingEditButton.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\UpdateDataUsingEditButton.csv", "UpdateDataUsingEditButton#csv", DataAccessMethod.Sequential), TestMethod]
         // should update the firstName and month in table to check changes.
         public void UpdateDataUsingEditButton()
         {
@@ -833,7 +867,7 @@ namespace UserProfileSPA.TestCases
                 //string email =;
                 //string password = Record("Password");
                 Utility.CssToSetText("Email", Record("Email"), 4);
-                Utility.CssToSetText("Password", Record("Email"), 4);
+                Utility.CssToSetText("Password", Record("Password"), 4);
                 Utility.CsstoClick("SignInBtn", 3);
                 Utility.Sleep(2);
                 if (Prefix + Record("OverViewUrl") == Driver.Url)
@@ -842,8 +876,6 @@ namespace UserProfileSPA.TestCases
                     Utility.Sleep(2);
                     if (Prefix + Record("MyInformationUrl") == Driver.Url)
                     {
-                        if (Prefix + Record("MyInformationUrl") == Driver.Url)
-                        {
                             Utility.Sleep(4);
                             Utility.ByLinkTexttoClick("clickOnMyCoTravelerMenu", 4);
                             Utility.Sleep(2);
@@ -871,12 +903,19 @@ namespace UserProfileSPA.TestCases
 
                                                 string updatedNameFromTable = Record("UpdatedName");
                                                 string updatedMonth = Record("UpdatedMonth");
+                                                string _selectTitle = Record("SelectTitle");
+                                                
 
                                                 Utility.CssToSetText("textInFirstname", updatedNameFromTable, 3);
 
                                                 var selectMonth = Driver.FindElement(By.CssSelector(TestEnvironment.LoadXML("CoTravellerMonth")));
                                                 var selectElementMonth = new SelectElement(selectMonth);
                                                 selectElementMonth.SelectByText(updatedMonth);
+
+                                                var selectTitle = Driver.FindElement(By.CssSelector(TestEnvironment.LoadXML("SelectCoTravellerTitle")));
+                                                var selectElementTitle = new SelectElement(selectTitle);
+                                                selectElementTitle.SelectByText(_selectTitle);
+
                                                 Utility.CsstoClick("ClickOnSaveCoTravelerBtn", 3);
 
                                                 if (Utility.IsDisplayedUsingXpathForMoltingInnerText(xpath))
@@ -899,7 +938,7 @@ namespace UserProfileSPA.TestCases
                             {
                                 Assert.IsTrue(true, "MyCotraveler url is not opened.");
                             }
-                        }
+                        
                     }
                     else
                     {

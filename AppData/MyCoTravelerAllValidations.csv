@@ -1,2 +1,2 @@
-Email,Password,SignInUrl,CheapoairOverviewUrl,CheapoairMyDetailsUrl,CheapoairMyCoTravelerDetailsUrl
-raja@gmail.com,bulletraja,http://www.cheapoair.com/profiles/#/user-signin,http://www.cheapoair.com/profiles/#/overview,http://www.cheapoair.com/profiles/#/my-account/my-details,http://www.cheapoair.com/profiles/#/my-account/my-co-travelers
+Email,Password,OverViewUrl,MyInformationUrl,MyCotravelerUrl
+raja@gmail.com,bulletraja,//www.cheapoair.com/profiles/#/overview,//www.cheapoair.com/profiles/#/my-account/my-details,//www.cheapoair.com/profiles/#/my-account/my-co-travelers
