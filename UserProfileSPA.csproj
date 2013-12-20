@@ -264,16 +264,10 @@
     <None Include="AppData\VerifyingEmailAddressAlreadyExistInCreateAnAccount.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="verifyGenderAgainstTitle.csv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="VerifyTheFirstAndLastNameValidationsInMyBillingDetails.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="AppData\VerifyTheNameFieldValidations.csv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="VerifyTheTitleFieldWithGenderInCoTraveler.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="VerifyTheValidationsOfTheLeapYearInRegisterPage.csv">

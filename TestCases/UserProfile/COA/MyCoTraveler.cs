@@ -7,12 +7,15 @@ using OpenQA.Selenium;
 using UserProfileSPA.Library;
 using OpenQA.Selenium.Support.UI;
 using System.Text.RegularExpressions;
+using System.Configuration;
 
 namespace UserProfileSPA.TestCases
 {
     [TestClass]
-    public class MyCoTraveler 
+    public class MyCoTraveler
     {
+        string SignInUrl = ConfigurationManager.AppSettings["URL"];
+        string Prefix = ConfigurationManager.AppSettings["UrlPrefix"];
 
         [TestInitialize]
         public void Initialize()
@@ -68,7 +71,7 @@ namespace UserProfileSPA.TestCases
                                 string selectAgeGroupForFirstCotraveler = Record("selectAgeGroupForFirstCotraveler");
                                 var enterAgeGroupForFirstCoTraveler = Driver.FindElement(By.CssSelector(TestEnvironment.LoadXML("SelectCoTravellerAgeGroup")));
                                 var selectElementForFirstCotraveler = new SelectElement(enterAgeGroupForFirstCoTraveler);
-                                selectElementForFirstCotraveler.SelectByText(selectAgeGroupForFirstCotraveler);                               
+                                selectElementForFirstCotraveler.SelectByText(selectAgeGroupForFirstCotraveler);
 
                                 string _firstNameForFirstCotraveler = Record("FirstNameForFirstCotraveler");
                                 string _lastNameForFirstCotraveler = Record("LastNameForFirstCotraveler");
@@ -107,7 +110,7 @@ namespace UserProfileSPA.TestCases
                                 string _homeAirportForFirstCotraveler = Record("HomeAirportForFirstCotraveler");
                                 Utility.CssToSetText("CoTravelerHomeAirPort", _homeAirportForFirstCotraveler, 3);
                                 Utility.CsstoClick("ClickOnSaveCoTravelerBtn", 3);
-                                 Utility.Sleep(7);
+                                Utility.Sleep(7);
                                 if (Utility.IsDisplayedUsingCss("ClickOnAddCoTravellerBtn"))
                                 {
                                     Utility.CsstoClick("ClickOnAddCoTravellerBtn", 3);
@@ -121,7 +124,7 @@ namespace UserProfileSPA.TestCases
                                             string selectAgeGroupForSecondCotraveler = Record("selectAgeGroupForSecondCotraveler");
                                             var enterAgeGroupForSecondCoTraveler = Driver.FindElement(By.CssSelector(TestEnvironment.LoadXML("SelectCoTravellerAgeGroup")));
                                             var selectElementForSecondCotraveler = new SelectElement(enterAgeGroupForSecondCoTraveler);
-                                            selectElementForSecondCotraveler.SelectByText(selectAgeGroupForSecondCotraveler);                                           
+                                            selectElementForSecondCotraveler.SelectByText(selectAgeGroupForSecondCotraveler);
 
                                             string _firstNameForSecondCotraveler = Record("FirstNameForSecondCotraveler");
                                             string _lastNameForSecondCotraveler = Record("LastNameForSecondCotraveler");
@@ -427,7 +430,7 @@ namespace UserProfileSPA.TestCases
             if (_baseUrl == Driver.Url)
             {
                 Utility.CssToSetText("Email", Record("Email"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
-                Utility.CssToSetText("Password", Record("Password"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);               
+                Utility.CssToSetText("Password", Record("Password"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                 Utility.CsstoClick("SignInBtn", 3);
                 Utility.Sleep(2);
                 Utility.CsstoClick("clickOnMyInformation", 4);
@@ -486,13 +489,13 @@ namespace UserProfileSPA.TestCases
         [DeploymentItem("CoTravelerFirstAndLastNameValidations.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\CoTravelerFirstAndLastNameValidations.csv", "CoTravelerFirstAndLastNameValidations#csv", DataAccessMethod.Sequential), TestMethod]
         public void CoTravelerFirstAndLastNameValidations()
         {
-            IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;            
+            IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
             string _baseUrl = Record("SignInUrl");
             if (_baseUrl == Driver.Url)
             {
                 Utility.CssToSetText("Email", Record("Email"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                 Utility.CssToSetText("Password", Record("Password"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
-               
+
                 Utility.CsstoClick("SignInBtn", 3);
                 Utility.Sleep(2);
                 Utility.CsstoClick("clickOnMyInformation", 4);
@@ -508,22 +511,22 @@ namespace UserProfileSPA.TestCases
                         Utility.CsstoClick("ClickOnAddCoTravelerBtn", 4);
 
                         string _firstNametxt = Record("FirstName");
-                       // char[] firstChar = _firstNametxt.ToCharArray();
+                        // char[] firstChar = _firstNametxt.ToCharArray();
                         string _lastNametxt = Record("LastName");
-                        Utility.CsstoClear("textInFirstname",3);
+                        Utility.CsstoClear("textInFirstname", 3);
                         Utility.CssToSetText("textInFirstname", _firstNametxt, 3);
-                        Utility.CsstoClick("ClickOnTsaReaders",3);
+                        Utility.CsstoClick("ClickOnTsaReaders", 3);
                         Utility.CsstoClear("textInlastName", 3);
                         Utility.CssToSetText("textInlastName", _lastNametxt, 3);
                         Utility.CsstoClick("ClickOnTsaReaders", 3);
-                        Utility.CsstoClick("ClickOnSaveCoTravelerBtn",3);
+                        Utility.CsstoClick("ClickOnSaveCoTravelerBtn", 3);
                         if (!string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("textInFirstname", "value", 3)))
                         {
                             if ((_firstNametxt.Length > 2) && (_firstNametxt.Length < 25))
                             {
                                 Regex regex = new Regex(@"^[a-zA-Z]");
                                 if (regex.IsMatch(_firstNametxt))
-                                {                                  
+                                {
 
                                     if ((_firstNametxt.Contains("!") || (_firstNametxt.Contains("@")) || (_firstNametxt.Contains("~")) || (_firstNametxt.Contains("$")) || (_firstNametxt.Contains("%")) || (_firstNametxt.Contains("^")) || (_firstNametxt.Contains("&")) || (_firstNametxt.Contains("*")) || (_firstNametxt.Contains("`")) || (_firstNametxt.Contains("+")) || (_firstNametxt.Contains("-")) || (_firstNametxt.Contains(":")) || (_firstNametxt.Contains(".")) || (_firstNametxt.Contains(",")) || (_firstNametxt.Contains("(")) || (_firstNametxt.Contains(")")) || (_firstNametxt.Contains("="))))
                                     {
@@ -640,12 +643,12 @@ namespace UserProfileSPA.TestCases
         [DeploymentItem("DeleteLastCoTraveler.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\DeleteLastCoTraveler.csv", "DeleteLastCoTraveler#csv", DataAccessMethod.Sequential), TestMethod]
         public void DeleteLastCoTraveler()
         {
-            IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;          
+            IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
             string _baseUrl = Record("SignInUrl");
             if (_baseUrl == Driver.Url)
             {
                 Utility.CssToSetText("Email", Record("Email"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
-                Utility.CssToSetText("Password", Record("Password"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);               
+                Utility.CssToSetText("Password", Record("Password"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
 
                 Utility.CsstoClick("SignInBtn", 3);
                 Utility.Sleep(2);
@@ -663,7 +666,7 @@ namespace UserProfileSPA.TestCases
                         if (Utility.IsDisplayedUsingXpathForMoltingInnerText(xpath))
                         {
                             int _countDelete = UserProfileSPA.Library.TestEnvironment.Driver.FindElements(By.CssSelector(UserProfileSPA.Library.TestEnvironment.LoadXML("DeleteCoTraveler"))).Count();
-                          
+
                             if (Utility.IsDisplayedUsingCss("ClickOnAddCoTravellerBtn"))
                             {
                                 Utility.CsstoClick("ClickOnAddCoTravellerBtn", 3);
@@ -672,11 +675,11 @@ namespace UserProfileSPA.TestCases
                                 {
                                     if ((Utility.IsDisplayedUsingCss("CoTravelerFlightPreference")) && (Utility.IsDisplayedUsingCss("CotravelerHotelPreference")) && (Utility.IsDisplayedUsingCss("CoTravelerCarPreference")) && (Utility.IsDisplayedUsingCss("AddCoTravelerSection")))
                                     {
-                                        
+
                                         string selectAgeGroupForSecondCotraveler = Record("selectAgeGroupForCotraveler");
                                         var enterAgeGroupForSecondCoTraveler = Driver.FindElement(By.CssSelector(TestEnvironment.LoadXML("SelectCoTravellerAgeGroup")));
                                         var selectElementForSecondCotraveler = new SelectElement(enterAgeGroupForSecondCoTraveler);
-                                        selectElementForSecondCotraveler.SelectByText(selectAgeGroupForSecondCotraveler);                             
+                                        selectElementForSecondCotraveler.SelectByText(selectAgeGroupForSecondCotraveler);
 
 
                                         string _firstNameForSecondCotraveler = Record("FirstNameForCotraveler");
@@ -727,8 +730,8 @@ namespace UserProfileSPA.TestCases
 
                                             if (_countDelete == _countDeleteNew)
                                             {
-                                                Assert.IsTrue(true,"Newly added cotraveler is deleted.");
-                                            }                                            
+                                                Assert.IsTrue(true, "Newly added cotraveler is deleted.");
+                                            }
                                         }
                                         else
                                         {
@@ -752,14 +755,14 @@ namespace UserProfileSPA.TestCases
         public void MyCoTravellerValidations()
         {
             IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
-           
+
             Utility.CssToSetText("Email", Record("Email"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
             Utility.CssToSetText("Password", Record("Password"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
-            
+
             string signinUrl = Record("SignInUrl");
             if (signinUrl == Driver.Url)
             {
-                
+
                 Utility.CsstoClick("SignInBtn", 4);
                 Utility.Sleep(3);
                 string fareportalOverviewUrl = Record("CheapoairOverviewUrl");
@@ -796,27 +799,27 @@ namespace UserProfileSPA.TestCases
 
                                 if (((Utility.GrabAttributeValueByCss("CoTravellerMonth", "value", 4)) == "0") && ((Utility.GrabAttributeValueByCss("CoTravellerDay", "value", 4)) == "0") && (Utility.GrabAttributeValueByCss("CoTravellerYear", "value", 4)) == "0")
                                 {
-                                   
+
                                     string actualErrorMsg = Utility.ByXpath("CoTravelerDobErrorMsg", 4);
-                                    Assert.AreEqual(ValidationsIfDobDropDown[0], actualErrorMsg);                                    
+                                    Assert.AreEqual(ValidationsIfDobDropDown[0], actualErrorMsg);
                                 }
                                 else if (((Utility.GrabAttributeValueByCss("CoTravellerMonth", "value", 4)) != "0") || ((Utility.GrabAttributeValueByCss("CoTravellerDay", "value", 4)) != "0") || (Utility.GrabAttributeValueByCss("CoTravellerYear", "value", 4)) != "0")
                                 {
                                     string actualErrorMsg = Utility.ByXpath("CoTravelerDobErrorMsg", 4);
                                     Assert.AreEqual(ValidationsIfDobDropDown[1], actualErrorMsg);
-                                }                                
+                                }
 
                                 if (((Utility.GrabAttributeValueByCss("SelectGenderInCoTraveler", "value", 4)) == "0"))
                                 {
                                     string expectedValidationInCotravelerGender = UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("expectedValidationInCotravelerGender");
                                     string actualValidationInCotravelerGender = Utility.ByXpath("CoTravelerGenderIsNotSelected", 4);
                                     Assert.AreEqual(expectedValidationInCotravelerGender, actualValidationInCotravelerGender);
-                                }                               
+                                }
                             }
                         }
                     }
                 }
-            }   
+            }
         }
 
 
@@ -825,13 +828,13 @@ namespace UserProfileSPA.TestCases
         public void UpdateDataUsingEditButton()
         {
             IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
-          
+
             string _baseUrl = Record("SignInUrl");
             if (_baseUrl == Driver.Url)
             {
                 string email = Record("Email");
                 string password = Record("Password");
-                Utility.CssToSetText("Email", email, 4);               
+                Utility.CssToSetText("Email", email, 4);
                 Utility.CssToSetText("Password", password, 4);
                 Utility.CsstoClick("SignInBtn", 3);
                 Utility.Sleep(2);
@@ -864,7 +867,7 @@ namespace UserProfileSPA.TestCases
                                     if ((EditProfile == "Edit Co-Traveler " + firstName[0].ToLower()) || (EditProfile == "Edit Co-Traveler " + firstName[0]))
                                     {
 
-                                       
+
                                         string updatedNameFromTable = Record("UpdatedName");
                                         string updatedMonth = Record("UpdatedMonth");
 
@@ -896,177 +899,186 @@ namespace UserProfileSPA.TestCases
         }
 
 
-        [DeploymentItem("VerifyTheTitleFieldWithGenderInCoTraveler.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\VerifyTheTitleFieldWithGenderInCoTraveler.csv", "VerifyTheTitleFieldWithGenderInCoTraveler#csv", DataAccessMethod.Sequential), TestMethod]
+        [DeploymentItem("AppData\\VerifyTheTitleFieldWithGenderInCoTraveler.csv"), DeploymentItem("VerifyTheTitleFieldWithGenderInCoTraveler.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\VerifyTheTitleFieldWithGenderInCoTraveler.csv", "VerifyTheTitleFieldWithGenderInCoTraveler#csv", DataAccessMethod.Sequential), TestMethod]
         public void VerifyTheTitleFieldWithGenderInCoTraveler()
         {
             IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
-           
-            string _baseUrl = Record("SignInUrl");
-            if (_baseUrl == Driver.Url)
+            if (Prefix + SignInUrl == Driver.Url)
             {
                 Utility.CssToSetText("Email", Record("Email"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                 Utility.CssToSetText("Password", Record("Password"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
-                
                 Utility.CsstoClick("SignInBtn", 3);
                 Utility.Sleep(2);
-                Utility.CsstoClick("clickOnMyInformation", 4);
-                Utility.Sleep(2);
-                string cheapoairMyInfoUrl = Record("CheapoairMyInfoUrl");
-                if (cheapoairMyInfoUrl == Driver.Url)
+                if (Prefix + Record("OverViewUrl") == Driver.Url)
                 {
-                    Utility.ByLinkTexttoClick("clickOnMyCoTravelerMenu", 4);
-
-                    string myCoTravelerUrl = Record("MyCoTravelerUrl");
-                    if (myCoTravelerUrl == Driver.Url)
+                    Utility.CsstoClick("clickOnMyInformation", 4);
+                    Utility.Sleep(2);
+                    if (Record("MyInformationUrl") == Driver.Url)
                     {
-                        Utility.CsstoClick("ClickOnAddCoTravelerBtn", 4);
-
-                        string SelectFromAgeGroup = Record("SelectFromAgeGroup");
-                        var enterOneOfAgeGroup = Driver.FindElement(By.CssSelector(TestEnvironment.LoadXML("SelectCoTravellerAgeGroup")));
-                        var selectElement = new SelectElement(enterOneOfAgeGroup);
-                        selectElement.SelectByText(SelectFromAgeGroup);
-                        Utility.Sleep(4);
-
-                       
-                        if (((Utility.GrabAttributeValueByCss("SelectCoTravellerAgeGroup", "value", 4)) == "1") || ((Utility.GrabAttributeValueByCss("SelectCoTravellerAgeGroup", "value", 4)) == "2"))
+                        Utility.ByLinkTexttoClick("clickOnMyCoTravelerMenu", 4);
+                        if (Record("MyCoTravelerUrl") == Driver.Url)
                         {
-                            string _selectedTitle = Record("SelectedTitle");
-                            var _title = Driver.FindElement(By.CssSelector(UserProfileSPA.Library.TestEnvironment.LoadXML("Title")));
-                            var selectelementTitle = new SelectElement(_title);
-                            selectelementTitle.SelectByText(_selectedTitle);
+                            Utility.CsstoClick("ClickOnAddCoTravelerBtn", 4);
 
-                            string _selectedGender = Record("SelectedGender");
-                            var _gender = Driver.FindElement(By.CssSelector(UserProfileSPA.Library.TestEnvironment.LoadXML("Gender")));
-                            var selectelementGender = new SelectElement(_gender);
-                            selectelementGender.SelectByText(_selectedGender);                           
-                           
+                            string SelectFromAgeGroup = Record("SelectFromAgeGroup");
+                            var enterOneOfAgeGroup = Driver.FindElement(By.CssSelector(TestEnvironment.LoadXML("SelectCoTravellerAgeGroup")));
+                            var selectElement = new SelectElement(enterOneOfAgeGroup);
+                            selectElement.SelectByText(SelectFromAgeGroup);
+                            Utility.Sleep(4);
 
-                            if (((Utility.GrabAttributeValueByCss("SelectCoTravellerTitle", "value", 4)) == "1") && ((Utility.GrabAttributeValueByCss("CoTravellerGender", "value", 4)) == "1"))
+
+                            if (((Utility.GrabAttributeValueByCss("SelectCoTravellerAgeGroup", "value", 4)) == "1") || ((Utility.GrabAttributeValueByCss("SelectCoTravellerAgeGroup", "value", 4)) == "2"))
                             {
-                                Assert.IsTrue(true);
-                            }
-                            else
-                            {
-                                string expectedErrorMsg = Record("ExpectedErrorMsg");
-                                if (expectedErrorMsg != "No Error")
+                                string _selectedTitle = Record("SelectedTitle");
+                                var _title = Driver.FindElement(By.CssSelector(UserProfileSPA.Library.TestEnvironment.LoadXML("Title")));
+                                var selectelementTitle = new SelectElement(_title);
+                                selectelementTitle.SelectByText(_selectedTitle);
+
+                                string _selectedGender = Record("SelectedGender");
+                                var _gender = Driver.FindElement(By.CssSelector(UserProfileSPA.Library.TestEnvironment.LoadXML("Gender")));
+                                var selectelementGender = new SelectElement(_gender);
+                                selectelementGender.SelectByText(_selectedGender);
+
+
+                                if (((Utility.GrabAttributeValueByCss("SelectCoTravellerTitle", "value", 4)) == "1") && ((Utility.GrabAttributeValueByCss("CoTravellerGender", "value", 4)) == "1"))
                                 {
-                                    string actualErrorMsg = Utility.ByXpath("GenderErrorMsg", 4);
-                                    Assert.IsTrue(false, "Please select proper gender");
+                                    Assert.IsTrue(true);
                                 }
-                               // throw new Exception("Please select proper gender");
+                                else
+                                {
+                                    string expectedErrorMsg = Record("ExpectedErrorMsg");
+                                    if (expectedErrorMsg != "No Error")
+                                    {
+                                        string actualErrorMsg = Utility.ByXpath("GenderErrorMsg", 4);
+                                        Assert.IsTrue(false, "Please select proper gender");
+                                    }
+                                    // throw new Exception("Please select proper gender");
+                                }
+
                             }
-                           
+                            else if (((Utility.GrabAttributeValueByCss("SelectCoTravellerAgeGroup", "value", 4)) == "3") || ((Utility.GrabAttributeValueByCss("SelectCoTravellerAgeGroup", "value", 4)) == "4"))
+                            {
+                                string _selectedGender = Record("SelectedGender");
+                                var _gender = Driver.FindElement(By.CssSelector(UserProfileSPA.Library.TestEnvironment.LoadXML("Gender")));
+                                var selectelementGender = new SelectElement(_gender);
+                                selectelementGender.SelectByText(_selectedGender);
+
+
+                                string _selectedTitle = Record("SelectedTitle");
+                                var _title = Driver.FindElement(By.CssSelector(UserProfileSPA.Library.TestEnvironment.LoadXML("Title")));
+                                var selectelementTitle = new SelectElement(_title);
+                                selectelementTitle.SelectByText(_selectedTitle);
+
+
+
+                                if (((Utility.GrabAttributeValueByCss("SelectCoTravellerTitle", "value", 4)) == "1") && ((Utility.GrabAttributeValueByCss("CoTravellerGender", "value", 4)) == "1"))
+                                {
+                                    Assert.IsTrue(true);
+                                }
+                                else
+                                {
+                                    string expectedErrorMsg = Record("ExpectedErrorMsg");
+                                    if (expectedErrorMsg != "No Error")
+                                    {
+                                        string actualErrorMsg = Utility.ByXpath("GenderErrorMsg", 4);
+                                        Assert.IsTrue(false, "Please select proper gender");
+                                    }
+
+                                }
+                            }
                         }
-                        else if (((Utility.GrabAttributeValueByCss("SelectCoTravellerAgeGroup", "value", 4)) == "3") || ((Utility.GrabAttributeValueByCss("SelectCoTravellerAgeGroup", "value", 4)) == "4"))
+                        else
                         {
-                            string _selectedGender = Record("SelectedGender");
-                            var _gender = Driver.FindElement(By.CssSelector(UserProfileSPA.Library.TestEnvironment.LoadXML("Gender")));
-                            var selectelementGender = new SelectElement(_gender);
-                            selectelementGender.SelectByText(_selectedGender);                           
-                           
-
-                            string _selectedTitle = Record("SelectedTitle");
-                            var _title = Driver.FindElement(By.CssSelector(UserProfileSPA.Library.TestEnvironment.LoadXML("Title")));
-                            var selectelementTitle = new SelectElement(_title);
-                            selectelementTitle.SelectByText(_selectedTitle);
-
-                           
-
-                            if (((Utility.GrabAttributeValueByCss("SelectCoTravellerTitle", "value", 4)) == "1") && ((Utility.GrabAttributeValueByCss("CoTravellerGender", "value", 4)) == "1"))
-                            {
-                                Assert.IsTrue(true);
-                            }
-                            else
-                            {
-                                string expectedErrorMsg = Record("ExpectedErrorMsg");
-                                if(expectedErrorMsg != "No Error")
-                                {
-                                    string actualErrorMsg = Utility.ByXpath("GenderErrorMsg", 4);
-                                    Assert.IsTrue(false, "Please select proper gender");
-                                }
-                                
-                            }
+                            Assert.IsTrue(true, "MyCotraveler url is not opened.");
                         }
                     }
+                    else
+                    {
+                        Assert.IsTrue(true, "MyInformation url is not opened.");
+                    }
+                }
+                else
+                {
+                    Assert.IsTrue(true, "OverViewUrl is not opened.");
                 }
             }
         }
 
-        [DeploymentItem("verifyGenderAgainstTitle.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\verifyGenderAgainstTitle.csv", "verifyGenderAgainstTitle#csv", DataAccessMethod.Sequential), TestMethod]
+        [DeploymentItem("AppData\\verifyGenderAgainstTitle.csv"), DeploymentItem("verifyGenderAgainstTitle.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\verifyGenderAgainstTitle.csv", "verifyGenderAgainstTitle#csv", DataAccessMethod.Sequential), TestMethod]
         public void verifyGenderAgainstTitle()
-        { 
-           IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
-           
-            string _baseUrl = Record("SignInUrl");
-            if (_baseUrl == Driver.Url)
+        {
+            IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
+            if (Prefix + SignInUrl == Driver.Url)
             {
                 Utility.CssToSetText("Email", Record("Email"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                 Utility.CssToSetText("Password", Record("Password"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
-
                 Utility.CsstoClick("SignInBtn", 3);
                 Utility.Sleep(2);
-                Utility.CsstoClick("clickOnMyInformation", 4);
-                Utility.Sleep(2);
-                string cheapoairMyInfoUrl = Record("CheapoairMyInfoUrl");
-                if (cheapoairMyInfoUrl == Driver.Url)
+                if (Prefix + Record("OverViewUrl") == Driver.Url)
                 {
-                    Utility.ByLinkTexttoClick("clickOnMyCoTravelerMenu", 4);
-
-                    string myCoTravelerUrl = Record("MyCoTravelerUrl");
-                    if (myCoTravelerUrl == Driver.Url)
+                    Utility.CsstoClick("clickOnMyInformation", 4);
+                    Utility.Sleep(2);
+                    if (Prefix + Record("MyInformationUrl") == Driver.Url)
                     {
-                        Utility.CsstoClick("ClickOnAddCoTravelerBtn", 4);
-
-
-                        string titlesWhenGenderIsNoSpecified = UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("titlesWhenGenderIsNoSpecified");
-                        string[] _titlesWhenGenderIsNoSpecified = titlesWhenGenderIsNoSpecified.Split(",".ToCharArray());
-                        string titleForMales = UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("titleForMales");
-                        string[] _titleForMales = titleForMales.Split(",".ToCharArray());
-                        string titleForFemales = UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("titleForFemales");
-                        string[] _titleForFemales = titleForFemales.Split(",".ToCharArray());
-                        
-                        string _selectedGender = Record("SelectedGender");
-                        var _gender = Driver.FindElement(By.CssSelector(UserProfileSPA.Library.TestEnvironment.LoadXML("Gender")));
-                        var selectelementGender = new SelectElement(_gender);
-                        selectelementGender.SelectByText(_selectedGender);
-
-                        if (((Utility.GrabAttributeValueByCss("CoTravellerGender", "value", 4)) == "1"))
+                        Utility.Sleep(3);
+                        Utility.ByLinkTexttoClick("clickOnMyCoTravelerMenu", 4);
+                        if (Prefix + Record("MyCoTravelerUrl") == Driver.Url)
                         {
-                            string elements = Utility.ByCss("SelectCoTravellerTitle", 4);
-                            string[] title = elements.Replace("\r\n", "_").Split("_".ToCharArray());
+                            Utility.CsstoClick("ClickOnAddCoTravelerBtn", 4);
+                            string titlesWhenGenderIsNoSpecified = UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("titlesWhenGenderIsNoSpecified");
+                            string[] _titlesWhenGenderIsNoSpecified = titlesWhenGenderIsNoSpecified.Split(",".ToCharArray());
+                            string titleForMales = UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("titleForMales");
+                            string[] _titleForMales = titleForMales.Split(",".ToCharArray());
+                            string titleForFemales = UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("titleForFemales");
+                            string[] _titleForFemales = titleForFemales.Split(",".ToCharArray());
 
-                            int i = 0;
-                            foreach (var element in title)
+                            string _selectedGender = Record("SelectedGender");
+                            var _gender = Driver.FindElement(By.CssSelector(UserProfileSPA.Library.TestEnvironment.LoadXML("Gender")));
+                            var selectelementGender = new SelectElement(_gender);
+                            selectelementGender.SelectByText(_selectedGender);
+
+                            if (((Utility.GrabAttributeValueByCss("CoTravellerGender", "value", 4)) == "1"))
                             {
-                                Assert.AreEqual(_titleForMales[i], element);
-                                i++;
+                                string elements = Utility.ByCss("SelectCoTravellerTitle", 4);
+                                string[] title = elements.Replace("\r\n", "_").Split("_".ToCharArray());
+
+                                int i = 0;
+                                foreach (var element in title)
+                                {
+                                    Assert.AreEqual(_titleForMales[i], element);
+                                    i++;
+                                }
                             }
-                        }
-                        else if (((Utility.GrabAttributeValueByCss("CoTravellerGender", "value", 4)) == "2"))
-                        {
-                            string elements = Utility.ByCss("SelectCoTravellerTitle", 4);
-                            string[] title = elements.Replace("\r\n", "_").Split("_".ToCharArray());
-
-                            int i = 0;
-                            foreach (var element in title)
+                            else if (((Utility.GrabAttributeValueByCss("CoTravellerGender", "value", 4)) == "2"))
                             {
-                                Assert.AreEqual(_titleForFemales[i], element);
-                                i++;
+                                string elements = Utility.ByCss("SelectCoTravellerTitle", 4);
+                                string[] title = elements.Replace("\r\n", "_").Split("_".ToCharArray());
+
+                                int i = 0;
+                                foreach (var element in title)
+                                {
+                                    Assert.AreEqual(_titleForFemales[i], element);
+                                    i++;
+                                }
                             }
-                        }
-                        else 
-                        {
-                            string elements = Utility.ByCss("SelectCoTravellerTitle", 4);
-                            string[] title = elements.Replace("\r\n", "_").Split("_".ToCharArray());
-
-                            int i = 0;
-                            foreach (var element in title)
+                            else
                             {
-                                Assert.AreEqual(_titlesWhenGenderIsNoSpecified[i], element);
-                                i++;
+                                string elements = Utility.ByCss("SelectCoTravellerTitle", 4);
+                                string[] title = elements.Replace("\r\n", "_").Split("_".ToCharArray());
+
+                                int i = 0;
+                                foreach (var element in title)
+                                {
+                                    Assert.AreEqual(_titlesWhenGenderIsNoSpecified[i], element);
+                                    i++;
+                                }
                             }
                         }
                     }
+                }
+                else
+                {
+                    Assert.IsTrue(true, "OverView url is not opened.");
                 }
             }
         }
@@ -1075,7 +1087,7 @@ namespace UserProfileSPA.TestCases
         public void Cleanup()
         {
             UserProfileSPA.Library.TestEnvironment.Dispose();
-        }    
+        }
     }
-    
+
 }
