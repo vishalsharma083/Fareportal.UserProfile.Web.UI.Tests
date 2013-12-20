@@ -451,12 +451,12 @@ namespace UserProfileSPA.TestCases
                 Utility.CssToSetText("Email", Record("Email"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                 Utility.CssToSetText("Password", Record("Password"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                 Utility.CsstoClick("SignInBtn", 3);
-                Utility.Sleep(3);
-                if (Record("OverviewUrl") == Driver.Url)
+                Utility.Sleep(5);
+                if (Prefix+Record("OverViewUrl") == Driver.Url)
                 {
                     Utility.CsstoClick("clickOnMyInformation", 4);
                     Utility.Sleep(2);
-                    if (Record("MyInformationUrl") == Driver.Url)
+                    if (Prefix+Record("MyInformationUrl") == Driver.Url)
                     {
                         string myInformationEmail = Utility.GrabAttributeValueByCss("SignInInformationEmailAddress", "value", 4);
                         Assert.AreEqual(Record("Email"), myInformationEmail, "Email address is matched");
@@ -484,10 +484,10 @@ namespace UserProfileSPA.TestCases
                             Driver.FindElement(By.CssSelector("input[id='txtPassword']")).SendKeys(_newpassword);
                             Driver.FindElement(By.CssSelector("input[id='btnSignIn']")).Click();
                             Utility.Sleep(4);
-                            Assert.AreEqual(Record("OverviewUrl"), Driver.Url);
+                            Assert.AreEqual(Prefix+Record("OverviewUrl"), Driver.Url);
                             Driver.FindElement(By.CssSelector("a[class='myAccount']")).Click();
                             Utility.Sleep(2);
-                            if (Record("MyInformationUrl") == Driver.Url)
+                            if (Prefix+Record("MyInformationUrl") == Driver.Url)
                             {
                                 Assert.AreEqual(Record("Email"), myInformationEmail, "Email address is matched");
                                 Utility.Sleep(2);

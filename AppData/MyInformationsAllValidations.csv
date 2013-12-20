@@ -1,2 +1,2 @@
-Email,Password,SignInUrl,FareportalOverviewUrl,FareportalMyDetailsUrl
-testsaurabh@fareportal.com,saurabh12,http://www.cheapoair.com/profiles/#/user-signin,http://www.cheapoair.com/profiles/#/overview,http://www.cheapoair.com/profiles/#/my-account/my-details
+Email,Password,OverViewUrl,MyInformationUrl
+myinfromation@gmail.com,aaaaaa,//www.cheapoair.com/profiles/#/overview,//www.cheapoair.com/profiles/#/my-account/my-details
