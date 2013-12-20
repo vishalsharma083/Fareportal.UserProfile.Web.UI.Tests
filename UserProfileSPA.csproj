@@ -261,9 +261,6 @@
     <None Include="MinAndMaxDigitsInCreditCard .csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="SignInInformationInMyInformation.csv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="ValidateEmailAddressInCreateAnAccount.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

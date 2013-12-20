@@ -442,7 +442,7 @@ namespace UserProfileSPA.TestCases
         }
 
 
-        [DeploymentItem("AppData\\SignInInformationInMyInformation.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\SignInInformationInMyInformation.csv", "SignInInformationInMyInformation#csv", DataAccessMethod.Sequential), TestMethod]
+       [DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\SignInInformationInMyInformation.csv", "SignInInformationInMyInformation#csv", DataAccessMethod.Sequential), DeploymentItem("AppData\\SignInInformationInMyInformation.csv"), TestMethod]
         public void SignInInformation()
         {
             IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
@@ -475,19 +475,19 @@ namespace UserProfileSPA.TestCases
                         Utility.Sleep(5);
                         Driver.Close();
                         Driver = new FirefoxDriver();
-                        Driver.Navigate().GoToUrl(_baseUrl);
+                        Driver.Navigate().GoToUrl(Prefix+SignInUrl);
                         Driver.Manage().Window.Maximize();
                         Utility.Sleep(6);
-                        if (_baseUrl == Driver.Url)
+                        if (Prefix+SignInUrl == Driver.Url)
                         {
                             Driver.FindElement(By.CssSelector("input[id='txtUserName']")).SendKeys(Record("Email"));
                             Driver.FindElement(By.CssSelector("input[id='txtPassword']")).SendKeys(_newpassword);
                             Driver.FindElement(By.CssSelector("input[id='btnSignIn']")).Click();
                             Utility.Sleep(4);
-                            Assert.AreEqual(_overViewUrl, Driver.Url);
+                            Assert.AreEqual(Record("OverviewUrl"), Driver.Url);
                             Driver.FindElement(By.CssSelector("a[class='myAccount']")).Click();
                             Utility.Sleep(2);
-                            if (fareportalMyDetailsUrl == Driver.Url)
+                            if (Record("MyInformationUrl") == Driver.Url)
                             {
                                 Assert.AreEqual(Record("Email"), myInformationEmail, "Email address is matched");
                                 Utility.Sleep(2);
