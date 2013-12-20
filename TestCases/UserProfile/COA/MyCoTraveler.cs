@@ -823,78 +823,98 @@ namespace UserProfileSPA.TestCases
         }
 
 
-        [DeploymentItem("UpdateDataUsingEditButton.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\UpdateDataUsingEditButton.csv", "UpdateDataUsingEditButton#csv", DataAccessMethod.Sequential), TestMethod]
+        [DeploymentItem("UpdateDataUsingEditButton.csv"), DeploymentItem("AppData\\UpdateDataUsingEditButton.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\UpdateDataUsingEditButton.csv", "UpdateDataUsingEditButton#csv", DataAccessMethod.Sequential), TestMethod]
         // should update the firstName and month in table to check changes.
         public void UpdateDataUsingEditButton()
         {
             IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
-
-            string _baseUrl = Record("SignInUrl");
-            if (_baseUrl == Driver.Url)
+            if (Prefix + SignInUrl == Driver.Url)
             {
-                string email = Record("Email");
-                string password = Record("Password");
-                Utility.CssToSetText("Email", email, 4);
-                Utility.CssToSetText("Password", password, 4);
+                //string email =;
+                //string password = Record("Password");
+                Utility.CssToSetText("Email", Record("Email"), 4);
+                Utility.CssToSetText("Password", Record("Email"), 4);
                 Utility.CsstoClick("SignInBtn", 3);
                 Utility.Sleep(2);
-                Utility.CsstoClick("clickOnMyInformation", 4);
-                Utility.Sleep(2);
-                string cheapoairMyInfoUrl = Record("CheapoairMyInfoUrl");
-                if (cheapoairMyInfoUrl == Driver.Url)
+                if (Prefix + Record("OverViewUrl") == Driver.Url)
                 {
-                    Utility.ByLinkTexttoClick("clickOnMyCoTravelerMenu", 4);
-
-                    string myCoTravelerUrl = Record("MyCoTravelerUrl");
-                    if (myCoTravelerUrl == Driver.Url)
+                    Utility.CsstoClick("clickOnMyInformation", 4);
+                    Utility.Sleep(2);
+                    if (Prefix + Record("MyInformationUrl") == Driver.Url)
                     {
-                        if (Utility.IsDisplayedUsingCss("ClickOnAddCoTravellerBtn"))
+                        if (Prefix + Record("MyInformationUrl") == Driver.Url)
                         {
-                            string xpath = "html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/form/div[1]/div/div[2]";
-                            if (Utility.IsDisplayedUsingXpathForMoltingInnerText(xpath))
+                            Utility.Sleep(4);
+                            Utility.ByLinkTexttoClick("clickOnMyCoTravelerMenu", 4);
+                            Utility.Sleep(2);
+                            if (Prefix + Record("MyCoTravelerUrl") == Driver.Url)
                             {
-
-                                string getDetails = Driver.FindElement(By.XPath(xpath)).Text;
-                                string[] details = getDetails.Replace("\r\n", "_").Split("_".ToCharArray());
-                                string previousName = details[0];
-                                string PreviousDob = details[2];
-                                string[] firstName = previousName.Replace(" ", "_").Split("_".ToCharArray());
-                                string[] DobMonth = PreviousDob.Split(":".ToCharArray());
-                                Utility.XPathtoClick("ClickOnEditLinkForFirstCotraveler", 3);
-                                string EditProfile = Utility.ByXpath("EditCoTravelerHeader", 3);
-                                if (!(Utility.IsDisplayedUsingCss("ClickOnAddCoTravellerBtn")))
+                                if (Utility.IsDisplayedUsingCss("ClickOnAddCoTravellerBtn"))
                                 {
-                                    if ((EditProfile == "Edit Co-Traveler " + firstName[0].ToLower()) || (EditProfile == "Edit Co-Traveler " + firstName[0]))
+                                    string xpath = "html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/form/div[1]/div/div[2]";
+                                    if (Utility.IsDisplayedUsingXpathForMoltingInnerText(xpath))
                                     {
 
-
-                                        string updatedNameFromTable = Record("UpdatedName");
-                                        string updatedMonth = Record("UpdatedMonth");
-
-                                        Utility.CssToSetText("textInFirstname", updatedNameFromTable, 3);
-
-                                        var selectMonth = Driver.FindElement(By.CssSelector(TestEnvironment.LoadXML("CoTravellerMonth")));
-                                        var selectElementMonth = new SelectElement(selectMonth);
-                                        selectElementMonth.SelectByText(updatedMonth);
-                                        Utility.CsstoClick("ClickOnSaveCoTravelerBtn", 3);
-
-                                        if (Utility.IsDisplayedUsingXpathForMoltingInnerText(xpath))
+                                        string getDetails = Driver.FindElement(By.XPath(xpath)).Text;
+                                        string[] details = getDetails.Replace("\r\n", "_").Split("_".ToCharArray());
+                                        string previousName = details[0];
+                                        string PreviousDob = details[2];
+                                        string[] firstName = previousName.Replace(" ", "_").Split("_".ToCharArray());
+                                        string[] DobMonth = PreviousDob.Split(":".ToCharArray());
+                                        Utility.XPathtoClick("ClickOnEditLinkForFirstCotraveler", 3);
+                                        string EditProfile = Utility.ByXpath("EditCoTravelerHeader", 3);
+                                        if (!(Utility.IsDisplayedUsingCss("ClickOnAddCoTravellerBtn")))
                                         {
-                                            string getNewDetails = Driver.FindElement(By.XPath(xpath)).Text;
-                                            string[] Updateddetails = getNewDetails.Replace("\r\n", "_").Split("_".ToCharArray());
-                                            string NewUpdatedName = Updateddetails[0];
-                                            string NewUpdatedDob = Updateddetails[2];
-                                            string[] updatedfirstName = NewUpdatedName.Replace(" ", "_").Split("_".ToCharArray());
-                                            string[] updatedDobMonth = NewUpdatedDob.Split(":".ToCharArray());
-                                            Assert.AreEqual(updatedNameFromTable, updatedfirstName[0]);
-                                            Assert.AreNotEqual(DobMonth[1], updatedDobMonth[1]);
+                                            if ((EditProfile == "Edit Co-Traveler " + firstName[0].ToLower()) || (EditProfile == "Edit Co-Traveler " + firstName[0]))
+                                            {
+
+
+                                                string updatedNameFromTable = Record("UpdatedName");
+                                                string updatedMonth = Record("UpdatedMonth");
+
+                                                Utility.CssToSetText("textInFirstname", updatedNameFromTable, 3);
+
+                                                var selectMonth = Driver.FindElement(By.CssSelector(TestEnvironment.LoadXML("CoTravellerMonth")));
+                                                var selectElementMonth = new SelectElement(selectMonth);
+                                                selectElementMonth.SelectByText(updatedMonth);
+                                                Utility.CsstoClick("ClickOnSaveCoTravelerBtn", 3);
+
+                                                if (Utility.IsDisplayedUsingXpathForMoltingInnerText(xpath))
+                                                {
+                                                    string getNewDetails = Driver.FindElement(By.XPath(xpath)).Text;
+                                                    string[] Updateddetails = getNewDetails.Replace("\r\n", "_").Split("_".ToCharArray());
+                                                    string NewUpdatedName = Updateddetails[0];
+                                                    string NewUpdatedDob = Updateddetails[2];
+                                                    string[] updatedfirstName = NewUpdatedName.Replace(" ", "_").Split("_".ToCharArray());
+                                                    string[] updatedDobMonth = NewUpdatedDob.Split(":".ToCharArray());
+                                                    Assert.AreEqual(updatedNameFromTable, updatedfirstName[0]);
+                                                    Assert.AreNotEqual(DobMonth[1], updatedDobMonth[1]);
+                                                }
+                                            }
                                         }
                                     }
                                 }
                             }
+                            else
+                            {
+                                Assert.IsTrue(true, "MyCotraveler url is not opened.");
+                            }
                         }
                     }
+                    else
+                    {
+                        Assert.IsTrue(true, "MyInformation url is not opened.");
+                    }
                 }
+                else
+                {
+                    Assert.IsTrue(true, "OverViewUrl is not opened.");
+                }
+
+            }
+            else
+            {
+                Assert.IsTrue(true, "SignIn url is not opened.");
             }
         }
 
@@ -913,10 +933,10 @@ namespace UserProfileSPA.TestCases
                 {
                     Utility.CsstoClick("clickOnMyInformation", 4);
                     Utility.Sleep(2);
-                    if (Record("MyInformationUrl") == Driver.Url)
+                    if (Prefix + Record("MyInformationUrl") == Driver.Url)
                     {
                         Utility.ByLinkTexttoClick("clickOnMyCoTravelerMenu", 4);
-                        if (Record("MyCoTravelerUrl") == Driver.Url)
+                        if (Prefix + Record("MyCoTravelerUrl") == Driver.Url)
                         {
                             Utility.CsstoClick("ClickOnAddCoTravelerBtn", 4);
 

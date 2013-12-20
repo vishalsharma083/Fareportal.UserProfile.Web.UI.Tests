@@ -1,2 +1,2 @@
-SignInUrl,Email,Password,CheapoairMyInfoUrl,MyCoTravelerUrl,UpdatedName,UpdatedMonth
-"http://www.cheapoair.com/profiles/#/user-signin","rajiv@gmail.com","aaaaaa","http://www.cheapoair.com/profiles/#/my-account/my-details","http://www.cheapoair.com/profiles/#/my-account/my-co-travelers","Ram","Jan"
+Email,Password,MyInformationUrl,MyCoTravelerUrl,UpdatedName,UpdatedMonth,OverViewUrl
+"rajiv@gmail.com","aaaaaa","//www.cheapoair.com/profiles/#/my-account/my-details","//www.cheapoair.com/profiles/#/my-account/my-co-travelers","Ram","Jan","//www.cheapoair.com/profiles/#/overview"
