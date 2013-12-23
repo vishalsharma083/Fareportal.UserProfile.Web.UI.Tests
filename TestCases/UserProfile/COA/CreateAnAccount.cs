@@ -349,7 +349,7 @@ namespace UserProfileSPA.TestCases
             }
         }
 
-        [DeploymentItem("ValidatingPasswordForCreateAnAccount.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\ValidatingPasswordForCreateAnAccount.csv", "ValidatingPasswordForCreateAnAccount#csv", DataAccessMethod.Sequential), TestMethod]
+        [DeploymentItem("AppData\\ValidatingPasswordForCreateAnAccount.csv"), DeploymentItem("ValidatingPasswordForCreateAnAccount.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\ValidatingPasswordForCreateAnAccount.csv", "ValidatingPasswordForCreateAnAccount#csv", DataAccessMethod.Sequential), TestMethod]
         public void ValidatingPasswordForCreateAnAccount()
         {
             IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
@@ -421,7 +421,7 @@ namespace UserProfileSPA.TestCases
         }
 
 
-        [DeploymentItem("VerifyTheValidationsOfTheLeapYearInRegisterPage.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\VerifyTheValidationsOfTheLeapYearInRegisterPage.csv", "VerifyTheValidationsOfTheLeapYearInRegisterPage#csv", DataAccessMethod.Sequential), TestMethod]
+        [DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\VerifyTheValidationsOfTheLeapYearInRegisterPage.csv", "VerifyTheValidationsOfTheLeapYearInRegisterPage#csv", DataAccessMethod.Sequential), DeploymentItem("VerifyTheValidationsOfTheLeapYearInRegisterPage.csv"), DeploymentItem("AppData\\VerifyTheValidationsOfTheLeapYearInRegisterPage.csv"), TestMethod]
         public void VerifyTheValidationsOfTheLeapYearInRegisterPage()
         {
             IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;

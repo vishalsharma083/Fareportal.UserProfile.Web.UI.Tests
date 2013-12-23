@@ -1,3 +1,0 @@
-SignInUrl,SignUpUrl,DobYear,DobMonth,DobDay,ExpectedErrorMsg
-http://www.cheapoair.com/profiles/#/user-signin,http://www.cheapoair.com/profiles/#/user-signup,1984,Feb,29,No Error
-http://www.cheapoair.com/profiles/#/user-signin,http://www.cheapoair.com/profiles/#/user-signup,1985,Feb,29,Please enter a valid date of birth
