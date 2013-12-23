@@ -527,37 +527,28 @@ namespace UserProfileSPA.TestCases
         }
 
 
-        [DeploymentItem("SuccesfullyAddaCard.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\SuccesfullyAddaCard.csv", "SuccesfullyAddaCard#csv", DataAccessMethod.Sequential), TestMethod]
+        [DeploymentItem("SuccesfullyAddaCard.csv"), DeploymentItem("AppData\\SuccesfullyAddaCard.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\SuccesfullyAddaCard.csv", "SuccesfullyAddaCard#csv", DataAccessMethod.Sequential), TestMethod]
         public void SuccesfullyAddaCard()
         {
             IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;          
-            string email = Record("Email");
-            string password = Record("Password");
-            string signinUrl = Record("SignInUrl");          
+                  
             Utility.Sleep(4);
-            if (signinUrl == Driver.Url)
+            if (Prefix+SignInUrl == Driver.Url)
             {  
-                Utility.CssToSetText("Email", email, 4);
-                Utility.CssToSetText("Password", password, 4);
+                Utility.CssToSetText("Email", Record("Email"), 4);
+                Utility.CssToSetText("Password", Record("Password"), 4);
                 Utility.CsstoClick("SignInBtn", 4);
                 Utility.Sleep(7);
-                string fareportalOverviewUrl = Record("FareportalOverviewUrl");
-                Utility.Sleep(4);
-                if (fareportalOverviewUrl == Driver.Url)
+          
+                if (Prefix+Record("OverViewUrl") == Driver.Url)
                 {
                     Utility.CsstoClick("clickOnMyInformation", 4);
-                    Utility.Sleep(2);
-
-                    string fareportalMyDetailsUrl = Record("FareportalMyDetailsUrl");
-                    Utility.Sleep(4);
-                    if (fareportalMyDetailsUrl == Driver.Url)
+                    Utility.Sleep(3);
+                    if (Prefix+Record("MyInformationUrl") == Driver.Url)
                     {
                         Utility.ByLinkTexttoClick("ClickOnMyBillingDetails", 4);
                         Utility.Sleep(3);
-
-                        string fareportalMyBillingDetailsUrl = Record("FareportalMyBillingDetailsUrl");
-                        Utility.Sleep(4);
-                        if (fareportalMyBillingDetailsUrl == Driver.Url)
+                        if (Prefix+Record("MyBillingDetailsUrl") == Driver.Url)
                         {
                             if (Utility.IsDisplayedUsingCss("Deletecard"))
                             {
@@ -732,37 +723,28 @@ namespace UserProfileSPA.TestCases
 
 
 
-        [DeploymentItem("VerifyTheFirstAndLastNameValidationsInMyBillingDetails.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\VerifyTheFirstAndLastNameValidationsInMyBillingDetails.csv", "VerifyTheFirstAndLastNameValidationsInMyBillingDetails#csv", DataAccessMethod.Sequential), TestMethod]
+        [DeploymentItem("AppData\\VerifyTheFirstAndLastNameValidationsInMyBillingDetails.csv"), DeploymentItem("VerifyTheFirstAndLastNameValidationsInMyBillingDetails.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\VerifyTheFirstAndLastNameValidationsInMyBillingDetails.csv", "VerifyTheFirstAndLastNameValidationsInMyBillingDetails#csv", DataAccessMethod.Sequential), TestMethod]
         public void VerifyTheFirstAndLastNameValidationsInMyBillingDetails()
         {
-            IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;           
-            string email = Record("Email");
-            string password = Record("Password");
-            string signinUrl = Record("SignInUrl");
+            IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;  
             Utility.Sleep(4);
-            if (signinUrl == Driver.Url)
+            if (Prefix+SignInUrl == Driver.Url)
             {
                 Utility.CssToSetText("Email", Record("Email"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                 Utility.CssToSetText("Password", Record("Password"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                 Utility.CsstoClick("SignInBtn", 4);
                 Utility.Sleep(3);
-                string CheapoairOverviewUrl = Record("CheapoairOverviewUrl");
-                Utility.Sleep(4);
-                if (CheapoairOverviewUrl == Driver.Url)
+              
+                if (Prefix+Record("OverViewUrl") == Driver.Url)
                 {
+                    Utility.Sleep(3);
                     Utility.CsstoClick("clickOnMyInformation", 4);
-                    Utility.Sleep(2);
-
-                    string CheapoairMyInfoUrl = Record("CheapoairMyInfoUrl");
                     Utility.Sleep(4);
-                    if (CheapoairMyInfoUrl == Driver.Url)
+                    if (Prefix+Record("MyInformationUrl") == Driver.Url)
                     {
                         Utility.ByLinkTexttoClick("ClickOnMyBillingDetails", 4);
-                        Utility.Sleep(3);
-
-                        string MyBillingDetailsUrl = Record("MyBillingDetailsUrl");
                         Utility.Sleep(4);
-                        if (MyBillingDetailsUrl == Driver.Url)
+                        if (Prefix+Record("MyBillingDetailsUrl") == Driver.Url)
                         {
                             string _firstNametxt = Record("FirstName");
                             string _lastNametxt = Record("LastName");
@@ -911,7 +893,7 @@ namespace UserProfileSPA.TestCases
         }
 
 
-        [DeploymentItem("VerifytheRadioButtonsOnThisSection.csv"), DeploymentItem("VerifytheRadioButtonsInBillingSection.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\VerifytheRadioButtonsInBillingSection.csv", "VerifytheRadioButtonsInBillingSection#csv", DataAccessMethod.Sequential), TestMethod]
+        [DeploymentItem("VerifytheRadioButtonsOnThisSection.csv"), DeploymentItem("AppData\\VerifytheRadioButtonsOnThisSection.csv"), DeploymentItem("VerifytheRadioButtonsInBillingSection.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\VerifytheRadioButtonsOnThisSection.csv", "VerifytheRadioButtonsOnThisSection#csv", DataAccessMethod.Sequential), TestMethod]
         public void VerifytheRadioButtonsInBillingSection()
         {
             IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;           
@@ -919,16 +901,16 @@ namespace UserProfileSPA.TestCases
             {
                 Utility.CssToSetText("Email", Record("Email"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                 Utility.CssToSetText("Password", Record("Password"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
-                Utility.CsstoClick(Record("SignInUrl"), 4);
+                Utility.CsstoClick("SignInBtn", 4);
                 Utility.Sleep(3);
                 if (Prefix+Record("OverViewUrl") == Driver.Url)
                 {
                     Utility.CsstoClick("clickOnMyInformation", 4);
-                    if (Record("MyInformationUrl") == Driver.Url)
+                    if (Prefix+Record("MyInformationUrl") == Driver.Url)
                     {
                         Utility.ByLinkTexttoClick("ClickOnMyBillingDetails", 3);
                         Utility.Sleep(3);
-                        if (Record("BillingUrl") == Driver.Url)
+                        if (Prefix+Record("BillingUrl") == Driver.Url)
                         {
                             Utility.Sleep(4);
                             if (!Utility.IsDisplayedUsingCss("ExistingAddress") && (Utility.IsDisplayedUsingCss("AddNewAddressCheckBox")))
@@ -964,19 +946,19 @@ namespace UserProfileSPA.TestCases
 
 
         [TestMethod]
-        public void VerifyTheRadioButtonsAgainstEachCard()  
+        public void VerifyTheRadioButtonsAgainstEachCard()
         {
-            IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;           
-           
-            if (Prefix+SignInUrl == Driver.Url)
+            IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
+
+            if (Prefix + SignInUrl == Driver.Url)
             {
 
                 Utility.CssToSetText("Email", Record("Email"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
-                Utility.CssToSetText("Password", Record("Password"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);              
+                Utility.CssToSetText("Password", Record("Password"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                 Utility.Sleep(4);
                 Utility.CsstoClick("SignInBtn", 4);
-                Utility.Sleep(3);           
-                if (Prefix+Record("OverViewUrl") == Driver.Url)
+                Utility.Sleep(3);
+                if (Prefix + Record("OverViewUrl") == Driver.Url)
                 {
                     Utility.CsstoClick("clickOnMyInformation", 4);
                     Utility.Sleep(4);
