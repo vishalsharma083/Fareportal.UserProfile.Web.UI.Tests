@@ -250,7 +250,7 @@ namespace UserProfileSPA.TestCases
             }
         }
 
-        [DeploymentItem("DeleteCard.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\DeleteCard.csv", "DeleteCard#csv", DataAccessMethod.Sequential), TestMethod]
+        [DeploymentItem("DeleteCard.csv"), DeploymentItem("AppData\\DeleteCard.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\DeleteCard.csv", "DeleteCard#csv", DataAccessMethod.Sequential), TestMethod]
         public void DeleteCard()
         {
             IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;            
