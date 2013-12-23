@@ -429,30 +429,23 @@ namespace UserProfileSPA.TestCases
         public void MyBillingDetailsAllValidations()
         {
             IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;            
-            string email = Record("Email");
-            string password = Record("Password");
-            string signinUrl = Record("SignInUrl");
+           
             string _findString = Record("FindString");
-            if (signinUrl == Driver.Url)
+            if (Prefix+SignInUrl == Driver.Url)
             {
                 Utility.CssToSetText("Email", Record("Email"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                 Utility.CssToSetText("Password", Record("Password"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
            
                 Utility.CsstoClick("SignInBtn", 4);
                 Utility.Sleep(7);
-                string fareportalOverviewUrl = Record("FareportalOverviewUrl");
-                if (fareportalOverviewUrl == Driver.Url)
+                if (Record("OverViewUrl") == Driver.Url)
                 {
                     Utility.CsstoClick("clickOnMyInformation", 4);
-                    Utility.Sleep(2);
-
-                    string fareportalMyDetailsUrl = Record("FareportalMyDetailsUrl");
-                    if (fareportalMyDetailsUrl == Driver.Url)
+                    Utility.Sleep(4);
+                    if (Record("MyInformationUrl") == Driver.Url)
                     {
                         Utility.ByLinkTexttoClick("ClickOnMyBillingDetails", 4);
-
-                        string fareportalMyBillingDetailsUrl = Record("FareportalMyBillingDetailsUrl");
-                        if (fareportalMyBillingDetailsUrl == Driver.Url)
+                        if (Record("MyBillingDetailsUrl") == Driver.Url)
                         {
                             Utility.CsstoClick("AddNewAddressCheckBox", 4);
                             Utility.Sleep(3);
@@ -512,7 +505,7 @@ namespace UserProfileSPA.TestCases
                     }
                     else
                     {
-                        Assert.IsTrue(false, "MyDetailUrl is not opened.");
+                        Assert.IsTrue(false, "MyInformationUrl is not opened.");
                     }
                 }
                 else
