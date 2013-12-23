@@ -62,9 +62,7 @@ namespace UserProfileSPA.TestCases
                     if (Prefix+Record("MyInformationUrl") == Driver.Url)
                     {
                         Utility.ByLinkTexttoClick("ClickOnMyBillingDetails", 4);
-
-                        string fareportalMyBillingDetailsUrl = Record("CheapoairMyBillingDetailsUrl");
-                        if (Prefix+Record("CheapoairMyBillingDetailsUrl") == Driver.Url)
+                        if (Prefix+Record("MyBillingDetailsUrl") == Driver.Url)
                         {
                             if (Utility.IsDisplayedUsingCss("ViewCard"))
                             {
@@ -262,7 +260,7 @@ namespace UserProfileSPA.TestCases
                         Utility.ByLinkTexttoClick("ClickOnMyBillingDetails", 4);
                         Utility.Sleep(4);
                         // && (IsDisplayedUsingXpath("YourCard"))
-                        if (Record("MyBillingDetailsUrl") == Driver.Url)
+                        if (Prefix+Record("MyBillingDetailsUrl") == Driver.Url)
                         {
                             if (Utility.IsDisplayedUsingCss("Deletecard"))
                             {
@@ -337,7 +335,7 @@ namespace UserProfileSPA.TestCases
                 if (Prefix+Record("OverViewUrl") == Driver.Url)
                 {
                     Utility.CsstoClick("clickOnMyInformation", 4);
-                    Utility.Sleep(4);
+                    Utility.Sleep(7);
                     if (Prefix+Record("MyInformationUrl") == Driver.Url)
                     {
                         Utility.Sleep(8);

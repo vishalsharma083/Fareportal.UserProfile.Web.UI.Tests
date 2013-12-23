@@ -1,4 +1,4 @@
-Email,Password,OverViewUrl,MyDetailsUrl,MyBillingDetailsUrl,EnterCardNumber,ExpectedErrorMsg
+Email,Password,OverViewUrl,MyInformationUrl,MyBillingDetailsUrl,EnterCardNumber,ExpectedErrorMsg
 "ravi5@gmail.com","aaaaaa","//www.cheapoair.com/profiles/#/overview","//www.cheapoair.com/profiles/#/my-account/my-details","//www.cheapoair.com/profiles/#/my-account/my-billing-details","42222222222222","Sorry, but we don't accept this credit card. Please enter a card from the list above"
 "ravi5@gmail.com","aaaaaa","//www.cheapoair.com/profiles/#/overview","//www.cheapoair.com/profiles/#/my-account/my-details","//www.cheapoair.com/profiles/#/my-account/my-billing-details","422@","Only numbers are allowed"
 "ravi5@gmail.com","aaaaaa","//www.cheapoair.com/profiles/#/overview","//www.cheapoair.com/profiles/#/my-account/my-details","//www.cheapoair.com/profiles/#/my-account/my-billing-details","a22","Only numbers are allowed"
