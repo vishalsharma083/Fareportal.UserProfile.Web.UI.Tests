@@ -253,11 +253,13 @@ namespace UserProfileSPA.TestCases
                 if (Prefix+Record("SignUpUrl") == Driver.Url)
                 {
                     Random randomNum = new Random();
-                    int num = randomNum.Next(5, 100);
+                    int num = randomNum.Next(101, 201);
 
                     string emailAddress = num + Record("EmailAddress");
                     string password = num + Record("Password");
-                    Utility.CssToSetText("TextInEmail", emailAddress, UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
+                    Utility.CssToSetText("TextInEmail", emailAddress, UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);                    
+
+
                     Utility.CssToSetText("TextInPassword", password, UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                     string confrmPassword = Record("ConfrmPassword");
                     string _confrmPassword = num + confrmPassword;
@@ -389,7 +391,7 @@ namespace UserProfileSPA.TestCases
                             Driver.FindElement(By.CssSelector("input[id='btnSignIn']")).Click();
                             Utility.Sleep(10);
                             
-                            Utility.CsstoClick("clickOnMyInformation", 4);
+                            Utility.CsstoClick("clickOnMyInformation", 10);
                             Assert.AreEqual(emailAddress, _veyfyEmail);
                         }
                         else { Assert.IsTrue(false, "OverViewUrl is not opened."); }
@@ -469,7 +471,7 @@ namespace UserProfileSPA.TestCases
                 Utility.CssToSetText("Email", Record("Email"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                 Utility.CssToSetText("Password", Record("Password"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                 Utility.CsstoClick("SignInBtn", 3);
-                Utility.Sleep(5);
+                    Utility.Sleep(5);
                 if (Prefix+Record("OverViewUrl") == Driver.Url)
                 {
                     Utility.CsstoClick("clickOnMyInformation", 4);
@@ -517,6 +519,7 @@ namespace UserProfileSPA.TestCases
 
                                 Driver.FindElement(By.CssSelector("span[class='tick_icon saveEditedPrefBtn']")).Click();
                                 Driver.FindElement(By.CssSelector("a[class='dropdown-toggle mgLft5']")).Click();
+                                Utility.Sleep(2);
                                 Driver.FindElement(By.CssSelector("a[id='btnLogOut']")).Click();
 
                             }
