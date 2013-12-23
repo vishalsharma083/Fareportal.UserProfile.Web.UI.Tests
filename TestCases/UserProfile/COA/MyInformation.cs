@@ -387,9 +387,8 @@ namespace UserProfileSPA.TestCases
                             Driver.FindElement(By.CssSelector("input[id='txtUserName']")).SendKeys(emailAddress);
                             Driver.FindElement(By.CssSelector("input[id='txtPassword']")).SendKeys(password);
                             Driver.FindElement(By.CssSelector("input[id='btnSignIn']")).Click();
-                            //Utility.CssToSetText("Email", emailAddress, UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
-                            //Utility.CssToSetText("Password", password, UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);                           
-                            //Utility.CsstoClick("SignInBtn", 2);
+                            Utility.Sleep(10);
+                            
                             Utility.CsstoClick("clickOnMyInformation", 4);
                             Assert.AreEqual(emailAddress, _veyfyEmail);
                         }
@@ -634,7 +633,7 @@ namespace UserProfileSPA.TestCases
                 Utility.CssToSetText("Email", Record("Email"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                 Utility.CssToSetText("Password", Record("Password"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                 Utility.CsstoClick("SignInBtn", 3);
-                Utility.Sleep(3);
+                Utility.Sleep(10);
                 if (Prefix + Record("OverViewUrl") == Driver.Url)
                 {
                     

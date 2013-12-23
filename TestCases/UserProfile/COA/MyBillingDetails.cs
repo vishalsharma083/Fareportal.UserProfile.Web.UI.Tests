@@ -256,7 +256,7 @@ namespace UserProfileSPA.TestCases
                 if (Prefix + Record("OverViewUrl") == Driver.Url)
                 {
                     Utility.CsstoClick("clickOnMyInformation", 4);
-                    Utility.Sleep(4);
+                    Utility.Sleep(5);
                     if (Prefix + Record("MyInformationUrl") == Driver.Url)
                     {
                         Utility.ByLinkTexttoClick("ClickOnMyBillingDetails", 4);
@@ -320,7 +320,7 @@ namespace UserProfileSPA.TestCases
         }
 
 
-        [DeploymentItem("AppData\\MinAndMaxDigitInCreditCard.csv"), DeploymentItem("MinAndMaxDigitsInCreditCard .csv"), DeploymentItem("MinAndMaxDigitInCreditCard.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\MinAndMaxDigitInCreditCard.csv", "MinAndMaxDigitInCreditCard#csv", DataAccessMethod.Sequential), TestMethod]
+        [DeploymentItem("MinAndMaxDigitInCreditCard.csv"), DeploymentItem("MinAndMaxDigitsInCreditCard .csv"), DeploymentItem("AppData\\MinAndMaxDigitInCreditCard.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\MinAndMaxDigitInCreditCard.csv", "MinAndMaxDigitInCreditCard#csv", DataAccessMethod.Sequential), TestMethod]
         public void MinAndMaxDigitInCreditCard()
         {
             IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;           
