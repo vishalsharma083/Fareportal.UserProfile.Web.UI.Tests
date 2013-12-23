@@ -243,9 +243,6 @@
     <None Include="ClickOnEditCardDetailsAndDoChanges.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="MinAndMaxDigitsInCreditCard .csv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="AppData\VerifyingEmailAddressAlreadyExistInCreateAnAccount.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
