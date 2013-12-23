@@ -422,65 +422,87 @@ namespace UserProfileSPA.TestCases
         //}
 
 
-        [DeploymentItem("CheckTitleForMyCotraveler.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\CheckTitleForMyCotraveler.csv", "CheckTitleForMyCotraveler#csv", DataAccessMethod.Sequential), TestMethod]
+        [DeploymentItem("AppData\\CheckTitleForMyCotraveler.csv"), DeploymentItem("CheckTitleForMyCotraveler.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\CheckTitleForMyCotraveler.csv", "CheckTitleForMyCotraveler#csv", DataAccessMethod.Sequential), TestMethod]
         public void CheckTitleForMyCotraveler()
         {
             IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
-            string _baseUrl = Record("SignInUrl");
-            if (_baseUrl == Driver.Url)
+
+            if (Prefix + SignInUrl == Driver.Url)
             {
                 Utility.CssToSetText("Email", Record("Email"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                 Utility.CssToSetText("Password", Record("Password"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                 Utility.CsstoClick("SignInBtn", 3);
-                Utility.Sleep(2);
-                Utility.CsstoClick("clickOnMyInformation", 4);
-                Utility.Sleep(2);
-                string cheapoairMyInfoUrl = Record("CheapoairMyInfoUrl");
-                if (cheapoairMyInfoUrl == Driver.Url)
+                Utility.Sleep(5);
+                if (Prefix + Record("OverViewUrl") == Driver.Url)
                 {
-                    Utility.ByLinkTexttoClick("clickOnMyCoTravelerMenu", 4);
-
-                    string myCoTravelerUrl = Record("MyCoTravelerUrl");
-                    if (myCoTravelerUrl == Driver.Url)
+                    Utility.CsstoClick("clickOnMyInformation", 4);
+                    Utility.Sleep(4);
+                    if (Prefix + Record("MyInformationUrl") == Driver.Url)
                     {
-                        Utility.CsstoClick("ClickOnAddCoTravelerBtn", 4);
-
-                        string SelectFromAgeGroup = Record("SelectFromAgeGroup");
-                        var enterOneOfAgeGroup = Driver.FindElement(By.CssSelector(TestEnvironment.LoadXML("SelectCoTravellerAgeGroup")));
-                        var selectElement = new SelectElement(enterOneOfAgeGroup);
-                        selectElement.SelectByText(SelectFromAgeGroup);
+                        Utility.ByLinkTexttoClick("clickOnMyCoTravelerMenu", 4);
                         Utility.Sleep(4);
-
-                        string titlesForAdultAndSenior = UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("titlesForAdultAndSenior");
-                        string[] _titlesForAdultAndSenior = titlesForAdultAndSenior.Split(",".ToCharArray());
-                        string titleForChildAndInfant = UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("titleForChildAndInfant");
-                        string[] _titleForChildAndInfant = titleForChildAndInfant.Split(",".ToCharArray());
-                        if (((Utility.GrabAttributeValueByCss("SelectCoTravellerAgeGroup", "value", 4)) == "1") || ((Utility.GrabAttributeValueByCss("SelectCoTravellerAgeGroup", "value", 4)) == "2"))
+                        if (Prefix+Record("MyCoTravelerUrl") == Driver.Url)
                         {
-                            string elements = Utility.ByCss("SelectCoTravellerTitle", 4);
-                            string[] title = elements.Replace("\r\n", "_").Split("_".ToCharArray());
+                            Utility.CsstoClick("ClickOnAddCoTravelerBtn", 4);
 
-                            int i = 0;
-                            foreach (var element in title)
+                            string SelectFromAgeGroup = Record("SelectFromAgeGroup");
+                            var enterOneOfAgeGroup = Driver.FindElement(By.CssSelector(TestEnvironment.LoadXML("SelectCoTravellerAgeGroup")));
+                            var selectElement = new SelectElement(enterOneOfAgeGroup);
+                            selectElement.SelectByText(SelectFromAgeGroup);
+                            Utility.Sleep(4);
+
+                            string titlesForAdultAndSenior = UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("titlesForAdultAndSenior");
+                            string[] _titlesForAdultAndSenior = titlesForAdultAndSenior.Split(",".ToCharArray());
+                            string titleForChildAndInfant = UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("titleForChildAndInfant");
+                            string[] _titleForChildAndInfant = titleForChildAndInfant.Split(",".ToCharArray());
+                            if (((Utility.GrabAttributeValueByCss("SelectCoTravellerAgeGroup", "value", 4)) == "1") || ((Utility.GrabAttributeValueByCss("SelectCoTravellerAgeGroup", "value", 4)) == "2"))
                             {
-                                Assert.AreEqual(_titlesForAdultAndSenior[i], element);
-                                i++;
+                                string elements = Utility.ByCss("SelectCoTravellerTitle", 4);
+                                string[] title = elements.Replace("\r\n", "_").Split("_".ToCharArray());
+
+                                int i = 0;
+                                foreach (var element in title)
+                                {
+                                    Assert.AreEqual(_titlesForAdultAndSenior[i], element);
+                                    i++;
+                                }
+                            }
+                            else if (((Utility.GrabAttributeValueByCss("SelectCoTravellerAgeGroup", "value", 4)) == "3") || ((Utility.GrabAttributeValueByCss("SelectCoTravellerAgeGroup", "value", 4)) == "4"))
+                            {
+                                string elements = Utility.ByCss("SelectCoTravellerTitle", 4);
+                                string[] title = elements.Replace("\r\n", "_").Split("_".ToCharArray());
+
+                                int i = 0;
+                                foreach (var element in title)
+                                {
+                                    Assert.AreEqual(_titleForChildAndInfant[i], element);
+                                    i++;
+                                }
+                            }
+                            else
+                            {
+                                Assert.IsTrue(false,"Please select CoTraveler AgeGroup properly.");
                             }
                         }
-                        else if (((Utility.GrabAttributeValueByCss("SelectCoTravellerAgeGroup", "value", 4)) == "3") || ((Utility.GrabAttributeValueByCss("SelectCoTravellerAgeGroup", "value", 4)) == "4"))
+                        else
                         {
-                            string elements = Utility.ByCss("SelectCoTravellerTitle", 4);
-                            string[] title = elements.Replace("\r\n", "_").Split("_".ToCharArray());
-
-                            int i = 0;
-                            foreach (var element in title)
-                            {
-                                Assert.AreEqual(_titleForChildAndInfant[i], element);
-                                i++;
-                            }
+                            Assert.IsTrue(false, "MyCoTraveler url is not opened.");
                         }
                     }
+                    else
+                    {
+                        Assert.IsTrue(false, "MyInformation url is not opened.");
+                    }
                 }
+                else
+                {
+                    Assert.IsTrue(false, "OverViewUrl is not opened.");
+                }
+
+            }
+            else
+            {
+                Assert.IsTrue(false,"SignIn url is not opened.");
             }
         }
 
@@ -495,12 +517,12 @@ namespace UserProfileSPA.TestCases
                 Utility.CssToSetText("Email", Record("Email"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                 Utility.CssToSetText("Password", Record("Password"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                 Utility.CsstoClick("SignInBtn", 3);
-                Utility.Sleep(2);
+                Utility.Sleep(5);
                 if(Prefix+Record("OverViewUrl") == Driver.Url)
                 {
                     Utility.Sleep(3);
                     Utility.CsstoClick("clickOnMyInformation", 4);
-                Utility.Sleep(2);
+                Utility.Sleep(4);
                 if (Prefix+Record("MyInformationUrl") == Driver.Url)
                 {
                     Utility.ByLinkTexttoClick("clickOnMyCoTravelerMenu", 4);
