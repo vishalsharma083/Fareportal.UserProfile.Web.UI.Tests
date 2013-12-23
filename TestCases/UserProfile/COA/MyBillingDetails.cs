@@ -43,36 +43,28 @@ namespace UserProfileSPA.TestCases
         }
 
 
-        [DeploymentItem("ClickOnEditCardDetailsAndDoChanges.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\ClickOnEditCardDetailsAndDoChanges.csv", "ClickOnEditCardDetailsAndDoChanges#csv", DataAccessMethod.Sequential), TestMethod]
+        [DeploymentItem("AppData\\ClickOnEditCardDetailsAndDoChanges.csv"), DeploymentItem("ClickOnEditCardDetailsAndDoChanges.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\ClickOnEditCardDetailsAndDoChanges.csv", "ClickOnEditCardDetailsAndDoChanges#csv", DataAccessMethod.Sequential), TestMethod]
         public void ClickOnEditCardDetailsAndDoChanges()
         {
             IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
            
-            string email = Record("Email");
-            string password = Record("Password");
-            string signinUrl = Record("SignInUrl");
-
-            if (signinUrl == Driver.Url)
+            if (Prefix+SignInUrl == Driver.Url)
             {
                 Utility.CssToSetText("Email", Record("Email"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                 Utility.CssToSetText("Password", Record("Password"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                
                 Utility.CsstoClick("SignInBtn", 4);
-                Utility.Sleep(3);
-                string fareportalOverviewUrl = Record("CheapoairOverviewUrl");
                 Utility.Sleep(9);
-                if (fareportalOverviewUrl == Driver.Url)
+                if (Record("OverViewUrl") == Driver.Url)
                 {
                     Utility.CsstoClick("clickOnMyInformation", 4);
                     Utility.Sleep(2);
-
-                    string fareportalMyDetailsUrl = Record("CheapoairMyDetailsUrl");
-                    if (fareportalMyDetailsUrl == Driver.Url)
+                    if (Prefix+Record("MyInformationUrl") == Driver.Url)
                     {
                         Utility.ByLinkTexttoClick("ClickOnMyBillingDetails", 4);
 
                         string fareportalMyBillingDetailsUrl = Record("CheapoairMyBillingDetailsUrl");
-                        if (fareportalMyBillingDetailsUrl == Driver.Url)
+                        if (Prefix+Record("CheapoairMyBillingDetailsUrl") == Driver.Url)
                         {
                             if (Utility.IsDisplayedUsingCss("ViewCard"))
                             {

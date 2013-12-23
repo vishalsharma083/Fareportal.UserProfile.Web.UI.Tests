@@ -237,7 +237,7 @@
     <None Include="AppData\VerifyTheValuesInFirstNameAndLastName.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="AppData\VeryufyTheRadioButtonsAgainstEachCard.csv">
+    <None Include="AppData\VerifyTheRadioButtonsAgainstEachCard.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="ClickOnEditCardDetailsAndDoChanges.csv">
