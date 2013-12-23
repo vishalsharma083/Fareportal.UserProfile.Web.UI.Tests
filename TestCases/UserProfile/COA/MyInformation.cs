@@ -840,8 +840,8 @@ namespace UserProfileSPA.TestCases
                 Utility.CssToSetText("Password", Record("Password"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                 Utility.CsstoClick("SignInBtn", 3);
                 Utility.Sleep(5);
-                string _overView = Record("OverView");
-                if (Prefix + _overView == Driver.Url)
+               
+                if (Prefix + Record("OverViewUrl") == Driver.Url)
                 {
                     
                     Utility.CsstoClick("clickOnMyInformation", 4);
