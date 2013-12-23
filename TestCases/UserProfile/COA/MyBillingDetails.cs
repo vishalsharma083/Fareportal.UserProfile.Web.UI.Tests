@@ -334,16 +334,16 @@ namespace UserProfileSPA.TestCases
              
                  Utility.CsstoClick("SignInBtn", 4);
                 Utility.Sleep(10);
-                if (Record("OverViewUrl") == Driver.Url)
+                if (Prefix+Record("OverViewUrl") == Driver.Url)
                 {
                     Utility.CsstoClick("clickOnMyInformation", 4);
                     Utility.Sleep(4);
-                    if (Record("MyInformationUrl") == Driver.Url)
+                    if (Prefix+Record("MyInformationUrl") == Driver.Url)
                     {
                         Utility.Sleep(8);
                         Utility.ByLinkTexttoClick("ClickOnMyBillingDetails", 4);
                         Utility.Sleep(4);
-                        if (Record("MyBillingDetailsUrl") == Driver.Url)
+                        if (Prefix+Record("MyBillingDetailsUrl") == Driver.Url)
                         {
                             Utility.CssToSetText("textcardNumber", enterCardNumber, 3);
                             Utility.CsstoClick("textfirstName", 3);
@@ -874,7 +874,7 @@ namespace UserProfileSPA.TestCases
         }
 
 
-        [DeploymentItem("VerifytheRadioButtonsOnThisSection.csv"), DeploymentItem("AppData\\VerifytheRadioButtonsOnThisSection.csv"), DeploymentItem("VerifytheRadioButtonsInBillingSection.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\VerifytheRadioButtonsOnThisSection.csv", "VerifytheRadioButtonsOnThisSection#csv", DataAccessMethod.Sequential), TestMethod]
+        [DeploymentItem("AppData\\VerifytheRadioButtonsOnThisSection.csv"), DeploymentItem("AppData\\VerifytheRadioButtonsInBillingSection.csv"), DeploymentItem("VerifytheRadioButtonsInBillingSection.csv"), DeploymentItem("VerifytheRadioButtonsOnThisSection.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\VerifytheRadioButtonsOnThisSection.csv", "VerifytheRadioButtonsOnThisSection#csv", DataAccessMethod.Sequential), TestMethod]
         public void VerifytheRadioButtonsInBillingSection()
         {
             IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;           
@@ -926,7 +926,7 @@ namespace UserProfileSPA.TestCases
 
 
 
-        [TestMethod]
+        [DeploymentItem("AppData\\VerifyTheRadioButtonsAgainstEachCard.csv"), DeploymentItem("VerifyTheRadioButtonsAgainstEachCard.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\VerifyTheRadioButtonsAgainstEachCard.csv", "VerifyTheRadioButtonsAgainstEachCard#csv", DataAccessMethod.Sequential), TestMethod]
         public void VerifyTheRadioButtonsAgainstEachCard()
         {
             IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
@@ -943,14 +943,11 @@ namespace UserProfileSPA.TestCases
                 {
                     Utility.CsstoClick("clickOnMyInformation", 4);
                     Utility.Sleep(4);
-                    if (Record("MyInformationUrl") == Driver.Url)
+                    if (Prefix+Record("MyInformationUrl") == Driver.Url)
                     {
                         Utility.ByLinkTexttoClick("ClickOnMyBillingDetails", 4);
-                        Utility.Sleep(3);
-
-                        string fareportalMyBillingDetailsUrl = Record("FareportalMyBillingDetailsUrl");
                         Utility.Sleep(4);
-                        if (fareportalMyBillingDetailsUrl == Driver.Url)
+                        if (Prefix+Record("MyBillingDetailsUrl") == Driver.Url)
                         {
                             int noOfCards = UserProfileSPA.Library.TestEnvironment.Driver.FindElement(By.CssSelector(UserProfileSPA.Library.TestEnvironment.LoadXML("ExistingCCardsDiv"))).FindElements(By.CssSelector(UserProfileSPA.Library.TestEnvironment.LoadXML("ViewCard"))).Count();
 

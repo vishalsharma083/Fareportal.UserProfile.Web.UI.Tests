@@ -1,2 +1,2 @@
-Email,Password,SignInUrl,CheapoairOverviewUrl,CheapoairMyDetailsUrl,CheapoairBillingUrl
-"ravi1@gmail.com","123456","http://www.cheapoair.com/profiles/#/user-signin","http://www.cheapoair.com/profiles/#/overview","http://www.cheapoair.com/profiles/#/my-account/my-details","http://www.cheapoair.com/profiles/#/my-account/my-billing-details"
+Email,Password,SignInUrl,OverviewUrl,MyInformationUrl,MyBillingUrl
+"ravi1@gmail.com","123456","//www.cheapoair.com/profiles/#/user-signin","//www.cheapoair.com/profiles/#/overview","//www.cheapoair.com/profiles/#/my-account/my-details","//www.cheapoair.com/profiles/#/my-account/my-billing-details"
