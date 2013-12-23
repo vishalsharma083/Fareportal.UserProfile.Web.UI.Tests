@@ -55,7 +55,7 @@ namespace UserProfileSPA.TestCases
                
                 Utility.CsstoClick("SignInBtn", 4);
                 Utility.Sleep(9);
-                if (Record("OverViewUrl") == Driver.Url)
+                if (Prefix+Record("OverViewUrl") == Driver.Url)
                 {
                     Utility.CsstoClick("clickOnMyInformation", 4);
                     Utility.Sleep(2);
