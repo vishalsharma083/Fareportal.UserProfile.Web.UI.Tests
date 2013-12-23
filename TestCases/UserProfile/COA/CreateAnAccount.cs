@@ -10,12 +10,18 @@ using System.Xml;
 using UserProfileSPA;
 using System.Text.RegularExpressions;
 using OpenQA.Selenium.Support.UI;
+using System.Configuration;
 
 namespace UserProfileSPA.TestCases
 {
     [TestClass]
     public class CreateAnAccount 
     {
+
+        string SignInUrl = ConfigurationManager.AppSettings["URL"];
+        string Prefix = ConfigurationManager.AppSettings["UrlPrefix"];
+
+
         [TestInitialize]
         public void Initialize()
         {
@@ -41,19 +47,18 @@ namespace UserProfileSPA.TestCases
         }
 
 
-        [DeploymentItem("CreateAnAccountAllValidations.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\CreateAnAccountAllValidations.csv", "CreateAnAccountAllValidations#csv", DataAccessMethod.Sequential), TestMethod]
+        [DeploymentItem("CreateAnAccountAllValidations.csv"), DeploymentItem("AppData\\CreateAnAccountAllValidations.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\CreateAnAccountAllValidations.csv", "CreateAnAccountAllValidations#csv", DataAccessMethod.Sequential), TestMethod]
         public void CreateAnAccountAllValidationsAllFieldsAreBlank()
         {
            IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
 
-            string signinUrl = Record("SignInUrl");
             Utility.Sleep(5);
-            if (signinUrl == Driver.Url)
+            if (Prefix+SignInUrl == Driver.Url)
             {
                 UserProfileSPA.Utility.XPathtoClick("ClickOnCreateAnAccountBtn", 4);
                 Utility.Sleep(2);
-                string signUpUrl = Record("SignUpUrl");
-                if (signUpUrl == Driver.Url)
+               
+                if (Prefix+Record("SignUpUrl") == Driver.Url)
                 {                      
                     Utility.CssToSetText("CreateAccountEmailAddress", Record("EmailAddress"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                     Utility.CssToSetText("CreateAccountPassword", Record("Password"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
@@ -123,18 +128,15 @@ namespace UserProfileSPA.TestCases
             }
         }
 
-        [DeploymentItem("CreateAnAccountFirstAndLastNameValidations.csv"), DeploymentItem("CoTravelerFirstAndLastNameValidations.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\CreateAnAccountFirstAndLastNameValidations.csv", "CreateAnAccountFirstAndLastNameValidations#csv", DataAccessMethod.Sequential), TestMethod]
+       [DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\CreateAnAccountFirstAndLastNameValidations.csv", "CreateAnAccountFirstAndLastNameValidations#csv", DataAccessMethod.Sequential), DeploymentItem("AppData\\CreateAnAccountFirstAndLastNameValidations.csv"), DeploymentItem("CoTravelerFirstAndLastNameValidations.csv"), DeploymentItem("CreateAnAccountFirstAndLastNameValidations.csv"), TestMethod]
         public void CreateAnAccountFirstAndLastNameValidations() 
         {
             IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
-
-            string _baseUrl = Record("SignInUrl");
-            if (_baseUrl == Driver.Url)
+            if (Prefix+SignInUrl == Driver.Url)
             {
                 Utility.XPathtoClick("ClickOnCreateAnAccountBtn", 4);
                 Utility.Sleep(2);
-                string signUpUrl = Record("SignUpUrl");
-                if (signUpUrl == Driver.Url)
+                if (Prefix+Record("SignUpUrl") == Driver.Url)
                 {
                     string _firstNametxt = Record("FirstName");
                     string _lastNametxt = Record("LastName");
@@ -270,21 +272,22 @@ namespace UserProfileSPA.TestCases
                     Assert.IsTrue(false, "SignUp page is not open");
                 }
             }
+            else
+            {
+                Assert.IsTrue(false, "SignIn page is not open");
+            }
         }
 
 
-        [DeploymentItem("ValidateEmailAddressInCreateAnAccount.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\ValidateEmailAddressInCreateAnAccount.csv", "ValidateEmailAddressInCreateAnAccount#csv", DataAccessMethod.Sequential), TestMethod]
+        [DeploymentItem("ValidateEmailAddressInCreateAnAccount.csv"), DeploymentItem("AppData\\ValidateEmailAddressInCreateAnAccount.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\ValidateEmailAddressInCreateAnAccount.csv", "ValidateEmailAddressInCreateAnAccount#csv", DataAccessMethod.Sequential), TestMethod]
         public void ValidateEmailAddressInCreateAnAccount()
         {
             IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
-
-            string _baseUrl = Record("SignInUrl");
-            if (_baseUrl == Driver.Url)
+            if (Prefix+SignInUrl == Driver.Url)
             {
                 Utility.XPathtoClick("ClickOnCreateAnAccountBtn", 4);
-                Utility.Sleep(2);
-                string signUpUrl = Record("SignUpUrl");
-                if (signUpUrl == Driver.Url)
+                Utility.Sleep(4);
+                if (Prefix+Record("SignUpUrl") == Driver.Url)
                 {
                     string _email = Record("Email");
                     Utility.CsstoClick("CreateAccountEmailAddress", 4);
@@ -350,19 +353,14 @@ namespace UserProfileSPA.TestCases
         public void ValidatingPasswordForCreateAnAccount()
         {
             IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
-
-            string signinUrl = Record("SignInUrl");
-            string password = Record("Password");
-            string confrmPassword = Record("ConfrmPassword");
-           // Driver.Navigate().GoToUrl(signinUrl);
-
-            if (signinUrl == Driver.Url)
+            if (Prefix+SignInUrl == Driver.Url)
             {
                 Utility.XPathtoClick("ClickOnCreateAnAccountBtn", 4);
-                Utility.Sleep(2);
-                string signUpUrl = Record("SignUpUrl");
-                if (signUpUrl == Driver.Url)
+                Utility.Sleep(3);               
+                if (Prefix+Record("SignUpUrl") == Driver.Url)
                 {
+                    string password = Record("Password");
+                    string confrmPassword = Record("ConfrmPassword");
                     Utility.CssToSetText("TextInPassword", password, 3);
                     Utility.CsstoClick("ClickOnCreateAnAccountDiv", 3);
                     Utility.CssToSetText("TextInConfrmPassword", confrmPassword, 3);
@@ -427,9 +425,7 @@ namespace UserProfileSPA.TestCases
         public void VerifyTheValidationsOfTheLeapYearInRegisterPage()
         {
             IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
-
-            string _baseUrl = Record("SignInUrl");
-            if (_baseUrl == Driver.Url)
+            if (Prefix+SignInUrl == Driver.Url)
             {
                 string _year = Record("DobYear");
                 string month = Record("DobMonth");
@@ -438,9 +434,8 @@ namespace UserProfileSPA.TestCases
                 int day = Convert.ToInt32(_day);
 
                 Utility.XPathtoClick("ClickOnCreateAnAccountBtn", 4);
-                Utility.Sleep(2);
-                string signUpUrl = Record("SignUpUrl");
-                if (signUpUrl == Driver.Url)
+                Utility.Sleep(3);               
+                if (Prefix+Record("SignUpUrl") == Driver.Url)
                 {
                     var elementMonth = Driver.FindElement(By.CssSelector(UserProfileSPA.Library.TestEnvironment.LoadXML("DobMonth")));
                     var selectElementMonth = new SelectElement(elementMonth);
@@ -486,13 +481,19 @@ namespace UserProfileSPA.TestCases
                     }
                     else
                     {
-                        Assert.IsTrue(false, "SignUpUrl is not opened.");
+                        Assert.IsTrue(false, "Please select Month Feb to check leap year.");
                     }
+                    
                 }
                 else
                 {
-                    Assert.IsTrue(false, "SignInUrl is not opened.");
+                    Assert.IsTrue(false, "SignUpUrl is not opened.");
                 }
+                
+            }
+            else
+            {
+                Assert.IsTrue(false, "SignInUrl is not opened.");
             }
         }
 
@@ -500,14 +501,12 @@ namespace UserProfileSPA.TestCases
         public void VerifyingEmailAddressAlreadyExistInCreateAnAccount()
         {
             IWebDriver Driver = TestEnvironment.Driver;
-            string signinUrl = Record("SignInUrl");
             Utility.Sleep(5);
-            if (signinUrl == Driver.Url)
-            {
+            if (Prefix+SignInUrl == Driver.Url)
+            {               
                 Utility.XPathtoClick("ClickOnCreateAnAccountBtn", 4);
-                Utility.Sleep(2);
-                string signUpUrl = Record("SignUpUrl");
-                if (signUpUrl == Driver.Url)
+                Utility.Sleep(4);
+                if (Prefix+Record("SignUpUrl") == Driver.Url)
                 {
                     Utility.CssToSetText("TextInEmail", Record("EnterAlreadyExistEmail"), 3);
                     Utility.CsstoClick("ClickOnCreateAnAccountBtnSignUpFree", 4);

@@ -1,3 +1,0 @@
-SignInUrl,SignUpUrl,EmailAddress,FirstName,LastName,Password,ConfrmPassword,ExpectedErrorMsg
-"http://www.cheapoair.com/profiles/#/user-signin","http://www.cheapoair.com/profiles/#/user-signup","","","","","","Please select the Gender"
-"http://www.cheapoair.com/profiles/#/user-signin","http://www.cheapoair.com/profiles/#/user-signup","aa","a","k","aa1","",""

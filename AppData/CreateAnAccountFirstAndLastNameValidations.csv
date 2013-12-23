@@ -1,6 +1,9 @@
-SignInUrl,SignUpUrl,FirstName,LastName
-"http://www.cheapoair.com/profiles/#/user-signin","http://www.cheapoair.com/profiles/#/user-signup","rbinJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJ","Ber-ma"
-"http://www.cheapoair.com/profiles/#/user-signin","http://www.cheapoair.com/profiles/#/user-signup","arbind","Berma"
-"http://www.cheapoair.com/profiles/#/user-signin","http://www.cheapoair.com/profiles/#/user-signup","arbind!","@erma"
-"http://www.cheapoair.com/profiles/#/user-signin","http://www.cheapoair.com/profiles/#/user-signup"," rbind!"," Berma"
-"http://www.cheapoair.com/profiles/#/user-signin","http://www.cheapoair.com/profiles/#/user-signup","rbind'S","Ber-ma"
+SignUpUrl,FirstName,LastName,ExpectedErrorMsgForFirstname,ExpectedErrorMsgForLastname
+//www.cheapoair.com/profiles/#/user-signup,rbinJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJKJ,Ber-ma,Firstname must be between 2 and 25 characters in length.,No Error
+//www.cheapoair.com/profiles/#/user-signup,arbind,Berma,No Error,No Error
+//www.cheapoair.com/profiles/#/user-signup,arbind!,@erma,"Name can only contain apostrophe, space or hyphen.",Name must begin with a letter.
+//www.cheapoair.com/profiles/#/user-signup,rbind!,Berma@,"Name can only contain apostrophe, space or hyphen.","Name can only contain apostrophe, space or hyphen."
+//www.cheapoair.com/profiles/#/user-signup,rbind'S#,Ber-ma,"Name can only contain apostrophe, space or hyphen.",No Error
+//www.cheapoair.com/profiles/#/user-signup,!rbind'S,Ber-ma,Name must begin with a letter.,No Error
+//www.cheapoair.com/profiles/#/user-signup,,Ber-ma,Please enter first name,No Error
+//www.cheapoair.com/profiles/#/user-signup,!rbind'S,,Name must begin with a letter.,Please enter last name

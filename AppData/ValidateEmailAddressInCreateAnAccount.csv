@@ -1,7 +1,6 @@
-SignInUrl,SignUpUrl,Email
-"http://www.cheapoair.com/profiles/#/user-signin","http://www.cheapoair.com/profiles/#/user-signup",""
-"http://www.cheapoair.com/profiles/#/user-signin","http://www.cheapoair.com/profiles/#/user-signup","sa@gmail.com"
-"http://www.cheapoair.com/profiles/#/user-signin","http://www.cheapoair.com/profiles/#/user-signup","1"
-"http://www.cheapoair.com/profiles/#/user-signin","http://www.cheapoair.com/profiles/#/user-signup","sa!#dfo"
-"http://www.cheapoair.com/profiles/#/user-signin","http://www.cheapoair.com/profiles/#/user-signup","s_a11@gmail.com"
-"http://www.cheapoair.com/profiles/#/user-signin","http://www.cheapoair.com/profiles/#/user-signup",""
+SignUpUrl,Email,ExpectedErrorMsg
+//www.cheapoair.com/profiles/#/user-signup","","Your email is required"
+//www.cheapoair.com/profiles/#/user-signup","sa@gmail.com","No error"
+//www.cheapoair.com/profiles/#/user-signup","1","Please enter a valid email address."
+//www.cheapoair.com/profiles/#/user-signup","sa!#dfo","Please enter a valid email address."
+//www.cheapoair.com/profiles/#/user-signup","s_a11@gmail.com","No error"
