@@ -254,64 +254,71 @@ namespace UserProfileSPA.TestCases
         public void DeleteCard()
         {
             IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;            
-            string email = Record("Email");
-            string password = Record("Password");
-            string signinUrl = Record("SignInUrl");
-            // string _findString = Record("FindString");
             Utility.Sleep(4);
-            if (signinUrl == Driver.Url)
+            if (Prefix+SignInUrl == Driver.Url)
             {
                 Utility.CssToSetText("Email", Record("Email"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
-                Utility.CssToSetText("Password", Record("Password"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
-              
+                Utility.CssToSetText("Password", Record("Password"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);              
                 Utility.CsstoClick("SignInBtn", 4);
                 Utility.Sleep(8);
-                Utility.CsstoClick("clickOnMyInformation", 4);
-                Utility.Sleep(2);
-                Utility.ByLinkTexttoClick("ClickOnMyBillingDetails", 4);
-                Utility.Sleep(3);
-                string fareportalMyBillingDetailsUrl = Record("FareportalMyBillingDetailsUrl");
-                Utility.Sleep(4);
-                // && (IsDisplayedUsingXpath("YourCard"))
-                if (fareportalMyBillingDetailsUrl == Driver.Url)
+                if (Prefix + Record("OverViewUrl") == Driver.Url)
                 {
-                    if (Utility.IsDisplayedUsingCss("Deletecard"))
+                    Utility.CsstoClick("clickOnMyInformation", 4);
+                    Utility.Sleep(4);
+                    if (Prefix + Record("MyInformationUrl") == Driver.Url)
                     {
-                        string _yourCard = Utility.ByXpath("YourCard", 4);
-                        if (_yourCard == "Your Cards :")
+                        Utility.ByLinkTexttoClick("ClickOnMyBillingDetails", 4);
+                        Utility.Sleep(4);
+                        // && (IsDisplayedUsingXpath("YourCard"))
+                        if (Record("MyBillingDetailsUrl") == Driver.Url)
                         {
-                            Utility.Sleep(6);
-                            int str = Driver.FindElements(By.CssSelector(UserProfileSPA.Library.TestEnvironment.LoadXML("Deletecard"))).Count();
-                            for (int i = 1; i <= str; i++)
+                            if (Utility.IsDisplayedUsingCss("Deletecard"))
                             {
-                                Utility.CsstoClick("Deletecard", 4);
-                                //if (Utility.IsDisplayedUsingXpath("YourCard"))
-                                //{
-                                //    Assert.IsTrue(true);
-                                //}
-                                //else
-                                //{
-                                //    Assert.IsTrue(false, "Your Card is not displayed.");
-                                //}
+                                string _yourCard = Utility.ByXpath("YourCard", 4);
+                                if (_yourCard == "Your Cards :")
+                                {
+                                    Utility.Sleep(6);
+                                    int str = Driver.FindElements(By.CssSelector(UserProfileSPA.Library.TestEnvironment.LoadXML("Deletecard"))).Count();
+                                    for (int i = 1; i <= str; i++)
+                                    {
+                                        Utility.CsstoClick("Deletecard", 4);
+                                        //if (Utility.IsDisplayedUsingXpath("YourCard"))
+                                        //{
+                                        //    Assert.IsTrue(true);
+                                        //}
+                                        //else
+                                        //{
+                                        //    Assert.IsTrue(false, "Your Card is not displayed.");
+                                        //}
+                                    }
+                                    if (!Utility.IsDisplayedUsingXpath("YourCard"))
+                                    {
+                                        Assert.IsTrue(true);
+                                    }
+                                }
+                                else
+                                {
+                                    Assert.IsTrue(false, "There is no card mentioned.");
+                                }
                             }
-                            if (!Utility.IsDisplayedUsingXpath("YourCard"))
+                            else
                             {
-                                Assert.IsTrue(true);
+
                             }
                         }
                         else
                         {
-                            Assert.IsTrue(false, "There is no card mentioned.");
+                            Assert.IsTrue(false, "BillingDetailsUrl is not opened.");
                         }
                     }
                     else
-                    { 
-                       
+                    {
+                        Assert.IsTrue(false, "MyInformationUrl is not opened.");
                     }
                 }
                 else
                 {
-                    Assert.IsTrue(false, "BillingDetailsUrl is not opened.");
+                    Assert.IsTrue(false, "OverViewUrl is not opened.");
                 }
             }
             else
@@ -321,41 +328,30 @@ namespace UserProfileSPA.TestCases
         }
 
 
-        [DeploymentItem("MinAndMaxDigitInCreditCard.csv"), DeploymentItem("MinAndMaxDigitsInCreditCard .csv"), DeploymentItem("AppData\\MinAndMaxDigitInCreditCard.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\MinAndMaxDigitInCreditCard.csv", "MinAndMaxDigitInCreditCard#csv", DataAccessMethod.Sequential), TestMethod]
+        [DeploymentItem("AppData\\MinAndMaxDigitInCreditCard.csv"), DeploymentItem("MinAndMaxDigitsInCreditCard .csv"), DeploymentItem("MinAndMaxDigitInCreditCard.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\MinAndMaxDigitInCreditCard.csv", "MinAndMaxDigitInCreditCard#csv", DataAccessMethod.Sequential), TestMethod]
         public void MinAndMaxDigitInCreditCard()
         {
             IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;           
-            string email = Record("Email");
-            string password = Record("Password");
-            string signinUrl = Record("SignInUrl");
             string enterCardNumber = Record("EnterCardNumber");
             // string _findString = Record("FindString");
             Utility.Sleep(4);
-            if (signinUrl == Driver.Url)
+            if (Prefix+SignInUrl == Driver.Url)
             {
                 Utility.CssToSetText("Email", Record("Email"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                 Utility.CssToSetText("Password", Record("Password"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
              
                  Utility.CsstoClick("SignInBtn", 4);
-                Utility.Sleep(3);
-                string fareportalOverviewUrl = Record("CheapoairOverviewUrl");
                 Utility.Sleep(10);
-                if (fareportalOverviewUrl == Driver.Url)
+                if (Record("OverViewUrl") == Driver.Url)
                 {
                     Utility.CsstoClick("clickOnMyInformation", 4);
-                    Utility.Sleep(2);
-
-                    string fareportalMyDetailsUrl = Record("CheapoairMyDetailsUrl");
                     Utility.Sleep(4);
-                    if (fareportalMyDetailsUrl == Driver.Url)
+                    if (Record("MyInformationUrl") == Driver.Url)
                     {
                         Utility.Sleep(8);
                         Utility.ByLinkTexttoClick("ClickOnMyBillingDetails", 4);
-                        Utility.Sleep(3);
-
-                        string fareportalMyBillingDetailsUrl = Record("CheapoairMyBillingDetailsUrl");
                         Utility.Sleep(4);
-                        if (fareportalMyBillingDetailsUrl == Driver.Url)
+                        if (Record("MyBillingDetailsUrl") == Driver.Url)
                         {
                             Utility.CssToSetText("textcardNumber", enterCardNumber, 3);
                             Utility.CsstoClick("textfirstName", 3);
@@ -438,14 +434,14 @@ namespace UserProfileSPA.TestCases
            
                 Utility.CsstoClick("SignInBtn", 4);
                 Utility.Sleep(7);
-                if (Record("OverViewUrl") == Driver.Url)
+                if (Prefix+Record("OverViewUrl") == Driver.Url)
                 {
                     Utility.CsstoClick("clickOnMyInformation", 4);
                     Utility.Sleep(4);
-                    if (Record("MyInformationUrl") == Driver.Url)
+                    if (Prefix+Record("MyInformationUrl") == Driver.Url)
                     {
                         Utility.ByLinkTexttoClick("ClickOnMyBillingDetails", 4);
-                        if (Record("MyBillingDetailsUrl") == Driver.Url)
+                        if (Prefix+Record("MyBillingDetailsUrl") == Driver.Url)
                         {
                             Utility.CsstoClick("AddNewAddressCheckBox", 4);
                             Utility.Sleep(3);
