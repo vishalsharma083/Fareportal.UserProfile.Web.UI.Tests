@@ -255,6 +255,9 @@
     <None Include="AppData\VerifyTheNameFieldValidations.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="VerifyTheRadioButtonsAgainstEachCard.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="TestCases\ElementXpath\CA_SP.xml">

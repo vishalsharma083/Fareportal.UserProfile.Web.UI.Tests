@@ -7,12 +7,19 @@ using OpenQA.Selenium;
 using UserProfileSPA.Library;
 using OpenQA.Selenium.Support.UI;
 using System.Text.RegularExpressions;
+using System.Configuration;
+
 
 namespace UserProfileSPA.TestCases
 {  
+
     [TestClass]
     public partial class MyBillingDetails 
     {
+
+        string SignInUrl = ConfigurationManager.AppSettings["URL"];
+        string Prefix = ConfigurationManager.AppSettings["UrlPrefix"];
+
         [TestInitialize]
         public void Initialize()
         {
@@ -908,31 +915,20 @@ namespace UserProfileSPA.TestCases
         public void VerifytheRadioButtonsInBillingSection()
         {
             IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;           
-            string email = Record("Email");
-            string password = Record("Password");
-            string signinUrl = Record("SignInUrl");
-
-            if (signinUrl == Driver.Url)
+            if (Prefix+SignInUrl == Driver.Url)
             {
                 Utility.CssToSetText("Email", Record("Email"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                 Utility.CssToSetText("Password", Record("Password"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
-                Utility.CsstoClick("SignInBtn", 4);
+                Utility.CsstoClick(Record("SignInUrl"), 4);
                 Utility.Sleep(3);
-                //Utility.CssToSetText("CreateAccountEmailAddress", email, 4);
-                //Utility.CssToSetText("CreateAccountEmailAddress", password, 4); 
-                string CheapoairOverviewUrl = Record("CheapoairOverviewUrl");
-                Utility.Sleep(3);
-                if (CheapoairOverviewUrl == Driver.Url)
+                if (Prefix+Record("OverViewUrl") == Driver.Url)
                 {
                     Utility.CsstoClick("clickOnMyInformation", 4);
-                    Utility.Sleep(2);
-
-                    string CheapoairMyDetailsUrl = Record("CheapoairMyDetailsUrl");
-                    if (CheapoairMyDetailsUrl == Driver.Url)
+                    if (Record("MyInformationUrl") == Driver.Url)
                     {
                         Utility.ByLinkTexttoClick("ClickOnMyBillingDetails", 3);
-                        string CheapoairBillingUrl = Record("CheapoairBillingUrl");
-                        if (CheapoairBillingUrl == Driver.Url)
+                        Utility.Sleep(3);
+                        if (Record("BillingUrl") == Driver.Url)
                         {
                             Utility.Sleep(4);
                             if (!Utility.IsDisplayedUsingCss("ExistingAddress") && (Utility.IsDisplayedUsingCss("AddNewAddressCheckBox")))
@@ -967,28 +963,24 @@ namespace UserProfileSPA.TestCases
 
 
 
-        [DeploymentItem("VeryufyTheRadioButtonsAgainstEachCard.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\VeryufyTheRadioButtonsAgainstEachCard.csv", "VeryufyTheRadioButtonsAgainstEachCard#csv", DataAccessMethod.Sequential), TestMethod]
-        public void VeryufyTheRadioButtonsAgainstEachCard()
+        [TestMethod]
+        public void VerifyTheRadioButtonsAgainstEachCard()  
         {
             IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;           
-            Utility.CssToSetText("Email", Record("Email"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
-            Utility.CssToSetText("Password", Record("Password"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);           
-            string signinUrl = Record("SignInUrl");           
-            Utility.Sleep(4);
-            if (signinUrl == Driver.Url)
+           
+            if (Prefix+SignInUrl == Driver.Url)
             {
-                Utility.CsstoClick("SignInBtn", 4);
-                Utility.Sleep(3);
-                string fareportalOverviewUrl = Record("FareportalOverviewUrl");
+
+                Utility.CssToSetText("Email", Record("Email"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
+                Utility.CssToSetText("Password", Record("Password"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);              
                 Utility.Sleep(4);
-                if (fareportalOverviewUrl == Driver.Url)
+                Utility.CsstoClick("SignInBtn", 4);
+                Utility.Sleep(3);           
+                if (Prefix+Record("OverViewUrl") == Driver.Url)
                 {
                     Utility.CsstoClick("clickOnMyInformation", 4);
-                    Utility.Sleep(2);
-
-                    string fareportalMyDetailsUrl = Record("FareportalMyDetailsUrl");
                     Utility.Sleep(4);
-                    if (fareportalMyDetailsUrl == Driver.Url)
+                    if (Record("MyInformationUrl") == Driver.Url)
                     {
                         Utility.ByLinkTexttoClick("ClickOnMyBillingDetails", 4);
                         Utility.Sleep(3);
@@ -1015,7 +1007,7 @@ namespace UserProfileSPA.TestCases
                     }
                     else
                     {
-                        Assert.IsTrue(false, "MyDetailsUrl is not opened.");
+                        Assert.IsTrue(false, "MyInformationUrl is not opened.");
                     }
                 }
                 else
