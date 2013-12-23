@@ -45,182 +45,199 @@ namespace UserProfileSPA.TestCases
         public void AddCoTraveler()
         {
             IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
-            string _baseUrl = Record("SignInUrl");
-            if (_baseUrl == Driver.Url)
+           
+            if (Prefix+SignInUrl == Driver.Url)
             {
                 Utility.CssToSetText("Email", Record("Email"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                 Utility.CssToSetText("Password", Record("Password"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                 Utility.CsstoClick("SignInBtn", 3);
-                Utility.Sleep(2);
-                Utility.CsstoClick("clickOnMyInformation", 4);
-                Utility.Sleep(2);
-                string cheapoairMyInfoUrl = Record("CheapoairMyInfoUrl");
-                if (cheapoairMyInfoUrl == Driver.Url)
+                Utility.Sleep(5);
+                if (Prefix + Record("OverViewUrl") == Driver.Url)
                 {
-                    Utility.ByLinkTexttoClick("clickOnMyCoTravelerMenu", 4);
-
-                    string myCoTravelerUrl = Record("MyCoTravelerUrl");
-                    if (myCoTravelerUrl == Driver.Url)
+                    Utility.CsstoClick("clickOnMyInformation", 4);
+                    Utility.Sleep(4);
+                   
+                    if (Prefix+Record("MyInformationUrl") == Driver.Url)
                     {
-                        Utility.CsstoClick("ClickOnAddCoTravellerBtn", 3);
-                        Utility.Sleep(7);
-                        if (!Utility.IsDisplayedUsingCss("ClickOnAddCoTravellerBtn"))
+                        Utility.ByLinkTexttoClick("clickOnMyCoTravelerMenu", 4);
+                        if (Prefix+Record("MyCoTravelerUrl") == Driver.Url)
                         {
-                            if ((Utility.IsDisplayedUsingCss("CoTravelerFlightPreference")) && (Utility.IsDisplayedUsingCss("CotravelerHotelPreference")) && (Utility.IsDisplayedUsingCss("CoTravelerCarPreference")) && (Utility.IsDisplayedUsingCss("AddCoTravelerSection")))
+                            Utility.CsstoClick("ClickOnAddCoTravellerBtn", 3);
+                            Utility.Sleep(7);
+                            if (!Utility.IsDisplayedUsingCss("ClickOnAddCoTravellerBtn"))
                             {
-                                string selectAgeGroupForFirstCotraveler = Record("selectAgeGroupForFirstCotraveler");
-                                var enterAgeGroupForFirstCoTraveler = Driver.FindElement(By.CssSelector(TestEnvironment.LoadXML("SelectCoTravellerAgeGroup")));
-                                var selectElementForFirstCotraveler = new SelectElement(enterAgeGroupForFirstCoTraveler);
-                                selectElementForFirstCotraveler.SelectByText(selectAgeGroupForFirstCotraveler);
-
-                                string _firstNameForFirstCotraveler = Record("FirstNameForFirstCotraveler");
-                                string _lastNameForFirstCotraveler = Record("LastNameForFirstCotraveler");
-                                Utility.CssToSetText("textInFirstname", _firstNameForFirstCotraveler, 3);
-                                Utility.CssToSetText("textInlastName", _lastNameForFirstCotraveler, 3);
-                                string _completeName = _firstNameForFirstCotraveler + " " + _lastNameForFirstCotraveler;
-
-
-                                string _monthForFirstCotraveler = Record("MonthForFirstCotraveler");
-                                var selectMonthForFirstCotraveler = Driver.FindElement(By.CssSelector(TestEnvironment.LoadXML("CoTravellerMonth")));
-                                var selectElementMonthForFirstCotraveler = new SelectElement(selectMonthForFirstCotraveler);
-                                selectElementMonthForFirstCotraveler.SelectByText(_monthForFirstCotraveler);
-
-                                string _dayForFirstCotraveler = Record("DayForFirstCotraveler");
-                                var selectDayFirstCotraveler = Driver.FindElement(By.CssSelector(TestEnvironment.LoadXML("CoTravellerDay")));
-                                var selectElementDayForFirstCotraveler = new SelectElement(selectDayFirstCotraveler);
-                                selectElementDayForFirstCotraveler.SelectByText(_dayForFirstCotraveler);
-
-                                string _yearForFirstCotraveler = Record("YearForFirstCotraveler");
-                                var selectYearFirstCotraveler = Driver.FindElement(By.CssSelector(TestEnvironment.LoadXML("CoTravellerYear")));
-                                var selectElementYearForFirstCotraveler = new SelectElement(selectYearFirstCotraveler);
-                                selectElementYearForFirstCotraveler.SelectByText(_yearForFirstCotraveler);
-
-                                string _genderForFirstCotraveler = Record("GenderForFirstCotraveler");
-                                var selectGenderForFirstCotraveler = Driver.FindElement(By.CssSelector(TestEnvironment.LoadXML("CoTravellerGender")));
-                                var selectElementGenderForFirstCotraveler = new SelectElement(selectGenderForFirstCotraveler);
-                                selectElementGenderForFirstCotraveler.SelectByText(_genderForFirstCotraveler);
-
-                                string SelectTitleForFirstCotraveler = Record("SelectTitleForFirstCotraveler");
-                                var enterTitleForFirstCotraveler = Driver.FindElement(By.CssSelector(TestEnvironment.LoadXML("SelectCoTravellerTitle")));
-                                var selectElementTitleForFirstCotraveler = new SelectElement(enterTitleForFirstCotraveler);
-                                selectElementTitleForFirstCotraveler.SelectByText(SelectTitleForFirstCotraveler);
-
-                                Utility.XPathtoClick("ClickOnFlightPreferecne", 3);
-                                Utility.Sleep(3);
-                                string _homeAirportForFirstCotraveler = Record("HomeAirportForFirstCotraveler");
-                                Utility.CssToSetText("CoTravelerHomeAirPort", _homeAirportForFirstCotraveler, 3);
-                                Utility.CsstoClick("ClickOnSaveCoTravelerBtn", 3);
-                                Utility.Sleep(7);
-                                if (Utility.IsDisplayedUsingCss("ClickOnAddCoTravellerBtn"))
+                                if ((Utility.IsDisplayedUsingCss("CoTravelerFlightPreference")) && (Utility.IsDisplayedUsingCss("CotravelerHotelPreference")) && (Utility.IsDisplayedUsingCss("CoTravelerCarPreference")) && (Utility.IsDisplayedUsingCss("AddCoTravelerSection")))
                                 {
-                                    Utility.CsstoClick("ClickOnAddCoTravellerBtn", 3);
-                                    Utility.Sleep(2);
-                                    if (!Utility.IsDisplayedUsingCss("ClickOnAddCoTravellerBtn"))
-                                    {
+                                    string selectAgeGroupForFirstCotraveler = Record("selectAgeGroupForFirstCotraveler");
+                                    var enterAgeGroupForFirstCoTraveler = Driver.FindElement(By.CssSelector(TestEnvironment.LoadXML("SelectCoTravellerAgeGroup")));
+                                    var selectElementForFirstCotraveler = new SelectElement(enterAgeGroupForFirstCoTraveler);
+                                    selectElementForFirstCotraveler.SelectByText(selectAgeGroupForFirstCotraveler);
 
-                                        if ((Utility.IsDisplayedUsingCss("CoTravelerFlightPreference")) && (Utility.IsDisplayedUsingCss("CotravelerHotelPreference")) && (Utility.IsDisplayedUsingCss("CoTravelerCarPreference")) && (Utility.IsDisplayedUsingCss("AddCoTravelerSection")))
+                                    string _firstNameForFirstCotraveler = Record("FirstNameForFirstCotraveler");
+                                    string _lastNameForFirstCotraveler = Record("LastNameForFirstCotraveler");
+                                    Utility.CssToSetText("textInFirstname", _firstNameForFirstCotraveler, 3);
+                                    Utility.CssToSetText("textInlastName", _lastNameForFirstCotraveler, 3);
+                                    string _completeName = _firstNameForFirstCotraveler + " " + _lastNameForFirstCotraveler;
+
+
+                                    string _monthForFirstCotraveler = Record("MonthForFirstCotraveler");
+                                    var selectMonthForFirstCotraveler = Driver.FindElement(By.CssSelector(TestEnvironment.LoadXML("CoTravellerMonth")));
+                                    var selectElementMonthForFirstCotraveler = new SelectElement(selectMonthForFirstCotraveler);
+                                    selectElementMonthForFirstCotraveler.SelectByText(_monthForFirstCotraveler);
+
+                                    string _dayForFirstCotraveler = Record("DayForFirstCotraveler");
+                                    var selectDayFirstCotraveler = Driver.FindElement(By.CssSelector(TestEnvironment.LoadXML("CoTravellerDay")));
+                                    var selectElementDayForFirstCotraveler = new SelectElement(selectDayFirstCotraveler);
+                                    selectElementDayForFirstCotraveler.SelectByText(_dayForFirstCotraveler);
+
+                                    string _yearForFirstCotraveler = Record("YearForFirstCotraveler");
+                                    var selectYearFirstCotraveler = Driver.FindElement(By.CssSelector(TestEnvironment.LoadXML("CoTravellerYear")));
+                                    var selectElementYearForFirstCotraveler = new SelectElement(selectYearFirstCotraveler);
+                                    selectElementYearForFirstCotraveler.SelectByText(_yearForFirstCotraveler);
+
+                                    string _genderForFirstCotraveler = Record("GenderForFirstCotraveler");
+                                    var selectGenderForFirstCotraveler = Driver.FindElement(By.CssSelector(TestEnvironment.LoadXML("CoTravellerGender")));
+                                    var selectElementGenderForFirstCotraveler = new SelectElement(selectGenderForFirstCotraveler);
+                                    selectElementGenderForFirstCotraveler.SelectByText(_genderForFirstCotraveler);
+
+                                    string SelectTitleForFirstCotraveler = Record("SelectTitleForFirstCotraveler");
+                                    var enterTitleForFirstCotraveler = Driver.FindElement(By.CssSelector(TestEnvironment.LoadXML("SelectCoTravellerTitle")));
+                                    var selectElementTitleForFirstCotraveler = new SelectElement(enterTitleForFirstCotraveler);
+                                    selectElementTitleForFirstCotraveler.SelectByText(SelectTitleForFirstCotraveler);
+
+                                    Utility.XPathtoClick("ClickOnFlightPreferecne", 3);
+                                    Utility.Sleep(3);
+                                    string _homeAirportForFirstCotraveler = Record("HomeAirportForFirstCotraveler");
+                                    Utility.CssToSetText("CoTravelerHomeAirPort", _homeAirportForFirstCotraveler, 3);
+                                    Utility.CsstoClick("ClickOnSaveCoTravelerBtn", 3);
+                                    Utility.Sleep(7);
+                                    if (Utility.IsDisplayedUsingCss("ClickOnAddCoTravellerBtn"))
+                                    {
+                                        Utility.CsstoClick("ClickOnAddCoTravellerBtn", 3);
+                                        Utility.Sleep(2);
+                                        if (!Utility.IsDisplayedUsingCss("ClickOnAddCoTravellerBtn"))
                                         {
 
-                                            string selectAgeGroupForSecondCotraveler = Record("selectAgeGroupForSecondCotraveler");
-                                            var enterAgeGroupForSecondCoTraveler = Driver.FindElement(By.CssSelector(TestEnvironment.LoadXML("SelectCoTravellerAgeGroup")));
-                                            var selectElementForSecondCotraveler = new SelectElement(enterAgeGroupForSecondCoTraveler);
-                                            selectElementForSecondCotraveler.SelectByText(selectAgeGroupForSecondCotraveler);
-
-                                            string _firstNameForSecondCotraveler = Record("FirstNameForSecondCotraveler");
-                                            string _lastNameForSecondCotraveler = Record("LastNameForSecondCotraveler");
-                                            Utility.CssToSetText("textInFirstname", _firstNameForSecondCotraveler, 3);
-                                            Utility.CssToSetText("textInlastName", _lastNameForSecondCotraveler, 3);
-                                            string _completeNameForSecondCoTraveler = _firstNameForSecondCotraveler + " " + _lastNameForSecondCotraveler;
-
-
-                                            string _monthForSecondCotraveler = Record("MonthForSecondCotraveler");
-                                            var selectMonthForSecondCotraveler = Driver.FindElement(By.CssSelector(TestEnvironment.LoadXML("CoTravellerMonth")));
-                                            var selectElementMonthForSecondCotraveler = new SelectElement(selectMonthForSecondCotraveler);
-                                            selectElementMonthForSecondCotraveler.SelectByText(_monthForSecondCotraveler);
-
-                                            string _dayForSecondCotraveler = Record("DayForSecondCotraveler");
-                                            var selectDaySecondCotraveler = Driver.FindElement(By.CssSelector(TestEnvironment.LoadXML("CoTravellerDay")));
-                                            var selectElementDayForSecondCotraveler = new SelectElement(selectDaySecondCotraveler);
-                                            selectElementDayForSecondCotraveler.SelectByText(_dayForSecondCotraveler);
-
-                                            string _yearForSecondCotraveler = Record("YearForSecondCotraveler");
-                                            var selectYearSecondCotraveler = Driver.FindElement(By.CssSelector(TestEnvironment.LoadXML("CoTravellerYear")));
-                                            var selectElementYearForSecondCotraveler = new SelectElement(selectYearSecondCotraveler);
-                                            selectElementYearForSecondCotraveler.SelectByText(_yearForSecondCotraveler);
-
-                                            string _genderForSecondCotraveler = Record("GenderForSecondCotraveler");
-                                            var selectGenderForSecondCotraveler = Driver.FindElement(By.CssSelector(TestEnvironment.LoadXML("CoTravellerGender")));
-                                            var selectElementGenderForSecondCotraveler = new SelectElement(selectGenderForSecondCotraveler);
-                                            selectElementGenderForSecondCotraveler.SelectByText(_genderForSecondCotraveler);
-
-                                            string SelectTitleForSecondCotraveler = Record("SelectTitleForSecondCotraveler");
-                                            var enterTitleForSecondCotraveler = Driver.FindElement(By.CssSelector(TestEnvironment.LoadXML("SelectCoTravellerTitle")));
-                                            var selectElementTitleForSecondCotraveler = new SelectElement(enterTitleForSecondCotraveler);
-                                            selectElementTitleForSecondCotraveler.SelectByText(SelectTitleForSecondCotraveler);
-
-                                            Utility.XPathtoClick("ClickOnFlightPreferecne", 3);
-                                            Utility.Sleep(3);
-                                            string _homeAirportForSecondCotraveler = Record("HomeAirportForSecondCotraveler");
-                                            Utility.CssToSetText("CoTravelerHomeAirPort", _homeAirportForSecondCotraveler, 3);
-                                            Utility.CsstoClick("ClickOnSaveCoTravelerBtn", 3);
-                                            Utility.Sleep(3);
-
-
-                                            string xpath = "html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/form/div[1]/div/div[2]";
-                                            if (Utility.IsDisplayedUsingXpathForMoltingInnerText(xpath))
+                                            if ((Utility.IsDisplayedUsingCss("CoTravelerFlightPreference")) && (Utility.IsDisplayedUsingCss("CotravelerHotelPreference")) && (Utility.IsDisplayedUsingCss("CoTravelerCarPreference")) && (Utility.IsDisplayedUsingCss("AddCoTravelerSection")))
                                             {
-                                                string getDetails = Driver.FindElement(By.XPath(xpath)).Text;
-                                                string[] detailsforFirstCoTraveler = getDetails.Replace("\r\n", "_").Split("_".ToCharArray());
-                                                Assert.AreEqual(_completeName, detailsforFirstCoTraveler[0]);
 
-                                                int str = Driver.FindElements(By.CssSelector(UserProfileSPA.Library.TestEnvironment.LoadXML("DeleteCoTraveler"))).Count();
-                                                int num = Convert.ToInt32(2);
-                                                for (int i = 1; i <= str; i++)
+                                                string selectAgeGroupForSecondCotraveler = Record("selectAgeGroupForSecondCotraveler");
+                                                var enterAgeGroupForSecondCoTraveler = Driver.FindElement(By.CssSelector(TestEnvironment.LoadXML("SelectCoTravellerAgeGroup")));
+                                                var selectElementForSecondCotraveler = new SelectElement(enterAgeGroupForSecondCoTraveler);
+                                                selectElementForSecondCotraveler.SelectByText(selectAgeGroupForSecondCotraveler);
+
+                                                string _firstNameForSecondCotraveler = Record("FirstNameForSecondCotraveler");
+                                                string _lastNameForSecondCotraveler = Record("LastNameForSecondCotraveler");
+                                                Utility.CssToSetText("textInFirstname", _firstNameForSecondCotraveler, 3);
+                                                Utility.CssToSetText("textInlastName", _lastNameForSecondCotraveler, 3);
+                                                string _completeNameForSecondCoTraveler = _firstNameForSecondCotraveler + " " + _lastNameForSecondCotraveler;
+
+
+                                                string _monthForSecondCotraveler = Record("MonthForSecondCotraveler");
+                                                var selectMonthForSecondCotraveler = Driver.FindElement(By.CssSelector(TestEnvironment.LoadXML("CoTravellerMonth")));
+                                                var selectElementMonthForSecondCotraveler = new SelectElement(selectMonthForSecondCotraveler);
+                                                selectElementMonthForSecondCotraveler.SelectByText(_monthForSecondCotraveler);
+
+                                                string _dayForSecondCotraveler = Record("DayForSecondCotraveler");
+                                                var selectDaySecondCotraveler = Driver.FindElement(By.CssSelector(TestEnvironment.LoadXML("CoTravellerDay")));
+                                                var selectElementDayForSecondCotraveler = new SelectElement(selectDaySecondCotraveler);
+                                                selectElementDayForSecondCotraveler.SelectByText(_dayForSecondCotraveler);
+
+                                                string _yearForSecondCotraveler = Record("YearForSecondCotraveler");
+                                                var selectYearSecondCotraveler = Driver.FindElement(By.CssSelector(TestEnvironment.LoadXML("CoTravellerYear")));
+                                                var selectElementYearForSecondCotraveler = new SelectElement(selectYearSecondCotraveler);
+                                                selectElementYearForSecondCotraveler.SelectByText(_yearForSecondCotraveler);
+
+                                                string _genderForSecondCotraveler = Record("GenderForSecondCotraveler");
+                                                var selectGenderForSecondCotraveler = Driver.FindElement(By.CssSelector(TestEnvironment.LoadXML("CoTravellerGender")));
+                                                var selectElementGenderForSecondCotraveler = new SelectElement(selectGenderForSecondCotraveler);
+                                                selectElementGenderForSecondCotraveler.SelectByText(_genderForSecondCotraveler);
+
+                                                string SelectTitleForSecondCotraveler = Record("SelectTitleForSecondCotraveler");
+                                                var enterTitleForSecondCotraveler = Driver.FindElement(By.CssSelector(TestEnvironment.LoadXML("SelectCoTravellerTitle")));
+                                                var selectElementTitleForSecondCotraveler = new SelectElement(enterTitleForSecondCotraveler);
+                                                selectElementTitleForSecondCotraveler.SelectByText(SelectTitleForSecondCotraveler);
+
+                                                Utility.XPathtoClick("ClickOnFlightPreferecne", 3);
+                                                Utility.Sleep(3);
+                                                string _homeAirportForSecondCotraveler = Record("HomeAirportForSecondCotraveler");
+                                                Utility.CssToSetText("CoTravelerHomeAirPort", _homeAirportForSecondCotraveler, 3);
+                                                Utility.CsstoClick("ClickOnSaveCoTravelerBtn", 3);
+                                                Utility.Sleep(3);
+
+
+                                                string xpath = "html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/form/div[1]/div/div[2]";
+                                                if (Utility.IsDisplayedUsingXpathForMoltingInnerText(xpath))
                                                 {
-                                                    xpath = "html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/form/div[1]/div/div[" + (num + i) + "]";
-                                                    if (Utility.IsDisplayedUsingXpathForMoltingInnerText(xpath))
+                                                    string getDetails = Driver.FindElement(By.XPath(xpath)).Text;
+                                                    string[] detailsforFirstCoTraveler = getDetails.Replace("\r\n", "_").Split("_".ToCharArray());
+                                                    Assert.AreEqual(_completeName, detailsforFirstCoTraveler[0]);
+
+                                                    int str = Driver.FindElements(By.CssSelector(UserProfileSPA.Library.TestEnvironment.LoadXML("DeleteCoTraveler"))).Count();
+                                                    int num = Convert.ToInt32(2);
+                                                    for (int i = 1; i <= str; i++)
                                                     {
-                                                        getDetails = Driver.FindElement(By.XPath(xpath)).Text;
-                                                        string[] detailsForOthers = getDetails.Replace("\r\n", "_").Split("_".ToCharArray());
-                                                        Assert.AreEqual(_completeNameForSecondCoTraveler, detailsForOthers[0]);
+                                                        xpath = "html/body/div[1]/div[2]/div[2]/div/div/div[4]/div/div/div[2]/div/div/div/form/div[1]/div/div[" + (num + i) + "]";
+                                                        if (Utility.IsDisplayedUsingXpathForMoltingInnerText(xpath))
+                                                        {
+                                                            getDetails = Driver.FindElement(By.XPath(xpath)).Text;
+                                                            string[] detailsForOthers = getDetails.Replace("\r\n", "_").Split("_".ToCharArray());
+                                                            Assert.AreEqual(_completeNameForSecondCoTraveler, detailsForOthers[0]);
 
+                                                        }
                                                     }
+                                                    for (int i = 1; i <= str; i++)
+                                                    {
+                                                        Utility.CsstoClick("DeleteCoTraveler", 3);
+                                                    }
+                                                    Utility.CsstoClick("ClickOnWelcomeDropdown", 4);
+                                                    Utility.Sleep(2);
+                                                    Utility.CsstoClick("ClickOnSignOut", 4);
                                                 }
-                                                for (int i = 1; i <= str; i++)
+                                                else
                                                 {
-                                                    Utility.CsstoClick("DeleteCoTraveler", 3);
+                                                    Assert.IsTrue(false, "there is no cotraveller at the moment.");
                                                 }
-                                                Utility.CsstoClick("ClickOnWelcomeDropdown", 4);
-                                                Utility.Sleep(2);
-                                                Utility.CsstoClick("ClickOnSignOut", 4);
                                             }
                                             else
                                             {
-                                                //there is no cotraveller at the moment.
+                                                Assert.IsTrue(false, "Add CoTraveler Button still there.");
                                             }
                                         }
                                         else
                                         {
-                                            Assert.IsTrue(false, "Add CoTraveler Button still there.");
+                                            Assert.IsTrue(false, "AddCoTraveler Button still displayed.");
                                         }
                                     }
                                     else
                                     {
-                                        Assert.IsTrue(false, "AddCoTraveler Button still displayed.");
+                                        Assert.IsTrue(false, "Might be sections not displayed");
                                     }
                                 }
                                 else
                                 {
-                                    Assert.IsTrue(false, "Might be sections not displayed");
+                                    Assert.IsTrue(false, "Add CoTraveler Button still there.");
                                 }
                             }
-                            else
-                            {
-                                Assert.IsTrue(false, "Add CoTraveler Button still there.");
-                            }
+                        }
+                        else
+                        {
+                            Assert.IsTrue(false, "MyCoTraveler url is not opened.");
                         }
                     }
+                    else
+                    {
+                        Assert.IsTrue(false, "MyInformation url is not opened.");
+                    }
                 }
+                else
+                {
+                    Assert.IsTrue(false, "OverView url is not opened.");
+                }
+            }
+            else
+            {
+                Assert.IsTrue(false, "SignIn url is not opened.");
             }
         }
 
