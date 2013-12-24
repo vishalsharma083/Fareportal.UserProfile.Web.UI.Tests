@@ -576,6 +576,7 @@ namespace UserProfileSPA.TestCases
                                 {
                                     //if (checkType == "select-one")
                                     //{
+                                    Utility.Sleep(5);
                                         var element = Driver.FindElement(By.CssSelector(UserProfileSPA.Library.TestEnvironment.LoadXML("BillingAddressCountry")));
                                         var selectElement = new SelectElement(element);
                                         selectElement.SelectByText(_country);
