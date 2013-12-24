@@ -54,6 +54,8 @@ namespace UserProfileSPA.TestCases
                 Utility.CssToSetText("Password", Record("Password"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                 Utility.CsstoClick("SignInBtn", 3);
                 string[] expextedPasswordNotMatchingValidation = UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("expectedPasswordNotMatchingValidationError").Split("\r\n".ToCharArray());
+                Utility.Sleep(5);
+
                 string actualErr = Utility.ByCss("PasswordNotMatchingValidation", 3);
                 string[] actualPasswordNotMatchingValidation = actualErr.Split("\r\n".ToCharArray());
                 int i = 0;
@@ -80,9 +82,8 @@ namespace UserProfileSPA.TestCases
             if (Prefix + SignInUrl == Driver.Url)
             {
                 Utility.CsstoClick("SignInBtn", 2);
-                string _overViewUrl = Record("OverViewUrl");
                 Utility.Sleep(4);
-                if (Prefix + _overViewUrl == Driver.Url)
+                if (Prefix + Record("OverViewUrl") == Driver.Url)
                 {
                     string expectedName = Utility.ByXpath("TravelerNameAccount", 3);
                     string[] _expectedName = expectedName.Split(" ".ToCharArray());

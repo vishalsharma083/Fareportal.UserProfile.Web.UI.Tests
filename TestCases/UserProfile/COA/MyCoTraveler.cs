@@ -188,7 +188,9 @@ namespace UserProfileSPA.TestCases
                                                     }
                                                     for (int i = 1; i <= str; i++)
                                                     {
+                                                        Utility.Sleep(2);
                                                         Utility.CsstoClick("DeleteCoTraveler", 3);
+                                                        Utility.Sleep(2);
                                                     }
                                                     Utility.CsstoClick("ClickOnWelcomeDropdown", 4);
                                                     Utility.Sleep(2);

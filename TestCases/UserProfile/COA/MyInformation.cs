@@ -390,8 +390,8 @@ namespace UserProfileSPA.TestCases
                             Driver.FindElement(By.CssSelector("input[id='txtPassword']")).SendKeys(password);
                             Driver.FindElement(By.CssSelector("input[id='btnSignIn']")).Click();
                             Utility.Sleep(10);
-                            
-                            Utility.CsstoClick("clickOnMyInformation", 10);
+                            Driver.FindElement(By.CssSelector("a[class='myAccount']")).Click();
+                            //Utility.CsstoClick("clickOnMyInformation", 10);
                             Assert.AreEqual(emailAddress, _veyfyEmail);
                         }
                         else { Assert.IsTrue(false, "OverViewUrl is not opened."); }
@@ -414,7 +414,7 @@ namespace UserProfileSPA.TestCases
                 Utility.CssToSetText("Password", Record("Password"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
            
                 Utility.CsstoClick("SignInBtn", 4);
-                Utility.Sleep(3);
+                Utility.Sleep(20);
                 if (Prefix+Record("OverViewUrl") == Driver.Url)
                 {
                     Utility.CsstoClick("clickOnMyInformation", 4);
@@ -518,9 +518,9 @@ namespace UserProfileSPA.TestCases
                                 Driver.FindElement(By.CssSelector("input[id='newConfirmPassword']")).SendKeys(_confrmPrevpassword);
 
                                 Driver.FindElement(By.CssSelector("span[class='tick_icon saveEditedPrefBtn']")).Click();
-                                Driver.FindElement(By.CssSelector("a[class='dropdown-toggle mgLft5']")).Click();
-                                Utility.Sleep(2);
-                                Driver.FindElement(By.CssSelector("a[id='btnLogOut']")).Click();
+                                //Driver.FindElement(By.CssSelector("a[class='dropdown-toggle mgLft5']")).Click();
+                                //Utility.Sleep(2);
+                                //Driver.FindElement(By.CssSelector("a[id='btnLogOut']")).Click();
 
                             }
 
@@ -1068,10 +1068,10 @@ namespace UserProfileSPA.TestCases
                 string _overViewUrl = Record("OverViewUrl");
                 if (Prefix + _overViewUrl == Driver.Url)
                 {
-                    string _myinfoUrl = Record("MyInformationUrl");
+               
                     Utility.CsstoClick("clickOnMyInformation", 4);
                     Utility.Sleep(2);
-                    if (Prefix + _myinfoUrl == Driver.Url)
+                    if (Prefix + Record("MyInformationUrl") == Driver.Url)
                     {
                         string _selectedGender = Record("SelectedGender");
                         var _gender = Driver.FindElement(By.CssSelector(UserProfileSPA.Library.TestEnvironment.LoadXML("Gender")));
@@ -1127,7 +1127,7 @@ namespace UserProfileSPA.TestCases
                 Utility.CssToSetText("Email", Record("Email"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                 Utility.CssToSetText("Password", Record("Password"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                 Utility.CsstoClick("SignInBtn", 3);
-                Utility.Sleep(5);
+                Utility.Sleep(10);
                 string _overViewUrl = Record("OverViewUrl");
                 if (Prefix + _overViewUrl == Driver.Url)
                 {
@@ -1178,6 +1178,7 @@ namespace UserProfileSPA.TestCases
                                 if (expectedErrorMsg != "No Error")
                                 {
                                     Utility.CsstoClick("SaveInformationBtn", 5);
+                                    Utility.CsstoClick("SaveInformationBtn", 5);
                                     Utility.Sleep(7);
                                     string actualErrorMsg = Utility.ByXpath("LeapYearErrorMsgInMyDetails", UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                                     Utility.Sleep(3);
@@ -1203,7 +1204,7 @@ namespace UserProfileSPA.TestCases
         }
 
 
-        [DeploymentItem("verifyGenderAgainstTitle.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\verifyGenderAgainstTitle.csv", "verifyGenderAgainstTitle#csv", DataAccessMethod.Sequential), TestMethod]
+        [DeploymentItem("AppData\\verifyGenderAgainstTitle.csv"), DeploymentItem("verifyGenderAgainstTitle.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\verifyGenderAgainstTitle.csv", "verifyGenderAgainstTitle#csv", DataAccessMethod.Sequential), TestMethod]
         public void verifyGenderAgainstTitle()
         {
             IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
@@ -1214,15 +1215,12 @@ namespace UserProfileSPA.TestCases
                 Utility.CssToSetText("Password", Record("Password"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                 Utility.CsstoClick("SignInBtn", 3);
                 Utility.Sleep(5);
-
-                string _overViewUrl = Record("OverViewUrl");
-                if (Prefix + _overViewUrl == Driver.Url)
+                if (Prefix + Record("OverViewUrl") == Driver.Url)
                 {
                     Utility.Sleep(2);
                     Utility.CsstoClick("clickOnMyInformation", 4);
                     Utility.Sleep(2);
-                    string _myInfoUrl = Record("MyInformationUrl");
-                    if (Prefix+_myInfoUrl == Driver.Url)
+                    if (Prefix + Record("MyInformationUrl") == Driver.Url)
                     {
                         string titlesWhenGenderIsNoSpecified = UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("titlesWhenGenderIsNoSpecified");
                         string[] _titlesWhenGenderIsNoSpecified = titlesWhenGenderIsNoSpecified.Split(",".ToCharArray());
