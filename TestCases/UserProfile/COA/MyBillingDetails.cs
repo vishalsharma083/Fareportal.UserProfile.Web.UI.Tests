@@ -451,8 +451,8 @@ namespace UserProfileSPA.TestCases
                                 string lastnameValidation = Utility.ByXpath("lastnameValidation", 4);
                                 Assert.AreEqual(ValidationsIfMyBillingDetailsIsEmpty[3], lastnameValidation);
 
-                                string cardNickNameValidation = Utility.ByXpath("cardNickNameValidation", 4);
-                                Assert.AreEqual(ValidationsIfMyBillingDetailsIsEmpty[4], cardNickNameValidation);
+                                //string cardNickNameValidation = Utility.ByXpath("cardNickNameValidation", 4);
+                                //Assert.AreEqual(ValidationsIfMyBillingDetailsIsEmpty[4], cardNickNameValidation);
 
                                 string addressLine1ValidationInbillingDetails = Utility.ByXpath("addressLine1ValidationInbillingDetails", 4);
                                 Assert.AreEqual(ValidationsIfMyBillingDetailsIsEmpty[5], addressLine1ValidationInbillingDetails);
