@@ -340,7 +340,7 @@ namespace UserProfileSPA.TestCases
                     {
                         Utility.Sleep(8);
                         Utility.ByLinkTexttoClick("ClickOnMyBillingDetails", 4);
-                        Utility.Sleep(4);
+                         Utility.Sleep(4);
                         if (Prefix+Record("MyBillingDetailsUrl") == Driver.Url)
                         {
                             Utility.CssToSetText("textcardNumber", enterCardNumber, 3);
