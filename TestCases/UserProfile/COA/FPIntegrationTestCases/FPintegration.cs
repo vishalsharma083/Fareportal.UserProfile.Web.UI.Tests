@@ -8,7 +8,7 @@ using UserProfileSPA.Library;
 using System.Text.RegularExpressions;
 using System.Configuration;
 
-namespace UserProfileSPA.TestCases.UserProfile.COA
+namespace UserProfileSPA.TestCases
 {
      [TestClass]
     public class FPintegration
