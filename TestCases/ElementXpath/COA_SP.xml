@@ -354,4 +354,20 @@
     
     
   </MyDeal>
+
+
+  <FPIntegration>
+
+    <MyBooking>
+      <ClickOnMyBookingLink>My Bookings</ClickOnMyBookingLink>
+      <ClickOnSignInToViewYourBooking>span[calss='guestWrap']</ClickOnSignInToViewYourBooking>
+      <ClickOnSignInButton>a[id$='lbtnSignIn']</ClickOnSignInButton>
+      <ValidationForEmailAddress>html/body/form/table/tbody/tr[2]/td[1]/table/tbody/tr/td/table/tbody/tr[2]/td/table[2]/tbody/tr/td/div/div[2]/div[2]/div[1]/div/div[2]/div/div/p[1]/span[2]</ValidationForEmailAddress>
+      <ValidationForPassword>html/body/form/table/tbody/tr[2]/td[1]/table/tbody/tr/td/table/tbody/tr[2]/td/table[2]/tbody/tr/td/div/div[2]/div[2]/div[1]/div/div[2]/div/div/p[2]/span</ValidationForPassword>
+      <TextInEmailAddess>input[id='txtEmailAddressSignIn']</TextInEmailAddess>
+      <TextInPassword>input[id='txtSignInPassword']</TextInPassword>
+      
+    </MyBooking>
+    
+  </FPIntegration>
 </UserProfile>

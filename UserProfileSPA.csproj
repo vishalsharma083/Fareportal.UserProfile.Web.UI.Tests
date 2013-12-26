@@ -68,14 +68,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Library\TestEnvironment.cs" />
-    <Compile Include="TestCases\UserProfile\COA\CreateAnAccount.cs" />
-    <Compile Include="TestCases\UserProfile\COA\MyBillingDetails.cs" />
-    <Compile Include="TestCases\UserProfile\COA\MyCoTraveler.cs" />
-    <Compile Include="TestCases\UserProfile\COA\MyDeals.cs" />
-    <Compile Include="TestCases\UserProfile\COA\MyInformation.cs" />
-    <Compile Include="TestCases\UserProfile\COA\OverViewSection.cs" />
-    <Compile Include="TestCases\UserProfile\COA\Setting.cs" />
-    <Compile Include="TestCases\UserProfile\COA\SignIn.cs" />
+    <Compile Include="TestCases\UserProfile\COA\UserProfileTestCases\CreateAnAccount.cs" />
+    <Compile Include="TestCases\UserProfile\COA\FPIntegrationTestCases\FPintegration.cs" />
+    <Compile Include="TestCases\UserProfile\COA\UserProfileTestCases\MyBillingDetails.cs" />
+    <Compile Include="TestCases\UserProfile\COA\UserProfileTestCases\MyCoTraveler.cs" />
+    <Compile Include="TestCases\UserProfile\COA\UserProfileTestCases\MyDeals.cs" />
+    <Compile Include="TestCases\UserProfile\COA\UserProfileTestCases\MyInformation.cs" />
+    <Compile Include="TestCases\UserProfile\COA\UserProfileTestCases\OverViewSection.cs" />
+    <Compile Include="TestCases\UserProfile\COA\UserProfileTestCases\Setting.cs" />
+    <Compile Include="TestCases\UserProfile\COA\UserProfileTestCases\SignIn.cs" />
     <Compile Include="TestCases\UserProfile\UserProfileTestBase.cs" />
     <Compile Include="Utility\UserProfileSettings.cs" />
     <Compile Include="Utility\Utility.cs" />

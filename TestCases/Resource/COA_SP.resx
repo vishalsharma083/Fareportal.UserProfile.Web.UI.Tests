@@ -245,4 +245,7 @@ Click here to create an account – its quick &amp; easy.</value>
   <data name="ValidationsInHomeAway" xml:space="preserve">
     <value>Please enter both city codes</value>
   </data>
+  <data name="SignInToViewYourBookingAllValidations" xml:space="preserve">
+    <value>Please provide email address,Please provide password,Please enter valid email address</value>
+  </data>
 </root>

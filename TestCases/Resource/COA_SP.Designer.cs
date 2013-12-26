@@ -339,6 +339,15 @@ namespace UserProfileSPA.TestCases.Resource {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please provide email address,Please provide password,Please enter valid email address.
+        /// </summary>
+        internal static string SignInToViewYourBookingAllValidations {
+            get {
+                return ResourceManager.GetString("SignInToViewYourBookingAllValidations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Start Search Now.
         /// </summary>
         internal static string StartSearchNowBtnRS {

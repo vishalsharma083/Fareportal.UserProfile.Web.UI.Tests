@@ -864,7 +864,7 @@ namespace UserProfileSPA.TestCases
                         if (Utility.GrabAttributeValueByCss("TextAddressOne", "type", 2) == "text")
                         {
 
-                            if (string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("TextCity", "value", 2)) && string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("TextCity", "value", 2)))
+                            if (string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("TextInEmailAddess", "value", 2)) && string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("TextInPassword", "value", 2)))
                             {
 
                                 string CityNamemissingValidation = Utility.ByXpath("CityNamemissingValidation", 4);
