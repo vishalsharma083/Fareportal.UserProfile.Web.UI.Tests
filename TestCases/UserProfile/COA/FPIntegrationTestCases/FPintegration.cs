@@ -102,6 +102,77 @@ namespace UserProfileSPA.TestCases
             }
         }
 
+        [DeploymentItem("EmailAddressAlreadyExistInSignInToViewYourBooking.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\EmailAddressAlreadyExistInSignInToViewYourBooking.csv", "EmailAddressAlreadyExistInSignInToViewYourBooking#csv", DataAccessMethod.Sequential), TestMethod]
+        public void EmailAddressAlreadyExist()
+        {
+            IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
+            string _signInToViewYourBookingAllValidations = UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("SignInToViewYourBookingAllValidations");
+            string[] ToViewYourBookingAllValidations = _signInToViewYourBookingAllValidations.Split(",".ToCharArray());
+            if (Prefix + SignInUrl == Driver.Url)
+            {
+                Utility.ByLinkTexttoClick("ClickOnMyBookingLink", UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
+                Utility.Sleep(4);
+                Utility.XPathtoClick("ClickOnSignInToViewYourBooking", UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
+                Utility.Sleep(4);
+                if (Prefix + Record("MyBookingUrl") == Driver.Url)
+                {
+                    Utility.CssToSetText("TextInEmailAddess", Record("EnterAlreadyExistEmail"), 3);
+                    Utility.XpathToSetText("TextInPassword",Record("Password"),9);
+                    Utility.CsstoClick("ClickOnCreateAnAccountBtnSignUpFree", 4);
+                    Utility.Sleep(15);
+                    string _actualerrorForEmailAddress = Utility.ByXpath("ErrorInEmailAllreadyExist", UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
+                 
+                    string expectedWhenEmailIsAlreadyExist = UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("expectedWhenEmailIsAlreadyExist");
+                    Assert.AreEqual(ToViewYourBookingAllValidations[3], _actualerrorForEmailAddress);
+                }
+                else
+                {
+                    Assert.IsTrue(false, "SignUpUrl is not opened.");
+                }
+            }
+            else
+            {
+                Assert.IsTrue(false, "SignInUrl is not opened.");
+            }
+        }
+        [DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\RegisterForFreeAllvalidations.csv", "RegisterForFreeAllvalidations#csv", DataAccessMethod.Sequential), DeploymentItem("RegisterForFreeAllvalidations.csv"), TestMethod]
+        public void RegisterForFreeAllvalidations()
+        {
+            IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
+            if (Prefix + SignInUrl == Driver.Url)
+            {               
+                Utility.ByLinkTexttoClick("ClickOnMyBookingLink", UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
+                Utility.Sleep(4);
+                if (Prefix + Record("MyBookingUrl") == Driver.Url)
+                {
+                    string _createMyAccountAllValidation = UserProfileSPA.TestCases.Resource.COA_SP.ResourceManager.GetString("CreateMyAccountAllValidation");
+                    string[] CreateMyAccountAllValidation = _createMyAccountAllValidation.Split(",".ToCharArray());
+
+                    Utility.XPathtoClick("ClickOnSignInToViewYourBooking", UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
+                    Utility.Sleep(4);
+
+                    Utility.CssToSetText("TextEmailAddressInRegister", Record("Email"), 3);
+                    Utility.CssToSetText("TextPasswordInRegister", Record("Password"), 3);
+                    Utility.CssToSetText("TextInRetypePassword", Record("ConfrmPassword"), 3);
+                   
+                    Utility.CsstoClick("ClickOnCreateMyAcccountBtn", UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);              
+
+
+                    if (string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("TextEmailAddressInRegister", "value", 3)) && (string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("TextEmailAddressInRegister", "value", 3))) && (string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("TextInRetypePassword", "value", 3)))) 
+                    {
+                        string _actualErrorInRegisterEmailAddress = Utility.ByXpath("ErrorInRegisteremailAddress", UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
+                        Assert.AreEqual(CreateMyAccountAllValidation[0], _actualErrorInRegisterEmailAddress);
+
+                        string _actualErrorInRegisterPassword = Utility.ByXpath("ErrorInRegisterPassword", UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
+                        Assert.AreEqual(CreateMyAccountAllValidation[1], _actualErrorInRegisterPassword);
+
+                        string _actualErrorInRegisterConfrmPassword = Utility.ByXpath("ErrorInRegistetConFrmPassword", UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
+                        Assert.AreEqual(CreateMyAccountAllValidation[2], _actualErrorInRegisterConfrmPassword);
+                    
+                    }                                   
+                }
+            }
+        }
         [TestCleanup]
         public void Cleanup()
         {

@@ -115,6 +115,15 @@ namespace UserProfileSPA.TestCases.Resource {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please provide email address,Please type password,Please re-type password,Please enter valid email address, Please provide a password which is 5-32 characters long,Passwords do not match.
+        /// </summary>
+        internal static string CreateMyAccountAllValidation {
+            get {
+                return ResourceManager.GetString("CreateMyAccountAllValidation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Both passwords do not match.
         /// </summary>
         internal static string ecpectedWhenBothNotSame {
@@ -339,7 +348,7 @@ namespace UserProfileSPA.TestCases.Resource {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please provide email address,Please provide password,Please enter valid email address.
+        ///   Looks up a localized string similar to Please provide email address,Please provide password,Please enter valid email address,Invalid email/password..
         /// </summary>
         internal static string SignInToViewYourBookingAllValidations {
             get {

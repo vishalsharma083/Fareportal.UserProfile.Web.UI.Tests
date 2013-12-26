@@ -78,6 +78,37 @@ namespace UserProfileSPA
             }
         }
 
+
+
+
+        public static void XpathToSetText(string xmlTagName_, string testCaseValue_, int elementSearchTimeOut_) 
+        {
+
+            if (String.IsNullOrEmpty(testCaseValue_))
+            {
+                return;
+            }
+
+            string XMLValue = UserProfileSPA.Library.TestEnvironment.LoadXML(xmlTagName_);
+            try
+            {
+                TestEnvironment.WaitForElementPresent(By.CssSelector(XMLValue), elementSearchTimeOut_);
+
+                var element = TestEnvironment.Driver.FindElement(By.XPath(XMLValue));
+                if (!String.IsNullOrEmpty(testCaseValue_))
+                {
+                    element.Clear();
+                    element.SendKeys(testCaseValue_);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new NotFoundException("Not able to locate the element <" + xmlTagName_ + "> even after " + elementSearchTimeOut_ + " secs. " + "EXCEPTION: " + ex);
+            }
+        }
+
+
+
         public static void ByClasstoClick(string xmlTagName_, int Time_WaitForElementPresent)
         {
             try
