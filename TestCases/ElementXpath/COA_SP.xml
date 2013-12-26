@@ -379,6 +379,7 @@
       <ErrorInRegisterEmailWhenNotCorrect>html/body/form/table/tbody/tr[2]/td[1]/table/tbody/tr/td/table/tbody/tr[2]/td/table[2]/tbody/tr/td/div/div[2]/div[2]/div[1]/div/div[3]/div/p[1]/span[3]</ErrorInRegisterEmailWhenNotCorrect>
       <ErrorInRegisterPasswordWhenNotCorrect>html/body/form/table/tbody/tr[2]/td[1]/table/tbody/tr/td/table/tbody/tr[2]/td/table[2]/tbody/tr/td/div/div[2]/div[2]/div[1]/div/div[3]/div/p[2]/span[2]</ErrorInRegisterPasswordWhenNotCorrect>
       <ErrorInRegisterConfrmPasswordWhenNotCorrect>html/body/form/table/tbody/tr[2]/td[1]/table/tbody/tr/td/table/tbody/tr[2]/td/table[2]/tbody/tr/td/div/div[2]/div[2]/div[1]/div/div[3]/div/p[3]/span[2]</ErrorInRegisterConfrmPasswordWhenNotCorrect>
+      <ActualCreateAnAccMsg>html/body/form/table/tbody/tr[2]/td[1]/table/tbody/tr/td/table/tbody/tr[2]/td/table[2]/tbody/tr/td/div/div[2]/div[2]/div[2]/div[1]/div[1]</ActualCreateAnAccMsg>
     </MyBooking>
     
   </FPIntegration>
