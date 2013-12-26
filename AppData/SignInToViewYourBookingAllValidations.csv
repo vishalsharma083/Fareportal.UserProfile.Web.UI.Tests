@@ -1,5 +1,5 @@
-Email,Password
-"",""
-"","123456"
-"ascdsfs",""
-"afsdfsgf","1234456"
+Email,Password,MyBookingUrl
+,,"//www.cheapoair.com/default.aspx?tabid=2885"
+"","123456","//www.cheapoair.com/default.aspx?tabid=2885"
+"ascdsfs","","//www.cheapoair.com/default.aspx?tabid=2885"
+"afsdfsgf","1234456","//www.cheapoair.com/default.aspx?tabid=2885"
