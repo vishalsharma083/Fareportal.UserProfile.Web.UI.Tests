@@ -169,7 +169,18 @@ namespace UserProfileSPA.TestCases
                         string _actualErrorInRegisterConfrmPassword = Utility.ByXpath("ErrorInRegistetConFrmPassword", UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                         Assert.AreEqual(CreateMyAccountAllValidation[2], _actualErrorInRegisterConfrmPassword);
                     
-                    }                                   
+                    }
+                    else if (!string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("TextEmailAddressInRegister", "value", 3)) && (!string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("TextEmailAddressInRegister", "value", 3))) && (!string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("TextInRetypePassword", "value", 3))))
+                    {
+                        string _actualErrorInRegisterEmailAddress = Utility.ByXpath("ErrorInRegisterEmailWhenNotCorrect", UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
+                        Assert.AreEqual(CreateMyAccountAllValidation[3], _actualErrorInRegisterEmailAddress);
+
+                        string _actualErrorInRegisterPassword = Utility.ByXpath("ErrorInRegisterPasswordWhenNotCorrect", UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
+                        Assert.AreEqual(CreateMyAccountAllValidation[4], _actualErrorInRegisterPassword);
+
+                        string _actualErrorInRegisterConfrmPassword = Utility.ByXpath("ErrorInRegisterConfrmPasswordWhenNotCorrect", UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
+                        Assert.AreEqual(CreateMyAccountAllValidation[5], _actualErrorInRegisterConfrmPassword);
+                    }                    
                 }
             }
         }
