@@ -14,6 +14,7 @@ namespace UserProfileSPA.TestCases
     [TestClass]
     public class FPIntegration
     {
+
         string SignInUrl = ConfigurationManager.AppSettings["URL"];
         string Prefix = ConfigurationManager.AppSettings["UrlPrefix"];
 
@@ -39,7 +40,7 @@ namespace UserProfileSPA.TestCases
             return TestContext.DataRow[columnName_].ToString();
         }
 
-
+        [TestMethod]
         public void SignInToViewYourBookingAllValidations()
         {
             IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
@@ -56,8 +57,8 @@ namespace UserProfileSPA.TestCases
 
             Utility.CsstoClick("ClickOnSignInButton", UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
             if (string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("TextCity", "value", 2)) && string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("TextCity", "value", 2)))
-            {              
-               
+            {
+
                 string _actualerrorForEmailAddress = Utility.ByXpath("ValidationForEmailAddress", UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                 string _actualerrorForPassword = Utility.ByXpath("ValidationForPassword", UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
 
@@ -87,13 +88,10 @@ namespace UserProfileSPA.TestCases
             }
         }
 
-          
         [TestCleanup]
         public void Cleanup()
         {
             UserProfileSPA.Library.TestEnvironment.Dispose();
-        }    
-    
-    
+        }  
     }
 }
