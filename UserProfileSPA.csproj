@@ -68,8 +68,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Library\TestEnvironment.cs" />
+    <Compile Include="TestCases\UserProfile\COA\FPIntegrationTestCases\FPIntegration.cs" />
     <Compile Include="TestCases\UserProfile\COA\UserProfileTestCases\CreateAnAccount.cs" />
-    <Compile Include="TestCases\UserProfile\COA\FPIntegrationTestCases\FPintegration.cs" />
     <Compile Include="TestCases\UserProfile\COA\UserProfileTestCases\MyBillingDetails.cs" />
     <Compile Include="TestCases\UserProfile\COA\UserProfileTestCases\MyCoTraveler.cs" />
     <Compile Include="TestCases\UserProfile\COA\UserProfileTestCases\MyDeals.cs" />

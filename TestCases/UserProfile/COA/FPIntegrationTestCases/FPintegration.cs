@@ -5,15 +5,15 @@ using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using UserProfileSPA.Library;
+using OpenQA.Selenium.Support.UI;
 using System.Text.RegularExpressions;
 using System.Configuration;
 
 namespace UserProfileSPA.TestCases
 {
-     [TestClass]
-    public class FPintegration
+    [TestClass]
+    public class FPIntegration
     {
-       
         string SignInUrl = ConfigurationManager.AppSettings["URL"];
         string Prefix = ConfigurationManager.AppSettings["UrlPrefix"];
 
@@ -93,6 +93,7 @@ namespace UserProfileSPA.TestCases
         {
             UserProfileSPA.Library.TestEnvironment.Dispose();
         }    
+    
     
     }
 }
