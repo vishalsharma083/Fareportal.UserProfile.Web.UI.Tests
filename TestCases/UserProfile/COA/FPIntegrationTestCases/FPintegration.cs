@@ -50,16 +50,15 @@ namespace UserProfileSPA.TestCases
             {
                 Utility.ByLinkTexttoClick("ClickOnMyBookingLink", UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                 Utility.Sleep(4);
-                Utility.XPathtoClick("ClickOnSignInToViewYourBooking", UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
-                Utility.Sleep(4);
                 if (Prefix + Record("MyBookingUrl") == Driver.Url)
                 {
+                    Utility.XPathtoClick("ClickOnSignInToViewYourBooking", UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
+                    Utility.Sleep(4);               
                     Utility.CssToSetText("TextInEmailAddess", Record("Email"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                     Utility.CssToSetText("TextInPassword", Record("Password"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
 
                     Utility.CsstoClick("ClickOnSignInButton", UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
-                    //if ((string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("TextInEmailAddess", "value", 6))) && 
-                    if ((string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("TextInPassword", "value", 6))))
+                    if (string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("TextInEmailAddess", "value", 6)) && (string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("TextInPassword", "value", 6))))
                     {
 
                         string _actualerrorForEmailAddress = Utility.ByXpath("ValidationForEmailAddress", UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
@@ -135,7 +134,7 @@ namespace UserProfileSPA.TestCases
                 Assert.IsTrue(false, "SignInUrl is not opened.");
             }
         }
-        [DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\RegisterForFreeAllvalidations.csv", "RegisterForFreeAllvalidations#csv", DataAccessMethod.Sequential), DeploymentItem("RegisterForFreeAllvalidations.csv"), TestMethod]
+        [DeploymentItem("RegisterForFreeAllvalidations.csv"), DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\RegisterForFreeAllvalidations.csv", "RegisterForFreeAllvalidations#csv", DataAccessMethod.Sequential), TestMethod]
         public void RegisterForFreeAllvalidations()
         {
             IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
@@ -176,7 +175,7 @@ namespace UserProfileSPA.TestCases
                         Assert.AreEqual(CreateMyAccountAllValidation[3], _actualErrorInRegisterEmailAddress);
 
                         string _actualErrorInRegisterPassword = Utility.ByXpath("ErrorInRegisterPasswordWhenNotCorrect", UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
-                        Assert.AreEqual(CreateMyAccountAllValidation[4], _actualErrorInRegisterPassword);
+                         Assert.AreEqual(CreateMyAccountAllValidation[4], _actualErrorInRegisterPassword);
 
                         string _actualErrorInRegisterConfrmPassword = Utility.ByXpath("ErrorInRegisterConfrmPasswordWhenNotCorrect", UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                         Assert.AreEqual(CreateMyAccountAllValidation[5], _actualErrorInRegisterConfrmPassword);
@@ -184,6 +183,31 @@ namespace UserProfileSPA.TestCases
                 }
             }
         }
+
+        [DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\SucessfullyCreatedCreateMyAccount.csv", "SucessfullyCreatedCreateMyAccount#csv", DataAccessMethod.Sequential), DeploymentItem("SucessfullyCreatedCreateMyAccount.csv"), TestMethod]
+        public void SucessfullyCreatedCreateMyAccount()
+        { 
+           IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
+           if (Prefix + SignInUrl == Driver.Url)
+           {
+               Utility.ByLinkTexttoClick("ClickOnMyBookingLink", UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
+               Utility.Sleep(4);
+               Utility.XPathtoClick("ClickOnSignInToViewYourBooking", UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
+               Utility.Sleep(4);
+               Random randomNum = new Random();
+               int num = randomNum.Next(199, 299);
+               Utility.CssToSetText("TextEmailAddressInRegister", num+Record("Email"), 3);
+               Utility.CssToSetText("TextPasswordInRegister", Record("Password")+num, 3);
+               Utility.CssToSetText("TextInRetypePassword", Record("ConfrmPassword")+num, 3);
+               Utility.CsstoClick("ClickOnCreateMyAcccountBtn", UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
+               Utility.Sleep(26);
+               string expectedCreateAnAccMsg = "We could not find any booked trips associated with this email adress ("+(Record("Email"))+") & account you created.";
+               string _actualCreateAnAccMsg = Utility.ByXpath("ActualCreateAnAccMsg",UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
+               Assert.AreEqual(expectedCreateAnAccMsg,_actualCreateAnAccMsg);
+           }
+
+        }
+
         [TestCleanup]
         public void Cleanup()
         {

@@ -249,6 +249,9 @@ Click here to create an account – its quick &amp; easy.</value>
     <value>Please provide email address,Please provide password,Please enter valid email address,Invalid email/password.</value>
   </data>
   <data name="CreateMyAccountAllValidation" xml:space="preserve">
-    <value>Please provide email address,Please type password,Please re-type password,Please enter valid email address, Please provide a password which is 5-32 characters long,Passwords do not match</value>
+    <value>Please provide email address,Please type password,Please re-type password,Please enter valid email address,Please provide a password which is 5-32 characters long,Passwords do not match</value>
+  </data>
+  <data name="ExpectedCreateAnAccMsg" xml:space="preserve">
+    <value>We could not find any booked trips associated with this email adress (Record(Email)) &amp; account you created.</value>
   </data>
 </root>

@@ -115,7 +115,7 @@ namespace UserProfileSPA.TestCases.Resource {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please provide email address,Please type password,Please re-type password,Please enter valid email address, Please provide a password which is 5-32 characters long,Passwords do not match.
+        ///   Looks up a localized string similar to Please provide email address,Please type password,Please re-type password,Please enter valid email address,Please provide a password which is 5-32 characters long,Passwords do not match.
         /// </summary>
         internal static string CreateMyAccountAllValidation {
             get {
@@ -156,6 +156,15 @@ namespace UserProfileSPA.TestCases.Resource {
         internal static string errorMsgForMobile {
             get {
                 return ResourceManager.GetString("errorMsgForMobile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to We could not find any booked trips associated with this email adress (Record(Email)) &amp; account you created..
+        /// </summary>
+        internal static string ExpectedCreateAnAccMsg {
+            get {
+                return ResourceManager.GetString("ExpectedCreateAnAccMsg", resourceCulture);
             }
         }
         
