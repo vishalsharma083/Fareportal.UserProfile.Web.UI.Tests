@@ -201,11 +201,34 @@ namespace UserProfileSPA.TestCases
                Utility.CssToSetText("TextInRetypePassword", Record("ConfrmPassword")+num, 3);
                Utility.CsstoClick("ClickOnCreateMyAcccountBtn", UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                Utility.Sleep(26);
-               string expectedCreateAnAccMsg = "We could not find any booked trips associated with this email adress ("+(Record("Email"))+") & account you created.";
+               string expectedCreateAnAccMsg = "We could not find any booked trips associated with this email adress ("+num+(Record("Email"))+") & account you created.";
                string _actualCreateAnAccMsg = Utility.ByXpath("ActualCreateAnAccMsg",UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                Assert.AreEqual(expectedCreateAnAccMsg,_actualCreateAnAccMsg);
            }
 
+        }
+
+        public void VerifyingEmailAddress() 
+        { 
+           IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
+           if (Prefix + SignInUrl == Driver.Url)
+           {
+               Utility.ByLinkTexttoClick("ClickOnMyBookingLink", UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
+               Utility.Sleep(4);
+               if (Prefix + Record("MyBookingUrl") == Driver.Url)
+               {
+                   Utility.XPathtoClick("ClickOnSignInToViewYourBooking", UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
+                   Utility.Sleep(4);
+                   Utility.CssToSetText("TextInEmailAddess", Record("Email"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
+                   Utility.CssToSetText("TextInPassword", Record("Password"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
+                   Utility.CsstoClick("ClickOnSignInButton", UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
+                   Utility.Sleep(4);
+                   if (Prefix + Record("MyTripsPage") == Driver.Url)
+                   { 
+                      
+                   }
+               }
+           }
         }
 
         [TestCleanup]
