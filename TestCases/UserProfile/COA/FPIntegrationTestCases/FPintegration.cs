@@ -185,25 +185,62 @@ namespace UserProfileSPA.TestCases
         }
 
         [DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "|DataDirectory|\\SucessfullyCreatedCreateMyAccount.csv", "SucessfullyCreatedCreateMyAccount#csv", DataAccessMethod.Sequential), DeploymentItem("SucessfullyCreatedCreateMyAccount.csv"), TestMethod]
-        public void SucessfullyCreatedCreateMyAccount()
+        public void SucessfullyCreatedCreateMyAccountAndVerifyEmail()  
         { 
            IWebDriver Driver = UserProfileSPA.Library.TestEnvironment.Driver;
            if (Prefix + SignInUrl == Driver.Url)
            {
                Utility.ByLinkTexttoClick("ClickOnMyBookingLink", UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                Utility.Sleep(4);
-               Utility.XPathtoClick("ClickOnSignInToViewYourBooking", UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
-               Utility.Sleep(4);
-               Random randomNum = new Random();
-               int num = randomNum.Next(199, 299);
-               Utility.CssToSetText("TextEmailAddressInRegister", num+Record("Email"), 3);
-               Utility.CssToSetText("TextPasswordInRegister", Record("Password")+num, 3);
-               Utility.CssToSetText("TextInRetypePassword", Record("ConfrmPassword")+num, 3);
-               Utility.CsstoClick("ClickOnCreateMyAcccountBtn", UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
-               Utility.Sleep(26);
-               string expectedCreateAnAccMsg = "We could not find any booked trips associated with this email adress ("+num+(Record("Email"))+") & account you created.";
-               string _actualCreateAnAccMsg = Utility.ByXpath("ActualCreateAnAccMsg",UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
-               Assert.AreEqual(expectedCreateAnAccMsg,_actualCreateAnAccMsg);
+               if (Prefix + Record("MyBookingUrl") == Driver.Url)
+               {
+                   Utility.XPathtoClick("ClickOnSignInToViewYourBooking", UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
+                   Utility.Sleep(4);
+                   Random randomNum = new Random();
+                   int num = randomNum.Next(199, 299);
+                   Utility.CssToSetText("TextEmailAddressInRegister", num + Record("Email"), 3);
+                   Utility.CssToSetText("TextPasswordInRegister", Record("Password") + num, 3);
+                   Utility.CssToSetText("TextInRetypePassword", Record("ConfrmPassword") + num, 3);
+                   Utility.CsstoClick("ClickOnCreateMyAcccountBtn", UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
+                   Utility.Sleep(26);
+                   string expectedCreateAnAccMsg = "We could not find any booked trips associated with this email adress (" + num + (Record("Email")) + ") & account you created.";
+                   string _actualCreateAnAccMsg = Utility.ByXpath("ActualCreateAnAccMsg", UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
+                   Assert.AreEqual(expectedCreateAnAccMsg, _actualCreateAnAccMsg);
+                   Utility.Sleep(2);
+                   Driver.Navigate().Back();
+                   Utility.Sleep(2);
+                   Utility.CssToSetText("TextInEmailAddess", Record("Email"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
+                   Utility.CssToSetText("TextInPassword", Record("Password"), UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
+                   Utility.CsstoClick("ClickOnSignInButton", UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
+                   Utility.Sleep(4);
+                   if (Prefix + Record("MyTripsPage") == Driver.Url)
+                   {
+                       Utility.CsstoClick("clickOnMyInformation", 4);
+                       Utility.Sleep(2);
+                       if (Prefix + Record("MyInformationUrl") == Driver.Url)
+                       {
+                           string myInformationEmail = Utility.GrabAttributeValueByCss("SignInInformationEmailAddress", "value", 4);
+                           Assert.AreEqual(num + Record("Email"), myInformationEmail, "Email address is matched");
+                       }
+                       else
+                       {
+                           Assert.IsTrue(false, "MyInformation Url is not opened.");
+                       }
+                   }
+                   else
+                   {
+                       Assert.IsTrue(false, "MyTrip Page is not opened.");
+                   }
+
+               }
+               else
+               {
+                   Assert.IsTrue(false, "MyBooking Url is not opened.");
+               }
+           }
+           else
+           {
+               Assert.IsTrue(false, "SignIn Url is not opened.");
            }
 
         }
