@@ -339,6 +339,15 @@ namespace UserProfileSPA.TestCases.Resource {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please provide email address,Please provide valid email address.
+        /// </summary>
+        internal static string ForgetPasswordError {
+            get {
+                return ResourceManager.GetString("ForgetPasswordError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please enter valid email address..
         /// </summary>
         internal static string ForgetPasswordValidation {

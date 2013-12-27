@@ -271,6 +271,9 @@
     <None Include="AppData\VerifyTheNameFieldValidations.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="ValidationInForgetPasswordforSignInToViewYourBooking.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="VerifytheRadioButtonsInBillingSection.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

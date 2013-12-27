@@ -7,6 +7,6 @@ namespace UserProfileSPA
 {
     public class UserProfileSettings
     {
-        public const int ELEMENT_SEARCH_WAIT_TIMEOUT = 60;
+        public const int ELEMENT_SEARCH_WAIT_TIMEOUT = 180;
     }
 }

@@ -257,4 +257,7 @@ Click here to create an account – its quick &amp; easy.</value>
   <data name="EmailAddressAlreadyExistInRegisterForFree" xml:space="preserve">
     <value>User already exist</value>
   </data>
+  <data name="ForgetPasswordError" xml:space="preserve">
+    <value>Please provide email address,Please provide valid email address</value>
+  </data>
 </root>
