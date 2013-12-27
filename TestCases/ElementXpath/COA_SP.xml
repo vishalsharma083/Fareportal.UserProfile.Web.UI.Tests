@@ -362,8 +362,11 @@
       <ClickOnMyBookingLink>My Bookings</ClickOnMyBookingLink>
       <ClickOnSignInToViewYourBooking>html/body/form/table/tbody/tr[2]/td[1]/table/tbody/tr/td/table/tbody/tr[2]/td/table[2]/tbody/tr/td/div/div[2]/div[2]/div[1]/span/span</ClickOnSignInToViewYourBooking>
       <ClickOnSignInButton>a[id$='lbtnSignIn']</ClickOnSignInButton>
-      <ValidationForEmailAddress>html/body/form/table/tbody/tr[2]/td[1]/table/tbody/tr/td/table/tbody/tr[2]/td/table[2]/tbody/tr/td/div/div[2]/div[2]/div[1]/div/div[2]/div/div/p[1]/span[2]</ValidationForEmailAddress>
-      <ValidationForPassword>html/body/form/table/tbody/tr[2]/td[1]/table/tbody/tr/td/table/tbody/tr[2]/td/table[2]/tbody/tr/td/div/div[2]/div[2]/div[1]/div/div[2]/div/div/p[2]/span</ValidationForPassword>
+      <ValidationForEmailAddressWhenBlank>html/body/form/table/tbody/tr[2]/td[1]/table/tbody/tr/td/table/tbody/tr[2]/td/table[2]/tbody/tr/td/div/div[2]/div[2]/div[1]/div/div[2]/div/div/p[1]/span[1]</ValidationForEmailAddressWhenBlank>
+      <ValidationForPasswordWhenBlank>html/body/form/table/tbody/tr[2]/td[1]/table/tbody/tr/td/table/tbody/tr[2]/td/table[2]/tbody/tr/td/div/div[2]/div[2]/div[1]/div/div[2]/div/div/p[2]/span</ValidationForPasswordWhenBlank>
+      <ValidationForEmailAddressWhenNotCorrect>html/body/form/table/tbody/tr[2]/td[1]/table/tbody/tr/td/table/tbody/tr[2]/td/table[2]/tbody/tr/td/div/div[2]/div[2]/div[1]/div/div[2]/div/div/p[1]/span[2]</ValidationForEmailAddressWhenNotCorrect>
+    
+      
       <TextInEmailAddess>input[id$='txtEmailAddressSignIn']</TextInEmailAddess>
       <TextInPasswordForSignInToView>input[id$='txtSignInPassword']</TextInPasswordForSignInToView>
       <ErrorInEmailAllreadyExist>html/body/form/table/tbody/tr[2]/td[1]/table/tbody/tr/td/table/tbody/tr[2]/td/table[2]/tbody/tr/td/div/div[2]/div[2]/div[1]/div/div[2]/div/div/div[1]</ErrorInEmailAllreadyExist>

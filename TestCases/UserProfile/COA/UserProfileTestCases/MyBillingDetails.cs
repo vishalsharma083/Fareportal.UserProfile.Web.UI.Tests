@@ -722,7 +722,7 @@ namespace UserProfileSPA.TestCases
                     Utility.Sleep(4);
                     if (Prefix+Record("MyInformationUrl") == Driver.Url)
                     {
-                        Utility.ByLinkTexttoClick("ClickOnMyBillingDetails", 4);
+                        Utility.ByLinkTexttoClick("ClickOnMyBillingDetails", UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                         Utility.Sleep(4);
                         if (Prefix+Record("MyBillingDetailsUrl") == Driver.Url)
                         {

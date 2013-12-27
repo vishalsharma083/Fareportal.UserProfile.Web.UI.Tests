@@ -61,32 +61,32 @@ namespace UserProfileSPA.TestCases
                     if (string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("TextInEmailAddess", "value", 6)) && (string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("TextInPasswordForSignInToView", "value", 6))))
                     {
 
-                        string _actualerrorForEmailAddress = Utility.ByXpath("ValidationForEmailAddress", UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
-                        string _actualerrorForPassword = Utility.ByXpath("ValidationForPassword", UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
+                        string _actualerrorForEmailAddress = Utility.ByXpath("ValidationForEmailAddressWhenBlank", UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
+                        string _actualerrorForPassword = Utility.ByXpath("ValidationForPasswordWhenBlank", UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
 
                         Assert.AreEqual(ToViewYourBookingAllValidations[0], _actualerrorForEmailAddress);
                         Assert.AreEqual(ToViewYourBookingAllValidations[1], _actualerrorForPassword);
                     }
                     else if ((string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("TextInEmailAddess", "value", 2)) && (!string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("TextInPasswordForSignInToView", "value", 2)))))
                     {
-                        string _actualerrorForEmailAddress = Utility.ByXpath("ValidationForEmailAddress", UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
+                        string _actualerrorForEmailAddress = Utility.ByXpath("ValidationForEmailAddressWhenBlank", UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                         Assert.AreEqual(ToViewYourBookingAllValidations[0], _actualerrorForEmailAddress);
                     }
                     else if ((!string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("TextInEmailAddess", "value", 2)) && (string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("TextInPasswordForSignInToView", "value", 2)))))
                     {
-                        string _actualerrorForEmailAddress = Utility.ByXpath("ValidationForEmailAddress", UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
+                        string _actualerrorForEmailAddress = Utility.ByXpath("ValidationForEmailAddressWhenNotCorrect", UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                         Assert.AreEqual(ToViewYourBookingAllValidations[2], _actualerrorForEmailAddress);
 
-                        string _actualerrorForPassword = Utility.ByXpath("ValidationForPassword", UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
+                        string _actualerrorForPassword = Utility.ByXpath("ValidationForPasswordWhenBlank", UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                         Assert.AreEqual(ToViewYourBookingAllValidations[1], _actualerrorForPassword);
                     }
                     else if ((!string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("TextInEmailAddess", "value", 2)) && (!string.IsNullOrEmpty(Utility.GrabAttributeValueByCss("TextInPasswordForSignInToView", "value", 2)))))
                     {
-                        string _actualerrorForEmailAddress = Utility.ByXpath("ValidationForEmailAddress", UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
+                        string _actualerrorForEmailAddress = Utility.ByXpath("ValidationForEmailAddressWhenNotCorrect", UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
                         Assert.AreEqual(ToViewYourBookingAllValidations[2], _actualerrorForEmailAddress);
 
-                        string _actualerrorForPassword = Utility.ByXpath("ValidationForPassword", UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
-                        Assert.AreEqual(ToViewYourBookingAllValidations[1], _actualerrorForPassword);
+                        //string _actualerrorForPassword = Utility.ByXpath("ValidationForPassword", UserProfileSettings.ELEMENT_SEARCH_WAIT_TIMEOUT);
+                        //Assert.AreEqual(ToViewYourBookingAllValidations[1], _actualerrorForPassword);
                     }
                 }
                 else
