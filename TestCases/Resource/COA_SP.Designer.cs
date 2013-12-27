@@ -133,6 +133,15 @@ namespace UserProfileSPA.TestCases.Resource {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to User already exist.
+        /// </summary>
+        internal static string EmailAddressAlreadyExistInRegisterForFree {
+            get {
+                return ResourceManager.GetString("EmailAddressAlreadyExistInRegisterForFree", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Contact phone is missing.
         /// </summary>
         internal static string errorContactNomissing {

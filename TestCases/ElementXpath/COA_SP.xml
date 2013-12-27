@@ -365,7 +365,7 @@
       <ValidationForEmailAddress>html/body/form/table/tbody/tr[2]/td[1]/table/tbody/tr/td/table/tbody/tr[2]/td/table[2]/tbody/tr/td/div/div[2]/div[2]/div[1]/div/div[2]/div/div/p[1]/span[2]</ValidationForEmailAddress>
       <ValidationForPassword>html/body/form/table/tbody/tr[2]/td[1]/table/tbody/tr/td/table/tbody/tr[2]/td/table[2]/tbody/tr/td/div/div[2]/div[2]/div[1]/div/div[2]/div/div/p[2]/span</ValidationForPassword>
       <TextInEmailAddess>input[id$='txtEmailAddressSignIn']</TextInEmailAddess>
-      <TextInPassword>input[id$='txtSignInPassword']</TextInPassword>
+      <TextInPassword>html/body/form/table/tbody/tr[2]/td[1]/table/tbody/tr/td/table/tbody/tr[2]/td/table[2]/tbody/tr/td/div/div[2]/div[2]/div[1]/div/div[2]/div/div/p[2]/input</TextInPassword>
       <ErrorInEmailAllreadyExist>html/body/form/table/tbody/tr[2]/td[1]/table/tbody/tr/td/table/tbody/tr[2]/td/table[2]/tbody/tr/td/div/div[2]/div[2]/div[1]/div/div[2]/div/div/div[1]</ErrorInEmailAllreadyExist>
       <ClickOnCreateMyAcccountBtn>a[id$='lkCreateMyAccount']</ClickOnCreateMyAcccountBtn>
       <TextEmailAddressInRegister>input[id$='txtEmailAddressRegister']</TextEmailAddressInRegister>
@@ -380,6 +380,8 @@
       <ErrorInRegisterPasswordWhenNotCorrect>html/body/form/table/tbody/tr[2]/td[1]/table/tbody/tr/td/table/tbody/tr[2]/td/table[2]/tbody/tr/td/div/div[2]/div[2]/div[1]/div/div[3]/div/p[2]/span[2]</ErrorInRegisterPasswordWhenNotCorrect>
       <ErrorInRegisterConfrmPasswordWhenNotCorrect>html/body/form/table/tbody/tr[2]/td[1]/table/tbody/tr/td/table/tbody/tr[2]/td/table[2]/tbody/tr/td/div/div[2]/div[2]/div[1]/div/div[3]/div/p[3]/span[2]</ErrorInRegisterConfrmPasswordWhenNotCorrect>
       <ActualCreateAnAccMsg>html/body/form/table/tbody/tr[2]/td[1]/table/tbody/tr/td/table/tbody/tr[2]/td/table[2]/tbody/tr/td/div/div[2]/div[2]/div[2]/div[1]/div[1]</ActualCreateAnAccMsg>
+
+      <ErrorWhileEmailAlreadyExistInRegisterForFree>html/body/form/table/tbody/tr[2]/td[1]/table/tbody/tr/td/table/tbody/tr[2]/td/table[2]/tbody/tr/td/div/div[2]/div[2]/div[1]/div/div[3]/div/div[1]</ErrorWhileEmailAlreadyExistInRegisterForFree>
     </MyBooking>
     
   </FPIntegration>

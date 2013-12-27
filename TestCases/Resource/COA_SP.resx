@@ -254,4 +254,7 @@ Click here to create an account – its quick &amp; easy.</value>
   <data name="ExpectedCreateAnAccMsg" xml:space="preserve">
     <value>We could not find any booked trips associated with this email adress (Record(Email)) &amp; account you created.</value>
   </data>
+  <data name="EmailAddressAlreadyExistInRegisterForFree" xml:space="preserve">
+    <value>User already exist</value>
+  </data>
 </root>
